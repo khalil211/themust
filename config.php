@@ -52,7 +52,7 @@ function backUp()
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-th"></i>Produits</a>
                         <ul class="sub-menu children dropdown-menu">
                             <li><i class="menu-icon fa fa-th"></i><a href="forms-basic.html">Liste des produits</a></li>
-                            <li><i class="menu-icon fa fa-th"></i><a href="forms-advanced.html">Ajouter un produit</a></li>
+                            <li><i class="menu-icon fa fa-th"></i><a href="ajout-produit.php">Ajouter un produit</a></li>
                         </ul>
                     </li>
                     <li class="menu-item-has-children dropdown">
