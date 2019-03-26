@@ -40,7 +40,6 @@ class produit
 			$db=config::getConnexion();
 			$req=$db->prepare('INSERT into produit(img,nom,descr,quantite,prix,categorie) values(:img,:nom,:descr,:quantite,:prix,:categorie)');
 	    $req->bindValue(':img',$this->img);
-      
         $req->bindValue(':nom',$this->nom);
         $req->bindValue(':descr',$this->descr);
         $req->bindValue(':quantite',$this->quantite);
@@ -53,7 +52,11 @@ class produit
 			die('erreur' . $e->getMessage());
 		}
 	}
+
+
 	
 
 }
+
+
 ?>
