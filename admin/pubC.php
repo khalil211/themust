@@ -45,6 +45,7 @@ class employe
 			die('erreur' . $e->getMessage());
 		}
 	}
+	
 
 }
 ?>

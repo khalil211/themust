@@ -81,7 +81,7 @@ $result=$db->query('select * from publicite');
                                              <td>
                             
                             <!--a href="#" class="btn btn-primary btn-xs" onclick="verifForm()" type="submit" Value="Ajouter"><i class="fa fa-folder"></i> ajotuer</a> -->
-                            <a href="#" class="btn btn-info btn-xs"><i class="fa fa-pencil"></i> Edit </a>
+                            <a href="ediit.php?edit=<?php echo $row['ID']; ?>" class="btn btn-info btn-xs"><i class="fa fa-pencil"></i> Edit </a>
                             <a href="delete.php?del=<?php echo $row['ID']; ?>" class="del_btn">Delete</a>
                           </td>
                                         </tr>
