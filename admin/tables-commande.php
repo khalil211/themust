@@ -45,7 +45,7 @@
                                         <th> ID client </th>
                                         <th> Nb articles </th>
                                         <th> Prix total </th>
-                                        <th> Date </th>
+                                        <th> Date commande </th>
                                         <th> Statut </th>
                                         <th> Actions </th>
                                     </tr>
@@ -59,9 +59,9 @@
                                         <td> date1</td>
                                         <td> statut</td>
                                         <td>
-			                            <a href="#" class="btn btn-primary btn-xs"><i class="fa fa-folder"></i> View </a>
-			                            <a href="#" class="btn btn-info btn-xs"><i class="fa fa-pencil"></i> Edit </a>
-			                            <a href="#" class="btn btn-danger btn-xs"><i class="fa fa-trash-o"></i> Delete </a>
+			                            <a href="#" class="btn btn-primary btn-sm"><i class="fa fa-folder"></i> Afficher </a>
+			                            <a href="#" class="btn btn-info btn-sm"><i class="fa fa-pencil"></i> Modifier </a>
+			                            <a href="#" class="btn btn-danger btn-sm"><i class="fa fa-trash-o"></i> Supprimer </a>
 			                          </td>
 			                        </tr>
 			                    </tbody>
