@@ -1,3 +1,8 @@
+<?php
+include "../config.php";
+$db=config::getConnexion();
+$result=$db->query('SELECT * FROM produit');
+?>
 <!doctype html>
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang=""> <![endif]-->
 <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8" lang=""> <![endif]-->
@@ -32,6 +37,7 @@
 
 <body>
     <!-- Left Panel -->
+
 
     <aside id="left-panel" class="left-panel">
         <nav class="navbar navbar-expand-sm navbar-default">
@@ -277,6 +283,7 @@
             </div>
         </div>
 
+       
         <div class="content mt-3">
             <div class="animated fadeIn">
                 <div class="row">
@@ -291,25 +298,36 @@
                                     <thead>
                                         <tr>
                                             <th> Image </th>
+                                            <th> Identifiant </th>
                                             <th> Nom </th>
+                                            <th> Description </th>
+                                            <th> Quantite   </th>
+                                            <th> Prix </th>
                                             <th> Catégorie </th>
-                                            <th> Actions </th>
+                                            <th> Action </th>
 
                                         </tr>
                                     </thead>
                                    <tbody>
+                                    <?php while ($row = $result->fetch()) { 
+                                    ?>
                                         <tr>
-                                            <td> Img1</td>
-                                            <td>nom1</td>
-                                            <td>cate</td>
 
-                                             <td>
-                            <a href="afficher-prod.php" class="btn btn-primary btn-xs"><i class="fa fa-folder"></i> View </a>
-                            <a href="#" class="btn btn-info btn-xs"><i class="fa fa-pencil"></i> Edit </a>
-                            <a href="#" class="btn btn-danger btn-xs"><i class="fa fa-trash-o"></i> Delete </a>
-                          </td>
+                                            <td> <?php echo $row['img']; ?></td>
+                                            <td> <?php echo $row['id']; ?></td>
+                                            <td> <?php echo $row['nom']; ?></td>
+                                            <td><?php echo $row['descr']; ?></td>
+                                            <td><?php echo $row['quantite']; ?></td>
+                                            <td><?php echo $row['prix']; ?></td>
+                                            <td><?php echo $row['categorie']; ?></td>
+                                            <td>  
+                <a href="modifier-prod.php?edit=<?php echo $row['id']; ?>" class="btn btn-info btn-xs"><i class="fa fa-pencil"></i> Edit </a>
+                
+                <a href="supprimer-produit.php?del=<?php echo $row['id']; ?>" class="btn btn-danger btn-xs"><i class ="fa fa-trash-o"> </i> Delete</a>
+                                             </td>
                                         </tr>
-                                        
+
+                                       <?php } ?>
                                 </table>
                             </div>
                         </div>
