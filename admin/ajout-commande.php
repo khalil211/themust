@@ -27,47 +27,77 @@
 	include "../config.php";
 	backUP();
 	?>
-	        <div class="card-header">
-            <strong> Ajout commande</strong>
-        </div>
-        <div class="card-body card-block">
-            <form action="" method="post" enctype="multipart/form-data" class="form-horizontal" name="commandef">
-                <div class="row form-group">
-                    <div class="col col-md-3"><label class=" form-control-label">Numero</label></div>
-                    <div class="col-12 col-md-9"><input type="number" id="num" name="num" placeholder="Numero" class="form-control"><small class="form-text text-muted"></small></div>
+    <div class="card-header">
+        <strong> Ajout commande</strong>
+    </div>
+    <div class="card-body card-block" id="main">
+        <?php
+        if (isset($_GET['added']))
+        {
+            if ($_GET['added']=='true')
+            {
+                ?>
+                <div class="sufee-alert alert with-close alert-success alert-dismissible fade show">
+                    <span class="badge badge-pill badge-success">Success</span>
+                        La commande a été ajoutée.
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
                 </div>
-                <div class="row form-group">
-                    <div class="col col-md-3"><label class=" form-control-label">ID Client</label></div>
-                    <div class="col-12 col-md-9"><input type="number" id="idc" name="idc" placeholder="ID Client" class="form-control"><small class="form-text text-muted"></small></div>
+                <?php
+            }
+            else
+            {
+                ?>
+                <div class="sufee-alert alert with-close alert-danger alert-dismissible fade show">
+                    <span class="badge badge-pill badge-danger">Echec</span>
+                    <?php
+                    echo '  ';
+                    if (!isset($_GET['reason']))
+                        echo 'Une erreur inconnue est survenue.';
+                    else
+                    {
+                        if ($_GET['reason']==1)
+                            echo 'Un ou plusieurs produit(s) n\'éxiste(nt) pas.';
+                        elseif ($_GET['reason']==2)
+                            echo 'Le client n\'éxiste pas.';
+                    }
+                    ?>
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
                 </div>
-                <div class="row form-group">
-                    <div class="col col-md-3"><label class=" form-control-label">Nombre d'articles</label></div>
-                    <div class="col-12 col-md-9"><input type="number" id="nba" name="nba" placeholder="Nombre d'articles" class="form-control"><small class="form-text text-muted"></small></div>
-                </div>
-                <div class="row form-group">
-                    <div class="col col-md-3"><label class=" form-control-label">Prix total</label></div>
-                    <div class="col-12 col-md-9"><input type="number" id="prix" name="prix" placeholder="Prix total" class="form-control"><small class="form-text text-muted"></small></div>
-                </div>
-                <div class="row form-group">
-                    <div class="col col-md-3"><label class=" form-control-label">Date</label></div>
-                    <div class="col-12 col-md-9"><input type="date" id="text-input" name="date" class="form-control"><small class="form-text text-muted"></small></div>
-                </div>
-                <div class="row form-group">
-                    <div class="col col-md-3"><label class=" form-control-label">Etat</label></div>
-                    <div class="col-12 col-md-9"><label class="switch switch-text switch-primary switch-pill"><input type="checkbox" class="switch-input" checked="true"> <span data-on="On" data-off="Off" class="switch-label"></span> <span class="switch-handle"></span></label><small class="form-text text-muted"></small></div>
-                </div>
-            </form>
-        </div>
-        <div class="card-footer">
-            <button type="submit" class="btn btn-primary btn-sm" id="confirmer">
-                <i class="fa fa-dot-circle-o"></i> Submit
-            </button>
-            <button type="reset" class="btn btn-danger btn-sm">
-                <i class="fa fa-ban"></i> Reset
-            </button>
-        </div>
+                <?php
+            }
+        }
+        ?>
+        <form action="commande/ajout.php" method="post" enctype="multipart/form-data" class="form-horizontal" id="commandef">
+            <div class="row form-group">
+                <div class="col col-md-3"><label class=" form-control-label" for="idc">ID Client</label></div>
+                <div class="col-12 col-md-9"><input type="number" id="idc" name="idc" placeholder="ID Client" class="form-control" required autofocus><small class="form-text text-muted"></small></div>
+            </div>
+            <div class="row form-group">
+                <div class="col col-md-3"><label class=" form-control-label">Produits</label></div>
+                <div class="col-12 col-md-9" id="listep"><button type="button" class="btn btn-success btn-sm" id="ajouterp"> Ajouter produit</button><small class="form-text text-muted"></small></div>
+            </div>
+            <div class="row form-group">
+                <div class="col col-md-3"><label class=" form-control-label" for="passee">Passée</label></div>
+                <div class="col-12 col-md-9"><label class="switch switch-3d switch-success mr-3"><input type="checkbox" class="switch-input" name="passee"> <span class="switch-label"></span> <span class="switch-handle"></span></label></label><small class="form-text text-muted"></small></div>
+            </div>
+
+        </form>
+    </div>
+    <div class="card-footer">
+        <button type="submit" form="commandef" class="btn btn-primary btn-sm">
+            <i class="fa fa-dot-circle-o"></i> Ajouter
+        </button>
+        <button type="reset" form="commandef" class="btn btn-danger btn-sm">
+            <i class="fa fa-ban"></i> Annuler
+        </button>
+    </div>
 	<?php
 	backDown();
 	?>
+    <script type="text/javascript" src="commande/ajout-commande.js"></script>
 </body>
 </html>

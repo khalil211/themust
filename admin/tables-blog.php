@@ -41,27 +41,26 @@
                             <table id="bootstrap-data-table-export" class="table table-striped table-bordered">
                                 <thead>
                                     <tr>
-                                        <th> Num </th>
-                                        <th> ID client </th>
-                                        <th> Nb articles </th>
-                                        <th> Prix total </th>
-                                        <th> Date commande </th>
-                                        <th> Statut </th>
-                                        <th> Actions </th>
+                                        
+                                        <th> ID Blog </th>
+                                        <th> Description </th>
+                                        <th> Type </th>
+                                        <th> Date </th>
+                                        
                                     </tr>
                                 </thead>
                                <tbody>
                                     <tr>
-                                        <td> num </td>
-                                        <td>id</td>
-                                        <td>nba</td>
-                                        <td>prix</td>
-                                        <td> date1</td>
-                                        <td> statut</td>
+                                        <td> ID </td>
+                                        
+                                        <td>Des</td>
+                                       
+                                        <td>Type</td>
+                                        <td>Date</td>
                                         <td>
-			                            <a href="#" class="btn btn-primary btn-sm"><i class="fa fa-folder"></i> Afficher </a>
-			                            <a href="#" class="btn btn-info btn-sm"><i class="fa fa-pencil"></i> Modifier </a>
-			                            <a href="#" class="btn btn-danger btn-sm"><i class="fa fa-trash-o"></i> Supprimer </a>
+			                            <a href="#" class="btn btn-primary btn-xs"><i class="fa fa-folder"></i> View </a>
+			                            <a href="#" class="btn btn-info btn-xs"><i class="fa fa-pencil"></i> Edit </a>
+			                            <a href="#" class="btn btn-danger btn-xs"><i class="fa fa-trash-o"></i> Delete </a>
 			                          </td>
 			                        </tr>
 			                    </tbody>
