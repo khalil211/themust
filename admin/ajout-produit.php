@@ -5,8 +5,6 @@ if (isset($_POST['img'])&&isset($_POST['nom'])&&isset($_POST['descr'])&&isset($_
     $e=new produit($_POST['img'],$_POST['nom'],$_POST['descr'],$_POST['quantite'],$_POST['prix'],$_POST['categorie']);
     $e->ajouter();
 }
-
-
 ?>
 
 <!doctype html>

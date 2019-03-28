@@ -1,7 +1,7 @@
 <?php
 include "../config.php";
 $db=config::getConnexion();
-$result=$db->query('SELECT * FROM produit');
+$result=$db->query('select * from produit order by id desc');
 ?>
 <!doctype html>
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang=""> <![endif]-->
@@ -37,7 +37,6 @@ $result=$db->query('SELECT * FROM produit');
 
 <body>
     <!-- Left Panel -->
-
 
     <aside id="left-panel" class="left-panel">
         <nav class="navbar navbar-expand-sm navbar-default">
@@ -140,16 +139,17 @@ $result=$db->query('SELECT * FROM produit');
 
             <div class="header-menu">
 
-                <div class="col-sm-7">
+              <div class="col-sm-7">
                     <a id="menuToggle" class="menutoggle pull-left"><i class="fa fa fa-tasks"></i></a>
                     <div class="header-left">
                         <button class="search-trigger"><i class="fa fa-search"></i></button>
-                        <div class="form-inline">
+            <!--           <div class="form-inline">
                             <form class="search-form">
-                                <input class="form-control mr-sm-2" type="text" placeholder="Search ..." aria-label="Search">
+                               <input class="form-control mr-sm-2" type="text" placeholder="Search ..." aria-label="Search">
                                 <button class="search-close" type="submit"><i class="fa fa-close"></i></button>
+                              
                             </form>
-                        </div>
+                        </div>-->
 
                         <div class="dropdown for-notification">
                             <button class="btn btn-secondary dropdown-toggle" type="button" id="notification" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -294,6 +294,26 @@ $result=$db->query('SELECT * FROM produit');
                                 <strong class="card-title"> Listes des produits </strong>
                             </div>
                             <div class="card-body">
+                             <!--   <label> Recherche </label>
+                                <input type="text" name="recherche">-->
+                                <form action="recherche-prod.php" method="GET">
+                                <input type="text" name="nom">
+                               <input type="submit" value ="recherche"class="btn btn-success btn-sm" style="width: 80px; height: 30px;" />
+                                              
+                          
+                            <?php
+                            $reqq=("select * from produit");
+                            $ress=$db->query($reqq);
+                            while ($d=$ress->fetch());
+                            {
+                                echo "<h1>{$d["nom"]}</h1>";
+                                echo "<p>{$d["prix"]}</p>";
+                                echo "<p>{$d["quantite"]}</p>";
+                                echo "<p>{$d["description"]}</p>";
+                            }
+
+                            ?>
+                            </form>
                                 <table id="bootstrap-data-table-export" class="table table-striped table-bordered">
                                     <thead>
                                         <tr>
@@ -313,7 +333,7 @@ $result=$db->query('SELECT * FROM produit');
                                     ?>
                                         <tr>
 
-                                            <td> <?php echo $row['img']; ?></td>
+                                            <td> <img src="images/<?php echo $row['img']; ?>"  height=100px></td>
                                             <td> <?php echo $row['id']; ?></td>
                                             <td> <?php echo $row['nom']; ?></td>
                                             <td><?php echo $row['descr']; ?></td>
