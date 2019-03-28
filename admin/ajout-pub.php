@@ -118,8 +118,9 @@ if (isset($_POST['img'])&&isset($_POST['liste'])&&isset($_POST['p1'])&&isset($_P
                                                             </div>
 
                                                 <div class="card-footer">
-                                                     <input type="submit" value="Ajouter"class="btn btn-primary btn-sm">
-                                                 <i class="fa fa-dot-circle-o"></i> 
+                                                     <i class="fa fa-folder"></i>
+                                                     <input type="submit"class="btn btn-primary btn-xs" value="Ajouter"class="btn btn-primary btn-sm" onclick="verifForm()">
+                                               
                                                         </button>
                                                         
                                                     

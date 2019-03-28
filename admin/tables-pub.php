@@ -6,7 +6,11 @@ $emps=$db->query("DELETE FROM publicite WHERE fin<=CURDATE()");
 ?>
 <?php  
 
-$result=$db->query('select * from publicite');
+$result=$db->query('select * from publicite ORDER BY ID');
+if (isset($_GET['search'])&&!empty($_GET['search'])) {
+    $search=htmlspecialchars($_GET['search']);
+    $result=$db->query('select * from publicite WHERE nom LIKE "%'.$search.'%"   ');
+}
 
 ?>
 
@@ -88,7 +92,8 @@ $result=$db->query('select * from publicite');
                             
                             <!--a href="#" class="btn btn-primary btn-xs" onclick="verifForm()" type="submit" Value="Ajouter"><i class="fa fa-folder"></i> ajotuer</a> -->
                             <a href="ediit.php?edit=<?php echo $row['ID']; ?>" class="btn btn-info btn-xs"><i class="fa fa-pencil"></i> Edit </a>
-                            <a href="delete.php?del=<?php echo $row['ID']; ?>" class="del_btn">Delete</a>
+                           <!--<a href="delete.php?del=<?php echo $row['ID']; ?>" class="btn btn-info btn-xs"><i class="fa fa-trash-o">Delete</a>-->
+                                <a href="delete.php?del=<?php echo $row['ID'];?>" class="btn btn-danger btn-xs"><i class="fa fa-trash-o"></i> Delete </a>
                           </td>
                                         </tr>
 
