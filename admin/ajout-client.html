@@ -24,6 +24,7 @@
     <link rel="stylesheet" href="vendors/selectFX/css/cs-skin-elastic.css">
 
     <link rel="stylesheet" href="assets/css/style.css">
+    <script src="assets\js\inscription.js"></script>
 
     <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800' rel='stylesheet' type='text/css'>
 
@@ -263,59 +264,47 @@
                                                     <div class="card-body card-block">
                                                         <form action="" method="post" enctype="multipart/form-data" class="form-horizontal">
                                                             <div class="row form-group">
-                                                                <div class="col col-md-3"><label class=" form-control-label">Nom</label></div>
-                                                                <div class="col-12 col-md-9"><input type="text" id="text-input" name="text-input" placeholder="Nom" class="form-control"><small class="form-text text-muted"></small></div>
+                                                                <div class="col col-md-3"><label class=" form-control-label">Identifiant</label></div>
+                                                                <div class="col-12 col-md-9"><input type="text" id="Identifiant" name="Identifiant" placeholder="Identifiant" class="form-control" onblur="verifPseudo(this)"><small class="form-text text-muted"></small></div>
                                                                 <div class="col-12 col-md-9">
                                                                   
                                                                 </div>
                                                             </div>
+                                                        
+                                                             
                                                             <div class="row form-group">
-                                                                <div class="col col-md-3"><label for="text-input" class=" form-control-label">Prénom</label></div>
-                                                                <div class="col-12 col-md-9"><input type="text" id="text-input" name="text-input" placeholder="Prénom" class="form-control"><small class="form-text text-muted"></small></div>
+                                                                <div class="col col-md-3"><label for="email-input" class=" form-control-label">Email </label></div>
+                                                                <div class="col-12 col-md-9"><input type="email" id="email-input" name="email-input" placeholder=" foulenbenfoulen@gmailcom" class="form-control" onblur="verifMail(this)"><small class="help-block form-text"> </small></div>
                                                             </div>
-                                                             <div class="row form-group">
-                                                                    <div class="col col-md-3"><label class=" form-control-label">Sexe</label></div>
+                                                            <div class="row form-group">
+                                                                <div class="col col-md-3"><label for="password-input" class=" form-control-label" >Mot de passe </label></div>
+                                                                <div class="col-12 col-md-9"><input type="password" id="password-input" name="password-input" placeholder="Mot de passe " class="form-control" onblur="verifPassword(this)"><small class="help-block form-text"></small></div>
+                                                            </div>
+                                                            <div class="row form-group">
+                                                                    <div class="col col-md-3"><label class=" form-control-label">Type du compte</label></div>
                                                                     <div class="col col-md-9">
                                                                         <div class="form-check-inline form-check">
                                                                             <label for="inline-checkbox1" class="form-check-label ">
-                                                                                <input type="radio" id="inline-checkbox1" name="sexe" value=" f " class="form-check-input"> Femme
+                                                                                <input type="radio" id="inline-checkbox1" name="accounttype" value="per" class="accounttype" checked="checked"> Personnel 
                                                                             </label>
                                                                             <br>
                                                                             <label for="inline-checkbox2" class="form-check-label ">
-                                                                                <input type="radio" id="inline-checkbox2" name="sexe" value="h" class="form-check-input">Homme
+                                                                                <input type="radio" id="accounttype" name="accounttype" value="ste" class="form-check-input">STE
                                                                             </label>
                                                                             
                                                                         </div>
                                                                     </div>
                                                                 </div>
-                                                            <div class="row form-group">
-                                                                <div class="col col-md-3"><label for="email-input" class=" form-control-label">Email </label></div>
-                                                                <div class="col-12 col-md-9"><input type="email" id="email-input" name="email-input" placeholder=" foulenbenfoulen@gmailcom" class="form-control"><small class="help-block form-text"> </small></div>
-                                                            </div>
-                                                            <div class="row form-group">
-                                                                <div class="col col-md-3"><label for="password-input" class=" form-control-label">Mot de passe </label></div>
-                                                                <div class="col-12 col-md-9"><input type="password" id="password-input" name="password-input" placeholder="Mot de passe " class="form-control"><small class="help-block form-text"></small></div>
-                                                            </div>
-
-                                                            <div class="row form-group">
-                                                                <div class="col col-md-3"><label for="adresse" class=" adresse">Adresse </label></div>
-                                                                <div class="col-12 col-md-9"><input type="text" id="adresse" name="adresse" placeholder="Adresse complète " class="form-control"><small class="help-block form-text"></small></div>
-                                                             </div>
-
-                                                            <div class="col col-md-3"><label for="code postal" class=" form-control-label">Code Postal </label></div>
-                                                                <div class="col-12 col-md-9"><input type=" number" id="cp" name="cp " placeholder="ex : 2050 " class="form-control"><small class=""></small>
-                                                                </div>
-
-                                                               
-                                                        </form>
-                                                    </div>
-                                                    <div class="card-footer">
-                                                        <button type="submit" class="btn btn-primary btn-sm">
+														<button type="submit" class="btn btn-primary btn-sm">
                                                             <i class="fa fa-dot-circle-o"></i> Submit
                                                         </button>
                                                         <button type="reset" class="btn btn-danger btn-sm">
                                                             <i class="fa fa-ban"></i> Reset
                                                         </button>
+                                                        </form>
+                                                    </div>
+                                                    <div class="card-footer">
+                                                     
                                                     </div>
                                                 </div>
                                                 
