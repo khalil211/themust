@@ -1,9 +1,15 @@
 <?php  
 include "../config.php";
 $db=config::getConnexion();
+
+$emps=$db->query("DELETE FROM publicite WHERE fin<=CURDATE()");
+?>
+<?php  
+
 $result=$db->query('select * from publicite');
 
 ?>
+
 
 <!doctype html>
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang=""> <![endif]-->
@@ -71,7 +77,7 @@ $result=$db->query('select * from publicite');
                                     <?php while ($row = $result->fetch()) { ?>
                                         <tr>
 
-                                            <td> <?php echo $row['image']; ?></td>
+                                            <td> <img src="images/<?php echo $row['image']; ?>" height=100px></td>
                                             <td> <?php echo $row['cat']; ?></td>
                                             <td><?php echo $row['nom']; ?></td>
 

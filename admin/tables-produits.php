@@ -313,8 +313,8 @@ $result=$db->query('SELECT * FROM produit');
                                     ?>
                                         <tr>
 
-                                            <td> <?php echo $row['img']; ?></td>
-                                            <td> <?php echo $row['id']; ?></td>
+                                           <td> <img src="../images/<?php echo $row['image']; ?>"  height=100px></td>
+                                            <td>  <?php echo $row['img']; ?></td>
                                             <td> <?php echo $row['nom']; ?></td>
                                             <td><?php echo $row['descr']; ?></td>
                                             <td><?php echo $row['quantite']; ?></td>
