@@ -1,18 +1,10 @@
 <?php
-include 'commande.php';
+include '../core/commandeC.php';
 if (isset($_GET['n']))
 {
-	$commande=new commande(0,-1);
+	$commande=new commandeC();
 	if ($commande->exist($_GET['n']))
-	{
-		$db=config::getConnexion();
-		$query=$db->prepare('DELETE FROM produitcommande WHERE idcommande=:id');
-		$query->bindValue(':id',$_GET['n']);
-		$query->execute();
-		$query=$db->prepare('DELETE FROM commande WHERE numero=:id');
-		$query->bindValue(':id',$_GET['n']);
-		$query->execute();
-	}
+		$commande->supprimer($_GET['n']);
 	header('Location: ../tables-commande.php');
 }
 ?>

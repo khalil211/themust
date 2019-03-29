@@ -25,7 +25,7 @@
 </head>
 <body>
 	<?php
-	include 'commande/commande.php';
+	include 'core/commandeC.php';
 	backUp();
 	?>
 	<div class="content mt-3">
@@ -38,7 +38,7 @@
                                 <strong class="card-title">Liste des commandes</strong>
                             </div>
                             <?php
-                            $commande=new commande(0,-1);
+                            $commande=new commandeC();
                             $n=10;
                             if (isset($_GET['n']))
                             {

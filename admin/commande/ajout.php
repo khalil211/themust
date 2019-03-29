@@ -1,9 +1,11 @@
 <?php
-include 'commande.php';
+include '../entities/commande.php';
+include '../core/commandeC.php';
 
 if (isset($_POST['idc']))
 {
 	$commande=new commande($_POST['idc'],isset($_POST['passee']));
+	$commandeC=new commandeC();
 	$i=0;
 	$idp='idp'.$i;
 	$qte='qte'.$i;
@@ -14,12 +16,12 @@ if (isset($_POST['idc']))
 		$idp='idp'.$i;
 		$qte='qte'.$i;
 	}
-	if ($commande->verifierClient())
+	if ($commandeC->verifierClient($commande))
 	{
 		$commande->fusionnerDoublonsProduits();
 		if ($commande->verifierProduits())
 		{
-			if ($commande->ajouter())
+			if ($commandeC->ajouter($commande))
 				$locate='Location: ../ajout-commande.php?added=true';
 			else
 				$locate='Location: ../ajout-commande.php?added=false';
