@@ -96,6 +96,8 @@ else
                                                             <i class="fa fa-ban"></i> Reset
                                                         </button>
                                                         </form>
-     				                                                                                      
+<?php
+    backDown();
+    ?>     				                                                                                      
 </body>
 </html>
