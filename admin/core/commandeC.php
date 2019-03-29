@@ -6,10 +6,17 @@ class commandeC
 	public function verifierClient($commande)
 	{
 		$db=config::getConnexion();
-		$query=$db->prepare('SELECT * FROM client WHERE id=:id');
+		$query=$db->prepare("SELECT * FROM client WHERE identifiant=:id");
 		$query->bindValue(':id',$commande->getIdClient());
 		$query->execute();
-		return $query->rowCount()!=0;
+		$client=$query->rowCount()!=0;
+		$query=$db->prepare("SELECT * FROM clientste WHERE identifiant=:id");
+		$query->bindValue(':id',$commande->getIdClient());
+		$query->execute();
+		$clientste=$query->rowCount()!=0;
+		if ($clientste||$client)
+			return true;
+		return false;
 	}
 
 	public function ajouter($commande)

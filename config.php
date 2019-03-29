@@ -44,8 +44,8 @@ function backUp()
                     <li class="menu-item-has-children dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-table"></i>Clients</a>
                         <ul class="sub-menu children dropdown-menu">
-                            <li><i class="fa fa-table"></i><a href="tables-basic.html">Listes des clients</a></li>
-                            <li><i class="fa fa-table"></i><a href="tables-data.html">Ajouter un client</a></li>
+                            <li><i class="fa fa-table"></i><a href="tables-clients.php">Listes des clients</a></li>
+                            <li><i class="fa fa-table"></i><a href="ajout-client.php">Ajouter un client</a></li>
                         </ul>
                     </li>
                     <li class="menu-item-has-children dropdown">

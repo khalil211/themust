@@ -1,20 +1,25 @@
 <?php
 include "client.php";
 include "clientste.php";
+include 'entities/panier.php';
+include 'core/panierC.php';
 
 if (isset($_POST['identifiant'])&&isset($_POST['email'])&&isset($_POST['motdepasse']))
 {
-if ($_POST['accounttype']=="per")
-{
-	$e=new client($_POST['identifiant'],$_POST['email'],$_POST['motdepasse'],"","","",5575);
-    $e->ajouter();
-}	
-else
-{
-	$s=new clientste($_POST['identifiant'],$_POST['email'],$_POST['motdepasse'],"","","",5575);
-    $s->ajouter();
-}
-}   
+    if ($_POST['accounttype']=="per")
+    {
+    	$e=new client($_POST['identifiant'],$_POST['email'],$_POST['motdepasse'],"","","",5575);
+        $e->ajouter();
+    }	
+    else
+    {
+    	$s=new clientste($_POST['identifiant'],$_POST['email'],$_POST['motdepasse'],"","","",5575);
+        $s->ajouter();
+    }
+    $panier=new panier($_POST['identifiant']);
+    $panierC=new panierC();
+    $panierC->ajouter($panier);
+}  
 ?>
 <!doctype html>
 <html class="no-js" lang="zxx">

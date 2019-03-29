@@ -1,19 +1,24 @@
 <?php
 include "client.php";
 include "clientste.php";
+include '../front/template/demo.devitems.com/mirora-v2/mirora/entities/panier.php';
+include '../front/template/demo.devitems.com/mirora-v2/mirora/core/panierC.php';
 
 if (isset($_POST['identifiant'])&&isset($_POST['email'])&&isset($_POST['motdepasse']))
 {
-if ($_POST['accounttype']=="per")
-{
-	$e=new client($_POST['identifiant'],$_POST['email'],$_POST['motdepasse'],"","","",5575);
-    $e->ajouter();
-}	
-else
-{
-	$s=new clientste($_POST['identifiant'],$_POST['email'],$_POST['motdepasse'],"","","",5575);
-    $s->ajouter();
-}
+    if ($_POST['accounttype']=="per")
+    {
+    	$e=new client($_POST['identifiant'],$_POST['email'],$_POST['motdepasse'],"","","",5575);
+        $e->ajouter();
+    }	
+    else
+    {
+    	$s=new clientste($_POST['identifiant'],$_POST['email'],$_POST['motdepasse'],"","","",5575);
+        $s->ajouter();
+    }
+    $panier=new panier($_POST['identifiant']);
+    $panierC=new panierC();
+    $panierC->ajouter($panier);
 }    
 ?>
 
@@ -54,7 +59,7 @@ else
   <?php
     backUp();
     ?>
-
+<div class="content mt-3">
 <form action="ajout-client.php" method="post" name="clientf" class="form-horizontal">
                                                             <div class="row form-group">
                                                                 <div class="col col-md-3"><label class=" form-control-label">Identifiant</label></div>
@@ -96,6 +101,7 @@ else
                                                             <i class="fa fa-ban"></i> Reset
                                                         </button>
                                                         </form>
+                                                    </div>
 <?php
     backDown();
     ?>     				                                                                                      
