@@ -19,7 +19,7 @@
 
 
     <link rel="stylesheet" href="assets/css/style.css">
-
+    <script type="text/javascript" src="form-blog.js"></script>
     <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800' rel='stylesheet' type='text/css'>
 </head>
 <body>
@@ -27,6 +27,7 @@
 	include "../config.php";
 	backUP();
 	?>
+     <form method="POST" action="ajout-blog.php" name="blogg">
 	        <div class="card-header">
             <strong> Ajout Blog</strong>
         </div>
@@ -43,28 +44,29 @@
                
                 <div class="row form-group">
                     <div class="col col-md-3"><label class=" form-control-label">Date</label></div>
-                    <div class="col-12 col-md-9"><input type="date" id="text-input" name="date" class="form-control"><small class="form-text text-muted"></small></div>
+                    <div class="col-12 col-md-9"><input type="date" id="date" name="date" class="form-control"><small class="form-text text-muted"></small></div>
                 </div>
                 <div class="row form-group">
                     <div class="col col-md-3"><label class=" form-control-label">Etat</label></div>
                     <p>
        Veuillez indiquer la type du blog :<br />
-       <input type="radio" name="type" value="Blog Image Post" id="Blog Image Post" /> <label for="Blog Image Post">Blog Image Post</label><br />
-       <input type="radio" name="type" value="Blog Gallery Post" id="Blog Gallery Post" /> <label for="Blog Gallery Post">Blog Gallery Post</label><br />
-       <input type="radio" name="type" value="Blog Audio Post" id="Blog Audio Post" /> <label for="Blog Audio Post">Blog Audio Post</label><br />
-       <input type="radio" name="type" value="Blog video Post" id="Blog video Post" /> <label for="Blog video Post">Blog Video Post</label>
+       <input type="radio" name="type" value="Blog Image Post" id="type" /> <label for="Blog Image Post">Blog Image Post</label><br />
+       <input type="radio" name="type" value="Blog Gallery Post" id="type" /> <label for="Blog Gallery Post">Blog Gallery Post</label><br />
+       <input type="radio" name="type" value="Blog Audio Post" id="type" /> <label for="Blog Audio Post">Blog Audio Post</label><br />
+       <input type="radio" name="type" value="Blog video Post" id="type" /> <label for="Blog video Post">Blog Video Post</label>
    </p>
                 </div>
             </form>
         </div>
         <div class="card-footer">
-            <button type="submit" class="btn btn-primary btn-sm" id="confirmer">
+            <button type="submit" class="btn btn-primary btn-sm" onclick="myFunction()">
                 <i class="fa fa-dot-circle-o"></i> Submit
             </button>
             <button type="reset" class="btn btn-danger btn-sm">
                 <i class="fa fa-ban"></i> Reset
             </button>
         </div>
+    </form>
 	<?php
 	backDown();
 	?>
