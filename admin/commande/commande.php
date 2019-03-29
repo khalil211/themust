@@ -1,5 +1,5 @@
 <?php
-include '../../config.php';
+include "$_SERVER[DOCUMENT_ROOT]/themust/config.php";
 
 function trierProduitsSelonId($a,$b)
 {
@@ -137,6 +137,56 @@ class commande
 		for ($i=0;$i<count($this->produits);$i++)
 			$this->produits[$i]->ajouter($this->numero);
 		return true;
+	}
+
+	public function afficher($tri,$nbelt,$page)
+	{
+		$page--;
+		switch ($tri%6)
+		{
+			case 1:
+				$eltATrier=' numero';
+				break;
+			case 2:
+				$eltATrier=' idclient';
+				break;
+			case 3:
+				$eltATrier=' nbproduit';
+				break;
+			case 4:
+				$eltATrier=' prixtotal';
+				break;
+			case 5:
+				$eltATrier=' etat';
+				break;
+			case 0:
+				$eltATrier=' datecommande';
+				break;
+		}
+		if ($tri>6)
+			$eltATrier=$eltATrier.' DESC';
+		$request='SELECT numero,idclient,nbproduit,prixtotal,etat,datecommande FROM commande ORDER BY'.$eltATrier;
+		if ($nbelt!=-1)
+			$request=$request.' LIMIT '.($page*$nbelt).','.$nbelt;
+		$db=config::getConnexion();
+		return $db->query($request);
+	}
+
+	public function nombre()
+	{
+		$db=config::getConnexion();
+		$nb=$db->query('SELECT COUNT(*) nb FROM commande');
+		$r=$nb->fetch();
+		return $r['nb'];
+	}
+
+	public function exist($numero)
+	{
+		$db=config::getConnexion();
+		$query=$db->prepare('SELECT * FROM commande WHERE numero=:id');
+		$query->bindValue(':id',$numero);
+		$query->execute();
+		return $query->rowCount()!=0;
 	}
 }
 
