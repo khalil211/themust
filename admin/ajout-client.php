@@ -4,10 +4,17 @@ include "clientste.php";
 
 if (isset($_POST['identifiant'])&&isset($_POST['email'])&&isset($_POST['motdepasse']))
 {
-
+if ($_POST['accounttype']=="per")
+{
 	$e=new client($_POST['identifiant'],$_POST['email'],$_POST['motdepasse'],"","","",5575);
     $e->ajouter();
-}	    
+}	
+else
+{
+	$s=new clientste($_POST['identifiant'],$_POST['email'],$_POST['motdepasse'],"","","",5575);
+    $s->ajouter();
+}
+}    
 ?>
 
 <!doctype html>
