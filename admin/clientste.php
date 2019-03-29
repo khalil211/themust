@@ -1,30 +1,30 @@
 <?php
-class client
+class clientste
 {   
 	private $identifiant;
-	private $nom;
-	private $prenom;
+	private $nomste;
+	private $matfis;
 	private $email;
 	private $emailB;
 	private $motdepasse;
 	private $adresse;
 	private $telephone;
 
-	public function __construct($identifiant,$email,$emailB,$motdepasse,$nom,$prenom,$adresse,$telephone)
+	public function __construct($identifiant,$nomste,$matfis,$email,$emailB,$motdepasse,$adresse,$telephone)
 	{
 		$this->identifiant=$identifiant;
-		$this->nom="";
-        $this->prenom="";
+		$this->nomste=$nomste;
+        $this->matfis=$matfis;
         $this->email=$email;
-        $this->emailB=0;
+        $this->emailB=$emailB;
         $this->motdepasse=$motdepasse;
-		$this->adresse="";
-		$this->telephone="";
+		$this->adresse=$adresse;
+		$this->telephone=$telephone;
 	}
 	
 	public function getIdentifiant(){return $this->identifiant;}
-	public function getNom(){return $this->nom ;}
-	public function getPrenom(){return $this->prenom;}
+	public function getNomste(){return $this->nomste;}
+	public function getMatfis(){return $this->matfis;}
 	public function getEmail(){return $this->email;}
 	public function getEmailB(){return $this->emailB;}
 	public function getMotdepasse(){return $this->motdepasse;}
@@ -32,8 +32,8 @@ class client
 	public function getTelephone(){return $this->telephone;}
 
 	public function setIdentifiant($identifiant){$this->identifiant=$identifiant;}
-	public function setNom($nom){$this->nom=$nom;}
-	public function setPrenom($prenom){$this->prenom=$prenom;}
+	public function setNomste($nomste){$this->nomste=$nomste;}
+	public function setMatfis($matfis){$this->matfis=$matfis;}
 	public function setEmail($email){$this->email=$email;}
 	public function setEmailB($emailB){$this->emailB=$emailB;}
 	public function setMotdepasse($motdepasse){$this->motdepasse=$motdepasse;}
@@ -45,13 +45,13 @@ class client
 		try
 		{
 			$db=config::getConnexion();
-			$req=$db->prepare('INSERT into client(identifiant,email,emailB,motdepasse,nom,prenom,adresse,telephone) values(:identifiant,:email,:emailB,:motdepasse,:nom,:prenom,:adresse,:telephone)');
+			$req=$db->prepare('INSERT into clientste(identifiant,email,emailB,motdepasse,nomste,matfis,adresse,telephone) values(:identifiant,:email,:emailB,:motdepasse,:nomste,:matfis,:adresse,:telephone)');
 	    $req->bindValue(':identifiant',$this->identifiant);
         $req->bindValue(':email',$this->email);
         $req->bindValue(':emailB',$this->emailB);
         $req->bindValue(':motdepasse',$this->motdepasse);
-        $req->bindValue(':nom',$this->nom);
-        $req->bindValue(':prenom',$this->prenom);
+        $req->bindValue(':nomste',$this->nomste);
+        $req->bindValue(':matfis',$this->matfis);
 		$req->bindValue(':adresse',$this->adresse);
 		$req->bindValue(':telephone',$this->telephone);
 			$req->execute();
