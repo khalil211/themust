@@ -1,6 +1,4 @@
 <?php
-include '../../config.php';
-
 function trierProduitsSelonId($a,$b)
 {
 	if ($a->getId()==$b->getId())
@@ -82,19 +80,18 @@ class commande
 		$this->produits=array();
 	}
 
+	public function getIdClient(){return $this->idclient;}
+	public function getNumero(){return $this->numero;}
+	public function getNbProduit(){return $this->nbproduit;}
+	public function getPrixTotal(){return $this->prixtotal;}
+	public function getEtat(){return $this->etat;}
+	public function getProduits(){return $this->produits;}
+	public function setNumero($num){$this->numero=$num;}
+
 	public function ajouterProduit($idp,$qte)
 	{
 		array_push($this->produits,new produitCommande($idp,$qte));
 		$this->nbproduit+=$qte;
-	}
-
-	public function verifierClient()
-	{
-		$db=config::getConnexion();
-		$query=$db->prepare('SELECT * FROM client WHERE id=:id');
-		$query->bindValue(':id',$this->idclient);
-		$query->execute();
-		return $query->rowCount()!=0;
 	}
 
 	public function fusionnerDoublonsProduits()
@@ -120,22 +117,6 @@ class commande
 			else
 				$this->prixtotal+=$this->produits[$i]->getPrixt();
 		}
-		return true;
-	}
-
-	public function ajouter()
-	{
-		$db=config::getConnexion();
-		$query=$db->prepare('INSERT INTO commande(idclient,nbproduit,prixtotal,etat,datecommande) VALUES(:idclient,:nbp,:pt,:etat,NOW())');
-		$query->bindValue(':idclient',$this->idclient);
-		$query->bindValue(':etat',$this->etat);
-		$query->bindValue(':nbp',$this->nbproduit);
-		$query->bindValue(':pt',$this->prixtotal);
-		if(!$query->execute())
-			return false;
-		$this->numero=$db->lastInsertId();
-		for ($i=0;$i<count($this->produits);$i++)
-			$this->produits[$i]->ajouter($this->numero);
 		return true;
 	}
 }
