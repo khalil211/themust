@@ -36,7 +36,7 @@ class commandeC
 		return true;
 	}
 
-	public function afficher($tri,$nbelt,$page)
+	public function afficher($tri,$nbelt,$page,$recherche)
 	{
 		$page--;
 		switch ($tri%6)
@@ -62,7 +62,10 @@ class commandeC
 		}
 		if ($tri>6)
 			$eltATrier=$eltATrier.' DESC';
-		$request='SELECT numero,idclient,nbproduit,prixtotal,etat,datecommande FROM commande ORDER BY'.$eltATrier;
+		if (empty($recherche))
+			$request='SELECT numero,idclient,nbproduit,prixtotal,etat,datecommande FROM commande ORDER BY'.$eltATrier;
+		else
+			$request='SELECT numero,idclient,nbproduit,prixtotal,etat,datecommande FROM commande WHERE idclient LIKE \'%'.$recherche.'%\' ORDER BY'.$eltATrier;
 		if ($nbelt!=-1)
 			$request=$request.' LIMIT '.($page*$nbelt).','.$nbelt;
 		$db=config::getConnexion();

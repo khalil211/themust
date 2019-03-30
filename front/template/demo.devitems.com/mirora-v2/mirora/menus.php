@@ -44,12 +44,12 @@ function frontUp()
 	                            <div class="language-selector header-top-nav__item">
 	                                <div class="dropdown header-top__dropdown">
 	                                    <a class="dropdown-toggle" id="languageID" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-	                                        EN-GB
+	                                        FR
 	                                        <i class="fa fa-angle-down"></i>
 	                                    </a>
 	                                    <div class="dropdown-menu" aria-labelledby="languageID">
-	                                        <a class="dropdown-item" href="#"><img src="assets/img/header/1.jpg" alt="English"> English</a>
 	                                        <a class="dropdown-item" href="#"><img src="assets/img/header/2.jpg" alt="Français"> Français</a>
+	                                        <a class="dropdown-item" href="#"><img src="assets/img/header/1.jpg" alt="English"> English</a>
 	                                    </div>
 	                                </div>
 	                            </div>
@@ -61,7 +61,7 @@ function frontUp()
 	                                        <i class="fa fa-angle-down"></i>
 	                                    </a>
 	                                    <div class="dropdown-menu" aria-labelledby="currencyID">
-	                                        <a class="dropdown-item" href="#">&euro; TND</a>
+	                                        <a class="dropdown-item" href="#">TND</a>
 	                                       
 	                                    </div>
 	                                </div>
@@ -69,12 +69,11 @@ function frontUp()
 	                            <div class="user-info header-top-nav__item">
 	                                <div class="dropdown header-top__dropdown">
 	                                    <a class="dropdown-toggle" id="userID" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-	                                        My Account
+	                                        Mon Compte
 	                                        <i class="fa fa-angle-down"></i>
 	                                    </a>
 	                                    <div class="dropdown-menu" aria-labelledby="userID">
-	                                        <a class="dropdown-item" href="login-register.html">Register</a>
-	                                        <a class="dropdown-item" href="login-register.html">Log In</a>
+	                                        <a class="dropdown-item" href="login-register.php">Inscription/Connexion</a>
 	                                    </div>
 	                                </div>
 	                            </div>
@@ -93,7 +92,7 @@ function frontUp()
 	                        </div>
 	                    </div>
 	                    <div class="col-lg-2 col-12 order-lg-2 order-1 text-center">
-	                        <a href="index.html" class="logo-box mb-md--30">
+	                        <a href="index.php" class="logo-box mb-md--30">
 	                            <img src="assets/img/logo/logo.png" alt="logo">
 	                        </a>
 	                    </div>
@@ -119,22 +118,11 @@ function frontUp()
 	                                        <a class="mini-cart__dropdown-toggle bordered-icon" id="cartDropdown">
 	                                            <span class="mini-cart__count">0</span>
 	                                            <i class="icon_cart_alt mini-cart__icon"></i>
-	                                            <span class="mini-cart__ammount">80.00 <i class="fa fa-angle-down"></i></span>
+	                                            <i class="fa fa-angle-down"></i>
 	                                        </a>
 	                                        <div class="mini-cart__dropdown-menu">
 	                                            <div class="mini-cart__content" id="miniCart">
 	                                                <div class="mini-cart__item">
-	                                                    <div class="mini-cart__item--single">
-	                                                        <div class="mini-cart__item--image">
-	                                                            <img src="assets/img/products/1-1-450x450.jpg" alt="product">
-	                                                        </div>
-	                                                        <div class="mini-cart__item--content">
-	                                                            <h4 class="mini-cart__item--name"><a href="product-details.html">Dell Inspiron 24</a> </h4>
-	                                                            <p class="mini-cart__item--quantity">x1</p>
-	                                                            <p class="mini-cart__item--price">$100.00</p>
-	                                                        </div>
-	                                                        <a class="mini-cart__item--remove" href="#"><i class="icon_close"></i></a>
-	                                                    </div>
 	                                                    <div class="mini-cart__item--single">
 	                                                        <div class="mini-cart__item--image">
 	                                                            <img src="assets/img/products/2-2-450x450.jpg" alt="product">
@@ -149,25 +137,12 @@ function frontUp()
 	                                                </div>
 	                                                <div class="mini-cart__calculation">
 	                                                    <p>
-	                                                        <span class="mini-cart__calculation--item">Sub-Total :</span>
-	                                                        <span class="mini-cart__calculation--ammount">$1,070.00</span>
-	                                                    </p>
-	                                                    <p>
-	                                                        <span class="mini-cart__calculation--item">Eco Tax (-2.00) :</span>
-	                                                        <span class="mini-cart__calculation--ammount">$4.00</span>
-	                                                    </p>
-	                                                    <p>
-	                                                        <span class="mini-cart__calculation--item">Eco VAT (20%) :</span>
-	                                                        <span class="mini-cart__calculation--ammount">$214.00</span>
-	                                                    </p>
-	                                                    <p>
-	                                                        <span class="mini-cart__calculation--item">Eco Total :</span>
+	                                                        <span class="mini-cart__calculation--item">Total :</span>
 	                                                        <span class="mini-cart__calculation--ammount"> $1,288.00</span>
 	                                                    </p>
 	                                                </div>
 	                                                <div class="mini-cart__btn">
-	                                                    <a href="cart.html" class="btn btn-fullwidth btn-style-1">View Cart</a>
-	                                                    <a href="checkout.html" class="btn btn-fullwidth btn-style-1">Checkout</a>
+	                                                    <a href="cart.php" class="btn btn-fullwidth btn-style-1">Voir panier</a>
 	                                                </div>
 	                                                
 	                                            </div>
@@ -186,104 +161,11 @@ function frontUp()
 	                    <div class="col-12 position-static text-center">
 	                        <nav class="main-navigation">
 	                            <ul class="mainmenu">
-	                                <li class="mainmenu__item menu-item-has-children has-children">
-	                                    <a href="index.html" class="mainmenu__link">Home</a>
-	                                    <ul class="sub-menu">
-	                                        <li><a href="index.html">Home 1</a></li>
-	                                        <li><a href="index-2.html">Home 2</a></li>
-	                                        <li><a href="index-3.html">Home 3</a></li>
-	                                        <li><a href="index-4.html">Home 4</a></li>
-	                                    </ul>
+	                                <li class="mainmenu__item <?php if (basename($_SERVER['PHP_SELF'])=='index.php')echo 'active'; ?>">
+	                                    <a href="index.php" class="mainmenu__link">Accueil</a>
 	                                </li>
-	                                <li class="mainmenu__item menu-item-has-children">
-	                                    <a href="shop.html" class="mainmenu__link">Shop</a>
-	                                    <ul class="megamenu five-column">
-	                                        <li>
-	                                            <a class="megamenu-title" href="#">Shop Grid</a>
-	                                            <ul>
-	                                                <li>
-	                                                    <a href="shop.html">Left Sidebar</a>
-	                                                </li>
-	                                                <li>
-	                                                    <a href="shop-right-sidebar.html">Right Sidebar</a>
-	                                                </li>
-	                                                <li>
-	                                                    <a href="shop-fullwidth.html">Three Column</a>
-	                                                </li>
-	                                                <li>
-	                                                    <a href="shop-fullwidth-4-column.html">Four Column</a>
-	                                                </li>
-	                                            </ul>
-	                                        </li>
-	                                        <li>
-	                                            <a class="megamenu-title" href="#">Shop List</a>
-	                                            <ul>
-	                                                <li>
-	                                                    <a href="shop-list-left-sidebar.html">Left Sidebar</a>
-	                                                </li>
-	                                                <li>
-	                                                    <a href="shop-list-right-sidebar.html">Right Sidebar</a>
-	                                                </li>
-	                                                <li>
-	                                                    <a href="shop-list.html">Full width</a>
-	                                                </li>
-	                                            </ul>
-	                                        </li>
-	                                        <li>
-	                                            <a class="megamenu-title" href="#">Single Product</a>
-	                                            <ul>
-	                                                <li>
-	                                                    <a href="product-details.html">Standard Product</a>
-	                                                </li>
-	                                                <li>
-	                                                    <a href="product-details-variable.html">Variable Product</a>
-	                                                </li>
-	                                                <li>
-	                                                    <a href="product-details-group.html">Group Product</a>
-	                                                </li>
-	                                                <li>
-	                                                    <a href="product-details-affiliate.html">Affiliate Product</a>
-	                                                </li>
-	                                            </ul>
-	                                        </li>
-	                                        <li>
-	                                            <a class="megamenu-title" href="#">Single Product</a>
-	                                            <ul>
-	                                                <li>
-	                                                    <a href="product-details.html">Tab Style One</a>
-	                                                </li>
-	                                                <li>
-	                                                    <a href="product-details-tab-style-2.html">Tab Style Two</a>
-	                                                </li>
-	                                                <li>
-	                                                    <a href="product-details-tab-style-3.html">Tab Style Three</a>
-	                                                </li>
-	                                                <li>
-	                                                    <a href="product-details-sticky-left.html">Sticky Left</a>
-	                                                </li>
-	                                                <li>
-	                                                    <a href="product-details-sticky-right.html">Sticky Right</a>
-	                                                </li>
-	                                            </ul>
-	                                        </li>
-	                                        <li>
-	                                            <a class="megamenu-title" href="#">Single Product</a>
-	                                            <ul>
-	                                                <li>
-	                                                    <a href="product-details-gallery-left.html">Gallery Left</a>
-	                                                </li>
-	                                                <li>
-	                                                    <a href="product-details-gallery-right.html">Gallery Right</a>
-	                                                </li>
-	                                                <li>
-	                                                    <a href="product-details-slider-box.html">Slider Box</a>
-	                                                </li>
-	                                                <li>
-	                                                    <a href="product-details-slider-full-width.html">Full Width Slider</a>
-	                                                </li>
-	                                            </ul>
-	                                        </li>
-	                                    </ul>
+	                                <li class="mainmenu__item <?php if (basename($_SERVER['PHP_SELF'])=='shop.php')echo 'active'; ?>">
+	                                    <a href="shop.php" class="mainmenu__link">Produits</a>
 	                                </li>
 	                                <li class="mainmenu__item menu-item-has-children has-children">
 	                                    <a href="blog.html" class="mainmenu__link">Blog</a>
@@ -318,10 +200,10 @@ function frontUp()
 	                                        </li>
 	                                    </ul>
 	                                </li>
-	                                <li class="mainmenu__item menu-item-has-children has-children active">
+	                                <li class="mainmenu__item menu-item-has-children has-children">
 	                                    <a href="#" class="mainmenu__link">Pages</a>
 	                                    <ul class="sub-menu">
-	                                        <li><a href="cart.html">Cart</a></li>
+	                                        <li><a href="cart.php">Cart</a></li>
 	                                        <li><a href="checkout.html">Checkout</a></li>
 	                                        <li><a href="compare.html">compare</a></li>
 	                                        <li><a href="wishlist.html">wishlist</a></li>
@@ -623,8 +505,8 @@ function frontDown()
                                     </div>
                                 </div>  
                                 <p class="product-tags">
-                                    Tags: <a href="shop.html">Sport</a>,
-                                    <a href="shop.html">Luxury</a>
+                                    Tags: <a href="shop.php">Sport</a>,
+                                    <a href="shop.php">Luxury</a>
                                 </p>
                             </div>
                         </div>

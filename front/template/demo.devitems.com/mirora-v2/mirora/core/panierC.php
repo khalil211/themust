@@ -12,46 +12,91 @@ class panierC
 		$query->execute();
 	}
 
-	public function afficher()
+	public function ajouterProduit($idproduit)
 	{
-		?>
-		<li class="mini-cart-icon">
-		    <div class="mini-cart mini-cart--1">
-		        <a class="mini-cart__dropdown-toggle bordered-icon" id="cartDropdown">
-		            <span class="mini-cart__count">0</span>
-		            <i class="icon_cart_alt mini-cart__icon"></i>
-		            <span class="mini-cart__ammount">80.00 <i class="fa fa-angle-down"></i></span>
-		        </a>
-		        <div class="mini-cart__dropdown-menu">
-		            <div class="slimScrollDiv" style="position: relative; overflow: hidden; width: auto; height: 250px;"><div class="mini-cart__content" id="miniCart" style="overflow: hidden; width: auto; height: 250px;">
-		                <div class="mini-cart__item">
-		                    <div class="mini-cart__item--single">
-		                        <div class="mini-cart__item--image">
-		                            <img src="assets/img/products/2-2-450x450.jpg" alt="product">
-		                        </div>
-		                        <div class="mini-cart__item--content">
-		                            <h4 class="mini-cart__item--name"><a href="product-details.html">Acer Aspire AIO <br>-<small>Color Swatch Black</small></a> </h4>
-		                            <p class="mini-cart__item--quantity">x1</p>
-		                            <p class="mini-cart__item--price">$100.00</p>
-		                        </div>
-		                        <a class="mini-cart__item--remove" href="#"><i class="icon_close"></i></a>
-		                    </div>
-		                </div>
-		                <div class="mini-cart__calculation">
-		                    <p>
-		                        <span class="mini-cart__calculation--item">Prix total :</span>
-		                        <span class="mini-cart__calculation--ammount">$1,070.00</span>
-		                    </p>
-		                </div>
-		                <div class="mini-cart__btn">
-		                    <a href="cart.html" class="btn btn-fullwidth btn-style-1">View Cart</a>
-		                </div>
-		                
-		            </div><div class="slimScrollBar" style="background: rgb(0, 0, 0); width: 7px; position: absolute; top: 0px; opacity: 0.4; display: block; border-radius: 7px; z-index: 99; right: 1px;"></div><div class="slimScrollRail" style="width: 7px; height: 100%; position: absolute; top: 0px; display: none; border-radius: 7px; background: rgb(52, 52, 52); opacity: 0.2; z-index: 90; right: 1px;"></div></div>
-		        </div>
-		    </div>
-		</li>
-		<?php
+		if (isset($_SESSION['idclient']))
+		{
+			$db=config::getConnexion();
+			$query=$db->prepare('SELECT * FROM panier WHERE id=:idp');
+			$query->bindValue(':idp',$_SESSION['idclient']);
+			$query->execute();
+			if ($query->rowCount()==0)
+				return false;
+			$query=$db->prepare('SELECT * FROM produitpanier WHERE idproduit=:idp');
+			$query->bindValue(':idp',$idproduit);
+			$query->execute();
+			if ($query->rowCount()==1)
+				return false;
+
+			$query=$db->prepare('SELECT * FROM produit WHERE id=:idp');
+			$query->bindValue(':idp',$idproduit);
+			$query->execute();
+			if ($query->rowCount()==0)
+				return false;
+			$p=$query->fetch();
+			$query=$db->prepare('INSERT INTO produitpanier(idpanier,idpoduit,quantite,prixunitaire) VALUES(:idpanier,:idproduit,1,:pu)');
+			$query->bindValue(':idpanier',$_SESSION['idclient']);
+			$query->bindValue(':idp',$idproduit);
+			$query->bindValue(':ipu',$p['prix']);
+			$query->execute();
+			$query=$db->prepare('UPDATE panier SET nbproduit=nbproduit+1,prixtotal=prixtotal+:nprix where id=:idp');
+			$query->bindValue(':id',$_SESSION['idclient']);
+			$query->bindValue(':nprix',$p['prix']);
+			$query->execute();
+			return true;
+		}
+	}
+
+	public function supprimerProduit($idproduit)
+	{
+		if (isset($_SESSION['idclient']))
+		{
+			$db=config::getConnexion();
+			$query=$db->prepare('SELECT * FROM panier WHERE id=:idp');
+			$query->bindValue(':idp',$_SESSION['idclient']);
+			$query->execute();
+			if ($query->rowCount()==0)
+				return false;
+			$query=$db->prepare('SELECT * FROM produitpanier WHERE idproduit=:idp');
+			$query->bindValue(':idp',$idproduit);
+			$query->execute();
+			if ($query->rowCount()==0)
+				return false;
+			$p=$query->fetch();
+			$query=$db->prepare('DELETE FROM produitpanier WHERE idproduit=:idp)');
+			$query->bindValue(':idp',$idproduit);
+			$query->execute();
+			$query=$db->prepare('UPDATE panier SET nbproduit=nbproduit-:nbp,prixtotal=prixtotal-:prix where id=:idp');
+			$query->bindValue(':id',$_SESSION['idclient']);
+			$query->bindValue(':nbp',$p['quantite']);
+			$query->bindValue(':prix',($p['quantite']*$p['prixunitaire']));
+			$query->execute();
+			return true;
+		}
+	}
+
+	public function afficher($panier)
+	{
+		if (isset($_SESSION['idclient']))
+		{
+			$db=config::getConnexion();
+			$query=$db->prepare('SELECT * FROM panier WHERE id=:idp');
+			$query->bindValue(':idp',$_SESSION['idclient']);
+			$query->execute();
+			if ($query->rowCount()==0)
+				return false;
+			$donnee=$query->fetch();
+			$panier->setId($donnee['id']);
+			$panier->setNbProduit($donnee['nbproduit']);
+			$panier->setPrixTotal($donnee['prixtotal']);
+			$panier->setProduits($this->listeProduit());
+			return $panier
+		}
+	}
+
+	public function listeProduit()
+	{
+		//liste produit
 	}
 }
 ?>

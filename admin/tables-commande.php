@@ -39,6 +39,9 @@
                             </div>
                             <?php
                             $commande=new commandeC();
+                            $r="";
+                            if (isset($_GET['r']))
+                                $r=$_GET['r'];
                             $n=10;
                             if (isset($_GET['n']))
                             {
@@ -62,7 +65,6 @@
                                     $p=$_GET['p'];
                             }
                             ?>
-                            <script type="text/javascript">console.log(<?php echo '"'.$nbTotal.'  '.$nbPageTotal.'  '.$p.'   "' ?>)</script>
                             <div class="card-body">
                                 <div id="bootstrap-data-table-export_wrapper" class="dataTables_wrapper dt-bootstrap4 no-footer">
                                     <div class="row">
@@ -75,6 +77,13 @@
                                                         <option <?php if($n==50) echo 'selected'; ?> value="50">50</option>
                                                         <option <?php if($n==-1) echo 'selected'; ?> value="-1">Toutes</option>
                                                     </select> commandes
+                                                </label>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-12 col-md-6">
+                                            <div id="bootstrap-data-table-export_filter" class="dataTables_filter">
+                                                <label>
+                                                    Recherche:<input <?php if (isset($_GET['r']))echo 'value="'.$_GET['r'].'"'; ?> type="search" class="form-control form-control-sm" placeholder="ID Client" id="recherche">
                                                 </label>
                                             </div>
                                         </div>
@@ -109,21 +118,21 @@
                                     </thead>
                                     <tbody>
                                         <?php
-                                        $liste=$commande->afficher($t,$n,$p);
+                                        $liste=$commande->afficher($t,$n,$p,$r);
                                         $i=0;
                                         foreach ($liste as $element)
                                         {
                                             ?>
                                             <tr role="row" <?php echo (($i%2)==0)?'class="odd"':'class="even"'; ?> >
-                                                <td><?php echo $element['numero'] ?></td>
-                                                <td><?php echo $element['idclient'] ?></td>
-                                                <td><?php echo $element['nbproduit'] ?></td>
-                                                <td><?php echo $element['prixtotal'] ?></td>
+                                                <td><?php echo htmlspecialchars($element['numero']) ?></td>
+                                                <td><?php echo htmlspecialchars($element['idclient']) ?></td>
+                                                <td><?php echo htmlspecialchars($element['nbproduit']) ?></td>
+                                                <td><?php echo htmlspecialchars($element['prixtotal']) ?></td>
                                                 <td> <?php if ($element['etat']==1) echo 'Passée'; else echo 'En attente'; ?> </td>
                                                 <td><?php echo $element['datecommande'] ?></td>
                                                 <td>
-                                                    <button type="button" onclick="document.location='commande/modifier-commande.php?n='+<?php echo $element['numero']; ?>+'&e='+<?php echo $element['etat']; ?>" class="btn btn-success"><i class="fa fa-magic"></i>  Modifier état</button>
-                                                    <button type="button" onclick="document.location='commande/supprimer-commande.php?n='+<?php echo $element['numero']; ?>" class="btn btn-danger"><i class="fa fa-trash-o"></i>  Supprimer</button>
+                                                    <button type="button" onclick="document.location='commande/modifier-commande.php?n='+<?php echo htmlspecialchars($element['numero']); ?>+'&e='+<?php echo $element['etat']; ?>" class="btn btn-success"><i class="fa fa-magic"></i>  Modifier état</button>
+                                                    <button type="button" onclick="document.location='commande/supprimer-commande.php?n='+<?php echo htmlspecialchars($element['numero']); ?>" class="btn btn-danger"><i class="fa fa-trash-o"></i>  Supprimer</button>
                                                 </td>
                                             </tr>
                                             <?php
@@ -173,6 +182,13 @@
 	backDown();
 	?>
     <script type="text/javascript">
+        let recherche=document.getElementById("recherche");
+        recherche.addEventListener("keydown",function (e)
+        {
+            if (e.keyCode==13)
+                document.location="tables-commande.php?n="+select.value+"&r="+recherche.value;
+            e.stopPropagation(); 
+        });
         let idcommande=document.getElementById("idcommande");
         idcommande.addEventListener("click",function (e)
         {
