@@ -1,19 +1,24 @@
 <?php
 include "../config.php";
-include "entities/blog.php";
-if (isset($_POST['idblog'])&&isset($_POST['description'])&&isset($_POST['type'])&&isset($_POST['date'])&&isset($_POST['image']))
-{
-    $b=new blog($_POST['idblog'],$_POST['description'],$_POST['type'],$_POST['date'],$_POST['image']);
-    $b->ajouter();
-}
+$db=config::getConnexion();
+$ID = $_GET['edit'];
+$emps=$db->query("SELECT * FROM  blog WHERE idblog=$ID");
+           while ($row = $emps->fetch()) {
+           
+            $description = $row['description'];
+            $type = $row['type'];
+            $date = $row['date'];
+            $image = $row['image'];
+            
 
+        }
 ?>
 <!DOCTYPE html>
 <html>
 <head>
 	<meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Ajouter Blog</title>
+    <title>Modifier Blog</title>
     <meta name="description" content="The Must - Gammarth center">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -37,24 +42,19 @@ if (isset($_POST['idblog'])&&isset($_POST['description'])&&isset($_POST['type'])
 	
 	backUP();
 	?>
-     <form method="POST" action="ajout-blog.php" name="blogg" id="blogg">
+     <form method="POST" action="views/modifier-blog.php?edit=<?php echo $row['idblog']; ?>" name="blogg" id="blogg">
 	        <div class="card-header">
             <strong> Ajout Blog</strong>
         </div>
         <div class="card-body card-block">
-           
-                <div class="row form-group">
-                    <div class="col col-md-3"><label class=" form-control-label">ID Blog</label></div>
-                    <div class="col-12 col-md-9"><input type="number" id="idblog" name="idblog" placeholder="ID Blog" class="form-control"><small class="form-text text-muted"></small></div>
-                </div>
                 <div class="row form-group">
                     <div class="col col-md-3"><label class=" form-control-label">Description</label></div>
-                    <div class="col-12 col-md-9"><input type="text" id="description" name="description" placeholder="Description" class="form-control"><small class="form-text text-muted"></small></div>
+                    <div class="col-12 col-md-9"><input type="text" id="description" placeholder="<?php echo $description;?>" name="description" placeholder="Description" class="form-control"><small class="form-text text-muted"></small></div>
                 </div>
                
                 <div class="row form-group">
                     <div class="col col-md-3"><label class=" form-control-label">Date</label></div>
-                    <div class="col-12 col-md-9"><input type="date" id="date" name="date" class="form-control"><small class="form-text text-muted"></small></div>
+                    <div class="col-12 col-md-9"><input type="date" id="date" value="<?php echo $date;?>" name="date" class="form-control"><small class="form-text text-muted"></small></div>
                 </div>
                
                 <div class="row form-group">
@@ -69,12 +69,13 @@ if (isset($_POST['idblog'])&&isset($_POST['description'])&&isset($_POST['type'])
                 </div>
                 <div class="row form-group">
                      <div class="col col-md-3"><label class=" form-control-label">Image du blog  </label></div>
-                     <div class="col-12 col-md-9"><input type="file" id="image" name="image"  class="form-control"><small class="form-text text-muted"></small></div>
+                     <div class="col-12 col-md-9"><input type="file" id="image" placeholder="<?php echo $image;?>" name="image"  class="form-control"><small class="form-text text-muted"></small></div>
                      <div class="col-12 col-md-9">
                                                                   
                  </div>
 
         </div>
+        <input type="hidden" name="ide"  value="<?php echo $ID;?>" >
         <div class="card-footer">
             <button type="submit" class="btn btn-primary btn-sm">
                 <i class="fa fa-dot-circle-o"></i> Submit
