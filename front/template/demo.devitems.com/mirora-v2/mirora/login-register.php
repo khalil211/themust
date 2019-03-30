@@ -1,3 +1,26 @@
+<?php
+include "client.php";
+include "clientste.php";
+include 'entities/panier.php';
+include 'core/panierC.php';
+
+if (isset($_POST['identifiant'])&&isset($_POST['email'])&&isset($_POST['motdepasse']))
+{
+    if ($_POST['accounttype']=="per")
+    {
+    	$e=new client($_POST['identifiant'],$_POST['email'],$_POST['motdepasse'],"","","",5575);
+        $e->ajouter();
+    }	
+    else
+    {
+    	$s=new clientste($_POST['identifiant'],$_POST['email'],$_POST['motdepasse'],"","","",5575);
+        $s->ajouter();
+    }
+    $panier=new panier($_POST['identifiant']);
+    $panierC=new panierC();
+    $panierC->ajouter($panier);
+}  
+?>
 <!doctype html>
 <html class="no-js" lang="zxx">
 
@@ -372,7 +395,7 @@
                         <div class="col-lg-6">
                             <h2 class="heading-secondary mb--30">Register</h2>
                             <div class="login-reg-box p-4 bg--2">
-                                <form class="form" action="#" onsubmit="return verifForm(this)">
+                                <form class="form" method="POST" action="login-register.php" name="formf" id="test">
 								<div class="form__group mb--20">
                                         <label class="form__label" for="identifiant">
                                             Identifiant <span>*</span>
@@ -383,26 +406,29 @@
                                         <label class="form__label" for="register_email">
                                             Email <span>*</span>
                                         </label>
-                                        <input type="text" name="email" id="register_email" class="form__input form__input--2" onblur="verifMail(this)">
+                                        <input type="text" name="email" id="email" class="form__input form__input--2" onblur="verifMail(this)">
                                     </div>
                                     <div class="form__group mb--20">
                                         <label class="form__label" for="register_password">
                                             Mot de passe <span>*</span>
                                         </label>
-                                        <input type="password" name="password" id="register_password" class="form__input form__input--2" onblur="verifPassword(this)">
+                                        <input type="password" name="motdepasse" id="motdepasse" class="form__input form__input--2" onblur="verifPassword(this)">
                                     </div>
 									
 									<div class="form__group mb--20">
                                         <label class="form__label" for="accounttype">
                                             Type du compte <span>*</span></label>
 											<br>
-                                        <label><input type="radio" name="accounttype" checked="checked"> Personnel</label>
-    									<label><input type="radio" name="accounttype"> STE</label><br>
+                                        <label><input type="radio" name="accounttype" checked="checked" value="per"> Personnel</label>
+    									<label><input type="radio" name="accounttype" value="ste"> STE</label><br>
                                     </div>
 									
                                     <div class="form__group">
-                                        <button type="submit" class="btn btn-5 btn-style-2">Inscription</button>
+                                        <button type="submit" form="test" class="btn btn-5 btn-style-2">Inscription</button>
+                             
+                                        <button type="reset" class="btn btn-5 btn-style-2">reset</button>
                                     </div>
+									
                                 </form>
                             </div>
                         </div>

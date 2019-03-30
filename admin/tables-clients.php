@@ -1,15 +1,21 @@
+<?php
+include "client.php";
+$db=config::getConnexion();
+$result=$db->query('SELECT * FROM client');
+
+?>
 <!doctype html>
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang=""> <![endif]-->
 <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8" lang=""> <![endif]-->
 <!--[if IE 8]>         <html class="no-js lt-ie9" lang=""> <![endif]-->
 <!--[if gt IE 8]><!-->
 <html class="no-js" lang="en">
-<!--<![endiff]-->
+<!--<![endif]-->
 
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title> Ajout Client </title>
+    <title>Sufee Admin - HTML5 Admin Template</title>
     <meta name="description" content="Sufee Admin - HTML5 Admin Template">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -22,17 +28,16 @@
     <link rel="stylesheet" href="vendors/themify-icons/css/themify-icons.css">
     <link rel="stylesheet" href="vendors/flag-icon-css/css/flag-icon.min.css">
     <link rel="stylesheet" href="vendors/selectFX/css/cs-skin-elastic.css">
+    <link rel="stylesheet" href="vendors/datatables.net-bs4/css/dataTables.bootstrap4.min.css">
+    <link rel="stylesheet" href="vendors/datatables.net-buttons-bs4/css/buttons.bootstrap4.min.css">
 
     <link rel="stylesheet" href="assets/css/style.css">
-    <script src="assets\js\inscription.js"></script>
+
     <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800' rel='stylesheet' type='text/css'>
-
-
-
 </head>
 
 <body>
-      <!-- Left Panel -->
+    <!-- Left Panel -->
 
     <aside id="left-panel" class="left-panel">
         <nav class="navbar navbar-expand-sm navbar-default">
@@ -67,17 +72,17 @@
                             <li><i class="fa fa-file-word-o"></i><a href="ui-typgraphy.html">Typography</a></li>
                         </ul>
                     </li>
-                    <li class="menu-item-has-children dropdown">
+                    <li class="menu-item-has-children active dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-table"></i>Tables</a>
                         <ul class="sub-menu children dropdown-menu">
                             <li><i class="fa fa-table"></i><a href="tables-basic.html">Basic Table</a></li>
                             <li><i class="fa fa-table"></i><a href="tables-data.html">Data Table</a></li>
                         </ul>
                     </li>
-                    <li class="menu-item-has-children active dropdown">
+                    <li class="menu-item-has-children dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-th"></i>Forms</a>
                         <ul class="sub-menu children dropdown-menu">
-                            <li><i class="menu-icon fa fa-th"></i><a href="forms-basic.html"> Formulaire</a></li>
+                            <li><i class="menu-icon fa fa-th"></i><a href="forms-basic.html">Basic Form</a></li>
                             <li><i class="menu-icon fa fa-th"></i><a href="forms-advanced.html">Advanced Form</a></li>
                         </ul>
                     </li>
@@ -257,54 +262,108 @@
         </header><!-- /header -->
         <!-- Header-->
 
-                                                    <div class="card-header">
-                                                        <strong> Ajout client</strong> Détails
-                                                    </div>
-                                                    <div class="card-body card-block">
-                                                        <form action="" method="post" enctype="multipart/form-data" class="form-horizontal">
-                                                            <div class="row form-group">
-                                                                <div class="col col-md-3"><label class=" form-control-label">Identifiant</label></div>
-                                                                <div class="col-12 col-md-9"><input type="text" id="Identifiant" name="Identifiant" placeholder="Identifiant" class="form-control" onblur="verifPseudo(this)"><small class="form-text text-muted"></small></div>
-                                                                <div class="col-12 col-md-9">
-                                                                  
-                                                                </div>
-                                                            </div>
-                                                        
-                                                             
-                                                            <div class="row form-group">
-                                                                <div class="col col-md-3"><label for="email-input" class=" form-control-label">Email </label></div>
-                                                                <div class="col-12 col-md-9"><input type="email" id="email-input" name="email-input" placeholder=" foulenbenfoulen@gmailcom" class="form-control" onblur="verifMail(this)"><small class="help-block form-text"> </small></div>
-                                                            </div>
-                                                            <div class="row form-group">
-                                                                <div class="col col-md-3"><label for="password-input" class=" form-control-label" >Mot de passe </label></div>
-                                                                <div class="col-12 col-md-9"><input type="password" id="password-input" name="password-input" placeholder="Mot de passe " class="form-control" onblur="verifPassword(this)"><small class="help-block form-text"></small></div>
-                                                            </div>
-                                                            <div class="row form-group">
-                                                                    <div class="col col-md-3"><label class=" form-control-label">Type du compte</label></div>
-                                                                    <div class="col col-md-9">
-                                                                        <div class="form-check-inline form-check">
-                                                                            <label for="inline-checkbox1" class="form-check-label ">
-                                                                                <input type="radio" id="inline-checkbox1" name="accounttype" value="per" class="accounttype" checked="checked"> Personnel 
-                                                                            </label>
-                                                                            <br>
-                                                                            <label for="inline-checkbox2" class="form-check-label ">
-                                                                                <input type="radio" id="accounttype" name="accounttype" value="ste" class="form-check-input">STE
-                                                                            </label>
-                                                                            
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-														<button type="submit" class="btn btn-primary btn-sm">
-                                                            <i class="fa fa-dot-circle-o"></i> Submit
-                                                        </button>
-                                                        <button type="reset" class="btn btn-danger btn-sm">
-                                                            <i class="fa fa-ban"></i> Reset
-                                                        </button>
-                                                        </form>
-                                                    </div>
-                                                    <div class="card-footer">
-                                                     
-                                                    </div>
-                                                </div>                                       
+        <div class="breadcrumbs">
+            <div class="col-sm-4">
+                <div class="page-header float-left">
+                    <div class="page-title">
+                        <h1>Dashboard</h1>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-8">
+                <div class="page-header float-right">
+                    <div class="page-title">
+                        <ol class="breadcrumb text-right">
+                            <li><a href="#">Dashboard</a></li>
+                            <li><a href="#">Table</a></li>
+                            <li class="active">Data table</li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="content mt-3">
+            <div class="animated fadeIn">
+                <div class="row">
+
+                    <div class="col-md-12">
+                        <div class="card">
+                            <div class="card-header">
+                                <strong class="card-title"> Listes des clients </strong>
+                            </div>
+                            <div class="card-body">
+                                <table id="bootstrap-data-table-export" class="table table-striped table-bordered">
+                                    <thead>
+                                        <tr>
+                                            <th> Identifiant </th>
+                                            <th> Email </th>
+                                            <th> Nom </th>
+                                            <th> Prénom </th>
+											<th> Adresse</th>
+											<th> téléphone</th>
+											<th> Actions</th>
+
+                                        </tr>
+                                    </thead>
+                                   <tbody>
+							        <?php while ($row = $result->fetch()) { 
+                                    ?>
+                                              <tr>
+
+                                       
+                                            <td>  <?php echo $row['identifiant']; ?></td>
+                                            <td> <?php echo $row['email']; ?></td>
+                                            <td><?php echo $row['nom']; ?></td>
+                                            <td><?php echo $row['prenom']; ?></td>
+                                            <td><?php echo $row['adresse']; ?></td>
+                                            <td><?php echo $row['telephone']; ?></td>
+                                            <td>  
+              <a href="modifier-client.php?edit=<?php echo $row['identifiant']; ?>&edit2=<?php echo $row['email']; ?>&edit3=<?php echo $row['motdepasse']; ?>" class="btn btn-info btn-xs"><i class="fa fa-pencil"></i> Edit </a>
+
+               <a href="supprimer-client.php?del=<?php echo $row['identifiant']; ?>" class="btn btn-danger btn-xs"><i class ="fa fa-trash-o"> </i> Delete</a>
+                                             </td>
+                                        </tr>
+                                        
+										<?php
+										}
+										?>
+										</tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+
+
+                </div>
+            </div><!-- .animated -->
+        </div><!-- .content -->
+
+
+    </div><!-- /#right-panel -->
+
+    <!-- Right Panel -->
+
+
+    <script src="vendors/jquery/dist/jquery.min.js"></script>
+    <script src="vendors/popper.js/dist/umd/popper.min.js"></script>
+    <script src="vendors/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="assets/js/main.js"></script>
+
+
+    <script src="vendors/datatables.net/js/jquery.dataTables.min.js"></script>
+    <script src="vendors/datatables.net-bs4/js/dataTables.bootstrap4.min.js"></script>
+    <script src="vendors/datatables.net-buttons/js/dataTables.buttons.min.js"></script>
+    <script src="vendors/datatables.net-buttons-bs4/js/buttons.bootstrap4.min.js"></script>
+    <script src="vendors/jszip/dist/jszip.min.js"></script>
+    <script src="vendors/pdfmake/build/pdfmake.min.js"></script>
+    <script src="vendors/pdfmake/build/vfs_fonts.js"></script>
+    <script src="vendors/datatables.net-buttons/js/buttons.html5.min.js"></script>
+    <script src="vendors/datatables.net-buttons/js/buttons.print.min.js"></script>
+    <script src="vendors/datatables.net-buttons/js/buttons.colVis.min.js"></script>
+    <script src="assets/js/init-scripts/data-table/datatables-init.js"></script>
+
+
 </body>
+
 </html>
