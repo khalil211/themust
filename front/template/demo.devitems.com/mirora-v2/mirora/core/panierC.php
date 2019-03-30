@@ -12,7 +12,7 @@ class panierC
 		$query->execute();
 	}
 
-	public function ajouterProduit($idproduit)
+	public function ajouterProduit($idproduit,$vnbp)
 	{
 		if (isset($_SESSION['idclient']))
 		{
@@ -34,14 +34,16 @@ class panierC
 			if ($query->rowCount()==0)
 				return false;
 			$p=$query->fetch();
-			$query=$db->prepare('INSERT INTO produitpanier(idpanier,idpoduit,quantite,prixunitaire) VALUES(:idpanier,:idproduit,1,:pu)');
+			$query=$db->prepare('INSERT INTO produitpanier(idpanier,idpoduit,quantite,prixunitaire) VALUES(:idpanier,:idproduit,:qte,:pu)');
 			$query->bindValue(':idpanier',$_SESSION['idclient']);
 			$query->bindValue(':idp',$idproduit);
 			$query->bindValue(':ipu',$p['prix']);
+			$query->bindValue(':qte',$vnbp);
 			$query->execute();
-			$query=$db->prepare('UPDATE panier SET nbproduit=nbproduit+1,prixtotal=prixtotal+:nprix where id=:idp');
+			$query=$db->prepare('UPDATE panier SET nbproduit=nbproduit+:nb,prixtotal=prixtotal+:nprix where id=:idp');
 			$query->bindValue(':id',$_SESSION['idclient']);
 			$query->bindValue(':nprix',$p['prix']);
+			$query->bindValue(':nb',$vnbp);
 			$query->execute();
 			return true;
 		}
@@ -90,13 +92,17 @@ class panierC
 			$panier->setNbProduit($donnee['nbproduit']);
 			$panier->setPrixTotal($donnee['prixtotal']);
 			$panier->setProduits($this->listeProduit());
-			return $panier
+			return $panier;
 		}
 	}
 
 	public function listeProduit()
 	{
-		//liste produit
+		if (isset($_SESSION['idclient']))
+		{
+			$db=config::getConnexion();
+			$query=$db->prepare('');
+		}
 	}
 }
 ?>

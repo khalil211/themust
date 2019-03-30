@@ -1,4 +1,5 @@
 <?php
+
 function frontUp()
 {
 	?>
@@ -167,38 +168,8 @@ function frontUp()
 	                                <li class="mainmenu__item <?php if (basename($_SERVER['PHP_SELF'])=='shop.php')echo 'active'; ?>">
 	                                    <a href="shop.php" class="mainmenu__link">Produits</a>
 	                                </li>
-	                                <li class="mainmenu__item menu-item-has-children has-children">
-	                                    <a href="blog.html" class="mainmenu__link">Blog</a>
-	                                    <ul class="sub-menu">
-	                                        <li class="menu-item-has-children has-children">
-	                                            <a href="#">Blog Grid</a>
-	                                            <ul class="sub-menu">
-	                                                <li><a href="blog.html">Left Sidebar</a></li>
-	                                                <li><a href="blog-right-sidebar.html">Right Sidebar</a></li>
-	                                                <li><a href="blog-3-column.html">Three Column</a></li>
-	                                                <li><a href="blog-4-column.html">Four Column</a></li>
-	                                            </ul>
-	                                        </li>
-	                                        <li class="menu-item-has-children has-children">
-	                                            <a href="#">Blog List</a>
-	                                            <ul class="sub-menu">
-	                                                <li><a href="blog-list.html">Full Width</a></li>
-	                                                <li><a href="blog-list-left-sidebar.html">left Sidebar</a></li>
-	                                                <li><a href="blog-list-right-sidebar.html">Right Sidebar</a></li>
-	                                            </ul>
-	                                        </li>
-	                                        <li class="menu-item-has-children has-children">
-	                                            <a href="#">Blog Details</a>
-	                                            <ul class="sub-menu">
-	                                                <li><a href="blog-details-image.html">Standard Post</a></li>
-	                                                <li><a href="blog-details-image.html">Image Post</a></li>
-	                                                <li><a href="blog-details-audio.html">Audio Post</a></li>
-	                                                <li><a href="blog-details-video.html">Video Post</a></li>
-	                                                <li><a href="blog-details-gallery.html">Gallery Post</a></li>
-	                                                <li><a href="blog-details-right-sidebar.html">Right Sidebar</a></li>
-	                                            </ul>
-	                                        </li>
-	                                    </ul>
+	                                <li class="mainmenu__item <?php if (basename($_SERVER['PHP_SELF'])=='blog.php')echo 'active'; ?>">
+	                                    <a href="blog.php" class="mainmenu__link">Blog</a>
 	                                </li>
 	                                <li class="mainmenu__item menu-item-has-children has-children">
 	                                    <a href="#" class="mainmenu__link">Pages</a>

@@ -142,7 +142,7 @@ $result=$db->query('select * from produit');
                                                 <span class="product-label discount">
                                                     %
                                                 </span>
-                                                <a data-toggle="modal" <?php echo 'data-target="#p'.$key['id'].'"'; ?> class="btn btn-transparent btn-fullwidth btn-medium btn-style-1">Détails</a>
+                                                <a href="#" class="btn btn-transparent btn-fullwidth btn-medium btn-style-1">Détails</a>
                                             </div>
                                         </div>
                                         <div class="product-content text-center">
