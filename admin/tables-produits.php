@@ -3,6 +3,13 @@ include "../config.php";
 $db=config::getConnexion();
 $result=$db->query('select * from produit order by id desc');
 ?>
+?>
+<?php  
+if (isset($_GET['search'])&&!empty($_GET['search'])) {
+    $search=htmlspecialchars($_GET['search']);
+    $result=$db->query('select * from produit WHERE nom LIKE "%'.$search.'%"   ');
+}
+?>
 <!doctype html>
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang=""> <![endif]-->
 <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8" lang=""> <![endif]-->
@@ -295,14 +302,14 @@ $result=$db->query('select * from produit order by id desc');
                             </div>
                             <div class="card-body">
                              <!--   <label> Recherche </label>
-                                <input type="text" name="recherche">-->
+                                <input type="text" name="recherche">
                                 <form action="recherche-prod.php" method="GET">
                                 <input type="text" name="nom">
-                               <input type="submit" value ="recherche"class="btn btn-success btn-sm" style="width: 80px; height: 30px;" />
-                                              
+                               <input type="submit" value ="recherche"class="btn btn-success btn-sm" style="width: 80px; height: 30px;" />-
+                         /*                     
                           
-                            <?php
-                            $reqq=("select * from produit");
+                           <?php
+                           /* $reqq=("select * from produit");
                             $ress=$db->query($reqq);
                             while ($d=$ress->fetch());
                             {
@@ -310,9 +317,11 @@ $result=$db->query('select * from produit order by id desc');
                                 echo "<p>{$d["prix"]}</p>";
                                 echo "<p>{$d["quantite"]}</p>";
                                 echo "<p>{$d["description"]}</p>";
-                            }
+                            }*/
 
-                            ?>
+                            ?>-->
+
+
                             </form>
                                 <table id="bootstrap-data-table-export" class="table table-striped table-bordered">
                                     <thead>

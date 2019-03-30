@@ -416,6 +416,8 @@ $result=$db->query('select * from produit');
         <tbody>
             <?php
             foreach ($result as $key ) {
+                if ($key['categorie']=='Homme')
+                {
                 ?>
                 <form method="POST" action="product-details.php">
                 <tr>
@@ -430,7 +432,7 @@ $result=$db->query('select * from produit');
                     </div>
               </div>
           </div>
-
+<?php } ?>
                 </tr>
                 </form>
             <?php

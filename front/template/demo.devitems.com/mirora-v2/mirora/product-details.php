@@ -1,8 +1,17 @@
+<?php
+include "produit.php";
+$db=config::getConnexion();
+if (isset ($_POST['id'])&& isset($_POST['img'])&&isset($_POST['nom'])&&isset($_POST['descr'])&&isset($_POST['quantite'])&&isset($_POST['prix'])&&isset($_POST['categorie']))
+{
+    $e=new produit($_POST['img'],$_POST['nom'],$_POST['descr'],$_POST['quantite'],$_POST['prix'],$_POST['categorie']);
+    $e->ajouter();
+}
 
+$result=$db->query('select * from produit ');
+
+?>
 <!doctype html>
 <html class="no-js" lang="zxx">
-
-
 <!-- Mirrored from demo.devitems.com/mirora-v2/mirora/product-details.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 10 Feb 2019 18:53:11 GMT -->
 <head>
     <meta charset="utf-8">
@@ -413,16 +422,16 @@
         <!-- Breadcumb area End -->
 
         <!-- Main Content Wrapper Start -->
-        <div class="main-content-wrapper">
+        <!--<div class="main-content-wrapper">
             <div class="single-products-area section-padding section-md-padding">
-                <div class="container">
+                <div class="container">-->
                     <!-- Single Product Start -->
-                    <section class="mirora-single-product pb--80 pb-md--60">
+        <!--            <section class="mirora-single-product pb--80 pb-md--60">
                         <div class="row">
-                            <div class="col-lg-6">
+                            <div class="col-lg-6">-->
                                 <!-- Tab Content Start -->
-                                <div class="tab-content product-details-thumb-large" id="myTabContent-3">
-                                    <div class="tab-pane fade show active" id="product-large-one">
+        <!--                          <div class="tab-content product-details-thumb-large" id="myTabContent-3">
+                                  <div class="tab-pane fade show active" id="product-large-one">
                                         <div class="product-details-img easyzoom">
                                             <a class="popup-btn" href="assets/img/products/3-900x900.jpg">
                                                 <img src="assets/img/products/3-900x900.jpg" alt="product">
@@ -457,39 +466,15 @@
                                             </a>
                                         </div>
                                     </div>
-                                </div>
+                                </div>-->
+
+
+
+
                                 <!-- Tab Content End -->
                                 
                                 <!-- Product Thumbnail Carousel Start -->
-                                <div class="product-details-thumbnail">
-                                    <div class="thumb-menu product-details-thumb-menu nav-vertical-center" id="thumbmenu-horizontal">
-                                        <div class="thumb-menu-item">
-                                            <a href="#product-large-one" data-toggle="tab" class="nav-link active">
-                                                <img src="assets/img/products/3-450x450.jpg" alt="product thumb">
-                                            </a>
-                                        </div>
-                                        <div class="thumb-menu-item">
-                                            <a href="#product-large-two" data-toggle="tab" class="nav-link">
-                                                <img src="assets/img/products/4-450x450.jpg" alt="product thumb">
-                                            </a>
-                                        </div>
-                                        <div class="thumb-menu-item">
-                                            <a href="#product-large-three" data-toggle="tab" class="nav-link">
-                                                <img src="assets/img/products/5-450x450.jpg" alt="product thumb">
-                                            </a>
-                                        </div>
-                                        <div class="thumb-menu-item">
-                                            <a href="#product-large-four" data-toggle="tab" class="nav-link">
-                                                <img src="assets/img/products/6-450x450.jpg" alt="product thumb">
-                                            </a>
-                                        </div>
-                                        <div class="thumb-menu-item">
-                                            <a href="#product-large-five" data-toggle="tab" class="nav-link">
-                                                <img src="assets/img/products/10-450x450.jpg" alt="product thumb">
-                                            </a>
-                                        </div>
-                                    </div>
-                                </div>
+                                
                                 <!-- Product Thumbnail Carousel End -->
                             </div>
                             <div class="col-lg-6">
@@ -907,7 +892,7 @@
                                     </div>
                                 </div>
                                 <div class="mirora-product">
-                                    <div class="product-img">
+                                   <!-- <div class="product-img">
                                         <img src="assets/img/products/10-450x450.jpg" alt="Product" class="primary-image" />
                                         <img src="assets/img/products/10-10-450x450.jpg" alt="Product" class="secondary-image" />
                                         <div class="product-img-overlay">
@@ -1046,9 +1031,25 @@
                         </div>
                     </section>
                     <!-- Related Product End -->
-                </div>
-            </div>
-        </div>
+
+       
+            <?php foreach ($result as $product) {?>
+            
+          
+              <div class="thumbnail">
+              <a  href="product-details.php?ref=<?php echo $key['id']; ?>"><img src="assets/img/products/<?php echo $key['img'];?>" alt="Image Produit " class ="primary-imag"></a>
+                <div class="caption cntr">
+
+                
+                           <h3><a class="defaultBtn" type="submit" href="product-details.php">VIEW</a> <span class="pull-right"><?php echo $key['prix'];?>dt</span> <span class="pull-left"><?php echo $key['nom'];?></span>
+                            <span class="pull-left"><?php echo $key['categorie'];?></span>
+                            <span class="pull-left"><?php echo $key['quantite'];?></span>
+                           </h3>
+   
+                  </div>
+              </div>
+             
+          
         <!-- Main Content Wrapper End -->
 
 

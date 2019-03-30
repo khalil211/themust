@@ -10,8 +10,9 @@ class produit
 	private $prix;
 	private $categorie;
 
-	public function __construct($img,$nom,$descr,$quantite,$prix,$categorie)
+	public function __construct($id,$img,$nom,$descr,$quantite,$prix,$categorie)
 	{
+		$this->id=$id;
 		$this->img=$img;
 		$this->nom=$nom;
         $this->descr=$descr;
@@ -53,20 +54,16 @@ class produit
 		}
 	}
 
-	public function afficherUnProduit($ide)
+	/*public function afficherUnProduit($idd)
     {
         
-        $sql = "SELECT * FROM produit WHERE id=$ide";
+        $sql = "SELECT * FROM produit WHERE id=$idd";
         $c=config::getConnexion();
        $result = $c->query($sql);
        
 
  return $result ;
-
-
-	
-
+	}*/
 }
-
 
 ?>

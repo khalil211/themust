@@ -1,9 +1,19 @@
 <?php  
 include "../config.php";
 $db=config::getConnexion();
-$result=$db->query('select * from publicite');
+
+$emps=$db->query("DELETE FROM publicite WHERE fin<=CURDATE()");
+?>
+<?php  
+
+$result=$db->query('select * from publicite ORDER BY ID');
+if (isset($_GET['search'])&&!empty($_GET['search'])) {
+    $search=htmlspecialchars($_GET['search']);
+    $result=$db->query('select * from publicite WHERE nom LIKE "%'.$search.'%"   ');
+}
 
 ?>
+
 
 <!doctype html>
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang=""> <![endif]-->
@@ -71,7 +81,7 @@ $result=$db->query('select * from publicite');
                                     <?php while ($row = $result->fetch()) { ?>
                                         <tr>
 
-                                            <td> <?php echo $row['image']; ?></td>
+                                            <td> <img src="images/<?php echo $row['image']; ?>" height=100px></td>
                                             <td> <?php echo $row['cat']; ?></td>
                                             <td><?php echo $row['nom']; ?></td>
 
@@ -81,8 +91,9 @@ $result=$db->query('select * from publicite');
                                              <td>
                             
                             <!--a href="#" class="btn btn-primary btn-xs" onclick="verifForm()" type="submit" Value="Ajouter"><i class="fa fa-folder"></i> ajotuer</a> -->
-                            <a href="#" class="btn btn-info btn-xs"><i class="fa fa-pencil"></i> Edit </a>
-                            <a href="delete.php?del=<?php echo $row['ID']; ?>" class="del_btn">Delete</a>
+                            <a href="ediit.php?edit=<?php echo $row['ID']; ?>" class="btn btn-info btn-xs"><i class="fa fa-pencil"></i> Edit </a>
+                           <!--<a href="delete.php?del=<?php echo $row['ID']; ?>" class="btn btn-info btn-xs"><i class="fa fa-trash-o">Delete</a>-->
+                                <a href="delete.php?del=<?php echo $row['ID'];?>" class="btn btn-danger btn-xs"><i class="fa fa-trash-o"></i> Delete </a>
                           </td>
                                         </tr>
 

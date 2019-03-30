@@ -1,3 +1,16 @@
+
+<?php  
+include "../../../../../config.php";
+$db=config::getConnexion();
+
+$emps=$db->query("DELETE FROM publicite WHERE fin<=CURDATE()");
+?>
+<?php  
+
+$result=$db->query('select * from publicite');
+
+?>
+
 <!doctype html>
 <html class="no-js" lang="zxx">
 
@@ -211,7 +224,7 @@
                                     <li class="mainmenu__item menu-item-has-children">
                                         <a href="shop.html" class="mainmenu__link">Produits</a>
                                         <ul class="megamenu five-column">
-                                          <!--  <li>
+                                            <li>
                                                 <a class="megamenu-title" href="#">Shop Grid</a>
                                                 <ul>
                                                     <li>
@@ -228,21 +241,21 @@
                                                     </li>
                                                 </ul>
                                             </li>
-                                            <li>-->
+                                            <li>
                                                 <a class="megamenu-title" href="#">Liste des produits</a>
                                                 <ul>
                                                     <li>
-                                                        <a href="prodh.php">Homme</a>
+                                                        <a href="shop-list-left-sidebar.html">Left Sidebar</a>
                                                     </li>
                                                     <li>
-                                                        <a href="prodf.php">Femme</a>
+                                                        <a href="shop-list-right-sidebar.html">Right Sidebar</a>
                                                     </li>
                                                     <li>
-                                                        <a href="prod1.php">Voir tout </a>
+                                                        <a href="shop-list.html">Full width</a>
                                                     </li>
                                                 </ul>
                                             </li>
-                                       <!--     <li>
+                                            <li>
                                                 <a class="megamenu-title" href="#">Single Product</a>
                                                 <ul>
                                                     <li>
@@ -330,7 +343,7 @@
                                                 </ul>
                                             </li>
                                         </ul>
-                                    </li>-->
+                                    </li>
                                     <li class="mainmenu__item ">
                                         <a href="about.html" class="mainmenu__link">A Propos </a>
                                     </li>
@@ -356,14 +369,17 @@
             <div class="slider-area">
                 <div class="homepage-slider">
                     <!-- Single Slide Start -->
-                    <div class="single-slider content-v-center" style="background-image: url(assets/img/slider/slider1-mirora1-1920x634.jpg)">
+                    <?php while ($row = $result->fetch()) { ?>
+                       
+                    <div class="single-slider content-v-center" style="background-image: url(../../../../../admin/images/<?php echo $row['image']; ?>" >
+                        
                         <div class="container">
                             <div class="row">
                                 <div class="col-12">
                                     <div class="slider-content">
                                         <h5 data-animation="rollIn" data-duration=".8s" data-delay=".5s">promotion</h5>
-                                        <h1 data-animation="fadeInDown" data-duration=".8s" data-delay=".2s">nom de la catégorie</h1>
-                                        <p class="mb--30 mb-sm--20" data-animation="fadeInDown" data-duration=".8s" data-delay=".2s">description </p>
+                                        <h1 data-animation="fadeInDown" data-duration=".8s" data-delay=".2s"><?php echo $row['cat']; ?></h1>
+                                        <p class="mb--30 mb-sm--20" data-animation="fadeInDown" data-duration=".8s" data-delay=".2s"><?php echo $row['description']; ?> </p>
                                         <p class="mb--50 mb-sm--20" data-animation="fadeInDown" data-duration=".8s" data-delay=".2s">Starting At <strong>prix</strong></p>
                                         <div class="slide-btn-group" data-animation="fadeInUp" data-duration="1s" data-delay=".3s">
                                             <a href="shop.html" class="btn btn-bordered btn-style-1">Achetez maintenant</a>
@@ -373,10 +389,11 @@
                             </div>
                         </div>
                     </div>
+                    <?php } ?>
                     <!-- Single Slide End -->
 
                     <!-- Single Slide Start -->
-                    <div class="single-slider content-v-center" style="background-image: url(assets/img/slider/slider2-mirora1-1920x634.jpg)">
+                    <!-- <div class="single-slider content-v-center" style="background-image: url(assets/img/slider/slider2-mirora1-1920x634.jpg)">
                         <div class="container">
                             <div class="row">
                                 <div class="col-12">
@@ -393,10 +410,11 @@
                             </div>
                         </div>
                     </div>
+                    
                     <!-- Single Slide End -->
 
                     <!-- Single Slide Start -->
-                    <div class="single-slider content-v-center" style="background-image: url(assets/img/slider/slider2-mirora1-1920x634.jpg)">
+                    <!--<div class="single-slider content-v-center" style="background-image: url(assets/img/slider/slider2-mirora1-1920x634.jpg)">
                         <div class="container">
                             <div class="row">
                                 <div class="col-12">
