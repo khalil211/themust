@@ -35,6 +35,20 @@ function verifPassword(champ)
    }
 }
 
+function verifAdresse(champ)
+{
+   if(champ.value.length < 8 || champ.value.length > 255)
+   {
+      surligne(champ, true);
+      return false;
+   }
+   else
+   {
+      surligne(champ, false);
+      return true;
+   }
+}
+
 function verifPseudo(champ)
 {
    if(champ.value.length < 2 || champ.value.length > 25)
