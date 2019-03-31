@@ -74,7 +74,7 @@ testConnexion();
                         <div class="row">
                             <div class="col-12">
                                 <!-- Cart Area Start -->
-                                <form action="#" class="form cart-form">
+                                <form method="post" action="core/modifier-panier.php" id="formp" class="form cart-form">
                                     <div class="cart-table table-content table-responsive">
                                         <table class="table mb--30">
                                             <thead>
@@ -128,7 +128,7 @@ testConnexion();
                                     <div class="row">
                                         <div class="col-12 text-md-right">
                                             <div class="cart-btn-group">
-                                                <a href="shop.html" class="btn btn-medium btn-style-3">Mettre à jour</a>
+                                                <button type="button" id="majcommande" class="btn btn-medium btn-style-3">Mettre à jour</button>
                                             </div>
                                         </div>
                                     </div>
@@ -152,7 +152,7 @@ testConnexion();
                                             </tbody>
                                         </table>
                                     </div>
-                                    <a href="checkout.html" class="btn btn-medium btn-style-3">Passer la commande</a>
+                                    <button type="button" id="passercommande" class="btn btn-medium btn-style-3">Passer la commande</button>
                                 </div>
                             </div>
                         </div>
@@ -161,6 +161,7 @@ testConnexion();
             </div>
         </div>
         <?php frontDown(); ?>
+        <script type="text/javascript" src="core/panier.js"></script>
 </body>
 
 
