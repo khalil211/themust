@@ -42,20 +42,37 @@ class clientste
 		try
 		{
 			$db=config::getConnexion();
+			if (!preg_match("/[a-zA-Z0-9]{4,22}(STE)$/",$this->identifiant))
+				$this->identifiant=$this->identifiant.'STE';
 			$req=$db->prepare('INSERT into clientste(identifiant,email,motdepasse,nomste,matfis,adresse,telephone) values(:identifiant,:email,:motdepasse,:nomste,:matfis,:adresse,:telephone)');
-	    $req->bindValue(':identifiant',$this->identifiant);
-        $req->bindValue(':email',$this->email);
-        $req->bindValue(':motdepasse',$this->motdepasse);
-        $req->bindValue(':nomste',$this->nomste);
-        $req->bindValue(':matfis',$this->matfis);
-		$req->bindValue(':adresse',$this->adresse);
-		$req->bindValue(':telephone',$this->telephone);
+		    $req->bindValue(':identifiant',$this->identifiant);
+	        $req->bindValue(':email',$this->email);
+	        $req->bindValue(':motdepasse',$this->motdepasse);
+	        $req->bindValue(':nomste',$this->nomste);
+	        $req->bindValue(':matfis',$this->matfis);
+			$req->bindValue(':adresse',$this->adresse);
+			$req->bindValue(':telephone',$this->telephone);
 			$req->execute();
 		}
 		catch(Exception $e)
 		{
 			die('erreur' . $e->getMessage());
 		}
+
+	}
+	
+	public function exist()
+	{
+		$db=config::getConnexion();
+		$req=$db->prepare('SELECT * FROM clientste WHERE identifiant=:id');
+		$req->bindValue(':id',$this->identifiant);
+		$req->execute();
+		if ($req->rowCount()==0)
+			return false;
+		$client=$req->fetch();
+		if ($client['motdepasse']!=$this->motdepasse)
+			return false;
+		return true;
 	}
 
 }

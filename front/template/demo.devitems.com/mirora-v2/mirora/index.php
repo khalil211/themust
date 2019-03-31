@@ -1,7 +1,7 @@
-
-<?php  
-include 'menus.php';
+<?php
 include "../../../../../config.php";
+include 'menus.php';
+testConnexion();
 $db=config::getConnexion();
 
 $emps=$db->query("DELETE FROM publicite WHERE fin<=CURDATE()");

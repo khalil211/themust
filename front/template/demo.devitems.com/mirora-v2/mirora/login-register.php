@@ -1,25 +1,26 @@
 <?php
+include 'menus.php';
 include "client.php";
 include "clientste.php";
-include 'entities/panier.php';
-include 'core/panierC.php';
 
-if (isset($_POST['identifiant'])&&isset($_POST['email'])&&isset($_POST['motdepasse']))
+if (testConnexion())
+    header('Location: index.php');
+
+if (isset($_POST['logidentifiant'])&&isset($_POST['logmotdepasse']))
 {
-    if ($_POST['accounttype']=="per")
+    $client=new client($_POST['logidentifiant'],"",$_POST['logmotdepasse'],"","","","");
+    $clientste=new clientste($_POST['logidentifiant'],"",$_POST['logmotdepasse'],"","","","");
+    if ($client->exist()||$clientste->exist())
     {
-    	$e=new client($_POST['identifiant'],$_POST['email'],$_POST['motdepasse'],"","","",5575);
-        $e->ajouter();
-    }	
-    else
-    {
-    	$s=new clientste($_POST['identifiant'],$_POST['email'],$_POST['motdepasse'],"","","",5575);
-        $s->ajouter();
+        $_SESSION['idclient']=$_POST['logidentifiant'];
+        $_SESSION['mdpclient']=$_POST['logmotdepasse'];
+        if (isset($_POST['stayco']))
+        {
+            setcookie('idclient',$_POST['logidentifiant'], time() + 30*24*3600, null, null, false, true);
+            setcookie('mdpclient',$_POST['logmotdepasse'], time() + 30*24*3600, null, null, false, true);
+        }
     }
-    $panier=new panier($_POST['identifiant']);
-    $panierC=new panierC();
-    $panierC->ajouter($panier);
-}  
+}
 ?>
 <!doctype html>
 <html class="no-js" lang="zxx">
@@ -63,34 +64,51 @@ if (isset($_POST['identifiant'])&&isset($_POST['email'])&&isset($_POST['motdepas
 <body>
 
 
-    <?php include 'menus.php';frontUp(); ?>
+    <?php frontUp();
+    if (isset($_POST['identifiant'])&&isset($_POST['email'])&&isset($_POST['motdepasse']))
+    {
+        if ($_POST['accounttype']=="per")
+        {
+            $e=new client($_POST['identifiant'],$_POST['email'],$_POST['motdepasse'],"","","",5575);
+            $e->ajouter();
+        }   
+        else
+        {
+            $s=new clientste($_POST['identifiant'],$_POST['email'],$_POST['motdepasse'],"","","",5575);
+            $s->ajouter();
+        }
+        $panier=new panier($_POST['identifiant']);
+        $panierC=new panierC();
+        $panierC->ajouter($panier);
+    }
+    ?>
         <!-- Main Wrapper Start -->
         <div class="main-content-wrapper">
             <div class="login-register-area">
                 <div class="container">
                     <div class="row">
                         <div class="col-lg-6 mb-md--40">
-                            <h2 class="heading-secondary mb--30">Login</h2>
+                            <h2 class="heading-secondary mb--30">Connexion</h2>
                             <div class="login-reg-box p-4 bg--2">
-                                <form class="form" action="#">
+                                <form class="form" method="post" action="login-register.php">
                                     <div class="form__group mb--20">
-                                        <label class="form__label" for="username_email">
-                                            email ou identifiant <span>*</span>
+                                        <label class="form__label" for="username">
+                                            Identifiant <span>*</span>
                                         </label>
-                                        <input type="text" name="username_email" id="username_email" class="form__input form__input--2">
+                                        <input type="text" name="logidentifiant" id="logidentifiant" class="form__input form__input--2">
                                     </div>
                                     <div class="form__group mb--20">
                                         <label class="form__label" for="password">
-                                            mot de passe <span>*</span>
+                                            Mot de passe <span>*</span>
                                         </label>
-                                        <input type="password" name="password" id="password" class="form__input form__input--2">
+                                        <input type="password" name="logmotdepasse" id="logmotdepasse" class="form__input form__input--2">
                                     </div>
                                     <div class="form__group d-flex align-items-center">
-                                        <button type="submit" class="btn btn-5 btn-style-1 color-1">Login</button>
+                                        <button type="submit" class="btn btn-5 btn-style-1 color-1">Se connecter</button>
                                         <div class="custom-checkbox ml--20">
-                                            <input type="checkbox" name="sessionStore" id="sessionStore" class="form__checkbox">
+                                            <input type="checkbox" name="stayco" id="sessionStore" class="form__checkbox">
                                             
-                                            <label for="sessionStore" class="form__checkbox--label">Remember me</label>
+                                            <label for="stayco" class="form__checkbox--label">Se souvenir</label>
                                         </div>
                                     </div>
                                     <a href="#" class="forgot-pass">vous avez oublié votre mot de passe?</a>

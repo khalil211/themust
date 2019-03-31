@@ -1,3 +1,8 @@
+
+<?php 
+include "../../../../../config.php";
+include 'menus.php';testConnexion(); 
+?>
 <!DOCTYPE html>
 <html class="no-js" lang="zxx">
 
@@ -44,7 +49,7 @@
 <body>
 
 
-        <?php include 'menus.php';frontUp(); ?>
+        <?php frontUp(); ?>
         <!-- Breadcumb area Start -->
         <div class="breadcrumb-area">
             <div class="container">

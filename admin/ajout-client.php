@@ -16,9 +16,9 @@ if (isset($_POST['identifiant'])&&isset($_POST['email'])&&isset($_POST['motdepas
     	$s=new clientste($_POST['identifiant'],$_POST['email'],$_POST['motdepasse'],$_POST['nomc'],$_POST['prenom'],$_POST['adresse'],$_POST['telephone']);
         $s->ajouter();
     }
-  /*$panier=new panier($_POST['identifiant']);
+    $panier=new panier($_POST['identifiant']);
     $panierC=new panierC();
-    $panierC->ajouter($panier);*/
+    $panierC->ajouter($panier);
 }    
 ?>
 

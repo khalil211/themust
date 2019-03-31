@@ -1,8 +1,4 @@
 <?php
-class produitPanier
-{
-	//produit
-}
 
 class panier
 {

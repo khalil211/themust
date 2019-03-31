@@ -36,19 +36,21 @@ class clientste
 	public function setAdresse($adresse){$this->adresse=$adresse;}
 	public function setTelephone($telephone){$this->telephone=$telephone;}
 	
-		function ajouter()
+	function ajouter()
 	{
 		try
 		{
 			$db=config::getConnexion();
+			if (!preg_match("/[a-zA-Z0-9]{4,22}(STE)$/",$this->identifiant))
+				$this->identifiant=$this->identifiant.'STE';
 			$req=$db->prepare('INSERT into clientste(identifiant,email,motdepasse,nomste,matfis,adresse,telephone) values(:identifiant,:email,:motdepasse,:nomste,:matfis,:adresse,:telephone)');
-	    $req->bindValue(':identifiant',$this->identifiant);
-        $req->bindValue(':email',$this->email);
-        $req->bindValue(':motdepasse',$this->motdepasse);
-        $req->bindValue(':nomste',$this->nomste);
-        $req->bindValue(':matfis',$this->matfis);
-		$req->bindValue(':adresse',$this->adresse);
-		$req->bindValue(':telephone',$this->telephone);
+		    $req->bindValue(':identifiant',$this->identifiant);
+	        $req->bindValue(':email',$this->email);
+	        $req->bindValue(':motdepasse',$this->motdepasse);
+	        $req->bindValue(':nomste',$this->nomste);
+	        $req->bindValue(':matfis',$this->matfis);
+			$req->bindValue(':adresse',$this->adresse);
+			$req->bindValue(':telephone',$this->telephone);
 			$req->execute();
 		}
 		catch(Exception $e)
