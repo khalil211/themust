@@ -9,7 +9,7 @@ $identifiant = $_GET['edit'];
 if (isset($_POST['email']))
 {
 	
-	$emps=$db->query("SELECT * FROM  client WHERE identifiant='$identifiant'");
+	$emps=$db->query("SELECT * FROM  clientste WHERE identifiant='$identifiant'");
            while ($row = $emps->fetch())
 		    {
 			
@@ -17,13 +17,13 @@ if (isset($_POST['email']))
             $motdepasse =$_POST['motdepasse'];
 			$adresse = $_POST['adresse'];
 			$telephone= $_POST['telephone'];
-			$nom= $_POST['nomc'];
-			$prenom= $_POST['prenom'];
- $abcd=$db->prepare("UPDATE  client SET email=:email,motdepasse=:motdepasse,nom=:nom,prenom=:prenom,adresse=:adresse,telephone=:telephone WHERE identifiant='$identifiant' ");
+			$nomste= $_POST['nomste'];
+			$matfis= $_POST['matfis'];
+ $abcd=$db->prepare("UPDATE  clientste SET email=:email,motdepasse=:motdepasse,nomste=:nomste,matfis=:matfis,adresse=:adresse,telephone=:telephone WHERE identifiant='$identifiant' ");
  $abcd->bindValue(":email",$email);
  $abcd->bindValue(":motdepasse",$motdepasse);
- $abcd->bindValue(":nom",$nom);
- $abcd->bindValue(":prenom",$prenom);
+ $abcd->bindValue(":nomste",$nomste);
+ $abcd->bindValue(":matfis",$matfis);
  $abcd->bindValue(":adresse",$adresse);
  $abcd->bindValue(":telephone",$telephone);
  $abcd->execute();
@@ -72,7 +72,7 @@ if (isset($_POST['email']))
     backUp();
     ?>
 
-<form action="modifier-client.php?edit=<?php echo $identifiant; ?>" method="POST" name="clientf" class="form-horizontal">
+<form action="modifier-clientste.php?edit=<?php echo $identifiant; ?>" method="POST" name="clientf" class="form-horizontal">
                                                     
                                                             <div class="row form-group">
                                                                 <div class="col col-md-3"><label for="email-input" class=" form-control-label">Email </label></div>
@@ -101,15 +101,15 @@ if (isset($_POST['email']))
 																
 																<div class="row form-group">
                                                                 <div class="col col-md-3"><label class=" form-control-label">nom</label></div>
-                                                                <div class="col-12 col-md-9"><input type="text" id="nomc" name="nomc" placeholder="nom" class="form-control"><small class="form-text text-muted"></small></div>
+                                                                <div class="col-12 col-md-9"><input type="text" id="nomste" name="nomste" placeholder="nom de la STE" class="form-control"><small class="form-text text-muted"></small></div>
                                                                 <div class="col-12 col-md-9">
                                                                   
                                                                 </div>
                                                             </div>
 																
 																	<div class="row form-group">
-                                                                <div class="col col-md-3"><label class=" form-control-label">prenom / mat</label></div>
-                                                                <div class="col-12 col-md-9"><input type="text" id="prenom" name="prenom"  placeholder="prenom" class="form-control"><small class="form-text text-muted"></small></div>
+                                                                <div class="col col-md-3"><label class=" form-control-label">Matricule fiscale</label></div>
+                                                                <div class="col-12 col-md-9"><input type="text" id="matfis" name="matfis"  placeholder="matricule fiscale" class="form-control"><small class="form-text text-muted"></small></div>
                                                                 <div class="col-12 col-md-9">
                                                                   
                                                                 </div>

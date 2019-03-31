@@ -1,6 +1,16 @@
+<<<<<<< HEAD
 <?php
 include "../../../../../admin/entities/blog.php";
 include "../../../../../config.php";
+=======
+
+<?php 
+include "../../../../../config.php";
+include 'menus.php';testConnexion(); 
+?>
+<!DOCTYPE html>
+<html class="no-js" lang="zxx">
+>>>>>>> fb56ce6c21f4e2cb8e46b0fdaa05737965247fd4
 
 $db=config::getConnexion();
 
@@ -50,7 +60,7 @@ $db=config::getConnexion();
 <body>
 
 
-        <?php include 'menus.php';frontUp(); ?>
+        <?php frontUp(); ?>
         <!-- Breadcumb area Start -->
         <div class="breadcrumb-area">
             <div class="container">
