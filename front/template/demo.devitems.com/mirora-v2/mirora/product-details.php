@@ -1,17 +1,17 @@
 <?php
-include "produit.php";
+include '../../../../../config.php';
 $db=config::getConnexion();
-if (isset ($_POST['id'])&& isset($_POST['img'])&&isset($_POST['nom'])&&isset($_POST['descr'])&&isset($_POST['quantite'])&&isset($_POST['prix'])&&isset($_POST['categorie']))
-{
-    $e=new produit($_POST['img'],$_POST['nom'],$_POST['descr'],$_POST['quantite'],$_POST['prix'],$_POST['categorie']);
-    $e->ajouter();
-}
-
-$result=$db->query('select * from produit ');
-
+$idd=$_GET['idd'];
+$query=$db->prepare('select * from produit where id=:idd');
+$query->bindValue(':idd',$idd);
+$query->execute();
+$result=$query->fetch();
 ?>
+
 <!doctype html>
 <html class="no-js" lang="zxx">
+
+
 <!-- Mirrored from demo.devitems.com/mirora-v2/mirora/product-details.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 10 Feb 2019 18:53:11 GMT -->
 <head>
     <meta charset="utf-8">
@@ -411,7 +411,7 @@ $result=$db->query('select * from produit ');
                     <div class="col-12 text-center">
                         <h1 class="page-title">Product Detalis</h1>
                         <ul class="breadcrumb justify-content-center">
-                            <li><a href="index.php">Home</a></li>
+                            <li><a href="index.html">Home</a></li>
                             <li><a href="shop.html">Shop</a></li>
                             <li class="current"><a href="product-details.html">Product Detalis Tab Style One</a></li>
                         </ul>
@@ -422,98 +422,131 @@ $result=$db->query('select * from produit ');
         <!-- Breadcumb area End -->
 
         <!-- Main Content Wrapper Start -->
-        <!--<div class="main-content-wrapper">
+        <div class="main-content-wrapper">
             <div class="single-products-area section-padding section-md-padding">
-                <div class="container">-->
+                <div class="container">
                     <!-- Single Product Start -->
-        <!--            <section class="mirora-single-product pb--80 pb-md--60">
+                    <section class="mirora-single-product pb--80 pb-md--60">
                         <div class="row">
-                            <div class="col-lg-6">-->
+                            <div class="col-lg-6">
                                 <!-- Tab Content Start -->
-        <!--                          <div class="tab-content product-details-thumb-large" id="myTabContent-3">
-                                  <div class="tab-pane fade show active" id="product-large-one">
+                                <div class="tab-content product-details-thumb-large" id="myTabContent-3">
+                                    <div class="tab-pane fade show active" id="product-large-one">
                                         <div class="product-details-img easyzoom">
-                                            <a class="popup-btn" href="assets/img/products/3-900x900.jpg">
-                                                <img src="assets/img/products/3-900x900.jpg" alt="product">
+                                            <a class="popup-btn" href="../../../../../admin/images/<?php echo $result['img'];?>">
+                                                <img src="../../../../../admin/images/<?php echo $result['img'];?>" alt="product">
                                             </a>
                                         </div>
                                     </div>
                                     <div class="tab-pane fade" id="product-large-two">
                                         <div class="product-details-img easyzoom">
                                             <a class="popup-btn" href="assets/img/products/4-900x900.jpg">
-                                                <img src="assets/img/products/4-900x900.jpg" alt="product">
+                                                <img src="src=../../../../../admin/images/<?php echo $result['img'];?>" alt="product">
                                             </a>
                                         </div>
                                     </div>
                                     <div class="tab-pane fade" id="product-large-three">
                                         <div class="product-details-img easyzoom">
-                                            <a class="popup-btn" href="assets/img/products/5-900x900.jpg">
-                                                <img src="assets/img/products/5-900x900.jpg" alt="product">
-                                            </a>
+                                        
+                                                <img src="../../../../../admin/images/<?php echo $result['img'];?>"  alt="product">
+                                               
+                                            
                                         </div>
                                     </div>
-                                    <div class="tab-pane fade" id="product-large-four">
-                                        <div class="product-details-img easyzoom">
-                                            <a class="popup-btn" href="assets/img/products/6-900x900.jpg">
-                                                <img src="assets/img/products/6-900x900.jpg" alt="product">
-                                            </a>
+                                    <div class="tab-pane fade" id="product-large-four" >
+                                        <div class="product-details-img easyzoom" >
+                                           
+                                                <img src="../../../../../admin/images/<?php echo $result['img'];?>"" alt="product" >
+                                        
                                         </div>
                                     </div>
                                     <div class="tab-pane fade" id="product-large-five">
                                         <div class="product-details-img easyzoom">
-                                            <a class="popup-btn" href="assets/img/products/10-900x900.jpg">
-                                                <img src="assets/img/products/10-900x900.jpg" alt="product">
+                                          
+                                                <img src="../../../../../admin/images/<?php echo $result['img'];?>"" alt="product">
+                                            
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- Tab Content End -->
+                                
+                                <!-- Product Thumbnail Carousel Start -->
+ <!--                               <div class="product-details-thumbnail">
+                                    <div class="thumb-menu product-details-thumb-menu nav-vertical-center" id="thumbmenu-horizontal">
+                                        <div class="thumb-menu-item">
+                                            <a href="#product-large-one" data-toggle="tab" class="nav-link active">
+                                                <img src="src=../../../../../admin/images/<?php echo $result['img'];?>" alt="product thumb">
+                                            </a>
+                                        </div>
+                                        <div class="thumb-menu-item">
+                                            <a href="#product-large-two" data-toggle="tab" class="nav-link">
+                                                <img src="../../../../../admin/images/<?php echo $result['img'];?>" alt="product thumb">
+                                            </a>
+                                        </div>
+                                        <div class="thumb-menu-item">
+                                            <a href="#product-large-three" data-toggle="tab" class="nav-link">
+                                                <img src="../../../../../admin/images/<?php echo $result['img'];?>" alt="product thumb">
+                                            </a>
+                                        </div>
+                                        <div class="thumb-menu-item">
+                                            <a href="#product-large-four" data-toggle="tab" class="nav-link">
+                                                <img src="../../../../../admin/images/<?php echo $result['img'];?>" alt="product thumb">
+                                            </a>
+                                        </div>
+                                        <div class="thumb-menu-item">
+                                            <a href="#product-large-five" data-toggle="tab" class="nav-link">
+                                                <img src="assets/img/products/10-450x450.jpg" alt="product thumb">
                                             </a>
                                         </div>
                                     </div>
                                 </div>-->
-
-
-
-
-                                <!-- Tab Content End -->
-                                
-                                <!-- Product Thumbnail Carousel Start -->
-                                
                                 <!-- Product Thumbnail Carousel End -->
                             </div>
                             <div class="col-lg-6">
                                 <!-- Single Product Content Start -->
                                 <div class="product-details-content"> 
                                     <div class="product-details-top">
-                                        <h2 class="product-details-name">Aliquam lobortis</h2>
+                                        <h2 class="product-details-name"><?php echo $result['nom'];?></h2>
                                         <div class="ratings-wrap">
-                                            <div class="ratings">
+<!--                                            <div class="ratings">
                                                 <i class="fa fa-star rated"></i>
                                                 <i class="fa fa-star rated"></i>
                                                 <i class="fa fa-star rated"></i>
                                                 <i class="fa fa-star"></i>
                                                 <i class="fa fa-star"></i>
                                             </div>
-                                            <span>
+                                         <span>
                                                 <a class="review-btn" href="#singleProductTab">1 Reviews</a>
                                                 <a class="review-btn" href="#singleProductTab">write a review</a>
-                                            </span>
+                                            </span>-->
                                         </div>
                                         <ul class="product-details-list list-unstyled">
-                                            <li>Brand: <a href="#">Apple</a></li>
-                                            <li>Product Code: Watches</li>
-                                            <li>Reward Points: 600</li>
-                                            <li>Availability: In Stock</li>
+                                            <li> <div class="product-price-wrapper">
+                                            <span class="money"> <?php echo $result['prix'];?></span>
+                                            
+                                        </div></li>
+                                          
+                                            <li><div class="quantity">
+                                                    <span>Stock </span>
+                                                    <input type="number" class="quantity-input" name="qty" id="pro_qty" value="<?php echo $result['quantite'];?>">
+                                                    
+                                                </div></li>
+                                            <li><?php echo $result['categorie'];?></li>
+                                           
                                         </ul>
-                                        <div class="product-details-price-wrapper">
+<!--                                        <div class="product-details-price-wrapper">
                                             <span class="money">$550.00</span>
                                             <span class="product-price-old">
                                                 <span class="money">$700.00</span>
                                             </span>
-                                        </div>                                      
+                                        </div>   -->                                   
                                     </div>  
 
                                     <div class="product-details-bottom">
 
-                                        <p class="product-details-availability"><i class="fa fa-check-circle"></i>200 In Stock</p> 
+<!--                                        <p class="product-details-availability"><i class="fa fa-check-circle"></i>200 In Stock</p> -->
                                         <div class="product-details-action-wrapper mb--20">
-                                            <div class="product-details-action-top d-flex align-items-center mb--20">
+<!--                                            <div class="product-details-action-top d-flex align-items-center mb--20">
                                                 <div class="quantity">
                                                     <span>Qty: </span>
                                                     <input type="number" class="quantity-input" name="qty" id="pro_qty" value="1" min="1">
@@ -521,29 +554,20 @@ $result=$db->query('select * from produit ');
                                                 <button type="button" class="btn btn-medium btn-style-2 add-to-cart">
                                                     Add To Cart
                                                 </button>
-                                            </div>
+                                            </div>-->
                                             <div class="product-details-action-bottom">
-                                                <a href="wishlist.html">+Add to wishlist</a>
-                                                <a href="compare.html">+Add to compare</a>
+                                                <a href="wish.php">+Add to wishlist</a>
+                                                
                                             </div>
                                         </div>  
-                                        <p class="product-details-tags">
-                                            Tags: <a href="shop.html">Sport</a>,
-                                            <a href="shop.html">Luxury</a>
-                                        </p> 
+                                         
                                         <div class="social-share">
                                             <a href="facebook.com" class="facebook share-button">
                                                 <i class="fa fa-facebook"></i>
                                                 <span>Like</span>
                                             </a>
-                                            <a href="twitter.com" class="twitter share-button">
-                                                <i class="fa fa-twitter"></i>
-                                                <span>Tweet</span>
-                                            </a>
-                                            <a href="#" class="share share-button">
-                                                <i class="fa fa-plus-square"></i> 
-                                                <span>Share</span>
-                                            </a>
+                                            
+                                           
                                         </div>
                                     </div>       
                                 </div>
@@ -561,20 +585,17 @@ $result=$db->query('select * from produit ');
                                     <li class="nav-item product-details-tab-item">
                                         <a class="nav-link product-details-tab-link active" id="nav-desc-tab" data-toggle="tab" href="#nav-desc" role="tab" aria-controls="nav-desc" aria-selected="true">Description</a>
                                     </li>
-                                    <li class="nav-item product-details-tab-item">
-                                        <a class="nav-link product-details-tab-link" id="nav-details-tab" data-toggle="tab" href="#nav-details" role="tab" aria-controls="nav-details" aria-selected="true">Additional Information</a>
-                                    </li>
 
-                                    <li class="nav-item product-details-tab-item">
-                                        <a class="nav-link product-details-tab-link" id="nav-review-tab" data-toggle="tab" href="#nav-review" role="tab" aria-controls="nav-review" aria-selected="true">review (2)</a>
-                                    </li>
                                 </ul>
                                 <div class="product-details-tab-content tab-content">
                                     <div class="tab-pane fade show active" id="nav-desc" role="tabpanel" aria-labelledby="nav-desc-tab">
-                                        <p class="product-details-description">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam fringilla augue nec est tristique auctor. Donec non est at libero vulputate rutrum. Morbi ornare lectus quis justo gravida semper. Nulla tellus mi, vulputate adipiscing cursus eu, suscipit id nulla. Donec a neque libero.</p>
                                         <p class="product-details-description">
-                                            Pellentesque aliquet, sem eget laoreet ultrices, ipsum metus feugiat sem, quis fermentum turpis eros eget velit. Donec ac tempus ante. Fusce ultricies massa massa. Fusce aliquam, purus eget sagittis vulputate, sapien libero hendrerit est, sed commodo augue nisi non neque. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed tempor, lorem et placerat vestibulum, metus nisi posuere nisl, in accumsan elit odio quis mi.
+                                                <?php 
+                                                     echo $result['descr'];
+                                                ?>
+
                                         </p>
+                                      
                                     </div>
                                     <div class="tab-pane" role="tabpanel" id="nav-details" aria-labelledby="nav-details-tab">
                                         <div class="product-details-additional-info">
@@ -713,16 +734,15 @@ $result=$db->query('select * from produit ');
                                 <div class="product-carousel nav-top js-product-carousel-2">
                                 <div class="mirora-product">
                                     <div class="product-img">
-                                        <img src="assets/img/products/2-450x450.jpg" alt="Product" class="primary-image" />
-                                        <img src="assets/img/products/2-2-450x450.jpg" alt="Product" class="secondary-image" />
-                                        <div class="product-img-overlay">
+                                            <img src="../../../../../admin/images/<?php echo ''.$result['img'];?>" alt="Product" class="primary-image" />                                 
+                                            <img src="../../../../../admin/images/<?php echo $result['img'];?>" alt="Product" class="secondary-image" />
                                             <span class="product-label discount">
                                                 -7%
                                             </span>
                                             <a data-toggle="modal" data-target="#productModal" class="btn btn-transparent btn-fullwidth btn-medium btn-style-1">Quick View</a>
                                         </div>
                                     </div>
-                                    <div class="product-content text-center">
+<!--                                 <div class="product-content text-center">
                                         <span>Cartier</span>
                                         <h4><a href="product-details.html">Acer Aspire E 15</a></h4>
                                         <div class="product-price-wrapper">
@@ -892,7 +912,7 @@ $result=$db->query('select * from produit ');
                                     </div>
                                 </div>
                                 <div class="mirora-product">
-                                   <!-- <div class="product-img">
+                                    <div class="product-img">
                                         <img src="assets/img/products/10-450x450.jpg" alt="Product" class="primary-image" />
                                         <img src="assets/img/products/10-10-450x450.jpg" alt="Product" class="secondary-image" />
                                         <div class="product-img-overlay">
@@ -1023,7 +1043,7 @@ $result=$db->query('select * from produit ');
                                             <a class="same-action compare-mrg" data-toggle="modal" data-target="#productModal" href="compare.html">
                                                 <i class="fa fa-sliders fa-rotate-90"></i>
                                             </a>
-                                        </div>
+                                        </div>-->
                                     </div>
                                 </div>
                                 </div>
@@ -1031,25 +1051,9 @@ $result=$db->query('select * from produit ');
                         </div>
                     </section>
                     <!-- Related Product End -->
-
-       
-            <?php foreach ($result as $product) {?>
-            
-          
-              <div class="thumbnail">
-              <a  href="product-details.php?ref=<?php echo $key['id']; ?>"><img src="assets/img/products/<?php echo $key['img'];?>" alt="Image Produit " class ="primary-imag"></a>
-                <div class="caption cntr">
-
-                
-                           <h3><a class="defaultBtn" type="submit" href="product-details.php">VIEW</a> <span class="pull-right"><?php echo $key['prix'];?>dt</span> <span class="pull-left"><?php echo $key['nom'];?></span>
-                            <span class="pull-left"><?php echo $key['categorie'];?></span>
-                            <span class="pull-left"><?php echo $key['quantite'];?></span>
-                           </h3>
-   
-                  </div>
-              </div>
-             
-          
+                </div>
+            </div>
+        </div>
         <!-- Main Content Wrapper End -->
 
 
@@ -1338,13 +1342,10 @@ $result=$db->query('select * from produit ');
                                     </div>
                                     <div class="product-action-bottom">
                                         <a href="wishlist.html">+Add to wishlist</a>
-                                        <a href="compare.html">+Add to compare</a>
+                                       
                                     </div>
                                 </div>  
-                                <p class="product-tags">
-                                    Tags: <a href="shop.html">Sport</a>,
-                                    <a href="shop.html">Luxury</a>
-                                </p>
+                             
                             </div>
                         </div>
                     </div>
