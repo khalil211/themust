@@ -7,3 +7,4 @@ if (isset($_GET['del'])) {
 	
 	header('location: tables-produits.php');
 }
+?>
