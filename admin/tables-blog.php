@@ -1,16 +1,21 @@
 <?php
 include "entities/blog.php";
 include "../config.php";
-
+$I=0;
+$V=0;
+$A=0;
 $db=config::getConnexion();
 if (isset($_GET['r']))
     $result=$db->query('SELECT * FROM blog where type LIKE \'%'.$_GET['r'].'%\'');
 else
     $result=$db->query('SELECT * FROM blog');
+    $stat=$db->query('SELECT * FROM blog');
 ?>
 <!DOCTYPE html>
 <html>
 <head>
+     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+   
 	<meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Listes des Blogs</title>
@@ -35,9 +40,26 @@ else
 </head>
 <body>
 	<?php
-
+     
 	backUp();
 	?>
+
+    <?php
+                                  foreach ($stat as $pblog) {
+                                    if ($pblog['type']=='Blog Image Post')
+                                    {
+                                      $I=$I+1;
+                                    }
+                                    elseif ($pblog['type']=='Blog Audio Post')
+                                    {
+                                         $A=$A+1;
+                                    }
+                                    elseif ($pblog['type']=='Blog video Post')
+                                    {
+                                         $V=$V+1;
+                                    }
+                                }
+                                      ?>
 	<div class="content mt-3">
         <div class="animated fadeIn">
             <div class="row">
@@ -53,6 +75,7 @@ else
                                                 <label>
                                                     Recherche:<input <?php if (isset($_GET['r']))echo 'value="'.$_GET['r'].'"'; ?> type="search" class="form-control form-control-sm" placeholder="Type du Blog" id="recherche">
                                                 </label>
+                                                 <div id="piechart_3d" style="width: 900px; height: 500px;"></div>
                                             </div>
                                         </div>
                             <table id="bootstrap-data-table-export" class="table table-striped table-bordered">
@@ -96,7 +119,8 @@ else
                 </div>
             </div>
         </div><!-- .animated -->
-    </div><!-- .content -->
+    </div>
+    <!-- .content -->
 	<?php
 	backDown();
 	?>
@@ -109,6 +133,27 @@ else
             e.stopPropagation(); 
         });
     </script>
-     <script type="text/javascript" src="views/afficher-blog.js"></script>
+      <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+      google.charts.load("current", {packages:["corechart"]});
+      google.charts.setOnLoadCallback(drawChart);
+      function drawChart() {
+        var data = google.visualization.arrayToDataTable([
+          ['Type Blog', 'Number Of Blog'],
+          ['Blog Image Post',   <?php echo $I ?>],
+          ['Blog Audio Post',     <?php echo $A ?>],
+          ['Blog Video Post',  <?php echo $V ?>]
+        
+        ]);
+
+        var options = {
+          title: 'Statistique Blog',
+          is3D: true,
+        };
+
+        var chart = new google.visualization.PieChart(document.getElementById('piechart_3d'));
+        chart.draw(data, options);
+      }
+    </script>
 </body>
 </html>

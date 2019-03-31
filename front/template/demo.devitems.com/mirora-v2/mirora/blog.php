@@ -1,7 +1,13 @@
+<?php
+include "../../../../../admin/entities/blog.php";
+include "../../../../../config.php";
+
+$db=config::getConnexion();
+
+    $result=$db->query('SELECT * FROM blog');
+?>
 <!DOCTYPE html>
 <html class="no-js" lang="zxx">
-
-
 <!-- Mirrored from demo.devitems.com/mirora-v2/mirora/blog.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 29 Mar 2019 12:42:06 GMT -->
 <head>
     <meta charset="utf-8">
@@ -68,86 +74,81 @@
                     <div class="row">
                         <div class="col-lg-9 order-lg-2 order-1 mb-md--30">
                             <div class="row">
-                                <div class="col-lg-6 mb--30">
-                                    <article class="post sticky single-post format-image">
-                                        <div class="post-media">
-                                            <div class="image">
-                                            	<a href="blog-details-image.html">
-	                                                <img src="assets/img/blog/blog1.jpg" alt="blog">
-	                                            </a>
-                                            </div>
-                                        </div>
-                                        <div class="post-info">
-                                            <header class="entry-header">
-                                                <div class="entry-meta">
-                                                    <span class="post-author">
-                                                        <span class="post-by">Post By:</span>
-                                                        admin
-                                                    </span>
-                                                    
-                                                    <span class="post-date">Feb 02 2016</span>
+                                <?php
+                                  foreach ($result as $pblog) {
+                                    if ($pblog['type']=='Blog Image Post')
+                                    {
+                                        ?>
+                                        <div class="col-lg-6 mb--30">
+                                            <article class="post sticky single-post format-image">
+                                                <div class="post-media">
+                                                    <div class="image">
+                                                        <a href="blog-details-image.html">
+                                                            <img src="../../../../../admin/images/<?php echo $pblog['image']; ?>" alt="blog">
+                                                        </a>
+                                                    </div>
                                                 </div>
-                                                <h2 class="post-title"><a href="blog-details-image.html">Blog Image Post</a></h2>
-                                            </header>
-                                            <div class="post-content">
-                                                <p>Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis</p>
-                                            </div>
-                                            <a href="blog-details-image.html" class="btn btn-read-more btn-style-2">Continue Reading</a>
-                                        </div>
-                                    </article>
-                                </div>
+                                        
+                                        <?php
+                                    }
+                                    elseif ($pblog['type']=='Blog Audio Post')
+                                    {
+                                        ?>
                                 <div class="col-lg-6 mb--30">
                                     <article class="post single-post format-audio">
                                         <div class="post-media">
                                             <div class="embed-responsive embed-responsive-16by9">
-                                                <iframe allow="autoplay" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/users/182537870&amp;color=%23ff5500&amp;auto_play=false&amp;hide_related=false&amp;show_comments=true&amp;show_user=true&amp;show_reposts=false&amp;show_teaser=true&amp;visual=true"></iframe>
+                                               
+                                                 <audio
+                                                            controls
+                                                            src="../../../../../admin/images/<?php echo $pblog['image']; ?>">
+                                                                Your browser does not support the
+                                                                <code>audio</code> element.
+                                                        </audio>
+
                                             </div>
                                         </div>
-                                        <div class="post-info">
-                                            <header class="entry-header">
-                                                <div class="entry-meta">
-                                                    <span class="post-author">
-                                                        <span class="post-by">Post By:</span>
-                                                        admin
-                                                    </span>
-                                                    
-                                                    <span class="post-date">Feb 02 2016</span>
-                                                </div>
-                                                <h2 class="post-title"><a href="blog-details-audio.html">Blog Audio Post</a></h2>
-                                            </header>
-                                            <div class="post-content">
-                                                <p>Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis</p>
-                                            </div>
-                                            <a href="blog-details-audio.html" class="btn btn-read-more btn-style-2">Continue Reading</a>
-                                        </div>
-                                    </article>
-                                </div>
+                                        
+                                        <?php
+                                    }
+                                    elseif ($pblog['type']=='Blog video Post')
+                                    {
+                                        ?>
                                 <div class="col-lg-6 mb--30">
                                     <article class="post single-post format-video">
                                         <div class="post-media">
                                             <div class="embed-responsive embed-responsive-16by9">
-                                                <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/zpOULjyy-n8?rel=0" allowfullscreen></iframe>
+                                                <video controls src="../../../../../admin/images/<?php echo $pblog['image']; ?>"></video>
+
                                             </div>
                                         </div>
-                                        <div class="post-info">
-                                            <header class="entry-header">
-                                                <div class="entry-meta">
-                                                    <span class="post-author">
-                                                        <span class="post-by">Post By:</span>
-                                                        admin
-                                                    </span>
-                                                    
-                                                    <span class="post-date">Feb 02 2016</span>
+                                        
+                                        <?php
+                                    }
+                                      ?>
+                                                <div class="post-info">
+                                                    <header class="entry-header">
+                                                        <div class="entry-meta">
+                                                            <span class="post-author">
+                                                                <span class="post-by">Post By:</span>
+                                                                admin
+                                                            </span>
+                                                            
+                                                            <span class="post-date"><?php echo $pblog['date']; ?></span>
+                                                        </div>
+                                                        <h2 class="post-title"><a href="blog-details-image.html">Blog Image Post</a></h2>
+                                                    </header>
+                                                    <div class="post-content">
+                                                        <p><?php echo $pblog['description']; ?></p>
+                                                    </div>
+                                                    <a href="blog-details-image.html" class="btn btn-read-more btn-style-2">Continue Reading</a>
                                                 </div>
-                                                <h2 class="post-title"><a href="blog-details-video.html">Blog video Post</a></h2>
-                                            </header>
-                                            <div class="post-content">
-                                                <p>Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis</p>
-                                            </div>
-                                            <a href="blog-details-video.html" class="btn btn-read-more btn-style-2">Continue Reading</a>
+                                            </article>
                                         </div>
-                                    </article>
-                                </div>
+                                      <?php
+                                  }
+
+                                ?>
                             </div>
                             <div class="row">
                                 <div class="col-12">

@@ -47,11 +47,12 @@ if (isset($_POST['idblog'])&&isset($_POST['description'])&&isset($_POST['type'])
                     <div class="col col-md-3"><label class=" form-control-label">ID Blog</label></div>
                     <div class="col-12 col-md-9"><input type="number" id="idblog" name="idblog" placeholder="ID Blog" class="form-control"><small class="form-text text-muted"></small></div>
                 </div>
-                <div class="row form-group">
-                    <div class="col col-md-3"><label class=" form-control-label">Description</label></div>
-                    <div class="col-12 col-md-9"><input type="text" id="description" name="description" placeholder="Description" class="form-control"><small class="form-text text-muted"></small></div>
-                </div>
                
+                <div class="row form-group">
+                <div class="col col-md-3"><label for="textarea-input" class=" form-control-label">Textarea</label></div>
+                <div class="col-12 col-md-9"><textarea name="description" id="description" rows="9" placeholder="Content..." class="form-control"></textarea></div>
+            </div>
+
                 <div class="row form-group">
                     <div class="col col-md-3"><label class=" form-control-label">Date</label></div>
                     <div class="col-12 col-md-9"><input type="date" id="date" name="date" class="form-control"><small class="form-text text-muted"></small></div>
