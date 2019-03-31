@@ -5,7 +5,7 @@
 <!--[if gt IE 8]><!-->
 <html class="no-js" lang="en">
 <!--<![endif]-->
-
+<script src="promotion.js"></script>
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -273,7 +273,15 @@
 
                                                             <div class="row form-group">
                                                                 <div class="col col-md-3"><label class=" form-control-label">Nom de la promotion </label></div>
-                                                                <div class="col-12 col-md-9"><input type="text" id="text-input" name="nom" placeholder="Designation " class="form-control"><small class="form-text text-muted"></small></div>
+                                                                <div class="col-12 col-md-9"><input type="text" id="text-input" name="nom" placeholder="Nom de la promotion " onblur="verifNom(this)" class="form-control"><small class="form-text text-muted" ></small> </div>
+                                                                <div class="col-12 col-md-9">
+                                                                  
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="row form-group">
+                                                                <div class="col col-md-3"><label class=" form-control-label">Produit </label></div>
+                                                                <div class="col-12 col-md-9"><input type="text" id="text-input" name="nom" placeholder="Nom " class="form-control"><small class="form-text text-muted"></small></div>
                                                                 <div class="col-12 col-md-9">
                                                                   
                                                                 </div>
@@ -281,7 +289,7 @@
 
                                                              <div class="row form-group">
                                                                 <div class="col col-md-3"><label class=" form-control-label">Decription </label></div>
-                                                                <div class="col-12 col-md-9"><input type="text" id="text-input" name="description" placeholder="Description " class="form-control"><small class="form-text text-muted"></small></div>
+                                                                <div class="col-12 col-md-9"><input type="text" id="text-input" name="description" placeholder="Description " onblur="verifDescription(this)" class="form-control"><small class="form-text text-muted"></small></div>
                                                                 <div class="col-12 col-md-9">
                                                                   
                                                                 </div>
@@ -304,7 +312,7 @@
                                                             </div>
 
                                                             <div class="col col-md-3"><label for="code postal" class=" form-control-label">Pourcentage </label></div>
-                                                                <div class="col-12 col-md-9"><input type=" number" id="cp" name="code " placeholder="ex : 60% "" class="form-control" ><small class=""></small>
+                                                                <div class="col-12 col-md-9"><input type=" number" id="cp" name="code " placeholder="ex : 60% "" onblur="verifPourcentage(this)" class="form-control" ><small class=""></small>
                                                                 </div>
 
                                                                
