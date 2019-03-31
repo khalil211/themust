@@ -145,7 +145,7 @@
                         </div>
                         <div class="row">
                             <div class="col-sm-12 col-md-5">
-                                <div><?php if ($nbTotal<($p*$n)) $ma=$nbTotal;else $ma=$p*$n;echo 'Commandes '.((($p-1)*$n)+1).' à '.$ma.' de '.$nbTotal.' affichées'; ?></div>
+                                <div><?php if ($nbTotal<($p*$n)) $ma=$nbTotal;else $ma=$p*$n;echo 'Commandes '.(($p-1)*$n).' à '.$ma.' de '.$nbTotal.' affichées'; ?></div>
                             </div>
                             <div class="col-sm-12 col-md-7">
                                 <div class="dataTables_paginate paging_simple_numbers" id="bootstrap-data-table-export_paginate">
@@ -181,6 +181,7 @@
 	<?php
 	backDown();
 	?>
+    <script type="text/javascript" src="commande/afficher-commande.js"></script>
     <script type="text/javascript">
         let recherche=document.getElementById("recherche");
         recherche.addEventListener("keydown",function (e)
@@ -226,6 +227,5 @@
             e.stopPropagation();
         });
     </script>
-    <script type="text/javascript" src="commande/afficher-commande.js"></script>
 </body>
 </html>

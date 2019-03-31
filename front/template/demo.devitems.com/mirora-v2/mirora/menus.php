@@ -1,4 +1,19 @@
 <?php
+
+function testConnexion()
+{
+	session_start();
+	if (isset($_SESSION['idclient'])&&isset($_SESSION['mdpclient']))
+		return true;
+	if (isset($_COOKIE['idclient'])&&isset($_COOKIE['mdpclient']))
+	{
+		$_SESSION['idclient']=$_COOKIE['idclient'];
+		$_SESSION['mdpclient']=$_COOKIE['mdpclient'];
+		return true;
+	}
+	return false;
+}
+
 function frontUp()
 {
 	?>
@@ -68,12 +83,23 @@ function frontUp()
 	                            </div>
 	                            <div class="user-info header-top-nav__item">
 	                                <div class="dropdown header-top__dropdown">
-	                                    <a class="dropdown-toggle" id="userID" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-	                                        Mon Compte
+	                                    <a class="dropdown-toggle" id="userID" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><?php if (isset($_SESSION['idclient']))echo $_SESSION['idclient'];else echo 'Mon Compte'; ?>
 	                                        <i class="fa fa-angle-down"></i>
 	                                    </a>
 	                                    <div class="dropdown-menu" aria-labelledby="userID">
-	                                        <a class="dropdown-item" href="login-register.php">Inscription/Connexion</a>
+	                                        <a class="dropdown-item" <?php if (isset($_SESSION['idclient']))echo 'href="deconnexion.php"';else echo 'href="login-register.php"'; ?> >
+	                                        	<?php if (isset($_SESSION['idclient'])) 
+	                                        	{
+	                                        	echo "Déconnexion";
+	                                        	}
+	                                        	else
+	                                        	{
+	                                        	echo "Inscription/Connexion ";	
+	                                        	}
+
+	                                        	?>
+	                                        
+	                                    	</a>
 	                                    </div>
 	                                </div>
 	                            </div>
@@ -113,32 +139,68 @@ function frontUp()
 	                                <li class="wishlist-icon">
 	                                    <a href="wishlist.html" class="bordered-icon"><i class="fa fa-heart"></i></a>
 	                                </li>
+	                                <?php
+	                                include 'entities/produitpanier.php';
+									include 'entities/panier.php';
+									include 'core/panierC.php';
+									if(basename($_SERVER['PHP_SELF'])=='cart.php')
+									{
+										if (isset($_GET['addpp']))
+									    {
+									        if (isset($_GET['nbpp'])&&$_GET['nbpp']>1)
+									            $nb=$_GET['nbpp'];
+									        else
+									            $nb=1;
+									        $panier=new panierC;
+									        $panier->ajouterProduit($_GET['addpp'],$nb);
+									    }
+									    elseif (isset($_GET['delpp']))
+									    {
+									    	$panier=new panierC;
+									        $panier->supprimerProduit($_GET['delpp']);
+									    }
+									}
+									$panier=new panier(0);
+									$panierC=new panierC;
+									if (isset($_SESSION['idclient']))
+									{
+										$panier->setId($_SESSION['idclient']);
+										$panier=$panierC->afficher($panier);
+									}
+									$produits=$panier->getProduits();
+	                                ?>
 	                                <li class="mini-cart-icon">
 	                                    <div class="mini-cart mini-cart--1">
 	                                        <a class="mini-cart__dropdown-toggle bordered-icon" id="cartDropdown">
-	                                            <span class="mini-cart__count">0</span>
+	                                            <span class="mini-cart__count"><?php echo $panier->getNbProduit(); ?></span>
 	                                            <i class="icon_cart_alt mini-cart__icon"></i>
 	                                            <i class="fa fa-angle-down"></i>
 	                                        </a>
 	                                        <div class="mini-cart__dropdown-menu">
 	                                            <div class="mini-cart__content" id="miniCart">
-	                                                <div class="mini-cart__item">
-	                                                    <div class="mini-cart__item--single">
-	                                                        <div class="mini-cart__item--image">
-	                                                            <img src="assets/img/products/2-2-450x450.jpg" alt="product">
-	                                                        </div>
-	                                                        <div class="mini-cart__item--content">
-	                                                            <h4 class="mini-cart__item--name"><a href="product-details.html">Acer Aspire AIO <br>-<small>Color Swatch Black</small></a> </h4>
-	                                                            <p class="mini-cart__item--quantity">x1</p>
-	                                                            <p class="mini-cart__item--price">$100.00</p>
-	                                                        </div>
-	                                                        <a class="mini-cart__item--remove" href="#"><i class="icon_close"></i></a>
-	                                                    </div>
-	                                                </div>
+	                                            	<?php
+	                                            	foreach ($produits as $p)
+	                                            	{
+	                                            		?>
+		                                                <div class="mini-cart__item">
+		                                                    <div class="mini-cart__item--single">
+		                                                        <div class="mini-cart__item--image">
+		                                                            <img src="../../../../../admin/images/<?php echo $p->getImage();?>" alt="product">
+		                                                        </div>
+		                                                        <div class="mini-cart__item--content">
+		                                                            <h4 class="mini-cart__item--name"><a href="product-details.html"><?php echo $p->getNom(); ?></a> </h4>
+		                                                            <p class="mini-cart__item--quantity">x<?php echo $p->getQuantite(); ?></p>
+		                                                            <p class="mini-cart__item--price"><?php echo $p->getPrixUnitaire(); ?></p>
+		                                                        </div>
+		                                                    </div>
+		                                                </div>
+	                                                	<?php
+	                                            	}
+	                                            	?>
 	                                                <div class="mini-cart__calculation">
 	                                                    <p>
 	                                                        <span class="mini-cart__calculation--item">Total :</span>
-	                                                        <span class="mini-cart__calculation--ammount"> $1,288.00</span>
+	                                                        <span class="mini-cart__calculation--ammount"><?php echo $panier->getPrixTotal(); ?></span>
 	                                                    </p>
 	                                                </div>
 	                                                <div class="mini-cart__btn">
@@ -167,38 +229,8 @@ function frontUp()
 	                                <li class="mainmenu__item <?php if (basename($_SERVER['PHP_SELF'])=='shop.php')echo 'active'; ?>">
 	                                    <a href="shop.php" class="mainmenu__link">Produits</a>
 	                                </li>
-	                                <li class="mainmenu__item menu-item-has-children has-children">
-	                                    <a href="blog.html" class="mainmenu__link">Blog</a>
-	                                    <ul class="sub-menu">
-	                                        <li class="menu-item-has-children has-children">
-	                                            <a href="#">Blog Grid</a>
-	                                            <ul class="sub-menu">
-	                                                <li><a href="blog.html">Left Sidebar</a></li>
-	                                                <li><a href="blog-right-sidebar.html">Right Sidebar</a></li>
-	                                                <li><a href="blog-3-column.html">Three Column</a></li>
-	                                                <li><a href="blog-4-column.html">Four Column</a></li>
-	                                            </ul>
-	                                        </li>
-	                                        <li class="menu-item-has-children has-children">
-	                                            <a href="#">Blog List</a>
-	                                            <ul class="sub-menu">
-	                                                <li><a href="blog-list.html">Full Width</a></li>
-	                                                <li><a href="blog-list-left-sidebar.html">left Sidebar</a></li>
-	                                                <li><a href="blog-list-right-sidebar.html">Right Sidebar</a></li>
-	                                            </ul>
-	                                        </li>
-	                                        <li class="menu-item-has-children has-children">
-	                                            <a href="#">Blog Details</a>
-	                                            <ul class="sub-menu">
-	                                                <li><a href="blog-details-image.html">Standard Post</a></li>
-	                                                <li><a href="blog-details-image.html">Image Post</a></li>
-	                                                <li><a href="blog-details-audio.html">Audio Post</a></li>
-	                                                <li><a href="blog-details-video.html">Video Post</a></li>
-	                                                <li><a href="blog-details-gallery.html">Gallery Post</a></li>
-	                                                <li><a href="blog-details-right-sidebar.html">Right Sidebar</a></li>
-	                                            </ul>
-	                                        </li>
-	                                    </ul>
+	                                <li class="mainmenu__item <?php if (basename($_SERVER['PHP_SELF'])=='blog.php')echo 'active'; ?>">
+	                                    <a href="blog.php" class="mainmenu__link">Blog</a>
 	                                </li>
 	                                <li class="mainmenu__item menu-item-has-children has-children">
 	                                    <a href="#" class="mainmenu__link">Pages</a>

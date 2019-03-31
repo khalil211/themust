@@ -1,3 +1,7 @@
+<?php
+include 'menus.php';
+testConnexion();
+?>
 <!DOCTYPE html>
 <html class="no-js" lang="zxx">
 
@@ -41,7 +45,10 @@
 
 <body>
 
-    <?php include 'menus.php';frontUp(); ?>
+    <?php 
+    include '../../../../../config.php';
+    frontUp();
+    ?>
         <!-- Breadcumb area Start -->
         <div class="breadcrumb-area">
             <div class="container">
@@ -67,7 +74,7 @@
                         <div class="row">
                             <div class="col-12">
                                 <!-- Cart Area Start -->
-                                <form action="#" class="form cart-form">
+                                <form action="core/modifier-panier.php" method="post" id="formp" class="form cart-form">
                                     <div class="cart-table table-content table-responsive">
                                         <table class="table mb--30">
                                             <thead>
@@ -81,24 +88,39 @@
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                <tr>
-                                                    <td><a class="delete" href="#"><i class="fa fa-times"></i></a></td>
-                                                    <td>
-                                                        <a href="product-details.html">
-                                                            <img src="assets/img/products/1-1-450x450.jpg" alt="product">
-                                                        </a>
-                                                    </td>
-                                                    <td class="wide-column">
-                                                        <h3><a href="product-details.html">Neque porttitor</a></h3>
-                                                    </td>
-                                                    <td class="cart-product-price"><strong>$28.00</strong></td>
-                                                    <td>
-                                                        <div class="quantity">
-                                                            <input type="number" class="quantity-input" name="qty" id="qty1" value="1">
-                                                        </div>
-                                                    </td>
-                                                    <td class="cart-product-price"><strong>$28.00</strong></td>
-                                                </tr>
+                                                <?php
+                                                $panier=new panier(0);
+                                                $panierC=new panierC;
+                                                if (isset($_SESSION['idclient']))
+                                                {
+                                                    $panier->setId($_SESSION['idclient']);
+                                                    $panier=$panierC->afficher($panier);
+                                                }
+                                                $produits=$panier->getProduits();
+                                                foreach($produits as $p)
+                                                {
+                                                    ?>
+                                                    <tr>
+                                                        <td><a class="delete" href="cart.php?delpp=<?php echo $p->getIdProduit(); ?>"><i class="fa fa-times"></i></a></td>
+                                                        <td>
+                                                            <a href="product-details.html">
+                                                                <img src="../../../../../admin/images/<?php echo $p->getImage();?>" alt="product">
+                                                            </a>
+                                                        </td>
+                                                        <td class="wide-column">
+                                                            <h3><a href="product-details.html"><?php echo $p->getNom(); ?></a></h3>
+                                                        </td>
+                                                        <td class="cart-product-price"><strong><?php echo $p->getPrixUnitaire(); ?></strong></td>
+                                                        <td>
+                                                            <div class="quantity">
+                                                                <input type="number" class="quantity-input" name="<?php echo $p->getIdProduit(); ?>" value="<?php echo $p->getQuantite(); ?>">
+                                                            </div>
+                                                        </td>
+                                                        <td class="cart-product-price"><strong><?php echo $p->getPrixUnitaire()*$p->getQuantite(); ?></strong></td>
+                                                    </tr>
+                                                    <?php
+                                                }
+                                                ?>
                                             </tbody>
                                         </table>
                                     </div>
@@ -106,7 +128,7 @@
                                     <div class="row">
                                         <div class="col-12 text-md-right">
                                             <div class="cart-btn-group">
-                                                <a href="shop.html" class="btn btn-medium btn-style-3">Mettre à jour</a>
+                                                <button type="submit" class="btn btn-medium btn-style-3">Mettre à jour</button>
                                             </div>
                                         </div>
                                     </div>
@@ -125,12 +147,12 @@
                                             <tbody>
                                                 <tr class="cart-total">
                                                     <th>TOTAL</th>
-                                                    <td><span class="price-ammount">$145.00</span></td>
+                                                    <td><span class="price-ammount"><?php echo $panier->getPrixTotal(); ?></span></td>
                                                 </tr>
                                             </tbody>
                                         </table>
                                     </div>
-                                    <a href="checkout.html" class="btn btn-medium btn-style-3">Passer la commande</a>
+                                    <a href="core/passer-commande.php" class="btn btn-medium btn-style-3">Passer la commande</a>
                                 </div>
                             </div>
                         </div>

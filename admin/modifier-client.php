@@ -15,9 +15,17 @@ if (isset($_POST['email']))
 			
             $email = $_POST['email'];
             $motdepasse =$_POST['motdepasse'];
- $abcd=$db->prepare("UPDATE  client SET email=:email,motdepasse=:motdepasse WHERE identifiant='$identifiant' ");
+			$adresse = $_POST['adresse'];
+			$telephone= $_POST['telephone'];
+			$nom= $_POST['nomc'];
+			$prenom= $_POST['prenom'];
+ $abcd=$db->prepare("UPDATE  client SET email=:email,motdepasse=:motdepasse,nom=:nom,prenom=:prenom,adresse=:adresse,telephone=:telephone WHERE identifiant='$identifiant' ");
  $abcd->bindValue(":email",$email);
  $abcd->bindValue(":motdepasse",$motdepasse);
+ $abcd->bindValue(":nom",$nom);
+ $abcd->bindValue(":prenom",$prenom);
+ $abcd->bindValue(":adresse",$adresse);
+ $abcd->bindValue(":telephone",$telephone);
  $abcd->execute();
 	
 }
@@ -90,6 +98,39 @@ if (isset($_POST['email']))
                                                                         </div>
                                                                     </div>
                                                                 </div>
+																
+																<div class="row form-group">
+                                                                <div class="col col-md-3"><label class=" form-control-label">nom</label></div>
+                                                                <div class="col-12 col-md-9"><input type="text" id="nomc" name="nomc" placeholder="nom" class="form-control"><small class="form-text text-muted"></small></div>
+                                                                <div class="col-12 col-md-9">
+                                                                  
+                                                                </div>
+                                                            </div>
+																
+																	<div class="row form-group">
+                                                                <div class="col col-md-3"><label class=" form-control-label">prenom / mat</label></div>
+                                                                <div class="col-12 col-md-9"><input type="text" id="prenom" name="prenom"  placeholder="prenom" class="form-control"><small class="form-text text-muted"></small></div>
+                                                                <div class="col-12 col-md-9">
+                                                                  
+                                                                </div>
+                                                            </div>
+																
+																<div class="row form-group">
+                                                                <div class="col col-md-3"><label class=" form-control-label">adresse</label></div>
+                                                                <div class="col-12 col-md-9"><input type="text" id="adresse" name="adresse" onblur="verifAdresse(this)" placeholder="adresse" class="form-control"><small class="form-text text-muted"></small></div>
+                                                                <div class="col-12 col-md-9">
+                                                                  
+                                                                </div>
+                                                            </div>
+
+																<div class="row form-group">
+                                                                <div class="col col-md-3"><label class=" form-control-label">telephone</label></div>
+                                                                <div class="col-12 col-md-9"><input type="text" id="telephone" name="telephone" placeholder="numéro" class="form-control"><small class="form-text text-muted"></small></div>
+                                                                <div class="col-12 col-md-9">
+                                                                  
+                                                                </div>
+                                                            </div>
+																
                                                         <button type="submit" class="btn btn-primary btn-sm">
                                                             <i class="fa fa-dot-circle-o"></i> Submit
                                                         </button>

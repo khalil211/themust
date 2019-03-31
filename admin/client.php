@@ -42,21 +42,24 @@ class client
 	{
 		try
 		{
+			if (preg_match('/[a-zA-Z0-9]{4,25}(STE)$/',$this->identifiant))
+				return false;
 			$db=config::getConnexion();
 			$req=$db->prepare('INSERT into client(identifiant,email,motdepasse,nom,prenom,adresse,telephone) values(:identifiant,:email,:motdepasse,:nom,:prenom,:adresse,:telephone)');
-	    $req->bindValue(':identifiant',$this->identifiant);
-        $req->bindValue(':email',$this->email);
-        $req->bindValue(':motdepasse',$this->motdepasse);
-        $req->bindValue(':nom',$this->nom);
-        $req->bindValue(':prenom',$this->prenom);
-		$req->bindValue(':adresse',$this->adresse);
-		$req->bindValue(':telephone',$this->telephone);
+		    $req->bindValue(':identifiant',$this->identifiant);
+	        $req->bindValue(':email',$this->email);
+	        $req->bindValue(':motdepasse',$this->motdepasse);
+	        $req->bindValue(':nom',$this->nom);
+	        $req->bindValue(':prenom',$this->prenom);
+			$req->bindValue(':adresse',$this->adresse);
+			$req->bindValue(':telephone',$this->telephone);
 			$req->execute();
 		}
 		catch(Exception $e)
 		{
 			die('erreur' . $e->getMessage());
 		}
+		return true;
 	}
 
 }

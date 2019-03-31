@@ -1,9 +1,10 @@
 <?php
+include 'menus.php';
+testConnexion();
 include '../../../../../config.php';
 $db=config::getConnexion();
 $result=$db->query('select * from produit');
 ?>
-
 
 <!DOCTYPE html>
 <html class="no-js" lang="zxx">
@@ -48,7 +49,7 @@ $result=$db->query('select * from produit');
 
 <body>
 
-    <?php include 'menus.php';frontUp(); ?>
+    <?php frontUp(); ?>
         <!-- Breadcumb area Start -->
         <div class="breadcrumb-area">
             <div class="container">
@@ -142,7 +143,11 @@ $result=$db->query('select * from produit');
                                                 <span class="product-label discount">
                                                     %
                                                 </span>
+<<<<<<< HEAD
                                                 <a href="product-details.php?idd=<?php echo $key['id']; ?>" class="btn btn-transparent btn-fullwidth btn-medium btn-style-1">Détails</a>
+=======
+                                                <a href="#" class="btn btn-transparent btn-fullwidth btn-medium btn-style-1">Détails</a>
+>>>>>>> 3806c60f5ce5183fe9a3de52fe19d0dd434aed00
                                             </div>
                                         </div>
                                         <div class="product-content text-center">
@@ -173,7 +178,7 @@ $result=$db->query('select * from produit');
                                                 <a class="same-action" href="wishlist.html" title="wishlist">
                                                     <i class="fa fa-heart-o"></i>
                                                 </a>
-                                                <a class="add_cart cart-item action-cart" href="cart.php?add=<?php echo $key['id']; ?>" title="wishlist"><span>Ajouter au panier</span></a>
+                                                <a class="add_cart cart-item action-cart" href="cart.php?addpp=<?php echo $key['id']; ?>" title="wishlist"><span>Ajouter au panier</span></a>
                                                 <a class="same-action compare-mrg" data-toggle="modal" data-target="#p<?php echo $key['id']; ?>" href="compare.html">
                                                     <i class="fa fa-sliders fa-rotate-90"></i>
                                                 </a>

@@ -1,34 +1,35 @@
-function myFunction()
-{ 
-let idb, type,description,date;
+console.log("test");
+document.getElementById("blogg").addEventListener("submit",function (e){
 	let teste=true;
-	idb=blogg.idb.value;
-	type=blogg.idb.value;
+	console.log("test")
+	let idb, type,description,date;
+	idb=blogg.idblog.value;
+	type=blogg.idblog.value;
 	description=blogg.description.value;
 	date=blogg.date.value;
-	if(document.forms["blogg"]["type"].value=="" && document.forms["blogg"]["description"].value=="" && document.forms["blogg"]["date"].value=="" && document.forms["blogg"]["idb"].value=="" )
+	if(document.forms["blogg"]["type"].value=="" && document.forms["blogg"]["description"].value=="" && document.forms["blogg"]["date"].value=="" && document.forms["blogg"]["idblog"].value=="" )
 {
-	alert("Veuillez remplir tout les champs! ");
+	console.log("Veuillez remplir tout les champs! ");
 }
 	if (idb.length < 1 || idb.length >4 )
 	{
 		teste=false;
-		alert("ID ne doit pas deppaser 4 carachter");
+		console.log("ID ne doit pas deppaser 4 carachter");
 	}
 	if (description.length < 10 || description.length > 200 ) 
 	{
 		teste=false;
-		alert("Veuillez ecrire plus que 10 carachter dans le champ description.");
+		console.log("Veuillez ecrire plus que 10 carachter dans le champ description.");
 	}
 	 if (teste===false)
 	 {
-   	alert("Verifiez vos informations.");
+   	console.log("Verifiez vos informations.");
 
    	 }
    	 else
    	 {
-   	 	alert("Ajout avec succès.")
+   	 	console.log("Ajout avec succès.")
    	 }
    	
-
-}
+		e.preventDefault();
+});
