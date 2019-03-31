@@ -181,6 +181,7 @@
 	<?php
 	backDown();
 	?>
+    <script type="text/javascript" src="commande/afficher-commande.js"></script>
     <script type="text/javascript">
         let recherche=document.getElementById("recherche");
         recherche.addEventListener("keydown",function (e)
@@ -226,6 +227,5 @@
             e.stopPropagation();
         });
     </script>
-    <script type="text/javascript" src="commande/afficher-commande.js"></script>
 </body>
 </html>

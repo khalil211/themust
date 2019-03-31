@@ -23,8 +23,9 @@ class panierC
 			if ($query->rowCount()==0)
 				return false;
 			$query->closeCursor();
-			$query=$db->prepare('SELECT * FROM produitpanier WHERE idproduit=:idp');
+			$query=$db->prepare('SELECT * FROM produitpanier WHERE idproduit=:idp AND idpanier=:idpan');
 			$query->bindValue(':idp',$idproduit);
+			$query->bindValue(':idpan',$_SESSION['idclient']);
 			$query->execute();
 			if ($query->rowCount()==1)
 				return false;
@@ -128,9 +129,33 @@ class panierC
 				$liste->closeCursor();
 			}
 			$query->closeCursor();
-			//print_r($produits);
 			return $produits;
 		}
+	}
+
+	public function modifierProduit($idproduit,$qte)
+	{
+		$db=config::getConnexion();
+		$query=$db->prepare('SELECT * from produitpanier WHERE idproduit=:idprod AND idpanier=:idpan');
+		$query->bindValue(':idprod',$idproduit);
+		$query->bindValue(':idpan',$_SESSION['idclient']);
+		$query->execute();
+		$pp=$query->fetch();
+		$query=$db->prepare('UPDATE produitpanier SET quantite=:qte WHERE idproduit=:idprod AND idpanier=:idpan');
+		$query->bindValue(':qte',$qte);
+		$query->bindValue(':idprod',$idproduit);
+		$query->bindValue(':idpan',$_SESSION['idclient']);
+		$query->execute();
+		$query=$db->prepare('SELECT * FROM produit WHERE id=:id');
+		$query->bindValue(':id',$idproduit);
+		$query->execute();
+		$p=$query->fetch();
+		$query->closeCursor();
+		$query=$db->prepare('UPDATE panier SET prixtotal=prixtotal+:prix,nbproduit=nbproduit+:nb WHERE id=:id');
+		$query->bindValue(':id',$_SESSION['idclient']);
+		$query->bindValue(':nb',($qte-$pp['quantite']));
+		$query->bindValue(':prix',($p['prix']*($qte-$pp['quantite'])));
+		$query->execute();
 	}
 }
 ?>

@@ -54,6 +54,7 @@ class client
 			$req->bindValue(':adresse',$this->adresse);
 			$req->bindValue(':telephone',$this->telephone);
 			$req->execute();
+			return true;
 		}
 		catch(Exception $e)
 		{

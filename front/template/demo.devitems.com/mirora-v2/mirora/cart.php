@@ -74,7 +74,7 @@ testConnexion();
                         <div class="row">
                             <div class="col-12">
                                 <!-- Cart Area Start -->
-                                <form method="post" action="core/modifier-panier.php" id="formp" class="form cart-form">
+                                <form action="core/modifier-panier.php" method="post" id="formp" class="form cart-form">
                                     <div class="cart-table table-content table-responsive">
                                         <table class="table mb--30">
                                             <thead>
@@ -113,7 +113,7 @@ testConnexion();
                                                         <td class="cart-product-price"><strong><?php echo $p->getPrixUnitaire(); ?></strong></td>
                                                         <td>
                                                             <div class="quantity">
-                                                                <input type="number" class="quantity-input" name="qty" id="qty1" value="<?php echo $p->getQuantite(); ?>">
+                                                                <input type="number" class="quantity-input" name="<?php echo $p->getIdProduit(); ?>" value="<?php echo $p->getQuantite(); ?>">
                                                             </div>
                                                         </td>
                                                         <td class="cart-product-price"><strong><?php echo $p->getPrixUnitaire()*$p->getQuantite(); ?></strong></td>
@@ -128,7 +128,7 @@ testConnexion();
                                     <div class="row">
                                         <div class="col-12 text-md-right">
                                             <div class="cart-btn-group">
-                                                <button type="button" id="majcommande" class="btn btn-medium btn-style-3">Mettre à jour</button>
+                                                <button type="submit" class="btn btn-medium btn-style-3">Mettre à jour</button>
                                             </div>
                                         </div>
                                     </div>
@@ -152,7 +152,7 @@ testConnexion();
                                             </tbody>
                                         </table>
                                     </div>
-                                    <button type="button" id="passercommande" class="btn btn-medium btn-style-3">Passer la commande</button>
+                                    <a href="core/passer-commande.php" class="btn btn-medium btn-style-3">Passer la commande</a>
                                 </div>
                             </div>
                         </div>
@@ -161,7 +161,6 @@ testConnexion();
             </div>
         </div>
         <?php frontDown(); ?>
-        <script type="text/javascript" src="core/panier.js"></script>
 </body>
 
 
