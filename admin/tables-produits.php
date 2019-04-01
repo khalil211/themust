@@ -3,7 +3,7 @@ include "../config.php";
 $db=config::getConnexion();
 $result=$db->query('select * from produit order by id desc');
 ?>
-?>
+
 <?php  
 if (isset($_GET['search'])&&!empty($_GET['search'])) {
     $search=htmlspecialchars($_GET['search']);
@@ -43,6 +43,7 @@ if (isset($_GET['search'])&&!empty($_GET['search'])) {
 </head>
 
 <body>
+
     <!-- Left Panel -->
 
     <aside id="left-panel" class="left-panel">

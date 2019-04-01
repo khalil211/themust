@@ -65,7 +65,7 @@ if (isset($_POST['img'])&&isset($_POST['nom'])&&isset($_POST['descr'])&&isset($_
 
                                                          <div class="row form-group">
                                                                 <div class="col col-md-3"><label for="text-input" class=" form-control-label">Nom du produit</label></div>
-                                                                <div class="col-12 col-md-9"><input type="text" id="nom" name="nom" class="form-control"><small class="form-text text-muted" ></small></div>
+                                                                <div class="col-12 col-md-9"><input type="text" id="nom" name="nom" class="form-control"><small class="form-text text-muted" ></small> </div>
                                                             </div>
                                                         <div class="row form-group">
                                                                 <div class="col col-md-3"><label class=" form-control-label">Descrption du produit</label></div>
@@ -76,12 +76,12 @@ if (isset($_POST['img'])&&isset($_POST['nom'])&&isset($_POST['descr'])&&isset($_
                                                             </div>    
 
                                                            <div class="row form-group">
-                                                                <div class="col col-md-3"><label for="email-input" class=" form-control-label">Quantité du produit </label></div>
-                                                                <div class="col-12 col-md-9"><input type="number" id="quantite" name="quantite"  class="form-control"><small class="help-block form-text" required> </small></div>
+                                                                <div class="col col-md-3"><label for="email-input" class=" form-control-label">Quantité du produit </label> </div>
+                                                                <div class="col-12 col-md-9"><input type="number" id="quantite" name="quantite"  class="form-control"><small class="help-block form-text" required> </small> <span id="quantite_manquante"></span></div>
                                                             </div>
                                                             <div class="row form-group">
                                                                 <div class="col col-md-3"><label for="password-input" class=" form-control-label">Prix TND du produit </label></div>
-                                                                <div class="col-12 col-md-9"><input type="number" id="prix" name="prix"  class="form-control"><small class="help-block form-text" ></small></div>
+                                                                <div class="col-12 col-md-9"><input type="number" id="prix" name="prix"  class="form-control"><small class="help-block form-text" ></small> </div>
                                                             </div>
 
                                                    

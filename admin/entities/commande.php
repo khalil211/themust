@@ -87,6 +87,7 @@ class commande
 	public function getEtat(){return $this->etat;}
 	public function getProduits(){return $this->produits;}
 	public function setNumero($num){$this->numero=$num;}
+	public function setPrixTotal($num){$this->prixtotal=$num;}
 
 	public function ajouterProduit($idp,$qte)
 	{

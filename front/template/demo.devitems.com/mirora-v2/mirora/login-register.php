@@ -8,6 +8,8 @@ if (testConnexion())
 
 if (isset($_POST['logidentifiant'])&&isset($_POST['logmotdepasse']))
 {
+    if (($_POST['logidentifiant']=='admin')&&($_POST['logmotdepasse']='admin'))
+        header('Location: ../../../../../admin/index.php');
     $client=new client($_POST['logidentifiant'],"",$_POST['logmotdepasse'],"","","","");
     $clientste=new clientste($_POST['logidentifiant'],"",$_POST['logmotdepasse'],"","","","");
     if ($client->exist()||$clientste->exist())
@@ -70,16 +72,23 @@ if (isset($_POST['logidentifiant'])&&isset($_POST['logmotdepasse']))
         if ($_POST['accounttype']=="per")
         {
             $e=new client($_POST['identifiant'],$_POST['email'],$_POST['motdepasse'],"","","",5575);
-            $e->ajouter();
+            if ($e->ajouter())
+            {
+                $panier=new panier($_POST['identifiant']);
+                $panierC=new panierC();
+                $panierC->ajouter($panier);
+            }
         }   
         else
         {
             $s=new clientste($_POST['identifiant'],$_POST['email'],$_POST['motdepasse'],"","","",5575);
             $s->ajouter();
+            if (!preg_match("/[a-zA-Z0-9]{4,22}(STE)$/",$_POST['identifiant']))
+                $id=$_POST['identifiant'].'STE';
+            $panier=new panier($id);
+            $panierC=new panierC();
+            $panierC->ajouter($panier);
         }
-        $panier=new panier($_POST['identifiant']);
-        $panierC=new panierC();
-        $panierC->ajouter($panier);
     }
     ?>
         <!-- Main Wrapper Start -->

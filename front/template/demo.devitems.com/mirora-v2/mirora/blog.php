@@ -1,4 +1,5 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 <?php
 
@@ -10,9 +11,12 @@ include "../../../../../admin/entities/blog.php";
 
 
 
+=======
+>>>>>>> 6b0d05f8c55ee0a3e7503f34bd6830290d855e04
 <?php 
 
 include "../../../../../config.php";
+<<<<<<< HEAD
 $db=config::getConnexion();
 
 
@@ -29,6 +33,10 @@ include 'menus.php';testConnexion();
 <html class="no-js" lang="zxx">
 
 >>>>>>> fb56ce6c21f4e2cb8e46b0fdaa05737965247fd4
+=======
+include "../../../../../admin/entities/blog.php";
+include 'menus.php';testConnexion(); 
+>>>>>>> 6b0d05f8c55ee0a3e7503f34bd6830290d855e04
 
 
 

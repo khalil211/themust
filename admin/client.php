@@ -59,6 +59,7 @@ class client
 		{
 			die('erreur' . $e->getMessage());
 		}
+		return true;
 	}
 
 }

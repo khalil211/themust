@@ -102,7 +102,7 @@ $emps=$db->query("SELECT * FROM  produit WHERE id=$id");
                             </div>
                             <input type="hidden" name="ide"  value="<?php echo $id;?>" >
 							<div class="card-footer">
-                                   <td>  <button type="submit" class="btn btn-primary btn-sm" >
+                                   <td>  <button type="submit" class="btn btn-primary btn-sm" onclick="myFunction()">
                                                  <i class="fa fa-dot-circle-o" ></i> Enregistrer
                             </button> </td>
                                                  		 
