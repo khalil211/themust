@@ -1,7 +1,7 @@
 <?php 
 include "../../../../../config.php";
 include 'menus.php';testConnexion(); 
-?>
+
 $db=config::getConnexion();
 
     $result=$db->query('SELECT * FROM blog');
