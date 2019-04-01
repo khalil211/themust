@@ -1,5 +1,6 @@
 <?php 
 include "../../../../../config.php";
+include "../../../../../admin/entities/blog.php";
 include 'menus.php';testConnexion(); 
 
 $db=config::getConnexion();
