@@ -1,3 +1,16 @@
+<?php
+
+include "../../../../../config.php";
+include "reclamation.php";
+$etat="non resolu";
+if (isset($_POST['sujet'])&&isset($_POST['email'])&&isset($_POST['description'])&&isset($_POST['date']))
+{
+    $r=new reclamation($_POST['sujet'],$_POST['description'],$_POST['email'],$_POST['date'],$etat);
+    $r->ajouter();
+}
+
+?>
+
 <!doctype html>
 <html class="no-js" lang="zxx">
 
@@ -379,35 +392,45 @@
                 <div class="container">
                     <div class="row">
                         <div class="col-12">
-                            <h2 class="heading-secondary border-bottom mb--30">dites nous ce que vous en pensez</h2>
-                            <form class="form form--contact" id="contact-form" action="http://demo.devitems.com/mirora-v2/mirora/mail.php">
+                            <h2 class="heading-secondary border-bottom mb--30">VOULEZ VOUS FAIRE UNE RECLAMATION</h2>
+                            <form method="POST" action="contact.php" name="reclamationn" id="reclamationn">
                                 <div class="form-row mb--20">
                                     <div class="col-md-2 text-md-right">
-                                        <label for="contact_name">Votre nom <sup>*</sup></label>
+                                        <label for="email">Votre email <sup>*</sup></label>
                                     </div>
                                     <div class="col-md-10">
-                                        <input type="text" name="contact_name" id="contact_name" class="form__input form__input--3">
+                                        <input type="email" name="email" id="email" class="form__input form__input--3">
                                     </div>
                                 </div>
                                 <div class="form-row mb--20">
                                     <div class="col-md-2 text-md-right">
-                                        <label for="contact_name">Votre email <sup>*</sup></label>
+                                        <label for="sujet">Sujet <sup>*</sup></label>
                                     </div>
                                     <div class="col-md-10">
-                                        <input type="email" name="contact_email" id="contact_email" class="form__input form__input--3">
+                                        <input type="text" name="sujet" id="sujet" class="form__input form__input--3">
+                                    </div>
+                                </div>
+                                
+                                <div class="form-row mb--20">
+                                    <div class="col-md-2 text-md-right">
+                                        <label for="description">Description <sup>*</sup></label>
+                                    </div>
+                                    <div class="col-md-10">
+                                        <textarea name="description" id="description" class="form__input form__input--3 form__input--textarea"></textarea>
                                     </div>
                                 </div>
                                 <div class="form-row mb--20">
                                     <div class="col-md-2 text-md-right">
-                                        <label for="contact_name">Sujet <sup>*</sup></label>
+                                        <label for="sujet">date <sup>*</sup></label>
                                     </div>
                                     <div class="col-md-10">
-                                        <textarea name="contact_message" id="contact_message" class="form__input form__input--3 form__input--textarea"></textarea>
+                                        <input type="date" name="date" id="date" class="form__input form__input--3">
                                     </div>
                                 </div>
+
                                 <div class="form-row">
                                     <div class="col-12 text-right">
-                                        <button type="submit" class="form__submit">Envoyer votre mail</button>
+                                        <button type="submit" class="form__submit">Envoyer votre Reclamation</button>
                                     </div>
                                 </div>
                                 <div class="form__output"></div>
