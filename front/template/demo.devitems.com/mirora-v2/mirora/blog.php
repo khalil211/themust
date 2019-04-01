@@ -16,7 +16,7 @@ include "../../../../../admin/entities/blog.php";
 <?php 
 
 include "../../../../../config.php";
-<<<<<<< HEAD
+
 $db=config::getConnexion();
 
 
