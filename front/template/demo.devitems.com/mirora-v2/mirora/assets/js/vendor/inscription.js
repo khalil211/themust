@@ -52,11 +52,14 @@ function verifPseudo(champ)
 function verifForm(f)
 {
    var identifiantOk = verifPseudo(f.identifiant);
-   var mailOk = verifMail(f.email);
+   //var mailOk = verifMail(f.email);
    var passwordOk = verifPassword(f.password);
    
-   if(pseudoOk && mailOk && passwordOk)
-      return true;
+   if(pseudoOk && passwordOk)
+   {
+   	return true;
+	   alert("mriguel");
+   }   
    else
    {
       alert("Veuillez remplir correctement tous les champs");

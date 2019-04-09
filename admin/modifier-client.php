@@ -17,7 +17,7 @@ if (isset($_POST['email']))
             $motdepasse =$_POST['motdepasse'];
 			$adresse = $_POST['adresse'];
 			$telephone= $_POST['telephone'];
-			$nom= $_POST['nomc'];
+			$nom= $_POST['nom'];
 			$prenom= $_POST['prenom'];
  $abcd=$db->prepare("UPDATE  client SET email=:email,motdepasse=:motdepasse,nom=:nom,prenom=:prenom,adresse=:adresse,telephone=:telephone WHERE identifiant='$identifiant' ");
  $abcd->bindValue(":email",$email);

@@ -3,9 +3,9 @@ include 'menus.php';
 include "client.php";
 include "clientste.php";
 
-if (testConnexion())
-    header('Location: index.php');
-
+testConnexion();
+    
+	
 if (isset($_POST['logidentifiant'])&&isset($_POST['logmotdepasse']))
 {
     $client=new client($_POST['logidentifiant'],"",$_POST['logmotdepasse'],"","","","");
@@ -19,8 +19,10 @@ if (isset($_POST['logidentifiant'])&&isset($_POST['logmotdepasse']))
             setcookie('idclient',$_POST['logidentifiant'], time() + 30*24*3600, null, null, false, true);
             setcookie('mdpclient',$_POST['logmotdepasse'], time() + 30*24*3600, null, null, false, true);
         }
+		header('Location: index.php');
     }
 }
+
 ?>
 <!doctype html>
 <html class="no-js" lang="zxx">
@@ -54,7 +56,6 @@ if (isset($_POST['logidentifiant'])&&isset($_POST['logmotdepasse']))
     <!-- modernizr JS
     ============================================ -->
     <script src="assets/js/vendor/modernizr-2.8.3.min.js"></script>
-	<script src="assets/js/vendor/inscription.js"></script>
     <!--[if lt IE 9]>
     <script src="//oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
     <script src="//oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
@@ -97,7 +98,7 @@ if (isset($_POST['logidentifiant'])&&isset($_POST['logmotdepasse']))
                         <div class="col-lg-6 mb-md--40">
                             <h2 class="heading-secondary mb--30">Connexion</h2>
                             <div class="login-reg-box p-4 bg--2">
-                                <form class="form" method="post" action="login-register.php">
+                                <form class="form" method="post" onsubmit="return verifForm(this)" action="login-register.php">
                                     <div class="form__group mb--20">
                                         <label class="form__label" for="username">
                                             Identifiant <span>*</span>
@@ -125,7 +126,7 @@ if (isset($_POST['logidentifiant'])&&isset($_POST['logmotdepasse']))
                         <div class="col-lg-6">
                             <h2 class="heading-secondary mb--30">Register</h2>
                             <div class="login-reg-box p-4 bg--2">
-                                <form class="form" method="POST" action="login-register.php" name="formf" id="test">
+                                <form class="form" method="POST" action="login-register.php" name="formf" id="testform">
 								<div class="form__group mb--20">
                                         <label class="form__label" for="identifiant">
                                             Identifiant <span>*</span>
@@ -154,7 +155,7 @@ if (isset($_POST['logidentifiant'])&&isset($_POST['logmotdepasse']))
                                     </div>
 									
                                     <div class="form__group">
-                                        <button type="submit" form="test" class="btn btn-5 btn-style-2">Inscription</button>
+                                        <button type="submit" form="testform" class="btn btn-5 btn-style-2">Inscription</button>
                              
                                         <button type="reset" class="btn btn-5 btn-style-2">reset</button>
                                     </div>
@@ -167,6 +168,7 @@ if (isset($_POST['logidentifiant'])&&isset($_POST['logmotdepasse']))
             </div>
         </div>
         <?php frontDown();?>
+		<script src="assets/js/vendor/inscription.js"></script>
 </body>
 
 

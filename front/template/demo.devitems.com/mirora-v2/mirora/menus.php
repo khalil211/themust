@@ -87,6 +87,13 @@ function frontUp()
 	                                        <i class="fa fa-angle-down"></i>
 	                                    </a>
 	                                    <div class="dropdown-menu" aria-labelledby="userID">
+										<?php if (isset($_SESSION['idclient']))
+												{
+													?>
+													<a class="dropdown-item" href="moncompte.php" >Mon compte</a>
+													<?php
+												}
+										 ?>
 	                                        <a class="dropdown-item" <?php if (isset($_SESSION['idclient']))echo 'href="deconnexion.php"';else echo 'href="login-register.php"'; ?> >
 	                                        	<?php if (isset($_SESSION['idclient'])) 
 	                                        	{
@@ -239,10 +246,8 @@ function frontUp()
 	                                        <li><a href="checkout.html">Checkout</a></li>
 	                                        <li><a href="compare.html">compare</a></li>
 	                                        <li><a href="wishlist.html">wishlist</a></li>
-	                                        <li><a href="my-account.html">my account</a></li>
-	                                        <li><a href="404.html">404</a></li>
+	                                        <li><a href="moncompte.php">Mon compte</a></li>
 	                                        <li><a href="faq.html">Faq</a></li>
-	                                        <li><a href="login-register.html">Login Register</a></li>
 	                                    </ul>
 	                                </li>
 	                                <li class="mainmenu__item">
