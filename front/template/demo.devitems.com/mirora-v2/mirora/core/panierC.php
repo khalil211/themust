@@ -157,5 +157,16 @@ class panierC
 		$query->bindValue(':prix',($p['prix']*($qte-$pp['quantite'])));
 		$query->execute();
 	}
+
+	public function supprimer()
+	{
+		$db=config::getConnexion();
+		$query=$db->prepare('DELETE FROM produitpanier WHERE idpanier=:idp');
+		$query->bindValue(':idp',$_SESSION['idclient']);
+		$query->execute();
+		$query=$db->prepare('UPDATE panier SET nbproduit=0,prixtotal=0 WHERE id=:idp');
+		$query->bindValue(':idp',$_SESSION['idclient']);
+		$query->execute();
+	}
 }
 ?>

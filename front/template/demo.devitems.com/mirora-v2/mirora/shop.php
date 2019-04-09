@@ -75,7 +75,7 @@ $result=$db->query('select * from produit');
                             <div class="row">
                                 <div class="col-12">
                                     <!-- Refine Search Start -->
-                                    <div class="refine-search mb--30">
+<!--                                    <div class="refine-search mb--30">
                                         <h3>Refine Search</h3>
                                         <ul class="cat-list mb--20">
                                             <li><a href="shop.php">Diamonds (3)</a></li>
@@ -87,7 +87,7 @@ $result=$db->query('select * from produit');
                                         <ul class="cat-list">
                                             <li><a href="shop.php">Product Compare (3)</a></li>
                                         </ul>
-                                    </div>
+                                    </div>-->
                                     <!-- Refine Search End -->
 
                                     <!-- Shop Toolbar Start -->
@@ -143,7 +143,9 @@ $result=$db->query('select * from produit');
                                                 <span class="product-label discount">
                                                     %
                                                 </span>
-                                                <a href="#" class="btn btn-transparent btn-fullwidth btn-medium btn-style-1">Détails</a>
+
+                                                <a href="product-details.php?idd=<?php echo $key['id']; ?>" class="btn btn-transparent btn-fullwidth btn-medium btn-style-1">Détails</a>
+
                                             </div>
                                         </div>
                                         <div class="product-content text-center">
@@ -247,14 +249,14 @@ $result=$db->query('select * from produit');
                         <div class="col-lg-3 order-lg-1">
                             <aside class="shop-sidebar">
                                 <div class="search-filter">
-                                    <div class="filter-layered">
+<!--                                    <div class="filter-layered">
                                         <h3 class="filter-heading">Layered Navigation</h3>
                                         <ul class="filter-list">
                                             <li><span>Diamonds</span><a href="#"><i class="fa fa-times-circle"></i></a></li>
                                             <li><span>Brown</span><a href="#"><i class="fa fa-times-circle"></i></a></li>
                                             <li><span>Christian Dior</span><a href="#"><i class="fa fa-times-circle"></i></a></li>
                                         </ul>
-                                    </div>
+                                    </div>-->
                                     <div class="filter-price">
                                         <h3 class="filter-heading">Prix</h3>
                                         <ul class="filter-list">
@@ -290,36 +292,20 @@ $result=$db->query('select * from produit');
                                             <li>
                                                 <div class="filter-input filter-checkbox">
                                                     <input type="checkbox" name="category1" id="category1" checked>
-                                                    <label for="category1">catégorie1</label>
+                                                    <label for="category1">Homme</label>
                                                 </div>
                                             </li>
                                             <li>
                                                 <div class="filter-input filter-checkbox">
                                                     <input type="checkbox" name="category2" id="category2">
-                                                    <label for="category2">catégorie2</label>
+                                                    <label for="category2">Femme</label>
                                                 </div>
                                             </li>
-                                            <li>
-                                                <div class="filter-input filter-checkbox">
-                                                    <input type="checkbox" name="category3" id="category3">
-                                                    <label for="category3">catégorie3</label>
-                                                </div>
-                                            </li>
-                                            <li>
-                                                <div class="filter-input filter-checkbox">
-                                                    <input type="checkbox" name="category4" id="category4">
-                                                    <label for="category4">catégorie4</label>
-                                                </div>
-                                            </li>
-                                            <li>
-                                                <div class="filter-input filter-checkbox">
-                                                    <input type="checkbox" name="category5" id="category5">
-                                                    <label for="category5">catégorie5</label>
-                                                </div>
-                                            </li>
+                                            
+                                           
                                         </ul>
                                     </div>
-                                    <div class="filter-color">
+<!--                                    <div class="filter-color">
                                         <h3 class="filter-heading">couleur</h3>
                                         <ul class="filter-list">
                                             <li>
@@ -353,7 +339,7 @@ $result=$db->query('select * from produit');
                                                 </div>
                                             </li>
                                         </ul>
-                                    </div>
+                                    </div>-->
                                     <div class="filter-color">
                                         <h3 class="filter-heading">Manufacturer</h3>
                                         <ul class="filter-list">
@@ -384,11 +370,11 @@ $result=$db->query('select * from produit');
                                         </ul>
                                     </div>
                                 </div>
-                                <div class="banner-static">
+<!--                                <div class="banner-static">
                                     <a href="#">
                                         <img src="assets/img/banner/img-sidebar.jpg" alt="Banner">
                                     </a>
-                                </div>
+                                </div>-->
                             </aside>
                         </div>
                     </div>

@@ -63,7 +63,6 @@ if (isset($_POST['idblog'])&&isset($_POST['description'])&&isset($_POST['type'])
                     <p>
        Veuillez indiquer la type du blog :<br />
        <input type="radio" name="type" value="Blog Image Post" id="type" /> <label for="Blog Image Post">Blog Image Post</label><br />
-       <input type="radio" name="type" value="Blog Gallery Post" id="type" /> <label for="Blog Gallery Post">Blog Gallery Post</label><br />
        <input type="radio" name="type" value="Blog Audio Post" id="type" /> <label for="Blog Audio Post">Blog Audio Post</label><br />
        <input type="radio" name="type" value="Blog video Post" id="type" /> <label for="Blog video Post">Blog Video Post</label>
    </p>
