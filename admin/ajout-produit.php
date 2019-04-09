@@ -5,6 +5,9 @@ if (isset($_POST['img'])&&isset($_POST['nom'])&&isset($_POST['descr'])&&isset($_
     $e=new produit($_POST['img'],$_POST['nom'],$_POST['descr'],$_POST['quantite'],$_POST['prix'],$_POST['categorie']);
     $e->ajouter();
 }
+
+$db=config::getConnexion();
+$result=$db->query('select * from categorie ');
 ?>
 
 <!doctype html>
@@ -91,10 +94,11 @@ if (isset($_POST['img'])&&isset($_POST['nom'])&&isset($_POST['descr'])&&isset($_
                             
 
                                <select  class="standardSelect" tabindex="10"  name="categorie" id="categorie" required>
-                                    <option value="">Séléctionner une catégorie</option>
-                                    <option value="Homme">Homme</option>
-                                    <option value="Femme">Femme</option>
-                                   <!-- option  value=" <?php echo"row['id']"?> >  </option-->
+                                <?php while ($row = $result->fetch()) { 
+                                    ?>
+                                    <option value= "<?php echo  $row['id_cat'];?>"> <?php echo $row['nom_cat'];?> </option>
+                                <?php } ?>
+                                  
                                     
                                 </select><span id="categorie_manquante"></span>
                                 
