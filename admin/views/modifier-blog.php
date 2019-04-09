@@ -11,6 +11,6 @@ $db=config::getConnexion();
 $result=$db->prepare("UPDATE blog SET `description`='$description' , `type`='$type' , `date`='$date' , `image`='$image' 
 	WHERE `blog`.`idblog`='$idblog'");
 $result->execute();
-header('location: ../tables-blog.php');
+header('location: tables-blog.php');
 
   ?>
