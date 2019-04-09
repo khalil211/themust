@@ -46,7 +46,7 @@ testConnexion();
 <body>
 
     <?php 
-    include '../../../../../config.php';
+    include '../../config.php';
     frontUp();
     ?>
         <!-- Breadcumb area Start -->
@@ -56,8 +56,8 @@ testConnexion();
                     <div class="col-12 text-center">
                         <h1 class="page-title">Panier</h1>
                         <ul class="breadcrumb justify-content-center">
-                            <li><a href="index.html">Accueil</a></li>
-                            <li class="current"><a href="cart.html">Panier</a></li>
+                            <li><a href="index.php">Accueil</a></li>
+                            <li class="current"><a href="cart.php">Panier</a></li>
                         </ul>
                     </div>
                 </div>
@@ -74,7 +74,7 @@ testConnexion();
                         <div class="row">
                             <div class="col-12">
                                 <!-- Cart Area Start -->
-                                <form action="core/modifier-panier.php" method="post" id="formp" class="form cart-form">
+                                <form action="../core/modifier-panier.php" method="post" id="formp" class="form cart-form">
                                     <div class="cart-table table-content table-responsive">
                                         <table class="table mb--30">
                                             <thead>
@@ -104,7 +104,7 @@ testConnexion();
                                                         <td><a class="delete" href="cart.php?delpp=<?php echo $p->getIdProduit(); ?>"><i class="fa fa-times"></i></a></td>
                                                         <td>
                                                             <a href="product-details.html">
-                                                                <img src="../../../../../admin/images/<?php echo $p->getImage();?>" alt="product">
+                                                                <img src="../../admin/views/images/<?php echo $p->getImage();?>" alt="product">
                                                             </a>
                                                         </td>
                                                         <td class="wide-column">
@@ -152,7 +152,7 @@ testConnexion();
                                             </tbody>
                                         </table>
                                     </div>
-                                    <a href="core/passer-commande.php" class="btn btn-medium btn-style-3">Passer la commande</a>
+                                    <a href="../core/passer-commande.php" class="btn btn-medium btn-style-3">Passer la commande</a>
                                 </div>
                             </div>
                         </div>

@@ -24,7 +24,7 @@
 </head>
 <body>
 	<?php
-	include "../config.php";
+	include "../../config.php";
 	backUP();
 	?>
     <div class="card-header">
@@ -71,7 +71,7 @@
             }
         }
         ?>
-        <form action="commande/ajout.php" method="post" enctype="multipart/form-data" class="form-horizontal" id="commandef">
+        <form action="ajoutcommande.php" method="post" enctype="multipart/form-data" class="form-horizontal" id="commandef">
             <div class="row form-group">
                 <div class="col col-md-3"><label class=" form-control-label" for="idc">ID Client</label></div>
                 <div class="col-12 col-md-9"><input type="text" id="idc" name="idc" placeholder="ID Client" class="form-control" required autofocus><small class="form-text text-muted"></small></div>
@@ -98,6 +98,6 @@
 	<?php
 	backDown();
 	?>
-    <script type="text/javascript" src="commande/ajout-commande.js"></script>
+    <script type="text/javascript" src="assets/js/ajout-commande.js"></script>
 </body>
 </html>
