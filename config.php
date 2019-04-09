@@ -203,7 +203,7 @@ function backUp()
 
                             <a class="nav-link" href="#"><i class="fa fa-cog"></i> Settings</a>
 
-                            <a class="nav-link" href="#"><i class="fa fa-power-off"></i> Logout</a>
+                            <a class="nav-link" href="../front/template/demo.devitems.com/mirora-v2/mirora/index.php"><i class="fa fa-power-off"></i> Logout</a>
                         </div>
                     </div>
 

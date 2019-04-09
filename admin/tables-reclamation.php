@@ -1,9 +1,15 @@
+<?php
+include "../front/template/demo.devitems.com/mirora-v2/mirora/reclamation.php";
+include "../config.php";
+$db=config::getConnexion();
+    $result=$db->query('SELECT * FROM reclamation');
+?>
 <!DOCTYPE html>
 <html>
 <head>
 	<meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Listes des commandes</title>
+    <title>Listes des Reclamations</title>
     <meta name="description" content="Sufee Admin - HTML5 Admin Template">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -25,7 +31,6 @@
 </head>
 <body>
 	<?php
-	include '../config.php';
 	backUp();
 	?>
 	<div class="content mt-3">
@@ -35,36 +40,47 @@
                 <div class="col-md-12">
                     <div class="card">
                         <div class="card-header">
-                            <strong class="card-title"> Listes des commandes </strong>
+                            <strong class="card-title"> Listes des Reclamation </strong>
                         </div>
                         <div class="card-body">
                             <table id="bootstrap-data-table-export" class="table table-striped table-bordered">
                                 <thead>
                                     <tr>
                                         
-                                        <th> ID reclamation </th>
                                         <th> Sujet </th>
+                                        <th> Email </th>
                                         <th> Description </th>
                                         <th> Date </th>
-                                        <th> etat </th>
+                                        <th> Etat </th>
+                                        <th> Action </th>
                                         
                                     </tr>
                                 </thead>
                                <tbody>
-                                    <tr>
-                                        <td> ID </td>
-                                        
-                                        <td>Sujet</td>
+                                     <?php while ($row = $result->fetch()) { 
+                                    ?>
+                                              <tr>
+
                                        
-                                        <td>Descrition</td>
-                                        <td>Date</td>
-                                        <td>etat</td>
-                                        <td>
-			                            <a href="#" class="btn btn-primary btn-xs"><i class="fa fa-folder"></i> View </a>
-			                            <a href="#" class="btn btn-info btn-xs"><i class="fa fa-pencil"></i> Edit </a>
-			                            <a href="#" class="btn btn-danger btn-xs"><i class="fa fa-trash-o"></i> Delete </a>
-			                          </td>
-			                        </tr>
+                                            <td><?php echo $row['sujet']; ?></td>
+                                            <td><?php echo $row['email']; ?></td>
+                                            <td><?php echo $row['description']; ?></td>
+                                            <td><?php echo $row['date']; ?></td>
+                                            <td><?php echo $row['etat']; ?></td>
+                                            <td>
+                                                
+                                                <button class="btn btn-outline-success" type="button" onclick="window.location='modifier-reclamation.php?del=<?php echo $row['sujet']; ?>'">Modifier</button>
+                                            </br>
+                                            <button class="btn btn-outline-danger" type="button" onclick="window.location='supprimer-reclamation.php?del=<?php echo $row['sujet']; ?>'">Supprimer</button></td>
+                                        
+                                        </tr>
+                                        
+                                        </tr>
+                                               
+                                        
+                                        <?php
+                                        }
+                                        ?>
 			                    </tbody>
                             </table>
                         </div>

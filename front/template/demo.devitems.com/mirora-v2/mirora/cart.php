@@ -108,7 +108,7 @@ testConnexion();
                                                             </a>
                                                         </td>
                                                         <td class="wide-column">
-                                                            <h3><a href="product-details.html"><?php echo $p->getNom(); ?></a></h3>
+                                                            <h3><a href="product-details.php?idd=<?php echo $p->getIdProduit(); ?>"><?php echo $p->getNom(); ?></a></h3>
                                                         </td>
                                                         <td class="cart-product-price"><strong><?php echo $p->getPrixUnitaire(); ?></strong></td>
                                                         <td>

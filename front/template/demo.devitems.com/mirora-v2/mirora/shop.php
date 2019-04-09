@@ -146,8 +146,6 @@ $result=$db->query('select * from produit');
 
                                                 <a href="product-details.php?idd=<?php echo $key['id']; ?>" class="btn btn-transparent btn-fullwidth btn-medium btn-style-1">Détails</a>
 
-                                                <a href="#" class="btn btn-transparent btn-fullwidth btn-medium btn-style-1">Détails</a>
-
                                             </div>
                                         </div>
                                         <div class="product-content text-center">
