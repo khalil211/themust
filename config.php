@@ -44,14 +44,17 @@ function backUp()
                     <li class="menu-item-has-children dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-table"></i>Clients</a>
                         <ul class="sub-menu children dropdown-menu">
+						<li><i class="fa fa-table"></i><a href="ajout-client.php">Ajouter un client</a></li>
                             <li><i class="fa fa-table"></i><a href="tables-clients.php">Listes des clients</a></li>
-                            <li><i class="fa fa-table"></i><a href="ajout-client.php">Ajouter un client</a></li>
+							<li><i class="fa fa-table"></i><a href="tables-clientsste.php">Listes des clients STE</a></li>
+                            
+							<li><i class="fa fa-table"></i><a href="clientstats.php">Statistiques</a></li>
                         </ul>
                     </li>
                     <li class="menu-item-has-children dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-th"></i>Produits</a>
                         <ul class="sub-menu children dropdown-menu">
-                            <li><i class="menu-icon fa fa-th"></i><a href="tables-produits.php">Liste des produits</a></li>
+                            <li><i class="menu-icon fa fa-th"></i><a href="tables-produits.html">Liste des produits</a></li>
                             <li><i class="menu-icon fa fa-th"></i><a href="ajout-produit.php">Ajouter un produit</a></li>
                         </ul>
                     </li>
