@@ -143,11 +143,11 @@ $result=$db->query('select * from produit');
                                                 <span class="product-label discount">
                                                     %
                                                 </span>
-<<<<<<< HEAD
+
                                                 <a href="product-details.php?idd=<?php echo $key['id']; ?>" class="btn btn-transparent btn-fullwidth btn-medium btn-style-1">Détails</a>
-=======
+
                                                 <a href="#" class="btn btn-transparent btn-fullwidth btn-medium btn-style-1">Détails</a>
->>>>>>> 3806c60f5ce5183fe9a3de52fe19d0dd434aed00
+
                                             </div>
                                         </div>
                                         <div class="product-content text-center">

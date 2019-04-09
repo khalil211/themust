@@ -65,7 +65,7 @@ i++;
 
 
 if(i==4)
-	alert("yaas");
+	alert("Ajout réussi.");
 
 //else
 //	e.preventDefault();

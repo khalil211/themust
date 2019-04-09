@@ -409,11 +409,11 @@ $result=$query->fetch();
             <div class="container">
                 <div class="row">
                     <div class="col-12 text-center">
-                        <h1 class="page-title">Product Detalis</h1>
+                        <h1 class="page-title">Détails du produit</h1>
                         <ul class="breadcrumb justify-content-center">
-                            <li><a href="index.html">Home</a></li>
-                            <li><a href="shop.html">Shop</a></li>
-                            <li class="current"><a href="product-details.html">Product Detalis Tab Style One</a></li>
+                            <li><a href="index.html">Acceuil</a></li>
+                            <li><a href="shop.html">Achats</a></li>
+                            <li class="current"><a href="product-details.php">Détails du produit</a></li>
                         </ul>
                     </div>
                 </div>
@@ -526,9 +526,10 @@ $result=$query->fetch();
                                             
                                         </div></li>
                                           
-                                            <li><div class="quantity">
-                                                    <span>Stock </span>
-                                                    <input type="number" class="quantity-input" name="qty" id="pro_qty" value="<?php echo $result['quantite'];?>">
+                                            <li>
+                                                   <span class="product-price-old">
+                                                <span class="money">Quantité <?php echo $result['quantite'];?></span>
+                                            </span>
                                                     
                                                 </div></li>
                                             <li><?php echo $result['categorie'];?></li>

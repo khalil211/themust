@@ -28,7 +28,7 @@ $emps=$db->query("SELECT * FROM  produit WHERE id=$id");
     <link rel="apple-touch-icon" href="apple-icon.png">
     <link rel="shortcut icon" href="favicon.ico">
 
-
+    <script type="text/javascript" src="formulaire-produit.js"></script>
     <link rel="stylesheet" href="vendors/bootstrap/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="vendors/font-awesome/css/font-awesome.min.css">
     <link rel="stylesheet" href="vendors/themify-icons/css/themify-icons.css">
@@ -55,12 +55,9 @@ $emps=$db->query("SELECT * FROM  produit WHERE id=$id");
             </div>
                                                     <div class="card-body card-block">
                                                                
-                                                            <div class="row form-group">
-                                                                <div class="col col-md-3"><label class=" form-control-label">Image du produit  </label></div>
-                                                                <div class="col-12 col-md-9"><input type="file" id="img" name="img" value="<?php echo $img;?>" class="form-control"><small class="form-text text-muted"></small></div>
-                                                                <div class="col-12 col-md-9">
-                                                                  
-                                                                </div>
+                                                              <div class="row form-group">
+                                                                <div class="col col-md-3"><label for="text-input" class=" form-control-label">Nom du produit</label></div>
+                                                                <div class="col-12 col-md-9"><input type="text" id="nom" name="nom" class="form-control" required><small class="form-text text-muted" ></small> <span id="nom_manquant"></span> </div>
                                                             </div>
 
                                                      
@@ -76,28 +73,28 @@ $emps=$db->query("SELECT * FROM  produit WHERE id=$id");
                                                                 </div>
                                                             </div>    
 
-                                                           <div class="row form-group">
-                                                                <div class="col col-md-3"><label for="email-input" class=" form-control-label">Quantité du produit </label></div>
-                                                                <div class="col-12 col-md-9"><input type="number" id="quantite" name="quantite" value="<?php echo $quantite;?>"  class="form-control"><small class="help-block form-text" required> </small></div>
-                                                            </div>
                                                             <div class="row form-group">
+                                                                <div class="col col-md-3"><label for="email-input" class=" form-control-label">Quantité du produit </label> </div>
+                                                                <div class="col-12 col-md-9"><input type="number" id="quantite" name="quantite"  class="form-control"  required><small class="help-block form-text" > </small> <span id="quantite_manquante"></span></div>
+                                                            </div>
+                                                          <div class="row form-group">
                                                                 <div class="col col-md-3"><label for="password-input" class=" form-control-label">Prix TND du produit </label></div>
-                                                                <div class="col-12 col-md-9"><input type="number" id="prix" name="prix" value="<?php echo $prix;?>" class="form-control"><small class="help-block form-text" required></small></div>
+                                                                <div class="col-12 col-md-9"><input type="number" id="prix" name="prix"  class="form-control"><small class="help-block form-text" ></small> <span id="prix_manquant"  required></span></div>
                                                             </div>
 
                                                    
-                           <div class="row form-group">
+                             <div class="row form-group">
                                <div class="col col-md-3"><label >Catégorie du produit </label></div>
                             </div>
                             
 
-                               <select  class="standardSelect" value="<?php echo $categorie;?>" tabindex="10"  name="categorie">
+                               <select  class="standardSelect" tabindex="10"  name="categorie" id="categorie" required>
                                     <option value="">Séléctionner une catégorie</option>
                                     <option value="Homme">Homme</option>
                                     <option value="Femme">Femme</option>
                                    
                                     
-                                </select>
+                                </select><span id="categorie_manquante"></span>
                                 
                             </div>
                             <input type="hidden" name="ide"  value="<?php echo $id;?>" >

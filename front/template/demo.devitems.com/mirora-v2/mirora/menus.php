@@ -228,6 +228,7 @@ function frontUp()
 	                                </li>
 	                                <li class="mainmenu__item <?php if (basename($_SERVER['PHP_SELF'])=='shop.php')echo 'active'; ?>">
 	                                    <a href="shop.php" class="mainmenu__link">Produits</a>
+	                                    
 	                                </li>
 	                                <li class="mainmenu__item <?php if (basename($_SERVER['PHP_SELF'])=='blog.php')echo 'active'; ?>">
 	                                    <a href="blog.php" class="mainmenu__link">Blog</a>
