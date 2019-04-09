@@ -50,9 +50,7 @@ if (isset($_GET['search'])&&!empty($_GET['search'])) {
         <div class="breadcrumbs">
             <div class="col-sm-4">
                 <div class="page-header float-left">
-                    <div class="page-title">
-                        <h1>Dashboard</h1>
-                    </div>
+                    
                 </div>
             </div>
             <div class="col-sm-8">
@@ -79,25 +77,7 @@ if (isset($_GET['search'])&&!empty($_GET['search'])) {
                                 <strong class="card-title"> Listes des produits </strong>
                             </div>
                             <div class="card-body">
-                             <!--   <label> Recherche </label>
-                                <input type="text" name="recherche">
-                                <form action="recherche-prod.php" method="GET">
-                                <input type="text" name="nom">
-                               <input type="submit" value ="recherche"class="btn btn-success btn-sm" style="width: 80px; height: 30px;" />-
-                         /*                     
-                          
-                           <?php
-                           /* $reqq=("select * from produit");
-                            $ress=$db->query($reqq);
-                            while ($d=$ress->fetch());
-                            {
-                                echo "<h1>{$d["nom"]}</h1>";
-                                echo "<p>{$d["prix"]}</p>";
-                                echo "<p>{$d["quantite"]}</p>";
-                                echo "<p>{$d["description"]}</p>";
-                            }*/
-
-                            ?>-->
+                            
 
 
                             </form>
@@ -144,6 +124,30 @@ if (isset($_GET['search'])&&!empty($_GET['search'])) {
                 </div>
             </div><!-- .animated -->
         </div><!-- .content -->
+        </div><!-- /#right-panel -->
+
+    <!-- Right Panel -->
+
+
+    <script src="vendors/jquery/dist/jquery.min.js"></script>
+    <script src="vendors/popper.js/dist/umd/popper.min.js"></script>
+    <script src="vendors/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="assets/js/main.js"></script>
+
+
+    <script src="vendors/datatables.net/js/jquery.dataTables.min.js"></script>
+    <script src="vendors/datatables.net-bs4/js/dataTables.bootstrap4.min.js"></script>
+    <script src="vendors/datatables.net-buttons/js/dataTables.buttons.min.js"></script>
+    <script src="vendors/datatables.net-buttons-bs4/js/buttons.bootstrap4.min.js"></script>
+    <script src="vendors/jszip/dist/jszip.min.js"></script>
+    <script src="vendors/pdfmake/build/pdfmake.min.js"></script>
+    <script src="vendors/pdfmake/build/vfs_fonts.js"></script>
+    <script src="vendors/datatables.net-buttons/js/buttons.html5.min.js"></script>
+    <script src="vendors/datatables.net-buttons/js/buttons.print.min.js"></script>
+    <script src="vendors/datatables.net-buttons/js/buttons.colVis.min.js"></script>
+    <script src="assets/js/init-scripts/data-table/datatables-init.js"></script>
+
+
 
 <?php backDown(); ?>
 

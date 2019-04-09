@@ -13,7 +13,7 @@ $emps=$db->query("SELECT * FROM  produit WHERE id=$id");
             $quantite = $row['quantite'];
             $prix = $row['prix'];
             $categorie = $row['categorie'];
-
+$result=$db->query('select * from categorie ');
         }
 ?>
 
@@ -51,13 +51,13 @@ $emps=$db->query("SELECT * FROM  produit WHERE id=$id");
         
          </div>
           <div class="card-header">
-              <strong> Mofifier un produit</strong> Détails
+              <strong> Modifier un produit</strong> Détails
             </div>
                                                     <div class="card-body card-block">
                                                                
                                                               <div class="row form-group">
-                                                                <div class="col col-md-3"><label for="text-input" class=" form-control-label">Nom du produit</label></div>
-                                                                <div class="col-12 col-md-9"><input type="text" id="nom" name="nom" class="form-control" required><small class="form-text text-muted" ></small> <span id="nom_manquant"></span> </div>
+                                                                <div class="col col-md-3"><label for="text-input" class=" form-control-label">Image du produit</label></div>
+                                                                <div class="col-12 col-md-9"><input type="file" id="img" name="img" class="form-control" required><small class="form-text text-muted" ></small> </div>
                                                             </div>
 
                                                      
@@ -75,11 +75,11 @@ $emps=$db->query("SELECT * FROM  produit WHERE id=$id");
 
                                                             <div class="row form-group">
                                                                 <div class="col col-md-3"><label for="email-input" class=" form-control-label">Quantité du produit </label> </div>
-                                                                <div class="col-12 col-md-9"><input type="number" id="quantite" name="quantite"  class="form-control"  required><small class="help-block form-text" > </small> <span id="quantite_manquante"></span></div>
+                                                                <div class="col-12 col-md-9"><input type="number" id="quantite" name="quantite" value="<?php echo $quantite;?>"  class="form-control"  required><small class="help-block form-text" > </small> <span id="quantite_manquante"></span></div>
                                                             </div>
                                                           <div class="row form-group">
                                                                 <div class="col col-md-3"><label for="password-input" class=" form-control-label">Prix TND du produit </label></div>
-                                                                <div class="col-12 col-md-9"><input type="number" id="prix" name="prix"  class="form-control"><small class="help-block form-text" ></small> <span id="prix_manquant"  required></span></div>
+                                                                <div class="col-12 col-md-9"><input type="number" id="prix" name="prix" value="<?php echo $prix;?>"  class="form-control"><small class="help-block form-text" ></small> <span id="prix_manquant"  required></span></div>
                                                             </div>
 
                                                    
@@ -89,10 +89,11 @@ $emps=$db->query("SELECT * FROM  produit WHERE id=$id");
                             
 
                                <select  class="standardSelect" tabindex="10"  name="categorie" id="categorie" required>
-                                    <option value="">Séléctionner une catégorie</option>
-                                    <option value="Homme">Homme</option>
-                                    <option value="Femme">Femme</option>
-                                   
+                                    <?php while ($row = $result->fetch()) { 
+                                    ?>
+                                    <option value= "<?php echo  $row['id_cat'];?>"> <?php echo $row['nom_cat'];?> </option>
+                                <?php } ?>
+                                  
                                     
                                 </select><span id="categorie_manquante"></span>
                                 
