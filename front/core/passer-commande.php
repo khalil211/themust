@@ -1,8 +1,8 @@
 <?php
-include '../menus.php';
+include '../views/menus.php';
 testConnexion();
-include '../../../../../../admin/core/commandeC.php';
-include '../../../../../../admin/entities/commande.php';
+include '../../admin/core/commandeC.php';
+include '../../admin/entities/commande.php';
 include 'panierC.php';
 include '../entities/panier.php';
 include '../entities/produitpanier.php';
@@ -20,5 +20,5 @@ foreach ($produits as $p)
 $commande->setPrixTotal($panier->getPrixTotal());
 $commandeC->ajouter($commande);
 $panierC->supprimer();
-header('Location: ../cart.php');
+header('Location: ../views/cart.php');
 ?>

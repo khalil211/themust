@@ -147,9 +147,9 @@ function frontUp()
 	                                    <a href="wishlist.html" class="bordered-icon"><i class="fa fa-heart"></i></a>
 	                                </li>
 	                                <?php
-	                                include 'entities/produitpanier.php';
-									include 'entities/panier.php';
-									include 'core/panierC.php';
+	                                include '../entities/produitpanier.php';
+									include '../entities/panier.php';
+									include '../core/panierC.php';
 									if(basename($_SERVER['PHP_SELF'])=='cart.php')
 									{
 										if (isset($_GET['addpp']))
@@ -192,7 +192,7 @@ function frontUp()
 		                                                <div class="mini-cart__item">
 		                                                    <div class="mini-cart__item--single">
 		                                                        <div class="mini-cart__item--image">
-		                                                            <img src="../../../../../admin/images/<?php echo $p->getImage();?>" alt="product">
+		                                                            <img src="../../admin/views/images/<?php echo $p->getImage();?>" alt="product">
 		                                                        </div>
 		                                                        <div class="mini-cart__item--content">
 		                                                            <h4 class="mini-cart__item--name"><a href="product-details.html"><?php echo $p->getNom(); ?></a> </h4>

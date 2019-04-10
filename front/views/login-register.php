@@ -1,7 +1,7 @@
 <?php
 include 'menus.php';
-include "client.php";
-include "clientste.php";
+include "../entities/client.php";
+include "../entities/clientste.php";
 
 testConnexion();
     
@@ -9,7 +9,7 @@ testConnexion();
 if (isset($_POST['logidentifiant'])&&isset($_POST['logmotdepasse']))
 {
     if (($_POST['logidentifiant']=='admin')&&($_POST['logmotdepasse']='admin'))
-        header('Location: ../../../../../admin/index.php');
+        header('Location: ../../admin/index.php');
     $client=new client($_POST['logidentifiant'],"",$_POST['logmotdepasse'],"","","","");
     $clientste=new clientste($_POST['logidentifiant'],"",$_POST['logmotdepasse'],"","","","");
     if ($client->exist()||$clientste->exist())

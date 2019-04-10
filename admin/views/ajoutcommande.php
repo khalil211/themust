@@ -22,17 +22,17 @@ if (isset($_POST['idc']))
 		if ($commande->verifierProduits())
 		{
 			if ($commandeC->ajouter($commande))
-				$locate='Location: ../ajout-commande.php?added=true';
+				$locate='Location: ajout-commande.php?added=true';
 			else
-				$locate='Location: ../ajout-commande.php?added=false';
+				$locate='Location: ajout-commande.php?added=false';
 		}
 		else
-			$locate='Location: ../ajout-commande.php?added=false&reason=1';
+			$locate='Location: ajout-commande.php?added=false&reason=1';
 	}
 	else
-		$locate='Location: ../ajout-commande.php?added=false&reason=2';
+		$locate='Location: ajout-commande.php?added=false&reason=2';
 }
 else
-	$locate='Location: ../ajout-commande.php?added=false';
+	$locate='Location: ajout-commande.php?added=false';
 header($locate);
 ?>

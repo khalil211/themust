@@ -1,5 +1,5 @@
 <?php
-include "$_SERVER[DOCUMENT_ROOT]/themust/config.php";
+include "../../config.php";
 
 class commandeC
 {
@@ -36,40 +36,10 @@ class commandeC
 		return true;
 	}
 
-	public function afficher($tri,$nbelt,$page,$recherche)
+	public function afficher()
 	{
-		$page--;
-		switch ($tri%6)
-		{
-			case 1:
-				$eltATrier=' numero';
-				break;
-			case 2:
-				$eltATrier=' idclient';
-				break;
-			case 3:
-				$eltATrier=' nbproduit';
-				break;
-			case 4:
-				$eltATrier=' prixtotal';
-				break;
-			case 5:
-				$eltATrier=' etat';
-				break;
-			case 0:
-				$eltATrier=' datecommande';
-				break;
-		}
-		if ($tri>6)
-			$eltATrier=$eltATrier.' DESC';
-		if (empty($recherche))
-			$request='SELECT numero,idclient,nbproduit,prixtotal,etat,datecommande FROM commande ORDER BY'.$eltATrier;
-		else
-			$request='SELECT numero,idclient,nbproduit,prixtotal,etat,datecommande FROM commande WHERE idclient LIKE \'%'.$recherche.'%\' ORDER BY'.$eltATrier;
-		if ($nbelt!=-1)
-			$request=$request.' LIMIT '.($page*$nbelt).','.$nbelt;
 		$db=config::getConnexion();
-		return $db->query($request);
+		return $db->query('SELECT * FROM commande');
 	}
 
 	public function nombre()
