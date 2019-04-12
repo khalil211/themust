@@ -87,51 +87,9 @@ $result=$db->query('select * from publicite');
                             </div>
                         </div>
                     </div>
-                    <?php } ?>
-                    <!-- Single Slide End -->
-
-                    <!-- Single Slide Start -->
-                    <!-- <div class="single-slider content-v-center" style="background-image: url(assets/img/slider/slider2-mirora1-1920x634.jpg)">
-                        <div class="container">
-                            <div class="row">
-                                <div class="col-12">
-                                    <div class="slider-content">
-                                        <h5 data-animation="rollIn" data-duration=".8s" data-delay=".5s">promotion</h5>
-                                        <h1 data-animation="fadeInDown" data-duration=".8s" data-delay=".2s">nom de la catégorie</h1>
-                                        <p class="mb--30 mb-sm--20" data-animation="fadeInDown" data-duration=".8s" data-delay=".2s">description du catégories</p>
-                                        <p class="mb--50 mb-sm--20" data-animation="fadeInDown" data-duration=".8s" data-delay=".2s">Starting At <strong>prix</strong></p>
-                                        <div class="slide-btn-group" data-animation="fadeInUp" data-duration="1s" data-delay=".3s">
-                                            <a href="shop.html" class="btn btn-bordered btn-style-1">Achetez maintenant</a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    
-                 Single Slide End -->
-
-                    <!-- Single Slide Start -->
-                    <!--<div class="single-slider content-v-center" style="background-image: url(assets/img/slider/slider2-mirora1-1920x634.jpg)">
-                        <div class="container">
-                            <div class="row">
-                                <div class="col-12">
-                                    <div class="slider-content">
-                                        <h5 data-animation="rollIn" data-duration=".3s" data-delay=".5s">promotion</h5>
-                                        <h1 data-animation="fadeInDown" data-duration=".8s" data-delay=".3s">nom de la catégorie</h1>
-                                        <p class="mb--30 mb-sm--20" data-animation="fadeInDown" data-duration=".8s" data-delay=".3s">description du catégorie </p>
-                                        <p class="mb--50 mb-sm--20" data-animation="fadeInDown" data-duration=".8s" data-delay=".3s">Starting At <strong>prix</strong></p>
-                                        <div class="slide-btn-group" data-animation="fadeInUp" data-duration="1s" data-delay=".3s">
-                                            <a href="shop.html" class="btn btn-bordered btn-style-1">Achetez maintenant</a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    Single Slide End -->
                 </div>
             </div>
+                    <?php } ?>
 
             <!-- Slider area End -->
 
