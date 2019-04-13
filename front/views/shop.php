@@ -4,6 +4,7 @@ testConnexion();
 include '../../config.php';
 $db=config::getConnexion();
 $result=$db->query('select * from produit');
+$res=$db->query('select * from categorie');
 ?>
 
 <!DOCTYPE html>
@@ -263,31 +264,26 @@ $result=$db->query('select * from produit');
                                             <li>
                                                 <div class="filter-input filter-radio">
                                                     <input type="radio" name="pricerange" id="pricerange-1" checked>
-                                                    <label for="pricerange-1">entre 2 prix (3)</label>
+                                                    <label for="pricerange-1">entre (200) prix (300)</label>
                                                 </div>
                                             </li>
                                             <li>
                                                 <div class="filter-input filter-radio">
                                                     <input type="radio" name="pricerange" id="pricerange-2">
-                                                    <label for="pricerange-2">entre 2 prix (2)</label>
+                                                    <label for="pricerange-2">entre (300) prix (600)</label>
                                                 </div>
                                             </li>
                                             <li>
                                                 <div class="filter-input filter-radio">
                                                     <input type="radio" name="pricerange" id="pricerange-3">
-                                                    <label for="pricerange-3">entre 2 prix (6)</label>
+                                                    <label for="pricerange-3">Plus de (600)</label>
                                                 </div>
                                             </li>
-                                            <li>
-                                                <div class="filter-input filter-radio">
-                                                    <input type="radio" name="pricerange" id="pricerange-4">
-                                                    <label for="pricerange-4">entre 2 prix (2)</label>
-                                                </div>
-                                            </li>
+                                            
                                         </ul>
                                     </div>
                                     <div class="filter-categories">
-                                        <h3 class="filter-heading">catégories</h3>
+                                        <h3 class="filter-heading">Catégories</h3>
                                         <ul class="filter-list">
                                             <li>
                                                 <div class="filter-input filter-checkbox">
