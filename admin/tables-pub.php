@@ -6,7 +6,7 @@ $emps=$db->query("DELETE FROM publicite WHERE fin<=CURDATE()");
 ?>
 <?php  
 
-$result=$db->query('select * from publicite ORDER BY ID');
+$result=$db->query('select * from publicite ORDER BY DEBUT');
 if (isset($_GET['search'])&&!empty($_GET['search'])) {
     $search=htmlspecialchars($_GET['search']);
     $result=$db->query('select * from publicite WHERE nom LIKE "%'.$search.'%"   ');
@@ -96,10 +96,16 @@ if (isset($_GET['search'])&&!empty($_GET['search'])) {
                                 <a href="delete.php?del=<?php echo $row['ID'];?>" class="btn btn-danger btn-xs"><i class="fa fa-trash-o"></i> Delete </a>
                           </td>
                                         </tr>
+                                    <?php } ?>
 
                                         </form>
-                                       <?php } ?>
+                                       
                                 </table>
+                                  <?php
+                                    $resu=$db->query("SELECT ID FROM publicite");
+$row = $resu->fetchAll(); ?>  
+<td> nombre de publicité : <?php echo (count($row));  ?></td> 
+
                             </div>
                         </div>
                     </div>

@@ -16,5 +16,9 @@ $result=$db->prepare("UPDATE publicite SET `image`='$img' , `cat`='$cat' , `nom`
 $result->execute();
 header('location: tables-pub.php');
 }
+else
+{
+	header('location: tables-pub.php');
+}
 
   ?>
