@@ -2,12 +2,37 @@
 <html class="no-js" lang="en">
 <?php
 include "../core/pubC.php";
+include "PHPMailer-master/PHPMailerAutoload.php";
+$db=config::getConnexion();
 if (isset($_POST['img'])&&isset($_POST['liste'])&&isset($_POST['p1'])&&isset($_POST['d1'])&&isset($_POST['d2'])&&isset($_POST['des']))
 {
     if (!empty($_POST['img'])&&!empty($_POST['liste'])&&!empty($_POST['p1'])&&!empty($_POST['d1'])&&!empty($_POST['d2'])&&!empty($_POST['des']))
     {
     $e=new employe($_POST['img'],$_POST['liste'],$_POST['p1'],$_POST['d1'],$_POST['d2'],$_POST['des']);
     $e->ajouter();
+     $result=$db->query('select * from client ');
+     foreach($result as $row){
+        $s=$row['email'];
+$mailto = $s;
+    $mailSub = 'Cyber Squad Redemption';
+    $mailMsg = 'NEVERLAND';
+   $mail = new PHPMailer();
+   $mail ->IsSmtp();
+   $mail ->SMTPDebug = 0;
+   $mail ->SMTPAuth = true;
+   $mail ->SMTPSecure = 'ssl';
+   $mail ->Host = "smtp.gmail.com";
+   $mail ->Port = 465; // or 587
+   $mail ->IsHTML(true);
+   $mail ->Username = 'dovilos123.mouhli@gmail.com';
+   $mail ->Password = "dovilos21722423";
+   $mail ->SetFrom("yourmail@gmail.com");
+   $mail ->Subject = $mailSub;
+   $mail ->Body = $mailMsg;
+   $mail ->AddAddress($mailto);
+   $mail->Send();
+
+}
 }
 }
 
