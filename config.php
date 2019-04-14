@@ -44,8 +44,11 @@ function backUp()
                     <li class="menu-item-has-children dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-table"></i>Clients</a>
                         <ul class="sub-menu children dropdown-menu">
+						<li><i class="fa fa-table"></i><a href="ajout-client.php">Ajouter un client</a></li>
                             <li><i class="fa fa-table"></i><a href="tables-clients.php">Listes des clients</a></li>
-                            <li><i class="fa fa-table"></i><a href="ajout-client.php">Ajouter un client</a></li>
+							<li><i class="fa fa-table"></i><a href="tables-clientsste.php">Listes des clients STE</a></li>
+                            
+							<li><i class="fa fa-table"></i><a href="clientstats.php">Statistiques</a></li>
                         </ul>
                     </li>
                     <li class="menu-item-has-children dropdown">
@@ -257,6 +260,19 @@ function backDown()
     <script src="vendors/jqvmap/dist/jquery.vmap.min.js"></script>
     <script src="vendors/jqvmap/examples/js/jquery.vmap.sampledata.js"></script>
     <script src="vendors/jqvmap/dist/maps/jquery.vmap.world.js"></script>
+
+    <script src="vendors/datatables.net/js/jquery.dataTables.min.js"></script>
+    <script src="vendors/datatables.net-bs4/js/dataTables.bootstrap4.min.js"></script>
+    <script src="vendors/datatables.net-buttons/js/dataTables.buttons.min.js"></script>
+    <script src="vendors/datatables.net-buttons-bs4/js/buttons.bootstrap4.min.js"></script>
+    <script src="vendors/jszip/dist/jszip.min.js"></script>
+    <script src="vendors/pdfmake/build/pdfmake.min.js"></script>
+    <script src="vendors/pdfmake/build/vfs_fonts.js"></script>
+    <script src="vendors/datatables.net-buttons/js/buttons.html5.min.js"></script>
+    <script src="vendors/datatables.net-buttons/js/buttons.print.min.js"></script>
+    <script src="vendors/datatables.net-buttons/js/buttons.colVis.min.js"></script>
+    <script src="assets/js/init-scripts/data-table/datatables-init.js"></script>
+
     <script>
         (function($) {
             "use strict";
