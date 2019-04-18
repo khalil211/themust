@@ -6,6 +6,12 @@ $db=config::getConnexion();
 $result=$db->query('select * from produit');
 $res=$db->query('select * from categorie');
 ?>
+<?php
+if (isset($_GET['del'])) {
+    $ID = $_GET['del'];
+ $omp=$db->query("UPDATE publicite SET nb_vues=nb_vues+1  WHERE `publicite`.`ID`='$ID'    ");
+
+}  ?>
 
 <!DOCTYPE html>
 <html class="no-js" lang="zxx">

@@ -9,8 +9,10 @@ class employe
 	private $date_debut;
 	private $date_fin;
 	private $description;
+	private $nb;
 
-	function __construct($image,$categories,$nom,$date_debut,$date_fin,$description)
+
+	function __construct($image,$categories,$nom,$date_debut,$date_fin,$description,$nb)
 	{   
 		$this->image=$image;
 		$this->categories=$categories;
@@ -18,6 +20,7 @@ class employe
 		$this->date_debut=$date_debut;
 		$this->date_fin=$date_fin;
 		$this->description=$description;
+		$this->nb=$nb;
 	}
     function getImage(){return $this->image;}
 	function getCategories(){return $this->categories;}
@@ -31,7 +34,7 @@ class employe
 		try
 		{
 			$db=config::getConnexion();
-			$query=$db->prepare('insert into publicite(image,cat,nom,debut,fin,description) values(:image,:categories,:nom,:date_debut,:date_fin,:description)');
+			$query=$db->prepare('insert into publicite(image,cat,nom,debut,fin,description,nb_vues) values(:image,:categories,:nom,:date_debut,:date_fin,:description,0)');
 			$query->bindValue(':image',$this->image);
 			$query->bindValue(':categories',$this->categories);
 			$query->bindValue(':nom',$this->nom);

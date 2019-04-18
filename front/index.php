@@ -80,7 +80,7 @@ $result=$db->query('select * from publicite');
                                         <p class="mb--30 mb-sm--20" data-animation="fadeInDown" data-duration=".8s" data-delay=".2s"><?php echo $row['description']; ?> </p>
                                         <p class="mb--50 mb-sm--20" data-animation="fadeInDown" data-duration=".8s" data-delay=".2s">Starting At <strong>prix</strong></p>
                                         <div class="slide-btn-group" data-animation="fadeInUp" data-duration="1s" data-delay=".3s">
-                                            <a href="shop.html" class="btn btn-bordered btn-style-1">Achetez maintenant</a>
+                                            <a href="shop.php" class="btn btn-bordered btn-style-1">Achetez maintenant</a>
                                         </div>
                                     </div>
                                 </div>
@@ -90,46 +90,7 @@ $result=$db->query('select * from publicite');
                     <?php } ?>
                     <!-- Single Slide End -->
 
-                    <!-- Single Slide Start -->
-                    <!-- <div class="single-slider content-v-center" style="background-image: url(assets/img/slider/slider2-mirora1-1920x634.jpg)">
-                        <div class="container">
-                            <div class="row">
-                                <div class="col-12">
-                                    <div class="slider-content">
-                                        <h5 data-animation="rollIn" data-duration=".8s" data-delay=".5s">promotion</h5>
-                                        <h1 data-animation="fadeInDown" data-duration=".8s" data-delay=".2s">nom de la catégorie</h1>
-                                        <p class="mb--30 mb-sm--20" data-animation="fadeInDown" data-duration=".8s" data-delay=".2s">description du catégories</p>
-                                        <p class="mb--50 mb-sm--20" data-animation="fadeInDown" data-duration=".8s" data-delay=".2s">Starting At <strong>prix</strong></p>
-                                        <div class="slide-btn-group" data-animation="fadeInUp" data-duration="1s" data-delay=".3s">
-                                            <a href="shop.html" class="btn btn-bordered btn-style-1">Achetez maintenant</a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    
-                 Single Slide End -->
-
-                    <!-- Single Slide Start -->
-                    <!--<div class="single-slider content-v-center" style="background-image: url(assets/img/slider/slider2-mirora1-1920x634.jpg)">
-                        <div class="container">
-                            <div class="row">
-                                <div class="col-12">
-                                    <div class="slider-content">
-                                        <h5 data-animation="rollIn" data-duration=".3s" data-delay=".5s">promotion</h5>
-                                        <h1 data-animation="fadeInDown" data-duration=".8s" data-delay=".3s">nom de la catégorie</h1>
-                                        <p class="mb--30 mb-sm--20" data-animation="fadeInDown" data-duration=".8s" data-delay=".3s">description du catégorie </p>
-                                        <p class="mb--50 mb-sm--20" data-animation="fadeInDown" data-duration=".8s" data-delay=".3s">Starting At <strong>prix</strong></p>
-                                        <div class="slide-btn-group" data-animation="fadeInUp" data-duration="1s" data-delay=".3s">
-                                            <a href="shop.html" class="btn btn-bordered btn-style-1">Achetez maintenant</a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    Single Slide End -->
+                 
                 </div>
             </div>
 
@@ -142,7 +103,7 @@ $result=$db->query('select * from publicite');
                     <div class="row">
                         <div class="col-md-4 mb-sm--30">
                             <div class="promo promo-1">
-                                <a href="shop.html" class="promo__box">
+                                <a href="shop.php" class="promo__box">
                                     <img src="assets/img/banner/img1-top-mirora1.jpg" alt="Product Category">
                                     <span class="promo__content">
                                         <span class="promo__label"></span>
@@ -154,7 +115,7 @@ $result=$db->query('select * from publicite');
                         </div>
                         <div class="col-md-4 mb-sm--30">
                             <div class="promo promo-1">
-                                <a href="shop.html" class="promo__box">
+                                <a href="shop.php" class="promo__box">
                                     <img src="assets/img/banner/img2-top-mirora1.jpg" alt="Product Category">
                                     <span class="promo__content">
                                         <span class="promo__label"></span>
@@ -166,7 +127,7 @@ $result=$db->query('select * from publicite');
                         </div>
                         <div class="col-md-4">
                             <div class="promo promo-1">
-                                <a href="shop.html" class="promo__box">
+                                <a href="shop.php" class="promo__box">
                                     <img src="assets/img/banner/img3-top-mirora1.jpg" alt="Product Category">
                                     <span class="promo__content">
                                         <span class="promo__label"></span>
@@ -2076,7 +2037,7 @@ $result=$db->query('select * from publicite');
                     <h5 class="banner__label">solde</h5>
                     <h2 class="banner__name">sous nom</h2>
                     <p class="banner__text mb--50 mb-md--20">quote</p>
-                    <a href="shop.html" class="btn btn-bordered btn-style-1">Achetez maintenant</a>
+                    <a href="shop.php" class="btn btn-bordered btn-style-1">Achetez maintenant</a>
                 </div>
             </section>      
 
@@ -2438,7 +2399,7 @@ $result=$db->query('select * from publicite');
                     <div class="row no-gutters">
                         <div class="col-md-6 mb-sm--20">
                             <div class="promo">
-                                <a href="shop.html" class="promo__box promo__box-2">
+                                <a href="shop.php" class="promo__box promo__box-2">
                                     <img src="assets/img/banner/img1-bottom-mirora1.jpg" alt="Product Category">
                                     <span class="promo__content promo__content-2">
                                         <span class="promo__label">produit 2019</span>
@@ -2451,7 +2412,7 @@ $result=$db->query('select * from publicite');
                         </div>
                         <div class="col-md-6">
                             <div class="promo">
-                                <a href="shop.html" class="promo__box promo__box-2">
+                                <a href="shop.php" class="promo__box promo__box-2">
                                     <img src="assets/img/banner/img2-bottom-mirora1.jpg" alt="Product Category">
                                     <span class="promo__content promo__content-2">
                                         <span class="promo__label">Trending Products 2019</span>

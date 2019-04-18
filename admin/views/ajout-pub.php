@@ -33,6 +33,7 @@ $mailto = $s;
    $mail->Send();
 
 }
+header('location: tables-pub.php');
 }
 }
 
