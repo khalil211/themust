@@ -89,7 +89,7 @@ $emps=$db->query("SELECT * FROM  publicite WHERE ID=$ID");
                                                         
                                                         <div class="row form-group">
                                                                 <div class="col col-md-3"><label class=" form-control-label"> Date début </label></div>
-                                                                <div class="col-12 col-md-9"><input type="date" id="d1" name="d1" value="<?php echo $fin;?>" class="form-control"><small class="form-text text-muted"></small></div>
+                                                                <div class="col-12 col-md-9"><input type="date" id="d1" name="d1" value="<?php echo $debut;?>" class="form-control"><small class="form-text text-muted"></small></div>
                                                                 <div class="col-12 col-md-9">
                                                                   
                                                                 </div>
@@ -97,7 +97,7 @@ $emps=$db->query("SELECT * FROM  publicite WHERE ID=$ID");
 
                                                          <div class="row form-group">
                                                                 <div class="col col-md-3"><label class=" form-control-label"> Date fin </label></div>
-                                                                <div class="col-12 col-md-9"><input type="date" id="d2" name="d2" value="<?php echo $debut;?>" class="form-control"><small class="form-text text-muted"></small></div>
+                                                                <div class="col-12 col-md-9"><input type="date" id="d2" name="d2" value="<?php echo $fin;?>" class="form-control"><small class="form-text text-muted"></small></div>
                                                                 <div class="col-12 col-md-9">
                                                                   
                                                                 </div>

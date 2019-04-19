@@ -80,16 +80,17 @@ $result=$db->query('select * from publicite');
                                         <p class="mb--30 mb-sm--20" data-animation="fadeInDown" data-duration=".8s" data-delay=".2s"><?php echo $row['description']; ?> </p>
                                         <p class="mb--50 mb-sm--20" data-animation="fadeInDown" data-duration=".8s" data-delay=".2s">Starting At <strong>prix</strong></p>
                                         <div class="slide-btn-group" data-animation="fadeInUp" data-duration="1s" data-delay=".3s">
-                                            <a href="shop.html" class="btn btn-bordered btn-style-1">Achetez maintenant</a>
+                                             <a href="shop.php?del=<?php echo $row['ID'];?>" class="btn btn-bordered btn-style-1">Achetez maintenant </a>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
+                     <?php } ?>
                 </div>
             </div>
-                    <?php } ?>
+                   
 
             <!-- Slider area End -->
 

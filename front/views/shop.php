@@ -3,8 +3,30 @@ include 'menus.php';
 testConnexion();
 include '../../config.php';
 $db=config::getConnexion();
-$result=$db->query('select * from produit');
+
+		$produitparpage=5;
+		$produittotalreq=$db->query('select id from produit ');
+		$produittotal= $produittotalreq->rowCount();
+		$pagestotales=ceil($produittotal/$produitparpage);
+if( isset($_GET['page']) AND !empty($_GET['page']) AND $_GET['page'] > 0)
+{
+	$_GET['page']=intval($_GET['page']);
+	$pagecourante=$_GET['page'];
+}
+else
+{
+	$pagecourante=1;
+}
+$depart=($pagecourante-1)*$produitparpage;
+$result=$db->query('SELECT * FROM produit LIMIT '.$depart.','.$produitparpage);
+$res=$db->query('select * from categorie');
 ?>
+<?php
+if (isset($_GET['del'])) {
+    $ID = $_GET['del'];
+ $omp=$db->query("UPDATE publicite SET nb_vues=nb_vues+1  WHERE `publicite`.`ID`='$ID'    ");
+
+}  ?>
 
 <!DOCTYPE html>
 <html class="no-js" lang="zxx">
@@ -99,7 +121,9 @@ $result=$db->query('select * from produit');
                                             <a class="grid-5" data-target="gridview-5" data-toggle="tooltip" data-placement="top" title="5">5</a>
                                             <a class="list" data-target="listview" data-toggle="tooltip" data-placement="top" title="5">List</a>
                                         </div>
-                                        <span class="product-pages">Showing 1 to 9 of 11 (2 Pages)</span>
+
+                                        <!-- PAGINATION -->
+                                        <span class="product-pages">Pages </span>
                                         <div class="product-showing">
                                             <label class="select-label">Show:</label>
                                             <select class="short-select nice-select">
@@ -112,6 +136,8 @@ $result=$db->query('select * from produit');
                                                 <option value="1">9</option>
                                             </select>
                                         </div>
+
+                                        <!---->
                                         <div class="product-short">
                                             <label class="select-label">Short By:</label>
                                             <select class="short-select nice-select">
@@ -173,13 +199,12 @@ $result=$db->query('select * from produit');
                                             </p>
 
                                             <div class="product-action">
-                                                <a class="same-action" href="wishlist.html" title="wishlist">
+                                              
+                                                <a class="add_cart cart-item action-cart" href="cart.php?addpp=<?php echo $key['id']; ?>" title="wishlist"><span>Ajouter au panier</span></a>
+                                                <a class="same-action" href="wish.php" title="wishlist">
                                                     <i class="fa fa-heart-o"></i>
                                                 </a>
-                                                <a class="add_cart cart-item action-cart" href="cart.php?addpp=<?php echo $key['id']; ?>" title="wishlist"><span>Ajouter au panier</span></a>
-                                                <a class="same-action compare-mrg" data-toggle="modal" data-target="#p<?php echo $key['id']; ?>" href="compare.html">
-                                                    <i class="fa fa-sliders fa-rotate-90"></i>
-                                                </a>
+                                               
                                             </div>
                                         </div>
                                     </div>
@@ -217,9 +242,7 @@ $result=$db->query('select * from produit');
                                             </div>
                                             <div class="product-action">
                                                 <a class="add_cart cart-item action-cart" href="cart.html" title="wishlist"><span>Add to cart</span></a>
-                                                <a class="same-action" href="wishlist.html" title="wishlist">
-                                                    <i class="fa fa-heart-o"></i>
-                                                </a>
+                                                
                                                 <a class="same-action compare-mrg" data-toggle="modal" data-target="#productModal" href="compare.html">
                                                     <i class="fa fa-sliders fa-rotate-90"></i>
                                                 </a>
@@ -234,7 +257,7 @@ $result=$db->query('select * from produit');
 
                             <!-- Pagination Start -->
                             <div class="pagination-wrap mt--15 mt-md--10">
-                                <p class="page-ammount">Showing 1 to 9 of 15 (2 Pages)</p>
+<!--                                <p class="page-ammount">Showing 1 to 9 of 15 (2 Pages)</p>
                                 <ul class="pagination">
                                     <li><a href="#" class="first">|&lt;</a></li>
                                     <li><a href="#" class="prev">&lt;</a></li>
@@ -242,7 +265,22 @@ $result=$db->query('select * from produit');
                                     <li><a href="#">2</a></li>
                                     <li><a href="#" class="next">&gt;</a></li>
                                     <li><a href="#" class="next">&gt;|</a></li>
-                                </ul>
+                                </ul>-->
+                                
+                                <?php 
+                                for ($i=1;$i<$pagestotales;$i++)
+                                {?>
+  									<ul class="pagination">
+                                 <!-- echo ' <a href="shop.php?page='.$i.'">'.$i.'</a>' ; -->
+                                  <li> 
+                                  	<?php 
+                                  	echo ' <a href="shop.php?page='.$i.'">'.$i.'</a>' ;
+                                  	?>
+                                  </li>
+                                 <?php
+                                }
+                                ?>
+
                             </div>
                             <!-- Pagination End -->
                         </div>
@@ -263,48 +301,41 @@ $result=$db->query('select * from produit');
                                             <li>
                                                 <div class="filter-input filter-radio">
                                                     <input type="radio" name="pricerange" id="pricerange-1" checked>
-                                                    <label for="pricerange-1">entre 2 prix (3)</label>
+                                                    <label for="pricerange-1">entre (200) prix (300)</label>
                                                 </div>
                                             </li>
                                             <li>
                                                 <div class="filter-input filter-radio">
                                                     <input type="radio" name="pricerange" id="pricerange-2">
-                                                    <label for="pricerange-2">entre 2 prix (2)</label>
+                                                    <label for="pricerange-2">entre (300) prix (600)</label>
                                                 </div>
                                             </li>
                                             <li>
                                                 <div class="filter-input filter-radio">
                                                     <input type="radio" name="pricerange" id="pricerange-3">
-                                                    <label for="pricerange-3">entre 2 prix (6)</label>
+                                                    <label for="pricerange-3">Plus de (600)</label>
                                                 </div>
                                             </li>
-                                            <li>
-                                                <div class="filter-input filter-radio">
-                                                    <input type="radio" name="pricerange" id="pricerange-4">
-                                                    <label for="pricerange-4">entre 2 prix (2)</label>
-                                                </div>
-                                            </li>
+                                            
                                         </ul>
                                     </div>
                                     <div class="filter-categories">
-                                        <h3 class="filter-heading">catégories</h3>
+                                        <h3 class="filter-heading">Catégories</h3>
+                                        <?php while ($row = $res->fetch()) { 
+                                    ?>
                                         <ul class="filter-list">
                                             <li>
                                                 <div class="filter-input filter-checkbox">
                                                     <input type="checkbox" name="category1" id="category1" checked>
-                                                    <label for="category1">Homme</label>
+                                                    <label for="category1"><?php echo $row['nom_cat']; ?></label>
                                                 </div>
                                             </li>
-                                            <li>
-                                                <div class="filter-input filter-checkbox">
-                                                    <input type="checkbox" name="category2" id="category2">
-                                                    <label for="category2">Femme</label>
-                                                </div>
-                                            </li>
+                                           
                                             
                                            
                                         </ul>
                                     </div>
+                                <?php } ?>
 <!--                                    <div class="filter-color">
                                         <h3 class="filter-heading">couleur</h3>
                                         <ul class="filter-list">
@@ -339,7 +370,7 @@ $result=$db->query('select * from produit');
                                                 </div>
                                             </li>
                                         </ul>
-                                    </div>-->
+                                    </div>
                                     <div class="filter-color">
                                         <h3 class="filter-heading">Manufacturer</h3>
                                         <ul class="filter-list">
@@ -368,7 +399,7 @@ $result=$db->query('select * from produit');
                                                 </div>
                                             </li>
                                         </ul>
-                                    </div>
+                                    </div>-->
                                 </div>
 <!--                                <div class="banner-static">
                                     <a href="#">
