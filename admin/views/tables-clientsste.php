@@ -1,5 +1,5 @@
 <?php
-include "client.php";
+include "../entities/client.php";
 $db=config::getConnexion();
 $result=$db->query('SELECT * FROM clientste');
 

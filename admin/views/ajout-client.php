@@ -1,8 +1,8 @@
 <?php
-include "client.php";
-include "clientste.php";
-include '../front/template/demo.devitems.com/mirora-v2/mirora/entities/panier.php';
-include '../front/template/demo.devitems.com/mirora-v2/mirora/core/panierC.php';
+include "../entities/client.php";
+include "../entities/clientste.php";
+include '../../front/entities/panier.php';
+include '../../front/core/panierC.php';
 
 if (isset($_POST['identifiant'])&&isset($_POST['email'])&&isset($_POST['motdepasse']))
 {

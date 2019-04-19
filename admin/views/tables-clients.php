@@ -1,5 +1,5 @@
 <?php
-include "client.php";
+include "../entities/client.php";
 $db=config::getConnexion();
 if (isset($_GET['search'])&&!empty($_GET['search']))
 {	
