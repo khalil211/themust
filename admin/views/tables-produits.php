@@ -1,7 +1,7 @@
 <?php
 include "../../config.php";
 $db=config::getConnexion();
-$result=$db->query('select * from produit p inner join categorie c where categorie = id_cat ');
+$result=$db->query('select * from produit p inner join categorie c where categorie = id_cat order by id desc');
 ?>
 
 <?php  

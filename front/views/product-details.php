@@ -2,7 +2,8 @@
 include '../../config.php';
 $db=config::getConnexion();
 $idd=$_GET['idd'];
-$query=$db->prepare('select * from produit where id=:idd');
+$query=$db->prepare('select * from produit p inner join categorie c where categorie = id_cat and id=:idd');
+//$result=$db->query('select * from produit p inner join categorie c where categorie = id_cat order by id desc');
 $query->bindValue(':idd',$idd);
 $query->execute();
 $result=$query->fetch();
@@ -506,7 +507,7 @@ $result=$query->fetch();
                                 <!-- Single Product Content Start -->
                                 <div class="product-details-content"> 
                                     <div class="product-details-top">
-                                        <h2 class="product-details-name"><?php echo $result['nom'];?></h2>
+                                        <h2 class="product-details-name" ><?php echo $result['nom'];?></h2>
                                         <div class="ratings-wrap">
 <!--                                            <div class="ratings">
                                                 <i class="fa fa-star rated"></i>
@@ -522,17 +523,22 @@ $result=$query->fetch();
                                         </div>
                                         <ul class="product-details-list list-unstyled">
                                             <li> <div class="product-price-wrapper">
-                                            <span class="money"> <?php echo $result['prix'];?></span>
+                                            <span class="money" style="font-size: 18px;"> <?php echo $result['prix'];?></span>
                                             
                                         </div></li>
                                           
                                             <li>
                                                    <span class="product-price-old">
-                                                <span class="money">Quantité <?php echo $result['quantite'];?></span>
+                                                <span class="money" style="font-size: 18px;">Quantité <?php echo $result['quantite'];?></span>
                                             </span>
-                                                    
+                                            <br>
+                                                <span  style="font-size: 18px;"> <i class="fa fa-thumbs-up" style="width: 30px; height: 30px;"></i><a href="">Like </a></span> 
+                                                <br>
+                                                  <span style="font-size: 18px;"> <i class="fa fa-thumbs-down" style="width: 30px; height: 30px;"></i><a href="">Dislike </a></span>
                                                 </div></li>
-                                            <li><?php echo $result['categorie'];?></li>
+                                                <span class="product-price-old">
+
+                                        <li><span class="money" style="font-size: 18px;">Catégorie<br> <?php echo $result['nom_cat'];?></span></li>
                                            
                                         </ul>
 <!--                                        <div class="product-details-price-wrapper">
@@ -557,7 +563,7 @@ $result=$query->fetch();
                                                 </button>
                                             </div>-->
                                             <div class="product-details-action-bottom">
-                                                <a href="wish.php">+Add to wishlist</a>
+                                                <a href="wish.php?add=<?php echo $result['id']; ?>" >+Ajouter wishlist</a>
                                                 
                                             </div>
                                         </div>  
