@@ -9,12 +9,12 @@ class reclamation
 	private $etat;
 	
 
-	public function __construct($sujet,$description,$email,$date,$etat)
+	public function __construct($sujet,$description,$email,$etat)
 	{
 		$this->sujet=$sujet;
 		$this->description=$description;
         $this->email=$email;
-        $this->date=$date;
+       
         $this->etat=$etat;
 	}
 	
@@ -34,16 +34,15 @@ class reclamation
 
 		function ajouter()
 	{
-		try
-		{
 			$db=config::getConnexion();
-			$req=$db->prepare('INSERT into reclamation(sujet,email,description,date,etat) values(:sujet,:email,:description,:date,:etat)');
+			$req=$db->prepare('INSERT into reclamation(sujet,email,description,date,etat) values(:sujet,:email,:description,NOW(),:etat)');
 	    $req->bindValue(':sujet',$this->sujet);
         $req->bindValue(':email',$this->email);
         $req->bindValue(':description',$this->description);
-        $req->bindValue(':date',$this->date);
         $req->bindValue(':etat',$this->etat);
 			$req->execute();
+		try
+		{
 		}
 		catch(Exception $e)
 		{

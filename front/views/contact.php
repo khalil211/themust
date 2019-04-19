@@ -1,11 +1,11 @@
 <?php
 
-include "../../../../../config.php";
-include "reclamation.php";
+include "../../config.php";
+include "../entities/reclamation.php";
 $etat="non resolu";
-if (isset($_POST['sujet'])&&isset($_POST['email'])&&isset($_POST['description'])&&isset($_POST['date']))
+if (isset($_POST['sujet'])&&isset($_POST['email'])&&isset($_POST['description']))
 {
-    $r=new reclamation($_POST['sujet'],$_POST['description'],$_POST['email'],$_POST['date'],$etat);
+    $r=new reclamation($_POST['sujet'],$_POST['description'],$_POST['email'],$etat);
     $r->ajouter();
 }
 
@@ -419,14 +419,7 @@ if (isset($_POST['sujet'])&&isset($_POST['email'])&&isset($_POST['description'])
                                         <textarea name="description" id="description" class="form__input form__input--3 form__input--textarea"></textarea>
                                     </div>
                                 </div>
-                                <div class="form-row mb--20">
-                                    <div class="col-md-2 text-md-right">
-                                        <label for="sujet">date <sup>*</sup></label>
-                                    </div>
-                                    <div class="col-md-10">
-                                        <input type="date" name="date" id="date" class="form__input form__input--3">
-                                    </div>
-                                </div>
+                               
 
                                 <div class="form-row">
                                     <div class="col-12 text-right">

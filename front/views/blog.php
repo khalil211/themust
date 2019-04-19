@@ -3,7 +3,8 @@
 
 <?php
 
-include "../../../../../admin/entities/blog.php";
+include "../../admin/entities/blog.php";
+
 
 
 ?>
@@ -15,7 +16,7 @@ include "../../../../../admin/entities/blog.php";
 >>>>>>> 6b0d05f8c55ee0a3e7503f34bd6830290d855e04
 <?php 
 
-include "../../../../../config.php";
+include "../../config.php";
 
 $db=config::getConnexion();
 
@@ -199,7 +200,7 @@ include 'menus.php';testConnexion();
 
                                                         <a href="blog-details-image.html">
 
-                                                            <img src="../../../../../admin/images/<?php echo $pblog['image']; ?>" alt="blog">
+                                                            <img src="../../admin/views/images/<?php echo $pblog['image']; ?>" alt="blog">
 
                                                         </a>
 
@@ -233,7 +234,7 @@ include 'menus.php';testConnexion();
 
                                                             controls
 
-                                                            src="../../../../../admin/images/<?php echo $pblog['image']; ?>">
+                                                            src="../../admin/views/images/<?php echo $pblog['image']; ?>">
 
                                                                 Your browser does not support the
 
@@ -267,7 +268,7 @@ include 'menus.php';testConnexion();
 
                                             <div class="embed-responsive embed-responsive-16by9">
 
-                                                <video controls src="../../../../../admin/images/<?php echo $pblog['image']; ?>"></video>
+                                                <video controls src="../../admin/views/images/<?php echo $pblog['image']; ?>"></video>
 
 
 
@@ -313,7 +314,7 @@ include 'menus.php';testConnexion();
 
                                                     </div>
 
-                                                    <a href="blog-details-image.html" class="btn btn-read-more btn-style-2">Continue Reading</a>
+                                                    <a href="blog-details.php?idd=<?php echo $pblog['idblog']; ?>" class="btn btn-read-more btn-style-2">Continue Reading</a>
 
                                                 </div>
 
