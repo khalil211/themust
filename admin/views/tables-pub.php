@@ -6,13 +6,14 @@ $emps=$db->query("DELETE FROM publicite WHERE fin<=CURDATE()");
 ?>
 <?php  
 
-$result=$db->query('select * from publicite ORDER BY ID');
-if (isset($_GET['search'])&&!empty($_GET['search'])) {
-    $search=htmlspecialchars($_GET['search']);
-    $result=$db->query('select * from publicite WHERE nom LIKE "%'.$search.'%"   ');
+$result=$db->query('select * from publicite ORDER BY DEBUT');
+if (!empty($_GET['searchh'])) {
+    $search=htmlspecialchars($_GET['searchh']);
+    $result=$db->query('select * from publicite WHERE nom LIKE "%'.$search.'%" OR nom LIKE "%'.$search.'%" OR cat LIKE "%'.$search.'%"  OR debut LIKE "%'.$search.'%" or fin LIKE "%'.$search.'%" ');
 }
 
 ?>
+
 
 
 <!doctype html>
@@ -24,6 +25,7 @@ if (isset($_GET['search'])&&!empty($_GET['search'])) {
 <!--<![endif]-->
 
 <head>
+
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Sufee Admin - HTML5 Admin Template</title>
@@ -51,7 +53,7 @@ if (isset($_GET['search'])&&!empty($_GET['search'])) {
     <!-- Left Panel -->
 
     <?php backUp() ?>
-<form action="liste.php">
+<form action="tables-pub.php">
     
 
         <div class="content mt-3">
@@ -62,6 +64,8 @@ if (isset($_GET['search'])&&!empty($_GET['search'])) {
                         <div class="card">
                             <div class="card-header">
                                 <strong class="card-title"> Listes des publicités </strong>
+                                <input type="checkbox" style="background-color: #FF0000" name="">
+                                 <input type="text" name="searchh" id="searchh"> <button><i class="fa fa-check"></i></button> <button><i class="fa fa-rotate-left"></i></button>
                             </div>
                             <div class="card-body">
                                 <table id="bootstrap-data-table-export" class="table table-striped table-bordered">
@@ -73,6 +77,7 @@ if (isset($_GET['search'])&&!empty($_GET['search'])) {
                                             <th> Date début </th>
                                             <th> Date fin   </th>
                                             <th> Description</th>
+                                            <th> Nombre de vues</th>
                                             <th> Action </th>
 
                                         </tr>
@@ -88,6 +93,7 @@ if (isset($_GET['search'])&&!empty($_GET['search'])) {
                                             <td><?php echo $row['debut']; ?></td>
                                             <td><?php echo $row['fin']; ?></td>
                                             <td><?php echo $row['description']; ?></td>
+                                            <td><?php echo $row['nb_vues']; ?></td>
                                              <td>
                             
                             <!--a href="#" class="btn btn-primary btn-xs" onclick="verifForm()" type="submit" Value="Ajouter"><i class="fa fa-folder"></i> ajotuer</a> -->
@@ -96,10 +102,16 @@ if (isset($_GET['search'])&&!empty($_GET['search'])) {
                                 <a href="delete.php?del=<?php echo $row['ID'];?>" class="btn btn-danger btn-xs"><i class="fa fa-trash-o"></i> Delete </a>
                           </td>
                                         </tr>
+                                    <?php } ?>
 
                                         </form>
-                                       <?php } ?>
+                                       
                                 </table>
+                                  <?php
+                                    $resu=$db->query("SELECT ID FROM publicite");
+$row = $resu->fetchAll(); ?>  
+<td> nombre de publicité : <?php echo (count($row));  ?></td> 
+
                             </div>
                         </div>
                     </div>

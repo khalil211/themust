@@ -30,6 +30,7 @@ if (isset($_POST['n'])&&isset($_POST['liste'])&&isset($_POST['d1'])&&isset($_POS
     {
     $e=new employe($_POST['n'],$_POST['liste'],$_POST['d1'],$_POST['d2'],$b);
     $e->ajouter();
+    header('location: tables-fidélité.php');
 }
 }
 

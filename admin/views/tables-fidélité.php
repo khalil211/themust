@@ -7,9 +7,9 @@ $db=config::getConnexion();
 <?php  
 
 $result=$db->query('select * from fidelite ORDER BY date_creation');
-if (isset($_GET['search'])&&!empty($_GET['search'])) {
-    $search=htmlspecialchars($_GET['search']);
-    $result=$db->query('select * from fidelite WHERE nom LIKE "%'.$search.'%"   ');
+if (!empty($_GET['searchh'])) {
+    $search=htmlspecialchars($_GET['searchh']);
+    $result=$db->query('select * from fidelite WHERE ID_client  LIKE "%'.$search.'%" OR sexe  LIKE "%'.$search.'%" OR point  LIKE "%'.$search.'%"  ');
 }
 
 ?>
@@ -51,7 +51,8 @@ if (isset($_GET['search'])&&!empty($_GET['search'])) {
     <!-- Left Panel -->
 
     <?php backUp() ?>
-<form action="liste.php">
+
+<form action="tables-fidélité.php">
     
 
         <div class="content mt-3">
@@ -62,6 +63,7 @@ if (isset($_GET['search'])&&!empty($_GET['search'])) {
                         <div class="card">
                             <div class="card-header">
                                 <strong class="card-title"> Listes  </strong>
+                                <input type="text" name="searchh" id="searchh"> <button><i class="fa fa-check"></i></button> <button><i class="fa fa-rotate-left"></i></button>
                             </div>
                             <div class="card-body">
                                 <table id="bootstrap-data-table-export" class="table table-striped table-bordered">
@@ -99,6 +101,7 @@ if (isset($_GET['search'])&&!empty($_GET['search'])) {
                                         </form>
                                        
                                 </table>
+
                                   <?php
                                     $resu=$db->query("SELECT ID FROM fidelite");
 $row = $resu->fetchAll(); ?>  
@@ -111,6 +114,7 @@ $row = $resu->fetchAll(); ?>
 
                 </div>
             </div><!-- .animated -->
+
         </div><!-- .content -->
 
 
