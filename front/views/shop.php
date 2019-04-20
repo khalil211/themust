@@ -25,6 +25,7 @@ $res=$db->query('select * from categorie');
 if (isset($_GET['del'])) {
     $ID = $_GET['del'];
  $omp=$db->query("UPDATE publicite SET nb_vues=nb_vues+1  WHERE `publicite`.`ID`='$ID'    ");
+header('location: shop.php');
 
 }  ?>
 
