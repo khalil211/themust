@@ -65,7 +65,7 @@ if (isset($_GET['search'])&&!empty($_GET['search'])) {
                 </div>
             </div>
         </div>
-
+        
        
         <div class="content mt-3">
             <div class="animated fadeIn">

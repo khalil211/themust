@@ -154,13 +154,13 @@ $result=$db->query('select * from publicite');
                         <div class="col-12 text-center">
                             <ul class="nav nav-tabs product-tab__head" id="product-tab" role="tablist">
                                 <li class="product-tab__item nav-item active">
-                                    <a class="product-tab__link nav-link active" id="nav-featured-tab" data-toggle="tab" href="#nav-featured" role="tab" aria-selected="true">En vedette</a>
+                                    <a class="product-tab__link nav-link active" id="nav-featured-tab" data-toggle="tab" href="popular-product.php" role="tab" aria-selected="true">En vedette</a>
                                 </li>
                                 <li class="product-tab__item nav-item">
                                     <a class="product-tab__link nav-link" id="nav-new-tab" data-toggle="tab" href="#nav-new" role="tab" aria-selected="false">Nouveaux produits</a>
                                 </li>
                                 <li class="product-tab__item nav-item">
-                                    <a class="product-tab__link nav-link" id="nav-bestseller-tab" data-toggle="tab" href="#nav-bestseller" role="tab" aria-selected="false">Meilleures ventes</a>
+                                    <a class="product-tab__link nav-link" id="nav-bestseller-tab" data-toggle="tab" href="popular-product.php" role="tab" aria-selected="false">Meilleures ventes</a>
                                 </li>
                                 <li class="product-tab__item nav-item">
                                     <a class="product-tab__link nav-link" id="nav-onsale-tab" data-toggle="tab" href="#nav-onsale" role="tab" aria-selected="false">Promotions</a>
@@ -175,9 +175,9 @@ $result=$db->query('select * from publicite');
                                                     <img src="assets/img/products/1-450x450.jpg" alt="Product" class="primary-image" />
                                                     <img src="assets/img/products/1-1-450x450.jpg" alt="Product" class="secondary-image" />
                                                     <div class="product-img-overlay">
-                                                        <span class="product-label discount">
+                                                       <span class="product-label discount">
                                                         </span>
-                                                        <a data-toggle="modal" data-target="#productModal" class="btn btn-transparent btn-fullwidth btn-medium btn-style-1">Quick View</a>
+                                                       <a data-toggle="modal" data-target="#productModal" class="btn btn-transparent btn-fullwidth btn-medium btn-style-1">Quick View</a>
                                                     </div>
                                                 </div>
                                                 <div class="product-content text-center">

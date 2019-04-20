@@ -9,8 +9,9 @@ $emps=$db->query("DELETE FROM publicite WHERE fin<=CURDATE()");
 <?php  
 
 $result=$db->query('select * from publicite');
-
+$resultat=$db->query('SELECT * FROM produit');
 ?>
+
 
 <!doctype html>
 <html class="no-js" lang="zxx">
@@ -152,7 +153,7 @@ $result=$db->query('select * from publicite');
                         <div class="col-12 text-center">
                             <ul class="nav nav-tabs product-tab__head" id="product-tab" role="tablist">
                                 <li class="product-tab__item nav-item active">
-                                    <a class="product-tab__link nav-link active" id="nav-featured-tab" data-toggle="tab" href="#nav-featured" role="tab" aria-selected="true">En vedette</a>
+                                    <a class="product-tab__link nav-link active" id="nav-featured-tab" data-toggle="tab" href="popular-product.php" role="tab" aria-selected="true">En vedette</a>
                                 </li>
                                 <li class="product-tab__item nav-item">
                                     <a class="product-tab__link nav-link" id="nav-new-tab" data-toggle="tab" href="#nav-new" role="tab" aria-selected="false">Nouveaux produits</a>
@@ -165,28 +166,40 @@ $result=$db->query('select * from publicite');
                                 </li>
                             </ul>
                             <div class="tab-content product-tab__content" id="product-tabContent">
+
                                 <div class="tab-pane fade show active" id="nav-featured" role="tabpanel">
+
                                     <div class="product-carousel js-product-carousel">
+
                                         <div class="product-carousel-group">
+                                            
                                             <div class="mirora-product">
+                                                 <?php
+                                            foreach ($resultat as $key ) {
+                                                     $note=$key['note'];
+                                                           $nb_note=$key['nb_note'];
+                                                                if(($note>3)&&($note<6)){
+                                                                    ?>
                                                 <div class="product-img">
-                                                    <img src="assets/img/products/1-450x450.jpg" alt="Product" class="primary-image" />
-                                                    <img src="assets/img/products/1-1-450x450.jpg" alt="Product" class="secondary-image" />
+
+                                                    <img src="../../admin/views/images/<?php echo ''.$key['img'];?>" alt="Product" class="primary-image" />
+                                                    <img src="../../admin/views/images/<?php echo $key['img'];?>" alt="Product" class="secondary-image" />
                                                     <div class="product-img-overlay">
                                                         <span class="product-label discount">
                                                         </span>
-                                                        <a data-toggle="modal" data-target="#productModal" class="btn btn-transparent btn-fullwidth btn-medium btn-style-1">Quick View</a>
+                                                        <a href="product-details.php?idd=<?php echo $key['id']; ?>" class="btn btn-transparent btn-fullwidth btn-medium btn-style-1">Détails</a>
                                                     </div>
                                                 </div>
                                                 <div class="product-content text-center">
                                                     <span></span>
-                                                    <h4><a href="product-details.html">Nom</a></h4>
+                                           <h4><a href="product-details.html">Nom</a> <?php echo $key['nom'];?></h4>
                                                     <div class="product-price-wrapper">
-                                                        <span class="money">prix</span>
+                                                       <span class="money">prix</span> <?php echo $key['prix'];?>
                                                         <span class="product-price-old">
                                                             <span class="money"></span>
                                                         </span>
                                                     </div>
+                                                    <h5><span class="pull-left"><?php echo "note"."  ".$note/$nb_note;?></span></h5>
                                                 </div>
                                                 <div class="mirora_product_action text-center position-absolute">
                                                     <div class="product-rating">
@@ -198,21 +211,31 @@ $result=$db->query('select * from publicite');
                                                             <i class="fa fa-star"></i>
                                                         </span>
                                                     </div>
+
                                                     <p>
-                                                      description du produit
+                                                       <?php echo $key['descr'];?>
                                                     </p>
+                                                    
                                                     <div class="product-action">
-                                                        <a class="same-action" href="wishlist.html" title="wishlist">
-                                                            <i class="fa fa-heart-o"></i>
-                                                        </a>
-                                                        <a class="add_cart cart-item action-cart" href="cart.html" title="wishlist"><span>ajouter au panier</span></a>
+                                                      
+                                                        <a class="add_cart cart-item action-cart" href="cart.php?addpp=<?php echo $key['id']; ?>" title="wishlist"><span>Ajouter au panier</span></a>
                                                         <a class="same-action compare-mrg" data-toggle="modal" data-target="#productModal" href="compare.html">
                                                             <i class="fa fa-sliders fa-rotate-90"></i>
                                                         </a>
                                                     </div>
                                                 </div>
+                                                <?php }}?> 
                                             </div>
-                                            <div class="mirora-product">
+                                            
+
+
+
+
+
+
+
+
+ <!--                                         <div class="mirora-product">
                                                 <div class="product-img">
                                                     <img src="assets/img/products/2-450x450.jpg" alt="Product" class="primary-image" />
                                                     <img src="assets/img/products/2-2-450x450.jpg" alt="Product" class="secondary-image" />
@@ -624,10 +647,13 @@ $result=$db->query('select * from publicite');
                                                         </a>
                                                     </div>
                                                 </div>
-                                            </div>
+                                            </div>-->
+                                                 
                                         </div>
+
                                     </div>
                                 </div>
+
                                 <div class="tab-pane fade" id="nav-new" role="tabpanel">
                                     <div class="product-carousel js-product-carousel">
                                         <div class="product-carousel-group">
@@ -2017,7 +2043,7 @@ $result=$db->query('select * from publicite');
                                                     </div>
                                                 </div>
                                             </div>
-                                        </div>
+                                        </div>-->
                                     </div>
                                 </div>
                             </div>
@@ -2043,7 +2069,7 @@ $result=$db->query('select * from publicite');
 
             <!-- Most Viewed Product area Start -->
 
-            <section class="mostviewed-product-area border-bottom pt--80 pb--60 pt-md--60 pb-md--50">
+<!--            <section class="mostviewed-product-area border-bottom pt--80 pb--60 pt-md--60 pb-md--50">
                 <div class="container">
                     <div class="row">
                         <div class="col-12">
@@ -2374,7 +2400,7 @@ $result=$db->query('select * from publicite');
                         </div>
                     </div>
                 </div>
-            </section> 
+            </section> -->
 
             <!-- Most Viewed Product area End -->
 
@@ -2423,6 +2449,7 @@ $result=$db->query('select * from publicite');
                         </div>
                     </div>
                 </div>
+
             </div>
 
             <!-- Promo Box area End -->

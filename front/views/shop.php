@@ -201,9 +201,9 @@ if (isset($_GET['del'])) {
                                             <div class="product-action">
                                               
                                                 <a class="add_cart cart-item action-cart" href="cart.php?addpp=<?php echo $key['id']; ?>" title="wishlist"><span>Ajouter au panier</span></a>
-                                                <a class="same-action" href="wish.php" title="wishlist">
+ <!--                                               <a class="same-action" href="wish.php?addp=<?php echo $key['id']; ?>" title="wishlist">
                                                     <i class="fa fa-heart-o"></i>
-                                                </a>
+                                                </a>-->
                                                
                                             </div>
                                         </div>
@@ -319,23 +319,20 @@ if (isset($_GET['del'])) {
                                             
                                         </ul>
                                     </div>
-                                    <div class="filter-categories">
+                                    <div  class="product-action-bottom">
                                         <h3 class="filter-heading">Catégories</h3>
                                         <?php while ($row = $res->fetch()) { 
                                     ?>
-                                        <ul class="filter-list">
-                                            <li>
-                                                <div class="filter-input filter-checkbox">
-                                                    <input type="checkbox" name="category1" id="category1" checked>
-                                                    <label for="category1"><?php echo $row['nom_cat']; ?></label>
-                                                </div>
-                                            </li>
-                                           
-                                            
+                                        <ul>
+                                           <li><a style="font-size: 20px;" class="product-action-bottom" 
+                                            href="afficher-categorie.php?idd=<?php echo $row['id_cat']; ?>"" ><?php echo $row['nom_cat'];?> </a></li>
+        
+                                </ul>
+                            <?php } ?>                                            
                                            
                                         </ul>
                                     </div>
-                                <?php } ?>
+                               
 <!--                                    <div class="filter-color">
                                         <h3 class="filter-heading">couleur</h3>
                                         <ul class="filter-list">

@@ -9,6 +9,11 @@ class produit
 	private $quantite;
 	private $prix;
 	private $categorie;
+	private $note;
+	private $choix;
+	private $nb_note;
+
+
 
 	public function __construct($id,$img,$nom,$descr,$quantite,$prix,$categorie)
 	{
@@ -19,6 +24,7 @@ class produit
         $this->quantite=$quantite;
         $this->prix=$prix;
         $this->categorie=$categorie;
+
 	}
 
 	public function getNom(){return $this->nom ;}
@@ -27,12 +33,19 @@ class produit
 	public function getImg(){return $this->img ;}
 	public function getdesc(){return $this->descr ;}
 	public function getQuant(){return $this->quantite ;}
+	public function getNote(){return $this->note ;}
+	public function getChoix(){return $this->choix ;}
+	public function getNb(){return $this->nb_note ;}
 
 	public function setNom($nom){$this->nom=$nom;}
 	public function setPrix($prix){$this->prix=$prix;}
 	public function setCat($categorie){$this->categorie=$categorie;}
 	public function setQuant($quantite){$this->quantite=$quantite;}
 	public function setImg($img){$this->img=$img;}
+	public function setNote($note){$this->note=$note ;}
+	public function setChoix($choix){ $this->choix=$choix ;}
+	public function setNb($nb){ $this->nb_note=$nb ;}
+
 
 	function ajouter()
 	{
