@@ -1,6 +1,6 @@
 <?php
-include "../front/template/demo.devitems.com/mirora-v2/mirora/reclamation.php";
-include "../config.php";
+include "../../front/entities/reclamation.php";
+include "../../config.php";
 $db=config::getConnexion();
     $result=$db->query('SELECT * FROM reclamation');
 ?>

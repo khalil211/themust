@@ -1,24 +1,25 @@
 <?php
-include "client.php";
-include "clientste.php";
+include "../entities/produit.php";
+
 
 $db=config::getConnexion();
-$result=$db->query('SELECT * FROM client');
-$results=$db->query('SELECT * FROM clientste');
-$nbc=0;
-$nbs=0;
+$result=$db->query('SELECT * FROM produit');
+$results=$db->query('SELECT * FROM produit WHERE prix > 499 ');
+$nbpt=0;
+$nbp=0;
  while ($row = $result->fetch()) 
  {
- $nbc++;
+ $nbpt++;
  }
  while ($row = $results->fetch()) 
  {
- $nbs++;
+ $nbp++;
  }
- $nbt=$nbc+$nbs;
- $nbcp=($nbc*100)/$nbt;
- $nbsp=($nbs*100)/$nbt;
-
+ //$nbt=$nbc+$nbs;
+ $nbpp=($nbp*100)/$nbpt;
+ $var=100-$nbpp;
+ $small=$nbpt-$nbp;
+ 
 ?>
 
 <!doctype html>
@@ -32,7 +33,7 @@ $nbs=0;
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title> Statistiques Client </title>
+    <title> Statistiques Produits </title>
     <meta name="description" content="Sufee Admin - HTML5 Admin Template">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -51,7 +52,7 @@ $nbs=0;
     <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800' rel='stylesheet' type='text/css'>
 
 
-	<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+  <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
     <script type="text/javascript">
       google.charts.load('current', {'packages':['corechart']});
       google.charts.setOnLoadCallback(drawChart);
@@ -60,12 +61,12 @@ $nbs=0;
 
         var data = google.visualization.arrayToDataTable([
           ['Task', 'Hours per Day'],
-          ['clients', <?php echo $nbc?>],
-          ['STE', <?php echo $nbs ?>]
+          ['+500', <?php echo $nbp?>],
+          ['-500', <?php echo $small ?>]
         ]);
 
         var options = {
-          title: 'My Daily Activities'
+          title: 'Prix'
         };
 
         var chart = new google.visualization.PieChart(document.getElementById('piechart'));
@@ -85,19 +86,24 @@ $nbs=0;
 		<br>
 <table style="width:100%">
   <tr>
-    <th>clients</th>
-    <th>clients STE</th> 
-    <th>clients totale</th>
+
+    <th>Produits total </th>
+    <th>Prix > 500 </th>
+    <th>Prix < 500 </th> 
+ 
   </tr>
   <tr>
-    <td> <?php  echo $nbc;?></td>
-    <td><?php  echo $nbs;?></td> 
-    <td><?php  echo $nbt;?></td>
+    <td> <?php  echo $nbpt;?></td>
+    <td><?php  echo $nbp;?></td>
+    <td><?php  echo $small;?></td> 
+ 
   </tr>
   <tr>
-    <td> <?php  echo $nbcp?> %</td>
-    <td> <?php echo $nbsp?> %</td> 
-    <td>100 %</td>
+    <td> 100 %</td>
+    <td> <?php echo $nbpp?> %</td> 
+        <td> <?php echo $var?> %</td> 
+
+  
   </tr>
 </table>
 <?php

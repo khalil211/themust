@@ -2,7 +2,8 @@
 include '../../config.php';
 $db=config::getConnexion();
 $idd=$_GET['idd'];
-$query=$db->prepare('select * from produit where id=:idd');
+$query=$db->prepare('select * from produit p inner join categorie c where categorie = id_cat and id=:idd');
+//$result=$db->query('select * from produit p inner join categorie c where categorie = id_cat order by id desc');
 $query->bindValue(':idd',$idd);
 $query->execute();
 $result=$query->fetch();
@@ -502,11 +503,12 @@ $result=$query->fetch();
                                 </div>-->
                                 <!-- Product Thumbnail Carousel End -->
                             </div>
+                             <form  method="POST" action="noterProduit.php" name="formName">
                             <div class="col-lg-6">
                                 <!-- Single Product Content Start -->
                                 <div class="product-details-content"> 
                                     <div class="product-details-top">
-                                        <h2 class="product-details-name"><?php echo $result['nom'];?></h2>
+                                        <h2 class="product-details-name" ><?php echo $result['nom'];?></h2>
                                         <div class="ratings-wrap">
 <!--                                            <div class="ratings">
                                                 <i class="fa fa-star rated"></i>
@@ -522,26 +524,56 @@ $result=$query->fetch();
                                         </div>
                                         <ul class="product-details-list list-unstyled">
                                             <li> <div class="product-price-wrapper">
-                                            <span class="money"> <?php echo $result['prix'];?></span>
+                                            <span class="money" style="font-size: 18px;"> <?php echo $result['prix'];?> DT</span>
                                             
                                         </div></li>
                                           
                                             <li>
                                                    <span class="product-price-old">
-                                                <span class="money">Quantité <?php echo $result['quantite'];?></span>
+                                                <span class="money" style="font-size: 18px;">Quantité <?php echo $result['quantite'];?></span> <br>
                                             </span>
-                                                    
+                                            <br>
+                                               <?php 
+                                        $id=$result['id'];
+                                        $likes=$db->prepare('SELECT id FROM likes WHERE id_produit=?');
+                                        $likes->execute(array($id));
+                                        $likes=$likes->rowCount();
+
+                                        $dislikes=$db->prepare('SELECT id FROM dislikes WHERE id_produit=?');
+                                        $dislikes->execute(array($id));
+                                        $dislikes=$dislikes->rowCount();
+                                    ?> 
+                                                <span  style="font-size: 18px;"> <i class="fa fa-thumbs-up" style="width: 30px; height: 30px;"></i><a href="action.php?t=1&id=<?= $result['id'] ?>">Like </a> <?php echo $likes ;?></span> 
+                                                <br>
+                                                  <span style="font-size: 18px;"> <i class="fa fa-thumbs-down" style="width: 30px; height: 30px;"></i><a href="action.php?t=2&id=<?= $result['id'] ?>">Dislikes </a> <?php echo $dislikes; ?></span>
                                                 </div></li>
-                                            <li><?php echo $result['categorie'];?></li>
+                                                <span class="product-price-old">
+
+                                        <li><span class="money" style="font-size: 18px;">Catégorie<br> <?php echo $result['nom_cat'];?></span></li>
                                            
                                         </ul>
+                                        <br>
+                                            <label class="product-options mb--20">
+                                                <h3><span>Noter le produit</span> </h3></label>
+                
+                                   <input type="number" name="NOTER" placeholder="entier entre 0 et 5 " required pattern='[0-5]{0,5}'>
+
+                      <input type="hidden" name="refe" value="<?php echo $result['id'];?>">
+                       <br> <br>
+                    </div>
+                    </form>
+        <a href="noterProduit.php?refe=<?php echo $result['id'];;?>" > 
+            <button type="submit" class="btn btn-medium btn-style-2 add-to-cart"><span class=" "></span> NOTER</button></a>
+           
+       
 <!--                                        <div class="product-details-price-wrapper">
                                             <span class="money">$550.00</span>
                                             <span class="product-price-old">
                                                 <span class="money">$700.00</span>
                                             </span>
                                         </div>   -->                                   
-                                    </div>  
+                                    </div> 
+                                 
 
                                     <div class="product-details-bottom">
 
@@ -556,20 +588,19 @@ $result=$query->fetch();
                                                     Add To Cart
                                                 </button>
                                             </div>-->
-                                            <div class="product-details-action-bottom">
-                                                <a href="wish.php">+Add to wishlist</a>
-                                                
-                                            </div>
+                                          
                                         </div>  
                                          
-                                        <div class="social-share">
+<!--                                        <div class="social-share">
                                             <a href="facebook.com" class="facebook share-button">
                                                 <i class="fa fa-facebook"></i>
                                                 <span>Like</span>
                                             </a>
                                             
                                            
-                                        </div>
+                                        </div>-->
+
+
                                     </div>       
                                 </div>
                                 <!-- Single Product Content End -->

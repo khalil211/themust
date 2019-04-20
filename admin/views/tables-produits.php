@@ -1,7 +1,7 @@
 <?php
 include "../../config.php";
 $db=config::getConnexion();
-$result=$db->query('select * from produit p inner join categorie c where categorie = id_cat ');
+$result=$db->query('select * from produit p inner join categorie c where categorie = id_cat order by id desc');
 ?>
 
 <?php  
@@ -65,7 +65,7 @@ if (isset($_GET['search'])&&!empty($_GET['search'])) {
                 </div>
             </div>
         </div>
-
+        
        
         <div class="content mt-3">
             <div class="animated fadeIn">

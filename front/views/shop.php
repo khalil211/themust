@@ -3,7 +3,22 @@ include 'menus.php';
 testConnexion();
 include '../../config.php';
 $db=config::getConnexion();
-$result=$db->query('select * from produit');
+
+		$produitparpage=5;
+		$produittotalreq=$db->query('select id from produit ');
+		$produittotal= $produittotalreq->rowCount();
+		$pagestotales=ceil($produittotal/$produitparpage);
+if( isset($_GET['page']) AND !empty($_GET['page']) AND $_GET['page'] > 0)
+{
+	$_GET['page']=intval($_GET['page']);
+	$pagecourante=$_GET['page'];
+}
+else
+{
+	$pagecourante=1;
+}
+$depart=($pagecourante-1)*$produitparpage;
+$result=$db->query('SELECT * FROM produit LIMIT '.$depart.','.$produitparpage);
 $res=$db->query('select * from categorie');
 ?>
 <?php
@@ -107,7 +122,9 @@ header('location: shop.php');
                                             <a class="grid-5" data-target="gridview-5" data-toggle="tooltip" data-placement="top" title="5">5</a>
                                             <a class="list" data-target="listview" data-toggle="tooltip" data-placement="top" title="5">List</a>
                                         </div>
-                                        <span class="product-pages">Showing 1 to 9 of 11 (2 Pages)</span>
+
+                                        <!-- PAGINATION -->
+                                        <span class="product-pages">Pages </span>
                                         <div class="product-showing">
                                             <label class="select-label">Show:</label>
                                             <select class="short-select nice-select">
@@ -120,6 +137,8 @@ header('location: shop.php');
                                                 <option value="1">9</option>
                                             </select>
                                         </div>
+
+                                        <!---->
                                         <div class="product-short">
                                             <label class="select-label">Short By:</label>
                                             <select class="short-select nice-select">
@@ -181,13 +200,12 @@ header('location: shop.php');
                                             </p>
 
                                             <div class="product-action">
-                                                <a class="same-action" href="wishlist.html" title="wishlist">
-                                                    <i class="fa fa-heart-o"></i>
-                                                </a>
+                                              
                                                 <a class="add_cart cart-item action-cart" href="cart.php?addpp=<?php echo $key['id']; ?>" title="wishlist"><span>Ajouter au panier</span></a>
-                                                <a class="same-action compare-mrg" data-toggle="modal" data-target="#p<?php echo $key['id']; ?>" href="compare.html">
-                                                    <i class="fa fa-sliders fa-rotate-90"></i>
-                                                </a>
+ <!--                                               <a class="same-action" href="wish.php?addp=<?php echo $key['id']; ?>" title="wishlist">
+                                                    <i class="fa fa-heart-o"></i>
+                                                </a>-->
+                                               
                                             </div>
                                         </div>
                                     </div>
@@ -225,9 +243,7 @@ header('location: shop.php');
                                             </div>
                                             <div class="product-action">
                                                 <a class="add_cart cart-item action-cart" href="cart.html" title="wishlist"><span>Add to cart</span></a>
-                                                <a class="same-action" href="wishlist.html" title="wishlist">
-                                                    <i class="fa fa-heart-o"></i>
-                                                </a>
+                                                
                                                 <a class="same-action compare-mrg" data-toggle="modal" data-target="#productModal" href="compare.html">
                                                     <i class="fa fa-sliders fa-rotate-90"></i>
                                                 </a>
@@ -242,7 +258,7 @@ header('location: shop.php');
 
                             <!-- Pagination Start -->
                             <div class="pagination-wrap mt--15 mt-md--10">
-                                <p class="page-ammount">Showing 1 to 9 of 15 (2 Pages)</p>
+<!--                                <p class="page-ammount">Showing 1 to 9 of 15 (2 Pages)</p>
                                 <ul class="pagination">
                                     <li><a href="#" class="first">|&lt;</a></li>
                                     <li><a href="#" class="prev">&lt;</a></li>
@@ -250,7 +266,22 @@ header('location: shop.php');
                                     <li><a href="#">2</a></li>
                                     <li><a href="#" class="next">&gt;</a></li>
                                     <li><a href="#" class="next">&gt;|</a></li>
-                                </ul>
+                                </ul>-->
+                                
+                                <?php 
+                                for ($i=1;$i<$pagestotales;$i++)
+                                {?>
+  									<ul class="pagination">
+                                 <!-- echo ' <a href="shop.php?page='.$i.'">'.$i.'</a>' ; -->
+                                  <li> 
+                                  	<?php 
+                                  	echo ' <a href="shop.php?page='.$i.'">'.$i.'</a>' ;
+                                  	?>
+                                  </li>
+                                 <?php
+                                }
+                                ?>
+
                             </div>
                             <!-- Pagination End -->
                         </div>
@@ -289,25 +320,20 @@ header('location: shop.php');
                                             
                                         </ul>
                                     </div>
-                                    <div class="filter-categories">
+                                    <div  class="product-action-bottom">
                                         <h3 class="filter-heading">Catégories</h3>
-                                        <ul class="filter-list">
-                                            <li>
-                                                <div class="filter-input filter-checkbox">
-                                                    <input type="checkbox" name="category1" id="category1" checked>
-                                                    <label for="category1">Homme</label>
-                                                </div>
-                                            </li>
-                                            <li>
-                                                <div class="filter-input filter-checkbox">
-                                                    <input type="checkbox" name="category2" id="category2">
-                                                    <label for="category2">Femme</label>
-                                                </div>
-                                            </li>
-                                            
+                                        <?php while ($row = $res->fetch()) { 
+                                    ?>
+                                        <ul>
+                                           <li><a style="font-size: 20px;" class="product-action-bottom" 
+                                            href="afficher-categorie.php?idd=<?php echo $row['id_cat']; ?>"" ><?php echo $row['nom_cat'];?> </a></li>
+        
+                                </ul>
+                            <?php } ?>                                            
                                            
                                         </ul>
                                     </div>
+                               
 <!--                                    <div class="filter-color">
                                         <h3 class="filter-heading">couleur</h3>
                                         <ul class="filter-list">
@@ -342,7 +368,7 @@ header('location: shop.php');
                                                 </div>
                                             </li>
                                         </ul>
-                                    </div>-->
+                                    </div>
                                     <div class="filter-color">
                                         <h3 class="filter-heading">Manufacturer</h3>
                                         <ul class="filter-list">
@@ -371,7 +397,7 @@ header('location: shop.php');
                                                 </div>
                                             </li>
                                         </ul>
-                                    </div>
+                                    </div>-->
                                 </div>
 <!--                                <div class="banner-static">
                                     <a href="#">

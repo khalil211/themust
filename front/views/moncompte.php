@@ -1,5 +1,5 @@
 <?php
-include "../../../../../config.php";
+include "../../config.php";
 include 'menus.php';
 testConnexion();
 $db=config::getConnexion();

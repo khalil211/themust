@@ -1,4 +1,4 @@
-<?php
+se<?php
 include 'menus.php';
 include "../entities/client.php";
 include "../entities/clientste.php";
@@ -92,6 +92,8 @@ if (isset($_POST['logidentifiant'])&&isset($_POST['logmotdepasse']))
         }
     }
     ?>
+	
+
         <!-- Main Wrapper Start -->
         <div class="main-content-wrapper">
             <div class="login-register-area">
@@ -115,12 +117,18 @@ if (isset($_POST['logidentifiant'])&&isset($_POST['logmotdepasse']))
                                     </div>
                                     <div class="form__group d-flex align-items-center">
                                         <button type="submit" class="btn btn-5 btn-style-1 color-1">Se connecter</button>
+                                        
+										
                                         <div class="custom-checkbox ml--20">
-                                            <input type="checkbox" name="stayco" id="sessionStore" class="form__checkbox">
+                                            <input type="checkbox" name="sessionStore" id="sessionStore" class="form__checkbox">
                                             
-                                            <label for="stayco" class="form__checkbox--label">Se souvenir</label>
+                                            <label for="sessionStore" class="form__checkbox--label">Remember me</label>
                                         </div>
+                                    
+										
+										
                                     </div>
+									
                                     <a href="#" class="forgot-pass">vous avez oublié votre mot de passe?</a>
                                 </form>
                             </div>
