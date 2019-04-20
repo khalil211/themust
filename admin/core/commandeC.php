@@ -80,6 +80,12 @@ class commandeC
 		$query->bindValue(':id',$num);
 		$query->execute();
 	}
+
+	public function getProduits($numero)
+	{
+		$db=config::getConnexion();
+		return $db->query('SELECT p.nom nomprod,p.prix prixprod,pc.quantite quantiteprod,p.img imgprod FROM produitcommande pc INNER JOIN produit p ON p.id=pc.idproduit WHERE pc.idcommande='.$numero);
+	}
 }
 
 ?>

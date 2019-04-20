@@ -1,9 +1,9 @@
-let ajouterp=document.getElementById("ajouterp");
+let ajouterp=document.getElementById("ajouterp")
 let nbp=0;
 let idc=document.getElementById("idc"), produits=new Array();
 let alerte="<div class=\"sufee-alert alert with-close alert-danger alert-dismissible fade show\" id=\"alerte\"><span class=\"badge badge-pill badge-danger\">Erreur</span>   Veuillez vérifier les informations fournies.<button type=\"button\" class=\"close\" data-dismiss=\"alert\"aria-label=\"Close\"><span aria-hidden=\"true\">×</span></button></div>";
 
-commandef.addEventListener("submit",function (e)
+/*commandef.addEventListener("submit",function (e)
 {
 	let checkP=true;
 	for (let i=0;i<produits.length;i++)
@@ -16,19 +16,11 @@ commandef.addEventListener("submit",function (e)
 		document.getElementById("commandef").insertAdjacentHTML("beforebegin",alerte);
 		e.preventDefault();
 	}
-});
-
-idc.addEventListener("input",function (e)
-{
-	if (idc.value<1)
-		idc.setAttribute("class","form-control is-invalid");
-	else
-		idc.setAttribute("class","form-control");
-	e.stopPropagation();
-});
+});*/
 
 ajouterp.addEventListener("click",function (e)
 {
+	console.log("test");
 	let nouv=document.createElement("div");
 	nouv.style.display="flex";
 	nouv.style.marginBottom="10px";

@@ -95,10 +95,14 @@ testConnexion();
                                                 {
                                                     $panier->setId($_SESSION['idclient']);
                                                     $panier=$panierC->afficher($panier);
+                                                    $produits=$panier->getProduits();
                                                 }
-                                                $produits=$panier->getProduits();
+                                                else
+                                                    $produits=$panierC->produitsSession();
+                                                $prixtot=0;
                                                 foreach($produits as $p)
                                                 {
+                                                    $prixtot+=$p->getPrixUnitaire()*$p->getQuantite();
                                                     ?>
                                                     <tr>
                                                         <td><a class="delete" href="cart.php?delpp=<?php echo $p->getIdProduit(); ?>"><i class="fa fa-times"></i></a></td>
@@ -147,12 +151,12 @@ testConnexion();
                                             <tbody>
                                                 <tr class="cart-total">
                                                     <th>TOTAL</th>
-                                                    <td><span class="price-ammount"><?php echo $panier->getPrixTotal(); ?></span></td>
+                                                    <td><span class="price-ammount"><?php echo $prixtot; ?></span></td>
                                                 </tr>
                                             </tbody>
                                         </table>
                                     </div>
-                                    <a href="../core/passer-commande.php" class="btn btn-medium btn-style-3">Passer la commande</a>
+                                    <a href="<?php if (isset($_SESSION['idclient'])) echo '../core/passer-commande.php'; else echo 'login-register.php'; ?>" class="btn btn-medium btn-style-3">Passer la commande</a>
                                 </div>
                             </div>
                         </div>

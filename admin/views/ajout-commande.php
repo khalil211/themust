@@ -1,3 +1,11 @@
+<?php
+include "../../config.php";
+$db=config::getConnexion();
+$client=$db->query('SELECT identifiant FROM client');
+$clientste=$db->query('SELECT identifiant FROM clientste');
+$produit=$db->query('SELECT id,nom FROM produit');
+?>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -17,14 +25,13 @@
     <link rel="stylesheet" href="vendors/selectFX/css/cs-skin-elastic.css">
     <link rel="stylesheet" href="vendors/jqvmap/dist/jqvmap.min.css">
 
-
+    <link rel="stylesheet" href="vendors/chosen/chosen.min.css">
     <link rel="stylesheet" href="assets/css/style.css">
 
     <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800' rel='stylesheet' type='text/css'>
 </head>
 <body>
 	<?php
-	include "../../config.php";
 	backUP();
 	?>
     <div class="card-header">
@@ -75,54 +82,32 @@
             <div class="row form-group">
                 <div class="col col-md-3"><label class=" form-control-label" for="idc">ID Client</label></div>
                 <div class="col-12 col-md-9">
-                    <div class="card-body">
-                      <select data-placeholder="Choose a Country..." class="standardSelect" tabindex="-1" style="display: none;">
+                    <div class="card-body" style="width: 250px;">
+                      <select data-placeholder="ID Client" name="idc" class="standardSelect" tabindex="-1" style="display: none;">
                         <option value=""></option>
-                        <option value="United States">United States</option>
-                        <option value="United Kingdom">United Kingdom</option>
-                        <option value="Afghanistan">Afghanistan</option>
-                        <option value="Aland Islands">Aland Islands</option>
-                        <option value="Albania">Albania</option>
-                        <option value="Algeria">Algeria</option>
-                        <option value="American Samoa">American Samoa</option>
-                        <option value="Andorra">Andorra</option>
-                        <option value="Angola">Angola</option>
-                        <option value="Anguilla">Anguilla</option>
-                        <option value="Antarctica">Antarctica</option>
+                        <?php
+                        foreach($client as $c)
+                        {
+                            ?>
+                            <option value="<?php echo $c['identifiant']; ?>"><?php echo $c['identifiant']; ?></option>
+                            <?php
+                        }
+                        ?>
+                        <?php
+                        foreach($clientste as $c)
+                        {
+                            ?>
+                            <option value="<?php echo $c['identifiant']; ?>"><?php echo $c['identifiant']; ?></option>
+                            <?php
+                        }
+                        ?>
                       </select>
-                      <div class="chosen-container chosen-container-single" title="" style="width: 100%;">
-                        <a class="chosen-single chosen-default">
-                          <span>Choose a Country...</span>
-                          <div>
-                            <b></b>
-                          </div>
-                        </a>
-                        <div class="chosen-drop">
-                          <div class="chosen-search">
-                            <input class="chosen-search-input" type="text" autocomplete="off" tabindex="1">
-                          </div>
-                          <ul class="chosen-results">
-                            <li class="active-result" data-option-array-index="1">United States</li>
-                            <li class="active-result" data-option-array-index="2">United Kingdom</li>
-                            <li class="active-result" data-option-array-index="3">Afghanistan</li>
-                            <li class="active-result" data-option-array-index="4">Aland Islands</li>
-                            <li class="active-result" data-option-array-index="5">Albania</li>
-                            <li class="active-result" data-option-array-index="6">Algeria</li>
-                            <li class="active-result" data-option-array-index="7">American Samoa</li>
-                            <li class="active-result" data-option-array-index="8">Andorra</li>
-                            <li class="active-result" data-option-array-index="9">Angola</li>
-                            <li class="active-result" data-option-array-index="10">Anguilla</li>
-                            <li class="active-result" data-option-array-index="11">Antarctica</li>
-                          </ul>
-                        </div>
-                      </div>
                     </div>
-                    <input type="text" id="idc" name="idc" placeholder="ID Client" class="form-control" required autofocus><small class="form-text text-muted"></small>
                 </div>
             </div>
             <div class="row form-group">
                 <div class="col col-md-3"><label class=" form-control-label">Produits</label></div>
-                <div class="col-12 col-md-9" id="listep"><button type="button" class="btn btn-success btn-sm" id="ajouterp"> Ajouter produit</button><small class="form-text text-muted"></small></div>
+                <div class="col-12 col-md-9" id="listep"><button type="button" class="btn btn-success btn-sm" id="ajouterp">Ajouter produit</button><small class="form-text text-muted"></small></div>
             </div>
             <div class="row form-group">
                 <div class="col col-md-3"><label class=" form-control-label" for="passee">Passée</label></div>
@@ -142,6 +127,121 @@
 	<?php
 	backDown();
 	?>
-    <script type="text/javascript" src="assets/js/ajout-commande.js"></script>
+    <script type="text/javascript">
+        let optionProduit
+        let ajouterp=document.getElementById("ajouterp")
+        let nbp=0;
+        let idc=document.getElementById("idc"), produits=new Array();
+        let alerte="<div class=\"sufee-alert alert with-close alert-danger alert-dismissible fade show\" id=\"alerte\"><span class=\"badge badge-pill badge-danger\">Erreur</span>   Veuillez vérifier les informations fournies.<button type=\"button\" class=\"close\" data-dismiss=\"alert\"aria-label=\"Close\"><span aria-hidden=\"true\">×</span></button></div>";
+
+        /*commandef.addEventListener("submit",function (e)
+        {
+            let checkP=true;
+            for (let i=0;i<produits.length;i++)
+            {
+                if (produits[i].childNodes[0].value<1 || produits[i].childNodes[1].value<1)
+                    checkP=false;
+            }
+            if (idc.value<1 || !checkP)
+            {
+                document.getElementById("commandef").insertAdjacentHTML("beforebegin",alerte);
+                e.preventDefault();
+            }
+        });*/
+
+        ajouterp.addEventListener("click",function (e)
+        {
+            let nouv=document.createElement("div");
+            nouv.style.display="flex";
+            nouv.style.marginBottom="10px";
+            
+            let selectProduit=document.createElement("select");
+            selectProduit.setAttribute("data-placeholder","Produit");
+            selectProduit.setAttribute("name","idp"+nbp);
+            selectProduit.setAttribute("class","standardSelect");
+            selectProduit.setAttribute("tabindex","-1");
+            selectProduit.style.display="none";
+
+            optionProduit=document.createElement("option");
+            optionProduit.setAttribute("value","");
+            optionProduit.textContent="";
+            selectProduit.appendChild(optionProduit);
+            <?php
+            foreach($produit as $p)
+            {
+                ?>
+                optionProduit=document.createElement("option");
+                optionProduit.setAttribute("value","<?php echo $p['id'].' - '.$p['nom'];?>");
+                optionProduit.textContent="<?php echo $p['id'].' - '.$p['nom'];?>";
+                selectProduit.appendChild(optionProduit);
+                <?php
+            }
+            ?>
+            let idp=document.createElement("div");
+            idp.setAttribute("class","col col-md-3");
+            let div=document.createElement("div");
+            div.setAttribute("class","card-body");
+            div.appendChild(selectProduit);
+            idp.appendChild(div);
+
+            let qte=document.createElement("input");
+            qte.setAttribute("class","form-control");
+            qte.setAttribute("type","number");
+            qte.setAttribute("placeholder","Quantite");
+            qte.setAttribute("name","qte"+nbp);
+            qte.setAttribute("required","true");
+            qte.style.marginRight="10px";
+            qte.style.width="115px";
+            qte.addEventListener("click",function (e4)
+            {
+                if (qte.value<1)
+                    qte.setAttribute("class","form-control is-invalid");
+                else
+                    qte.setAttribute("class","form-control");
+                e4.stopPropagation();
+            });
+
+            let supprimerp=document.createElement("button");
+            supprimerp.setAttribute("type","button");
+            supprimerp.setAttribute("class","btn btn-danger btn-sm");
+            supprimerp.setAttribute("id",nbp+"supprimer");
+            supprimerp.innerHTML="<i class=\"fa fa-trash-o\"></i>";
+            supprimerp.style.width="40px";
+            nouv.appendChild(idp);
+            nouv.appendChild(qte);
+            nouv.appendChild(supprimerp);
+            document.getElementById("listep").insertBefore(nouv,ajouterp);
+            produits.push(nouv);
+            supprimerp.addEventListener("click",function (e2)
+            {
+                document.getElementById("listep").removeChild(nouv);
+                produits.splice(parseInt(supprimerp.id),1);
+                nbp--;
+                for (let i=0;i<produits.length;i++)
+                {
+                    produits[i].childNodes[0].setAttribute("name","idp"+i);//hedhi tetbadel
+                    produits[i].childNodes[1].setAttribute("name","qte"+i);
+                    produits[i].childNodes[2].setAttribute("id",i);
+                }
+                e2.stopPropagation();
+            });
+            nbp++;
+            e.stopPropagation();
+        });
+    </script>
+    <script src="vendors/jquery/dist/jquery.min.js"></script>
+    <script src="vendors/popper.js/dist/umd/popper.min.js"></script>
+    <script src="vendors/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="assets/js/main.js"></script>
+    <script src="vendors/chosen/chosen.jquery.min.js"></script>
+    <script>
+        jQuery(document).ready(function() {
+            jQuery(".standardSelect").chosen({
+                disable_search_threshold: 10,
+                no_results_text: "Oops, nothing found!",
+                width: "100%"
+            });
+        });
+    </script>
 </body>
 </html>
