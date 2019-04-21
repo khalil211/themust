@@ -321,15 +321,17 @@ header('location: shop.php');
                                         </ul>
                                     </div>
                                     <div  class="product-action-bottom">
+                                         <div class="filter-input filter-radio">
                                         <h3 class="filter-heading">Catégories</h3>
                                         <?php while ($row = $res->fetch()) { 
                                     ?>
                                         <ul>
-                                           <li><a style="font-size: 20px;" class="product-action-bottom" 
+                                           <li> <i class="fa fa-cube"></i>  <a style="font-size: 20px; color: #959696; " class="filter-input filter-radio" 
                                             href="afficher-categorie.php?idd=<?php echo $row['id_cat']; ?>"" ><?php echo $row['nom_cat'];?> </a></li>
         
                                 </ul>
-                            <?php } ?>                                            
+                            <?php } ?> 
+                            </div>                                           
                                            
                                         </ul>
                                     </div>

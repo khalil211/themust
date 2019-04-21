@@ -7,7 +7,6 @@ $db=config::getConnexion();
 $emps=$db->query("DELETE FROM publicite WHERE fin<=CURDATE()");
 ?>
 <?php  
-
 $result=$db->query('select * from publicite');
 $resultat=$db->query('SELECT * FROM produit');
 ?>
@@ -173,12 +172,12 @@ $resultat=$db->query('SELECT * FROM produit');
 
                                         <div class="product-carousel-group">
                                             
-                                            <div class="mirora-product">
-                                                 <?php
+                                          <div class="mirora-product">
+                                             <?php
                                             foreach ($resultat as $key ) {
                                                      $note=$key['note'];
                                                            $nb_note=$key['nb_note'];
-                                                                if(($note>3)&&($note<6)){
+                                                                if(($note>3.5)&&($note<6)){
                                                                     ?>
                                                 <div class="product-img">
 
@@ -187,7 +186,7 @@ $resultat=$db->query('SELECT * FROM produit');
                                                     <div class="product-img-overlay">
                                                         <span class="product-label discount">
                                                         </span>
-                                                        <a href="product-details.php?idd=<?php echo $key['id']; ?>" class="btn btn-transparent btn-fullwidth btn-medium btn-style-1">Détails</a>
+                                                            <a href="product-details.php?idd=<?php echo $key['id']; ?>" class="btn btn-transparent btn-fullwidth btn-medium btn-style-1">Détails</a>
                                                     </div>
                                                 </div>
                                                 <div class="product-content text-center">
@@ -199,7 +198,8 @@ $resultat=$db->query('SELECT * FROM produit');
                                                             <span class="money"></span>
                                                         </span>
                                                     </div>
-                                                    <h5><span class="pull-left"><?php echo "note"."  ".$note/$nb_note;?></span></h5>
+                                                    <h5>
+                                                        <?php echo "note"."  ".$note/$nb_note;?></h5>
                                                 </div>
                                                 <div class="mirora_product_action text-center position-absolute">
                                                     <div class="product-rating">
@@ -215,7 +215,7 @@ $resultat=$db->query('SELECT * FROM produit');
                                                     <p>
                                                        <?php echo $key['descr'];?>
                                                     </p>
-                                                    
+                                                    <br>
                                                     <div class="product-action">
                                                       
                                                         <a class="add_cart cart-item action-cart" href="cart.php?addpp=<?php echo $key['id']; ?>" title="wishlist"><span>Ajouter au panier</span></a>
@@ -235,7 +235,7 @@ $resultat=$db->query('SELECT * FROM produit');
 
 
 
- <!--                                         <div class="mirora-product">
+<!--                                       <div class="mirora-product">
                                                 <div class="product-img">
                                                     <img src="assets/img/products/2-450x450.jpg" alt="Product" class="primary-image" />
                                                     <img src="assets/img/products/2-2-450x450.jpg" alt="Product" class="secondary-image" />
@@ -653,6 +653,7 @@ $resultat=$db->query('SELECT * FROM produit');
 
                                     </div>
                                 </div>
+
 
                                 <div class="tab-pane fade" id="nav-new" role="tabpanel">
                                     <div class="product-carousel js-product-carousel">

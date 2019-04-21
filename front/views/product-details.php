@@ -534,6 +534,7 @@ $result=$query->fetch();
                                             </span>
                                             <br>
                                                <?php 
+                                               
                                         $id=$result['id'];
                                         $likes=$db->prepare('SELECT id FROM likes WHERE id_produit=?');
                                         $likes->execute(array($id));
@@ -563,7 +564,7 @@ $result=$query->fetch();
                     </div>
                     </form>
         <a href="noterProduit.php?refe=<?php echo $result['id'];;?>" > 
-            <button type="submit" class="btn btn-medium btn-style-2 add-to-cart"><span class=" "></span> NOTER</button></a>
+            <button type="submit" class="btn btn-medium btn-style-2 add-to-cart"><span class=" "></span> Noter </button></a>
            
        
 <!--                                        <div class="product-details-price-wrapper">

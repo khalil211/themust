@@ -51,11 +51,19 @@ function backUp()
 							<li><i class="fa fa-table"></i><a href="clientstats.php">Statistiques</a></li>
                         </ul>
                     </li>
+					     <li class="menu-item-has-children dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-table"></i>FAQ</a>
+                        <ul class="sub-menu children dropdown-menu">
+						<li><i class="fa fa-table"></i><a href="ajout-faq.php">Ajouter une FAQ</a></li>
+                            <li><i class="fa fa-table"></i><a href="tables-faq.php">Listes des FAQ</a></li>
+                        </ul>
+                    </li>
                     <li class="menu-item-has-children dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-th"></i>Produits</a>
                         <ul class="sub-menu children dropdown-menu">
                             <li><i class="menu-icon fa fa-th"></i><a href="tables-produits.php">Liste des produits</a></li>
                             <li><i class="menu-icon fa fa-th"></i><a href="ajout-produit.php">Ajouter un produit</a></li>
+                            <li><i class="menu-icon fa fa-th"></i><a href="statistiques-produit.php">Statistiques produit</a></li>
                         </ul>
                     </li>
                     <li class="menu-item-has-children dropdown">
@@ -70,6 +78,7 @@ function backUp()
                         <ul class="sub-menu children dropdown-menu">
                             <li><i class="menu-icon fa fa-th"></i><a href="tables-commande.php">Listes des commandes</a></li>
                             <li><i class="menu-icon fa fa-th"></i><a href="ajout-commande.php">Ajouter une commande</a></li>
+                            <li><i class="menu-icon fa fa-th"></i><a href="stats-commande.php">Statistiques</a></li>
                         </ul>
                     </li>
                     <li class="menu-item-has-children dropdown">
@@ -102,7 +111,7 @@ function backUp()
                         </ul>
                     </li>
                     <li class="menu-item-has-children dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-th"></i>fidélité</a>
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-th"></i>Fidélité</a>
                         <ul class="sub-menu children dropdown-menu">
                             <li><i class="menu-icon fa fa-th"></i><a href="tables-fidélité.php">Listes des cartes fidélité</a></li>
                             <li><i class="menu-icon fa fa-th"></i><a href="ajout-fidélité.php">Ajouter une carte fidélité</a></li>

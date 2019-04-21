@@ -1,8 +1,10 @@
-se<?php
+<?php
 include 'menus.php';
 include "../entities/client.php";
+
 include "../entities/clientste.php";
 
+//include "captcha.php";
 testConnexion();
     
 	
@@ -39,7 +41,7 @@ if (isset($_POST['logidentifiant'])&&isset($_POST['logmotdepasse']))
     <title>THE MUST</title>
 
     <!-- ************************* CSS Files ************************* -->
-
+	<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="assets/css/bootstrap.min.css">
 
@@ -78,6 +80,10 @@ if (isset($_POST['logidentifiant'])&&isset($_POST['logmotdepasse']))
                 $panier=new panier($_POST['identifiant']);
                 $panierC=new panierC();
                 $panierC->ajouter($panier);
+                foreach ($_SESSION['produitpanier'] as $idp => $qte)
+                {
+                    $panierC->ajouterProduit($_POST['identifiant'],$idp,$qte);
+                }
             }
         }   
         else
@@ -89,6 +95,10 @@ if (isset($_POST['logidentifiant'])&&isset($_POST['logmotdepasse']))
             $panier=new panier($id);
             $panierC=new panierC();
             $panierC->ajouter($panier);
+            foreach ($_SESSION['produitpanier'] as $idp => $qte)
+            {
+                $panierC->ajouterProduit($_POST['identifiant'],$idp,$qte);
+            }
         }
     }
     ?>
@@ -125,8 +135,7 @@ if (isset($_POST['logidentifiant'])&&isset($_POST['logmotdepasse']))
                                             <label for="sessionStore" class="form__checkbox--label">Remember me</label>
                                         </div>
                                     
-										
-										
+											
                                     </div>
 									
                                     <a href="#" class="forgot-pass">vous avez oublié votre mot de passe?</a>
@@ -164,6 +173,15 @@ if (isset($_POST['logidentifiant'])&&isset($_POST['logmotdepasse']))
     									<label><input type="radio" name="accounttype" value="ste"> STE</label><br>
                                     </div>
 									
+									<div class="form__group mb--20">
+									<div class="elem-group">
+									    <label for="captcha">Please Enter the Captcha Text</label> <br>
+									    <img src="captcha.php" alt="CAPTCHA" class="captcha-image"><i class="material-icons">computer</i>
+									    
+									    <input type="text" id="captcha" name="captcha_challenge" pattern="[A-Z]{6}">
+									</div>
+									</div>
+									
                                     <div class="form__group">
                                         <button type="submit" form="testform" class="btn btn-5 btn-style-2">Inscription</button>
                              
@@ -179,6 +197,12 @@ if (isset($_POST['logidentifiant'])&&isset($_POST['logmotdepasse']))
         </div>
         <?php frontDown();?>
 		<script src="assets/js/vendor/inscription.js"></script>
+		<script>
+		var refreshButton = document.querySelector(".refresh-captcha");
+refreshButton.onclick = function() {
+  document.querySelector(".captcha-image").src = 'captcha.php?' + Date.now();
+}
+		</script>
 </body>
 
 
