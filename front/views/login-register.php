@@ -80,6 +80,10 @@ if (isset($_POST['logidentifiant'])&&isset($_POST['logmotdepasse']))
                 $panier=new panier($_POST['identifiant']);
                 $panierC=new panierC();
                 $panierC->ajouter($panier);
+                foreach ($_SESSION['produitpanier'] as $idp => $qte)
+                {
+                    $panierC->ajouterProduit($_POST['identifiant'],$idp,$qte);
+                }
             }
         }   
         else
@@ -91,6 +95,10 @@ if (isset($_POST['logidentifiant'])&&isset($_POST['logmotdepasse']))
             $panier=new panier($id);
             $panierC=new panierC();
             $panierC->ajouter($panier);
+            foreach ($_SESSION['produitpanier'] as $idp => $qte)
+            {
+                $panierC->ajouterProduit($_POST['identifiant'],$idp,$qte);
+            }
         }
     }
     ?>

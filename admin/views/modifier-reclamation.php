@@ -1,5 +1,5 @@
 <?php
-include "../config.php";
+include "../../config.php";
 $db=config::getConnexion();
 
 if (isset($_GET['del'])) {

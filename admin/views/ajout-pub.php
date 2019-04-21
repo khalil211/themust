@@ -14,8 +14,8 @@ if (isset($_POST['img'])&&isset($_POST['liste'])&&isset($_POST['p1'])&&isset($_P
      foreach($result as $row){
         $s=$row['email'];
 $mailto = $s;
-    $mailSub = 'Cyber Squad Redemption';
-    $mailMsg = 'NEVERLAND';
+    $mailSub = 'The Must';
+    $mailMsg = ' Lancement d un nouveau produit pour plus d information visitez notre site web';
    $mail = new PHPMailer();
    $mail ->IsSmtp();
    $mail ->SMTPDebug = 0;
@@ -24,8 +24,8 @@ $mailto = $s;
    $mail ->Host = "smtp.gmail.com";
    $mail ->Port = 465; // or 587
    $mail ->IsHTML(true);
-   $mail ->Username = 'dovilos123.mouhli@gmail.com';
-   $mail ->Password = "dovilos21722423";
+   $mail ->Username = 'themust.gammarth@gmail.com';
+   $mail ->Password = "themust123";
    $mail ->SetFrom("yourmail@gmail.com");
    $mail ->Subject = $mailSub;
    $mail ->Body = $mailMsg;
