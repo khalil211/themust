@@ -51,6 +51,13 @@ function backUp()
 							<li><i class="fa fa-table"></i><a href="clientstats.php">Statistiques</a></li>
                         </ul>
                     </li>
+					     <li class="menu-item-has-children dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-table"></i>FAQ</a>
+                        <ul class="sub-menu children dropdown-menu">
+						<li><i class="fa fa-table"></i><a href="ajout-faq.php">Ajouter une FAQ</a></li>
+                            <li><i class="fa fa-table"></i><a href="tables-faq.php">Listes des FAQ</a></li>
+                        </ul>
+                    </li>
                     <li class="menu-item-has-children dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-th"></i>Produits</a>
                         <ul class="sub-menu children dropdown-menu">

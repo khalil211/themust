@@ -240,6 +240,9 @@ function frontUp()
 	                                <li class="mainmenu__item <?php if (basename($_SERVER['PHP_SELF'])=='blog.php')echo 'active'; ?>">
 	                                    <a href="blog.php" class="mainmenu__link">Blog</a>
 	                                </li>
+									<li class="mainmenu__item <?php if (basename($_SERVER['PHP_SELF'])=='listefaq.php')echo 'active'; ?>">
+	                                    <a href="listefaq.php" class="mainmenu__link">FAQ</a>
+	                                </li>
 	                                <li class="mainmenu__item menu-item-has-children has-children">
 	                                    <a href="#" class="mainmenu__link">Pages</a>
 	                                    <ul class="sub-menu">
