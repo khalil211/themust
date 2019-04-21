@@ -71,8 +71,36 @@ if (isset($_POST['logidentifiant'])&&isset($_POST['logmotdepasse']))
 
     <?php frontUp();
 
+if(isset($_POST['captcha_challenge']) && ($_POST['captcha_challenge'] !== $_SESSION['captcha_text']))
+{
+?>
+<p>
+<?php echo"captcha incorrect"; ?>
+</p>	 
+<?php
+}
+
+
 	  if(isset($_POST['captcha_challenge']) && $_POST['captcha_challenge'] == $_SESSION['captcha_text']){
-    if ($_POST['identifiant']!=""&&isset($_POST['email'])&&isset($_POST['motdepasse']))
+if (strpos($_POST['email'],"@")==false || strpos($_POST['email'],".")==false)
+{
+?>
+<p>
+<?php echo"email non valide"; ?>
+</p>	 
+<?php		
+}
+
+if (strlen($_POST['motdepasse'])<6)	
+{
+?>
+<p>
+<?php echo"mot de passe court"; ?>
+</p>	 
+<?php	
+}
+	  
+    if ($_POST['identifiant']!=""&&isset($_POST['email'])&&isset($_POST['motdepasse'])&&(strlen($_POST['motdepasse'])>5))
     {
         if ($_POST['accounttype']=="per")
         {
@@ -103,15 +131,8 @@ if (isset($_POST['logidentifiant'])&&isset($_POST['logmotdepasse']))
             }
         }
     }
-	else
-	{
-		?>
-		<p> 
-		<?php echo"wrong captcha"; ?>
-		</p> 
-		<?php
 	}
-	}
+	
     ?>
 	
 
