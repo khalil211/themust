@@ -236,7 +236,6 @@ function frontUp()
 	                                <li class="mainmenu__item <?php if (basename($_SERVER['PHP_SELF'])=='shop.php')echo 'active'; ?>">
 	                                    <a href="shop.php" class="mainmenu__link">Produits</a>
 	                                    
-	                                </li>
 	                                <li class="mainmenu__item <?php if (basename($_SERVER['PHP_SELF'])=='blog.php')echo 'active'; ?>">
 	                                    <a href="blog.php" class="mainmenu__link">Blog</a>
 	                                </li>
@@ -245,7 +244,7 @@ function frontUp()
 	                                    <ul class="sub-menu">
 	                                        <li><a href="cart.php">Cart</a></li>
 	                                        <li><a href="checkout.html">Checkout</a></li>
-	                                        <li><a href="compare.html">compare</a></li>
+	                                        <li><a href="comparel">compare</a></li>
 	                                        <li><a href="wishlist.html">wishlist</a></li>
 	                                        <li><a href="moncompte.php">Mon compte</a></li>
 	                                        <li><a href="faq.html">Faq</a></li>

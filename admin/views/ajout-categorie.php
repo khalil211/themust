@@ -4,6 +4,8 @@ if (isset($_POST['nom_cat'])&&isset($_POST['descr_cat']))
 {
     $e=new categorie($_POST['nom_cat'],$_POST['descr_cat']);
     $e->ajouter();
+    header('location: tables-categorie.php');
+
 }
 ?>
 

@@ -1,13 +1,39 @@
 <?php
 include "../entities/produit.php";
+include "PHPMailer-master/PHPMailerAutoload.php";
+$db=config::getConnexion();
+$result=$db->query('select * from categorie ');
+
 if (isset($_POST['img'])&&isset($_POST['nom'])&&isset($_POST['descr'])&&isset($_POST['quantite'])&&isset($_POST['prix'])&&isset($_POST['categorie']))
 {
     $e=new produit($_POST['img'],$_POST['nom'],$_POST['descr'],$_POST['quantite'],$_POST['prix'],$_POST['categorie']);
     $e->ajouter();
+$resultmail=$db->query('select * from client ');
+foreach($resultmail as $row){
+        $s=$row['email'];
+$mailto = $s;
+    $mailSub = 'The Must';
+    $mailMsg = ' Consultez notre nouveau produit !';
+   $mail = new PHPMailer();
+   $mail ->IsSmtp();
+   $mail ->SMTPDebug = 0;
+   $mail ->SMTPAuth = true;
+   $mail ->SMTPSecure = 'ssl';
+   $mail ->Host = "smtp.gmail.com";
+   $mail ->Port = 465; // or 587
+   $mail ->IsHTML(true);
+   $mail ->Username = 'themust.gammarth@gmail.com';
+   $mail ->Password = "themust123";
+   $mail ->SetFrom("yourmail@gmail.com");
+   $mail ->Subject = $mailSub;
+   $mail ->Body = $mailMsg;
+   $mail ->AddAddress($mailto);
+   $mail->Send();
+
+}
+header('location: tables-produits.php');
 }
 
-$db=config::getConnexion();
-$result=$db->query('select * from categorie ');
 ?>
 
 <!doctype html>

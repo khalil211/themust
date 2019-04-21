@@ -534,6 +534,7 @@ $result=$query->fetch();
                                             </span>
                                             <br>
                                                <?php 
+                                               
                                         $id=$result['id'];
                                         $likes=$db->prepare('SELECT id FROM likes WHERE id_produit=?');
                                         $likes->execute(array($id));
