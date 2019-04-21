@@ -9,10 +9,10 @@ class employe
 	private $date_debut;
 	private $date_fin;
 	private $description;
-	private $nb;
 
 
-	function __construct($image,$categories,$nom,$date_debut,$date_fin,$description,$nb)
+
+	function __construct($image,$categories,$nom,$date_debut,$date_fin,$description)
 	{   
 		$this->image=$image;
 		$this->categories=$categories;
@@ -20,7 +20,7 @@ class employe
 		$this->date_debut=$date_debut;
 		$this->date_fin=$date_fin;
 		$this->description=$description;
-		$this->nb=$nb;
+	;
 	}
     function getImage(){return $this->image;}
 	function getCategories(){return $this->categories;}
