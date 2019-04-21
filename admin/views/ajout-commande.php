@@ -12,7 +12,7 @@ $produit=$db->query('SELECT id,nom FROM produit');
 	<meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Ajouter commande</title>
-    <meta name="description" content="The Must - Gammarth center">
+    <meta name="description" content="Sufee Admin - HTML5 Admin Template">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <link rel="apple-touch-icon" href="apple-icon.png">
@@ -23,7 +23,6 @@ $produit=$db->query('SELECT id,nom FROM produit');
     <link rel="stylesheet" href="vendors/themify-icons/css/themify-icons.css">
     <link rel="stylesheet" href="vendors/flag-icon-css/css/flag-icon.min.css">
     <link rel="stylesheet" href="vendors/selectFX/css/cs-skin-elastic.css">
-    <link rel="stylesheet" href="vendors/jqvmap/dist/jqvmap.min.css">
 
     <link rel="stylesheet" href="vendors/chosen/chosen.min.css">
     <link rel="stylesheet" href="assets/css/style.css">
@@ -234,6 +233,7 @@ $produit=$db->query('SELECT id,nom FROM produit');
     <script src="vendors/bootstrap/dist/js/bootstrap.min.js"></script>
     <script src="assets/js/main.js"></script>
     <script src="vendors/chosen/chosen.jquery.min.js"></script>
+
     <script>
         jQuery(document).ready(function() {
             jQuery(".standardSelect").chosen({
