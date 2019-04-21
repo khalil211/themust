@@ -80,6 +80,18 @@ class commandeC
 		$query->bindValue(':id',$num);
 		$query->execute();
 	}
+
+	public function getProduits($numero)
+	{
+		$db=config::getConnexion();
+		return $db->query('SELECT p.nom nomprod,p.prix prixprod,pc.quantite quantiteprod,p.img imgprod FROM produitcommande pc INNER JOIN produit p ON p.id=pc.idproduit WHERE pc.idcommande='.$numero);
+	}
+
+	public function statsVentes()
+	{
+		$db=config::getConnexion();
+		return $db->query('SELECT COUNT(*) nb,SUM(prixtotal) prixtot,SUM(nbproduit) nbprod,MONTH(datecommande) mois,YEAR(datecommande) annee FROM commande WHERE YEAR(datecommande)=YEAR(NOW()) GROUP BY mois');
+	}
 }
 
 ?>

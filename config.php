@@ -71,6 +71,7 @@ function backUp()
                         <ul class="sub-menu children dropdown-menu">
                             <li><i class="menu-icon fa fa-th"></i><a href="tables-commande.php">Listes des commandes</a></li>
                             <li><i class="menu-icon fa fa-th"></i><a href="ajout-commande.php">Ajouter une commande</a></li>
+                            <li><i class="menu-icon fa fa-th"></i><a href="stats-commande.php">Statistiques</a></li>
                         </ul>
                     </li>
                     <li class="menu-item-has-children dropdown">

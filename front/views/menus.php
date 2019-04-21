@@ -3,15 +3,18 @@
 function testConnexion()
 {
 	session_start();
+	$end=false;
 	if (isset($_SESSION['idclient'])&&isset($_SESSION['mdpclient']))
-		return true;
+		$end=true;
 	if (isset($_COOKIE['idclient'])&&isset($_COOKIE['mdpclient']))
 	{
 		$_SESSION['idclient']=$_COOKIE['idclient'];
 		$_SESSION['mdpclient']=$_COOKIE['mdpclient'];
-		return true;
+		$end=true;
 	}
-	return false;
+	if (!isset($_SESSION['produitpanier']))
+		$_SESSION['produitpanier']=array();
+	return $end;
 }
 
 function frontUp()
@@ -87,13 +90,14 @@ function frontUp()
 	                                        <i class="fa fa-angle-down"></i>
 	                                    </a>
 	                                    <div class="dropdown-menu" aria-labelledby="userID">
-										<?php if (isset($_SESSION['idclient']))
-												{
-													?>
-													<a class="dropdown-item" href="moncompte.php" >Mon compte</a>
-													<?php
-												}
-										 ?>
+											<?php 
+											if (isset($_SESSION['idclient']))
+											{
+												?>
+												<a class="dropdown-item" href="moncompte.php" >Mon compte</a>
+												<?php
+											}
+											?>
 	                                        <a class="dropdown-item" <?php if (isset($_SESSION['idclient']))echo 'href="deconnexion.php"';else echo 'href="login-register.php"'; ?> >
 	                                        	<?php if (isset($_SESSION['idclient'])) 
 	                                        	{
@@ -159,12 +163,20 @@ function frontUp()
 									        else
 									            $nb=1;
 									        $panier=new panierC;
-									        $panier->ajouterProduit($_GET['addpp'],$nb);
+									        if (isset($_SESSION['idclient']))
+									        	$panier->ajouterProduit($_SESSION['idclient'],$_GET['addpp'],$nb);
+									    	else
+									        	$panier->ajouterProduit(-1,$_GET['addpp'],$nb);
 									    }
 									    elseif (isset($_GET['delpp']))
 									    {
-									    	$panier=new panierC;
-									        $panier->supprimerProduit($_GET['delpp']);
+									    	if (isset($_SESSION['idclient']))
+									    	{
+										    	$panier=new panierC;
+										        $panier->supprimerProduit($_GET['delpp']);
+									    	}
+									    	else
+									    		unset($_SESSION['produitpanier'][$_GET['delpp']]);
 									    }
 									}
 									$panier=new panier(0);
@@ -173,47 +185,80 @@ function frontUp()
 									{
 										$panier->setId($_SESSION['idclient']);
 										$panier=$panierC->afficher($panier);
+										$produits=$panier->getProduits();
 									}
-									$produits=$panier->getProduits();
+									else
+									{
+										$nbtot=0;
+										foreach ($_SESSION['produitpanier'] as $p => $q)
+										{
+											$nbtot+=$q;
+										}
+									}
 	                                ?>
 	                                <li class="mini-cart-icon">
 	                                    <div class="mini-cart mini-cart--1">
 	                                        <a class="mini-cart__dropdown-toggle bordered-icon" id="cartDropdown">
-	                                            <span class="mini-cart__count"><?php echo $panier->getNbProduit(); ?></span>
+	                                            <span class="mini-cart__count"><?php if(isset($_SESSION['idclient'])) echo $panier->getNbProduit(); else echo $nbtot; ?></span>
 	                                            <i class="icon_cart_alt mini-cart__icon"></i>
 	                                            <i class="fa fa-angle-down"></i>
 	                                        </a>
 	                                        <div class="mini-cart__dropdown-menu">
 	                                            <div class="mini-cart__content" id="miniCart">
 	                                            	<?php
-	                                            	foreach ($produits as $p)
+	                                            	if (isset($_SESSION['idclient']))
 	                                            	{
-	                                            		?>
-		                                                <div class="mini-cart__item">
-		                                                    <div class="mini-cart__item--single">
-		                                                        <div class="mini-cart__item--image">
-		                                                            <img src="../../admin/views/images/<?php echo $p->getImage();?>" alt="product">
-		                                                        </div>
-		                                                        <div class="mini-cart__item--content">
-		                                                            <h4 class="mini-cart__item--name"><a href="product-details.html"><?php echo $p->getNom(); ?></a> </h4>
-		                                                            <p class="mini-cart__item--quantity">x<?php echo $p->getQuantite(); ?></p>
-		                                                            <p class="mini-cart__item--price"><?php echo $p->getPrixUnitaire(); ?></p>
-		                                                        </div>
-		                                                    </div>
-		                                                </div>
-	                                                	<?php
+		                                            	foreach ($produits as $p)
+		                                            	{
+		                                            		?>
+			                                                <div class="mini-cart__item">
+			                                                    <div class="mini-cart__item--single">
+			                                                        <div class="mini-cart__item--image">
+			                                                            <img src="../../admin/views/images/<?php echo $p->getImage();?>" alt="product">
+			                                                        </div>
+			                                                        <div class="mini-cart__item--content">
+			                                                            <h4 class="mini-cart__item--name"><a href="product-details.html"><?php echo $p->getNom(); ?></a> </h4>
+			                                                            <p class="mini-cart__item--quantity">x<?php echo $p->getQuantite(); ?></p>
+			                                                            <p class="mini-cart__item--price"><?php echo $p->getPrixUnitaire(); ?></p>
+			                                                        </div>
+			                                                    </div>
+			                                                </div>
+		                                                	<?php
+		                                            	}
+	                                            	}
+	                                            	else
+	                                            	{
+	                                            		$prixtot=0;
+	                                            		foreach ($_SESSION['produitpanier'] as $idp => $nbp)
+		                                            	{
+		                                            		$p=$panierC->getProduit($idp);
+		                                            		$prixtot+=$nbp*$p['prix'];
+		                                            		?>
+			                                                <div class="mini-cart__item">
+			                                                    <div class="mini-cart__item--single">
+			                                                        <div class="mini-cart__item--image">
+			                                                            <img src="../../admin/views/images/<?php echo $p['img']; ?>" alt="product">
+			                                                        </div>
+			                                                        <div class="mini-cart__item--content">
+			                                                            <h4 class="mini-cart__item--name"><a href="product-details.html"><?php echo $p['nom']; ?></a> </h4>
+			                                                            <p class="mini-cart__item--quantity">x<?php echo $nbp; ?></p>
+			                                                            <p class="mini-cart__item--price"><?php echo $p['prix']; ?></p>
+			                                                        </div>
+			                                                    </div>
+			                                                </div>
+		                                                	<?php
+		                                            	}
 	                                            	}
 	                                            	?>
 	                                                <div class="mini-cart__calculation">
 	                                                    <p>
 	                                                        <span class="mini-cart__calculation--item">Total :</span>
-	                                                        <span class="mini-cart__calculation--ammount"><?php echo $panier->getPrixTotal(); ?></span>
+	                                                        <span class="mini-cart__calculation--ammount"><?php if(isset($_SESSION['idclient'])) echo $panier->getPrixTotal(); else echo $prixtot; ?></span>
 	                                                    </p>
 	                                                </div>
 	                                                <div class="mini-cart__btn">
 	                                                    <a href="cart.php" class="btn btn-fullwidth btn-style-1">Voir panier</a>
-	                                                </div>
-	                                                
+	                                                </div>  
 	                                            </div>
 	                                        </div>
 	                                    </div>
