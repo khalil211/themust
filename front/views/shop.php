@@ -326,7 +326,7 @@ header('location: shop.php');
                                         <?php while ($row = $res->fetch()) { 
                                     ?>
                                         <ul>
-                                           <li> <i class="fa fa-cube"></i>  <a style="font-size: 20px; color: #FFFFFF; " class="filter-input filter-radio" 
+                                           <li> <i class="fa fa-cube"></i>  <a style="font-size: 20px; color: #959696; " class="filter-input filter-radio" 
                                             href="afficher-categorie.php?idd=<?php echo $row['id_cat']; ?>"" ><?php echo $row['nom_cat'];?> </a></li>
         
                                 </ul>
