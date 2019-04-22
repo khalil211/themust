@@ -70,7 +70,9 @@ if (isset($_POST['logidentifiant'])&&isset($_POST['logmotdepasse']))
 
 
     <?php frontUp();
-    if (isset($_POST['identifiant'])&&isset($_POST['email'])&&isset($_POST['motdepasse']))
+
+	  if(isset($_POST['captcha_challenge']) && $_POST['captcha_challenge'] == $_SESSION['captcha_text']){
+    if ($_POST['identifiant']!=""&&isset($_POST['email'])&&isset($_POST['motdepasse']))
     {
         if ($_POST['accounttype']=="per")
         {
@@ -101,6 +103,15 @@ if (isset($_POST['logidentifiant'])&&isset($_POST['logmotdepasse']))
             }
         }
     }
+	else
+	{
+		?>
+		<p> 
+		<?php echo"wrong captcha"; ?>
+		</p> 
+		<?php
+	}
+	}
     ?>
 	
 
@@ -143,7 +154,7 @@ if (isset($_POST['logidentifiant'])&&isset($_POST['logmotdepasse']))
                             </div>
                         </div>
                         <div class="col-lg-6">
-                            <h2 class="heading-secondary mb--30">Register</h2>
+                            <h2 class="heading-secondary mb--30">Inscription</h2>
                             <div class="login-reg-box p-4 bg--2">
                                 <form class="form" method="POST" action="login-register.php" name="formf" id="testform">
 								<div class="form__group mb--20">
