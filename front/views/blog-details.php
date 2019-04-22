@@ -522,23 +522,7 @@ $result=$query->fetch();
 
         <!-- Popup Subscribe Box Start -->
 
-        <div class="popup-subscribe-box" id="subscribe-popup">
-            <div class="popup-subscribe-box-content">
-                <div class="popup-subscribe-box-body">
-                    <a href="#subscribe-popup" class="popup-close">close</a>
-                    <h3>NEWSLETTER</h3>
-                    <p>Subscribe to our newsletters now and stay up-to-date with new collections, the latest lookbooks and exclusive offers.</p>
-                    <form class="popup-subscribe-form validate" action="http://devitems.us11.list-manage.com/subscribe/post?u=6bbb9b6f5827bd842d9640c82&amp;id=05d85f18ef" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" target="_blank" novalidate="">
-                        <input type="email" name="popup-subscribe-email" id="popup-subscribe-email" placeholder="Enter your email here...">
-                        <input type="submit" value="Subscribe" class="btn subscribe-btn btn-medium btn-style-1">
-                        <div class="form-group text-center mt--20">
-                            <input type="checkbox" name="hide-popup" id="hide-popup">
-                            <label for="hide-popup"> Don't show this popup again </label>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
+      
 
         <!-- Popup Subscribe Box End -->
 
