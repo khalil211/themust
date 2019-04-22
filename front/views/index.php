@@ -2059,9 +2059,9 @@ $resultat=$db->query('SELECT * FROM produit');
 
             <section class="banner-area banner-bg-1 ptb--80 ptb-md--60">
                 <div class="banner-box text-center">
-                    <h5 class="banner__label">solde</h5>
-                    <h2 class="banner__name">sous nom</h2>
-                    <p class="banner__text mb--50 mb-md--20">quote</p>
+                    <h5 class="banner__label"></h5>
+                    <h2 class="banner__name"></h2>
+                    <p class="banner__text mb--50 mb-md--20"></p>
                     <a href="shop.html" class="btn btn-bordered btn-style-1">Achetez maintenant</a>
                 </div>
             </section>      
@@ -2428,9 +2428,9 @@ $resultat=$db->query('SELECT * FROM produit');
                                     <img src="assets/img/banner/img1-bottom-mirora1.jpg" alt="Product Category">
                                     <span class="promo__content promo__content-2">
                                         <span class="promo__label">produit 2019</span>
-                                        <span class="promo__name">produit de luxe 22019</span>
-                                        <span class="promo__price">Men's and Woman's Accessories</span>
-                                        <span class="promo__link">Discover Now</span>
+                                        <span class="promo__name">produit de luxe 2019</span>
+                                        <span class="promo__price"></span>
+                                        <span class="promo__link"></span>
                                     </span>
                                 </a>
                             </div>
@@ -2440,10 +2440,10 @@ $resultat=$db->query('SELECT * FROM produit');
                                 <a href="shop.html" class="promo__box promo__box-2">
                                     <img src="assets/img/banner/img2-bottom-mirora1.jpg" alt="Product Category">
                                     <span class="promo__content promo__content-2">
-                                        <span class="promo__label">Trending Products 2019</span>
-                                        <span class="promo__name">nom</span>
-                                        <span class="promo__price">prix </span>
-                                        <span class="promo__link">Discover Now</span>
+                                        <span class="promo__label"></span>
+                                        <span class="promo__name"></span>
+                                        <span class="promo__price"></span>
+                                        <span class="promo__link"></span>
                                     </span>
                                 </a>
                             </div>

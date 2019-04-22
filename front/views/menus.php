@@ -125,12 +125,12 @@ function frontUp()
 	                    <div class="col-md-5 col-sm-6 order-lg-1 order-2">
 	                        <div class="contact-info">
 	                            <img src="assets/img/icons/icon_phone.png" alt="Phone Icon">
-	                            <p>Call us <br> Free Support: (012) 800 456 789</p>
+	                            <p>Contactez-nous: (+216)xx xxx xxx</p>
 	                        </div>
 	                    </div>
 	                    <div class="col-lg-2 col-12 order-lg-2 order-1 text-center">
 	                        <a href="index.php" class="logo-box mb-md--30">
-	                            <img src="assets/img/logo/logo.png" alt="logo">
+	                            <p>place of our logo</p>
 	                        </a>
 	                    </div>
 	                    <div class="col-lg-5 col-md-7 col-sm-6 order-lg-3 order-3">
@@ -287,17 +287,7 @@ function frontUp()
 									<li class="mainmenu__item <?php if (basename($_SERVER['PHP_SELF'])=='listefaq.php')echo 'active'; ?>">
 	                                    <a href="listefaq.php" class="mainmenu__link">FAQ</a>
 	                                </li>
-	                                <li class="mainmenu__item menu-item-has-children has-children">
-	                                    <a href="#" class="mainmenu__link">Pages</a>
-	                                    <ul class="sub-menu">
-	                                        <li><a href="cart.php">Cart</a></li>
-	                                        <li><a href="checkout.html">Checkout</a></li>
-	                                        <li><a href="comparel">compare</a></li>
-	                                        <li><a href="wishlist.html">wishlist</a></li>
-	                                        <li><a href="moncompte.php">Mon compte</a></li>
-	                                        <li><a href="faq.html">Faq</a></li>
-	                                    </ul>
-	                                </li>
+	                               
 	                                <li class="mainmenu__item">
 	                                    <a href="about.html" class="mainmenu__link">About Us</a>
 	                                </li>
@@ -324,17 +314,17 @@ function frontDown()
 {
 	?>
 	<!-- Footer Start -->
-        <footer class="footer border-top ptb--40 ptb-md--30">
+       <footer class="footer border-top ptb--40 ptb-md--30">
             <div class="container">
                 <div class="row mb--40 mb-md--30">
                     <div class="col-lg-4 col-md-6 mb-md--30">
                         <div class="footer-widget">
-                            <h3 class="widget-title">About Mirora</h3>
+                            <h3 class="widget-title">à propos THE MUST</h3>
                             <div class="widget-content mb--20">
-                                <p>Address: 123 Main Street, Anytown, <br> CA 12345 - USA.</p>
-                                <p>Phone: (012) 800 456 789</p>
-                                <p>Fax: (012) 800 456 789</p>
-                                <p>Email: Contact@plazathemes.com</p>
+                                <p>Address: gammarth <br> tunisie</p>
+                                <p>Phone: (0216) xxxxxxxxx</p>
+                                <p>Fax: (0716) xxxxxxxx</p>
+                                <p>Email: themust.gammarth@gmail.com</p>
                             </div>
                             <ul class="social social-round">
                                 <li class="social__item">
@@ -369,12 +359,8 @@ function frontDown()
                         <div class="footer-widget">
                             <h3 class="widget-title">Information</h3>
                             <ul class="widget-menu">
-                                <li><a href="#">About Us</a></li>
-                                <li><a href="#">Delivery Information</a></li>
-                                <li><a href="#">Privacy Policy</a></li>
-                                <li><a href="#">Terms &amp; Conditions</a></li>
-                                <li><a href="#">Gift Certificates</a></li>
-                                <li><a href="#">Contact Us</a></li>
+                                <li><a href="#">à propos de nous</a></li>
+                                <li><a href="#">Contactez nous</a></li>
                             </ul>
                         </div>
                     </div>
@@ -383,7 +369,7 @@ function frontDown()
                             <h3 class="widget-title">Extras</h3>
                             <ul class="widget-menu">
                                 <li><a href="#">Brands</a></li>
-                                <li><a href="#">Gift Certificates</a></li>
+                                
                                 <li><a href="#">Affiliate</a></li>
                                 <li><a href="#">Specials</a></li>
                                 <li><a href="#">My Account</a></li>
@@ -391,78 +377,7 @@ function frontDown()
                             </ul>
                         </div>
                     </div>
-                    <div class="col-lg-4 col-md-6">
-                        <div class="footer-widget">
-                            <h3 class="widget-title">Custom Products</h3>
-                            <div class="widget-product">
-                                <div class="product">
-                                    <div class="product-img">
-                                        <img src="assets/img/products/11-450x450.jpg" alt="products">
-                                    </div>
-                                    <div class="product-content">
-                                        <div class="product-rating">
-                                            <span>
-                                                <i class="fa fa-star theme-star"></i>
-                                                <i class="fa fa-star theme-star"></i>
-                                                <i class="fa fa-star theme-star"></i>
-                                                <i class="fa fa-star theme-star"></i>
-                                                <i class="fa fa-star"></i>
-                                            </span>
-                                        </div>
-                                        <h4 class="product-title">
-                                            <a href="product-details.html" tabindex="0">Acer Aspire E 15</a>
-                                        </h4>
-                                        <div class="product-price-wrapper">
-                                            <span class="money">$550.00</span>
-                                            <span class="product-price-old">
-                                                <span class="money">$700.00</span>
-                                            </span>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="product">
-                                    <div class="product-img">
-                                        <img src="assets/img/products/11-450x450.jpg" alt="products">
-                                    </div>
-                                    <div class="product-content">
-                                        <div class="product-rating">
-                                            <span>
-                                                <i class="fa fa-star theme-star"></i>
-                                                <i class="fa fa-star theme-star"></i>
-                                                <i class="fa fa-star theme-star"></i>
-                                                <i class="fa fa-star theme-star"></i>
-                                                <i class="fa fa-star"></i>
-                                            </span>
-                                        </div>
-                                        <h4 class="product-title">
-                                            <a href="product-details.html" tabindex="0">Acer Aspire E 15</a>
-                                        </h4>
-                                        <div class="product-price-wrapper">
-                                            <span class="money">$550.00</span>
-                                            <span class="product-price-old">
-                                                <span class="money">$700.00</span>
-                                            </span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="row mb--40 mb-md--30">
-                    <div class="col-12">
-                        <ul class="footer-menu">
-                            <li><a href="#">Home</a></li>
-                            <li><a href="#">Online Store</a></li>
-                            <li><a href="#">Promotion</a></li>
-                            <li><a href="#">Privacy Policy</a></li>
-                            <li><a href="#">Terms Of Use</a></li>
-                            <li><a href="#">Sitemap</a></li>
-                            <li><a href="#">Support</a></li>
-                            <li><a href="#">Contacts</a></li>
-                        </ul>
-                    </div>
-                </div>
+                    
                 <div class="row">
                     <div class="col-12 text-center">
                         <p class="copyright-text">Copyright &copy; 2018 <a href="#">HasTech</a> .All Right Reserved.</p>
@@ -543,52 +458,8 @@ function frontDown()
                                 </div>
                             </div>
                         </div>
-                        <div class="col-lg-7 col-md-6">
-                            <div class="modal-box product">
-                                <h3 class="product-title">Acer Aspire E 15</h3>
-                                <div class="ratings mb--20">
-                                    <i class="fa fa-star rated"></i>
-                                    <i class="fa fa-star rated"></i>
-                                    <i class="fa fa-star rated"></i>
-                                    <i class="fa fa-star rated"></i>
-                                    <i class="fa fa-star"></i>
-                                </div>
-                                <ul class="product-detail-list list-unstyled mb--20">
-                                    <li>Brand: <a href="#">Apple</a></li>
-                                    <li>Product Code: Watches</li>
-                                    <li>Reward Points: 600</li>
-                                    <li>Availability: In Stock</li>
-                                </ul>
-                                <div class="product-price border-bottom pb--20 mb--20">
-                                    <span class="regular-price">$100.50</span>
-                                    <span class="sale-price">$98.98</span>
-                                </div>
-                                <div class="product-options mb--20">
-                                    <h3>Available Options</h3>
-                                    <div class="form-group">
-                                        <label><sup>*</sup>Color Switch</label>
-                                        <select>
-                                            <option> --- Please Select --- </option>
-                                            <option>Black</option>
-                                            <option>Blue</option>
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="product-action-wrapper mb--20">
-                                    <div class="product-action-top d-flex align-items-center mb--20">
-                                        <div class="quantity">
-                                            <span>Qty: </span>
-                                            <input type="number" class="quantity-input" name="qty" id="qty" value="1" min="1">
-                                        </div>
-                                        <button type="button" class="btn btn-medium btn-style-2 add-to-cart">
-                                            Add To Cart
-                                        </button>
-                                    </div>
-                                    <div class="product-action-bottom">
-                                        <a href="wishlist.html">+Add to wishlist</a>
-                                        <a href="compare.html">+Add to compare</a>
-                                    </div>
-                                </div>  
+                        
+                                
                                 <p class="product-tags">
                                     Tags: <a href="shop.php">Sport</a>,
                                     <a href="shop.php">Luxury</a>
