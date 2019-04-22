@@ -1,5 +1,6 @@
 <?php
-include "$_SERVER[DOCUMENT_ROOT]/themust/config.php";
+//include "$_SERVER[DOCUMENT_ROOT]/themust/config.php";
+include "../../config.php";
 
 class promotionss
 {
@@ -7,8 +8,9 @@ class promotionss
 	public function ajouter($promotions)
 	{
 		$db=config::getConnexion();
-		$query=$db->prepare('INSERT INTO promotions(nom,nomproduit,descrption,datedebut,datefin,pourcentage) VALUES(:nom,:nomproduit,:descrption,:datedebut,:datefin,;pourcentage');
+		$query=$db->prepare('INSERT INTO promotions(nom,idproduit,nomproduit,descrption,datedebut,datefin,pourcentage) VALUES(:nom,:idproduit,:nomproduit,:descrption,:datedebut,:datefin,;pourcentage');
 		$query->bindValue(':nom',$promotions->getnom());
+		$query->bindValue(':idproduit',$promotions->getnomproduit());
 		$query->bindValue(':nomproduit',$promotions->getnomproduit());
 		$query->bindValue(':descrption',$promotions->getdescription());
 		$query->bindValue(':datedebut',$promotions->getdatedebut());
@@ -18,7 +20,19 @@ class promotionss
 			return false;
 	}
 
-
+	public function afficher()
+		{
+			$sql="SELECT * FROM promotions"	;
+			$db=config::getConnexion();
+			try
+			{
+				$liste =$db->query($sql);
+				return $liste;
+			} catch (Exception $e)
+			{
+				die('erreur: '.$e->getMessage());
+			}
+		}
 
 	public function nombre()
 	{
