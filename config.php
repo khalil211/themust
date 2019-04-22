@@ -95,6 +95,12 @@ function backUp()
                             <li><i class="menu-icon fa fa-th"></i><a href="ajout-promotion.php">Ajouter une promotion</a></li>
                         </ul>
                     </li>
+                     <li class="menu-item-has-children dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-th"></i>Abonnes</a>
+                        <ul class="sub-menu children dropdown-menu">
+                            <li><i class="menu-icon fa fa-th"></i><a href="tables-abonne.php">Listes des abonnes</a></li>
+                        </ul>
+                    </li>
                     <li class="menu-item-has-children dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-th"></i>
                         Blog</a>

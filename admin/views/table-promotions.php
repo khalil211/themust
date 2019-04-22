@@ -1,14 +1,14 @@
 <?php
-include '../core/commandeC.php';
-$commande=new commandeC;
-$liste=$commande->afficher();
+include '../core/promotionss.php';
+$promotions=new  promotionss;
+$liste=$promotions->afficher();
 ?>
 <!DOCTYPE html>
 <html class="no-js" lang="en">
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Liste des commandes</title>
+    <title>Liste des promotionss</title>
     <meta name="description" content="Sufee Admin - HTML5 Admin Template">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -38,7 +38,7 @@ $liste=$commande->afficher();
                     <div class="col-md-12">
                         <div class="card">
                             <div class="card-header">
-                                <strong class="card-title">Commandes</strong>
+                                <strong class="card-title">promotionss</strong>
                             </div>
                             <div class="card-body">
                                 <table id="bootstrap-data-table-export" class="table table-striped table-bordered">
@@ -64,10 +64,10 @@ $liste=$commande->afficher();
                                                 <td><?php echo htmlspecialchars($element['nbproduit']) ?></td>
                                                 <td><?php echo htmlspecialchars($element['prixtotal']) ?></td>
                                                 <td> <?php if ($element['etat']==1) echo 'Passée'; else echo 'En attente'; ?> </td>
-                                                <td><?php echo $element['datecommande'] ?></td>
+                                                <td><?php echo $element['datepromotions'] ?></td>
                                                 <td>
-                                                    <a href="modifier-commande.php?n=<?php echo htmlspecialchars($element['numero']); ?>&e=<?php echo $element['etat']; ?>" class="btn btn-success"><i class="fa fa-magic"></i>  Modifier état</a>
-                                                    <a href="supprimer-commande.php?n=<?php echo htmlspecialchars($element['numero']); ?>" class="btn btn-danger"><i class="fa fa-trash-o"></i>  Supprimer</a>
+                                                    <a href="modifier-promotions.php?n=<?php echo htmlspecialchars($element['numero']); ?>&e=<?php echo $element['etat']; ?>" class="btn btn-success"><i class="fa fa-magic"></i>  Modifier état</a>
+                                                    <a href="supprimer-promotions.php?n=<?php echo htmlspecialchars($element['numero']); ?>" class="btn btn-danger"><i class="fa fa-trash-o"></i>  Supprimer</a>
                                                 </td>
                                             </tr>
                                             <?php

@@ -1,5 +1,5 @@
 <?php
-include "../../front/entities/abonne.php";
+include "../../front/core/abonneC.php";
 $db=config::getConnexion();
 	
 
@@ -103,11 +103,9 @@ $db=config::getConnexion();
                                             <td>  <?php echo $row['adresse_mail']; ?></td>
                                             <td> <?php echo $row['date_a']; ?></td>
                                             <td><?php echo $row['id_abonne']; ?></td>
-                                            
                                             <td>  
-              <a href="modifier-client.php?edit=<?php echo $row['identifiant']; ?>&edit2=<?php echo $row['email']; ?>&edit3=<?php echo $row['motdepasse']; ?>" class="btn btn-info btn-xs"><i class="fa fa-pencil"></i> Edit </a>
-
-               <a href="supprimer-client.php?del=<?php echo $row['identifiant']; ?>" class="btn btn-danger btn-xs"><i class ="fa fa-trash-o"> </i> Delete</a>
+<form method="POST" action="supprimerabonne.php">
+             <i class ="fa fa-trash-o">  <input type="submit" class="btn btn-danger btn-xs"  value="delete"> </i></form>
                                              </td>
                                         </tr>
                                         
@@ -154,7 +152,7 @@ $db=config::getConnexion();
         search.addEventListener("keydown",function (e)
         {
             if (e.keyCode==13)
-                document.location="tables-clients.php?r="+search.value;
+                document.location="tables-abonne.php?r="+search.value;
             e.stopPropagation(); 
         });
 		</script>

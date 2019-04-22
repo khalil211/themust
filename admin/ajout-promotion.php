@@ -261,7 +261,7 @@
                                                         <strong> Ajout promotion </strong> Détails
                                                     </div>
                                                     <div class="card-body card-block">
-                                                        <form action="ajouterpromotions.php" method="post" id="test" enctype="multipart/form-data" name="formualire-promotion" class="form-horizontal">
+                                                        <form action="promotions/ajouter.php" method="post" id="test" enctype="multipart/form-data" name="formualire-promotion" class="form-horizontal">
 
                                                         	 <div class="row form-group">
                                                                 <div class="col col-md-3"><label class=" form-control-label">Image de la promotion </label></div>
@@ -278,14 +278,6 @@
                                                                   
                                                                 </div>
                                                             </div>
-                                                              <div class="row form-group">
-                                                                <div class="col col-md-3"><label class=" form-control-label">id Produit </label></div>
-                                                                <div class="col-12 col-md-9"><input type="number" id="text-input" name="idproduit" placeholder="Nom " class="form-control"><small class="form-text text-muted"></small></div>
-                                                                <div class="col-12 col-md-9">
-                                                                  
-                                                                </div>
-                                                            </div>
-
 
                                                             <div class="row form-group">
                                                                 <div class="col col-md-3"><label class=" form-control-label">Produit </label></div>
@@ -320,7 +312,7 @@
                                                             </div>
 
                                                             <div class="col col-md-3"><label for="code postal" class=" form-control-label">Pourcentage </label></div>
-                                                                <div class="col-12 col-md-9"><input type=" number" id="cp" name="code" placeholder="ex : 60% " onblur="verifPourcentage(this)" class="form-control" ><small class=""></small>
+                                                                <div class="col-12 col-md-9"><input type=" number" id="cp" name="code " placeholder="ex : 60% " onblur="verifPourcentage(this)" class="form-control" ><small class=""></small>
                                                                 </div>
 
                                                                
