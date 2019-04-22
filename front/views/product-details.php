@@ -5,10 +5,10 @@ testConnexion();
 $db=config::getConnexion();
 $idd=$_GET['idd'];
 $query=$db->prepare('select * from produit p inner join categorie c where p.categorie = c.id_cat and id=:idd');
-//$result=$db->query('select * from produit p inner join categorie c where categorie = id_cat order by id desc');
 $query->bindValue(':idd',$idd);
 $query->execute();
 $result=$query->fetch();
+
 ?>
 
 
@@ -69,8 +69,8 @@ $result=$query->fetch();
                     <div class="col-12 text-center">
                         <h1 class="page-title">Détails du produit</h1>
                         <ul class="breadcrumb justify-content-center">
-                            <li><a href="index.html">Acceuil</a></li>
-                            <li><a href="shop.html">Achats</a></li>
+                            <li><a href="index.php">Acceuil</a></li>
+                            <li><a href="shop.php">Achats</a></li>
                             <li class="current"><a href="product-details.php">Détails du produit</a></li>
                         </ul>
                     </div>
@@ -160,7 +160,7 @@ $result=$query->fetch();
                                 </div>-->
                                 <!-- Product Thumbnail Carousel End -->
                             </div>
-                             <form  method="POST" action="noterProduit.php" name="formName">
+                             
                             <div class="col-lg-6">
                                 <!-- Single Product Content Start -->
                                 <div class="product-details-content"> 
@@ -212,16 +212,14 @@ $result=$query->fetch();
                                         </ul>
                                         <br>
                                             <label class="product-options mb--20">
-                                                <h3><span>Noter le produit</span> </h3></label>
+                                                
                 
-                                   <input type="number" name="NOTER" placeholder="entier entre 0 et 5 " required pattern='[0-5]{0,5}'>
+                                  
 
-                      <input type="hidden" name="refe" value="<?php echo $result['id'];?>">
-                       <br> <br>
+                     
                     </div>
-                    </form>
-        <a href="noterProduit.php?refe=<?php echo $result['id'];;?>" > 
-            <button type="submit" class="btn btn-medium btn-style-2 add-to-cart"><span class=" "></span> Noter </button></a>
+                 
+        
            
        
 <!--                                        <div class="product-details-price-wrapper">

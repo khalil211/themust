@@ -2,6 +2,7 @@
 include 'menus.php';
 testConnexion();
 include '../../config.php';
+
 $db=config::getConnexion();
 
 		$produitparpage=5;
@@ -17,8 +18,23 @@ else
 {
 	$pagecourante=1;
 }
+$var=isset(($_GET['tri']));
 $depart=($pagecourante-1)*$produitparpage;
-$result=$db->query('SELECT * FROM produit LIMIT '.$depart.','.$produitparpage);
+
+if ($var){
+$choix=$_GET['tri'];}
+if ($var==false){
+$result=$db->query('SELECT * FROM produit LIMIT '.$depart.','.$produitparpage);}
+
+elseif ( $choix == "prix1")  {
+	
+	$result=$db->query('select * from produit order by prix desc');
+	}
+elseif ($choix== "prix2")
+{
+	$result=$db->query('select * from produit order by prix asc');
+}
+	
 $res=$db->query('select * from categorie');
 ?>
 <?php
@@ -122,9 +138,21 @@ header('location: shop.php');
                                             <a class="grid-5" data-target="gridview-5" data-toggle="tooltip" data-placement="top" title="5">5</a>
                                             <a class="list" data-target="listview" data-toggle="tooltip" data-placement="top" title="5">List</a>
                                         </div>
-
+                                          <div class="product-short">
+                                        	<form action ="shop.php" method = "GET">
+                                            <label class="select-label">Trier </label>
+                                            <select class="short-select nice-select" name="tri">
+                                                <option value="1">Choix</option>                                             
+                                                <option value="prix1">Prix descendant</option>
+                                                <option value="prix2">Prix ascendant</option>
+                                           </select>  
+                                           <button type="submit" class="form__submit" >Ok</button>                                        
+                                        </form>
+                                        	
+                                        </div>
+                                           
                                         <!-- PAGINATION -->
-                                        <span class="product-pages">Pages </span>
+<!--                                        <span class="product-pages">Pages </span>
                                         <div class="product-showing">
                                             <label class="select-label">Show:</label>
                                             <select class="short-select nice-select">
@@ -136,19 +164,10 @@ header('location: shop.php');
                                                 <option value="1">5</option>
                                                 <option value="1">9</option>
                                             </select>
-                                        </div>
+                                        </div>-->
 
                                         <!---->
-                                        <div class="product-short">
-                                            <label class="select-label">Short By:</label>
-                                            <select class="short-select nice-select">
-                                                <option value="1">Relevance</option>
-                                                <option value="2">Name, A to Z</option>
-                                                <option value="3">Name, Z to A</option>
-                                                <option value="4">Price, low to high</option>
-                                                <option value="5">Price, high to low</option>
-                                            </select>
-                                        </div>
+                                      
                                     </div>
                                     <!-- Shop Toolbar End -->
                                 </div>
@@ -326,7 +345,7 @@ header('location: shop.php');
                                         <?php while ($row = $res->fetch()) { 
                                     ?>
                                         <ul>
-                                           <li> <i class="fa fa-cube"></i>  <a style="font-size: 20px; color: #959696; " class="filter-input filter-radio" 
+                                           <li> <i class="fa fa-cube"></i>  <a style="font-size: 18px; color: #959696; " class="filter-input filter-radio" 
                                             href="afficher-categorie.php?idd=<?php echo $row['id_cat']; ?>"" ><?php echo $row['nom_cat'];?> </a></li>
         
                                 </ul>
