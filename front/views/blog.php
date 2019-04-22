@@ -62,7 +62,6 @@ include 'menus.php';testConnexion();
 
     <!-- Favicons -->
 
-    <link rel="shortcut icon" href="assets/img/favicon.ico" type="image/x-icon">
 
     <link rel="apple-touch-icon" href="assets/img/icon.png">
 

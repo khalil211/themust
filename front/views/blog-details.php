@@ -5,13 +5,27 @@ include 'menus.php';testConnexion();
 
 include '../../config.php';
 $db=config::getConnexion();
+$com=$db->query('SELECT * FROM comment');
 $idd=$_GET['idd'];
 $query=$db->prepare('select * from blog where idblog=:idd');
+
 $query->bindValue(':idd',$idd);
 $query->execute();
 $result=$query->fetch();
+
 ?>
 
+<?php
+
+include "../entities/comment.php";
+if (isset($_POST['description'])&&isset($_SESSION['idclient']))
+{
+    
+    $c=new comment($_SESSION['idclient'],$_POST['description']);
+    $c->ajouter();
+}
+
+?>
 
 
 <!-- Mirrored from demo.devitems.com/mirora-v2/mirora/blog-details-image.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 10 Feb 2019 18:54:05 GMT -->
@@ -218,16 +232,17 @@ $result=$query->fetch();
                                             <ul class="social social-round">
                                                 <li class="social__item">
                                                      <div id="mImageBox">
-                                                    <button id="my_image" alt=''  src='../../admin/views/images/<?php echo $result['image']; ?>' class="social__link" onclick="fbs_click(this)"><i class="fa fa-facebook"></i></button>
+                                                       
+                                                    <button id="my_image" alt="" src="../../admin/views/images/<?php echo $result['image']; ?>" class="social__link" onclick="fbs_click(this)"><i class="fa fa-facebook"></i></button>
                                                    </div>
-                                        
+                                                   
                                                   
 
                                              <script>
                                              function fbs_click(TheImg) {
-                                                          u=TheImg.src;
+                                                          var u='http://localhost/themust/front/views/blog-details.php?idd=123'
      // t=document.title;
-                                                   t=TheImg.getAttribute('alt');
+                                                    var t=TheImg.getAttribute('alt');
                                               window.open('http://www.facebook.com/sharer.php?u='+encodeURIComponent(u)+'&t='+encodeURIComponent(t),'sharer','toolbar=0,status=0,width=626,height=436');return false;
                                                       }
                                                      </script>
@@ -249,10 +264,17 @@ $result=$query->fetch();
                                     </div>
                                    
                                 </article>
-                               
                                 <div class="comment">
                                     <div class="comment-respond">
                                         <h3 class="comment-reply-title">LEAVE A REPLY</h3>
+                                <?php
+                               
+                               foreach ($com as $pcom) {
+
+                                   
+                                          ?>
+                               
+                                    
                                         <ul class="comment-list">
                                             <li>
                                                 <div class="single-comment">
@@ -261,60 +283,30 @@ $result=$query->fetch();
                                                     </div>
                                                     <div class="comment-info">
                                                         <div class="comment-meta">
-                                                            <h5 class="comment-author"><a href="#">Julia Rebeca</a></h5>
-                                                            <span class="comment-date">30 Janurary, 2018</span>
+                                                            <h5 class="comment-author"><a href="#"> <?php echo $pcom['idclient']; ?></a></h5>
+                                                            <span class="comment-date"><?php echo $pcom['date']; ?></span>
                                                             
                                                         </div>
                                                         <div class="comment-content">
-                                                            <p>enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia cntur magn lores eos qui ratione voluptatem sequi nesciunt. Neque porro</p>
+                                                            <p><?php echo $pcom['description']; ?></p>
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <ul class="children">
-                                                    <li>
-                                                        <div class="single-comment">
-                                                            <div class="comment-avatar">
-                                                                <img src="assets/img/others/comment-2.jpg" alt="comment">
-                                                            </div>
-                                                            <div class="comment-info">
-                                                                <div class="comment-meta">
-                                                                    <h5 class="comment-author"><a href="#">Admin</a></h5>
-                                                                    <span class="comment-date">30 Janurary, 2018</span>
-                                                                    <a href="#" class="reply">Reply</a>
-                                                                </div>
-                                                                <div class="comment-content">
-                                                                    <p>enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia cntur magn lores eos qui ratione voluptatem sequi nesciunt. Neque porro</p>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </li>
-                                                </ul>
-                                            </li>
-                                            <li>
-                                                <div class="single-comment">
-                                                    <div class="comment-avatar">
-                                                        <img src="assets/img/others/comment-3.jpg" alt="comment">
-                                                    </div>
-                                                    <div class="comment-info">
-                                                        <div class="comment-meta">
-                                                            <h5 class="comment-author"><a href="#">Julia Rebeca</a></h5>
-                                                            <span class="comment-date">30 Janurary, 2018</span>
-                                                            <a href="#" class="reply">Reply</a>
-                                                        </div>
-                                                        <div class="comment-content">
-                                                            <p>enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia cntur magn lores eos qui ratione voluptatem sequi nesciunt. Neque porro</p>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </li>
-                                        </ul>
-                                        <form class="form comment-form">
+                                                
+
+                                      <?php
+
+                                    }
+
+                                      ?>
+                               
+                                        <form class="form comment-form" method="post" action="blog-details.php?idd=<?php echo $_GET['idd']?>">
                                            
                                             <div class="form-row mb--20">
                                                 <div class="col-12">
                                                     <div class="form__group">
                                                         <label class="form__label" for="comment">Comment *</label>
-                                                        <textarea name="comment" id="comment" class="form__input form__input--3 form__input--textarea"></textarea>
+                                                        <textarea name="description" id="description" class="form__input form__input--3 form__input--textarea"></textarea>
                                                     </div>
                                                 </div>
                                             </div>
@@ -522,7 +514,7 @@ $result=$query->fetch();
 
         <!-- Popup Subscribe Box Start -->
 
-      
+        
 
         <!-- Popup Subscribe Box End -->
 
