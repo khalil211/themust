@@ -8,16 +8,14 @@ class promotionss
 	public function ajouter($promotions)
 	{
 		$db=config::getConnexion();
-		$query=$db->prepare('INSERT INTO promotions(nom,idproduit,nomproduit,descrption,datedebut,datefin,pourcentage) VALUES(:nom,:idproduit,:nomproduit,:descrption,:datedebut,:datefin,;pourcentage');
+		$query=$db->prepare('INSERT INTO promotions(nom,idproduit,description,datedebut,datefin,pourcentage) VALUES(:nom,:idproduit,:description,:datedebut,:datefin,:pourcentage)');
 		$query->bindValue(':nom',$promotions->getnom());
-		$query->bindValue(':idproduit',$promotions->getnomproduit());
-		$query->bindValue(':nomproduit',$promotions->getnomproduit());
-		$query->bindValue(':descrption',$promotions->getdescription());
+		$query->bindValue(':idproduit',$promotions->getidproduit());
+		$query->bindValue(':description',$promotions->getdescription());
 		$query->bindValue(':datedebut',$promotions->getdatedebut());
 		$query->bindValue(':datefin',$promotions->getdatefin());
 		$query->bindValue(':pourcentage',$promotions->getpourcentage());
-		if(!$query->execute())
-			return false;
+		$query->execute();
 	}
 
 	public function afficher()
@@ -66,10 +64,10 @@ class promotionss
 	{
 		$db=config::getConnexion();
 		$query=$db->prepare('DELETE FROM promotions WHERE nomm=:nom');
-		$query->bindValue(':nom',$num);
+		$query->bindValue(':nom',$nom);
 		$query->execute();
 		$query=$db->prepare('DELETE FROM promotions WHERE nomm=:nom');
-		$query->bindValue(':nom',$num);
+		$query->bindValue(':nom',$nom);
 		$query->execute();
 	}
 }

@@ -104,8 +104,8 @@ $db=config::getConnexion();
                                             <td> <?php echo $row['date_a']; ?></td>
                                             <td><?php echo $row['id_abonne']; ?></td>
                                             <td>  
-<form method="POST" action="supprimerabonne.php">
-             <i class ="fa fa-trash-o">  <input type="submit" class="btn btn-danger btn-xs"  value="delete"> </i></form>
+
+               <a href="supprimerabonne.php?del=<?php echo $row['adresse_mail']; ?>" class="btn btn-danger btn-xs"><i class ="fa fa-trash-o"> </i> Delete</a>
                                              </td>
                                         </tr>
                                         

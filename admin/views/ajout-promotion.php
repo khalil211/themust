@@ -1,3 +1,16 @@
+<?php
+include '../../config.php';
+$db=config::getConnexion();
+if (isset($_GET['n']))
+{
+    $p=$db->prepare('SELECT * FROM promotions WHERE nom=:nom');
+    $p->bindValue(':nom',$_GET['n']);
+    $p->execute();
+    $p=$p->fetch(); 
+}
+$result=$db->query('SELECT * FROM produit');
+?>
+
 <!doctype html>
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang=""> <![endif]-->
 <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8" lang=""> <![endif]-->
@@ -261,38 +274,37 @@
                                                         <strong> Ajout promotion </strong> Détails
                                                     </div>
                                                     <div class="card-body card-block">
-                                                        <form action="ajouterpromotions.php" method="post" id="test" enctype="multipart/form-data" name="formualire-promotion" class="form-horizontal">
+                                                        <form action="<?php if (isset($_GET['n'])) echo 'modifierpromotions.php?n='.$_GET['n'];else echo 'ajouterpromotions.php'; ?>" method="post" id="test" enctype="multipart/form-data" name="formualire-promotion" class="form-horizontal">
 
-                                                        	 <div class="row form-group">
+                                                        	 <!--<div class="row form-group">
                                                                 <div class="col col-md-3"><label class=" form-control-label">Image de la promotion </label></div>
                                                                 <div class="col-12 col-md-9"><input type="file" id="text-input" name="img"  class="form-control"><small class="form-text text-muted"></small></div>
                                                                 <div class="col-12 col-md-9">
                                                                   
                                                                 </div>
-                                                            </div>
+                                                            </div>-->
 
                                                             <div class="row form-group">
-                                                                <div class="col col-md-3"><label class=" form-control-label">Nom de la promotion </label></div>
-                                                                <div class="col-12 col-md-9"><input type="text" id="text-input" name="nom" placeholder="Nom de la promotion " onblur="verifNom(this)" class="form-control"><small class="form-text text-muted" ></small> </div>
+                                                                <div class="col col-md-3"><label class=" form-control-label">Nom</label></div>
+                                                                <div class="col-12 col-md-9"><input <?php if (isset($_GET['n'])){echo 'value="'.$p['nom'].'" readonly';} ?> type="text" id="text-input" name="nom" placeholder="Nom de la promotion " onblur="verifNom(this)" class="form-control"><small class="form-text text-muted" ></small> </div>
                                                                 <div class="col-12 col-md-9">
                                                                   
                                                                 </div>
                                                             </div>
-                                                              <div class="row form-group">
-                                                                <div class="col col-md-3"><label class=" form-control-label">id Produit </label></div>
+<!--                                                              <div class="row form-group">
+                                                                <div class="col col-md-3"><label class=" form-control-label">id Produit</label></div>
                                                                 <div class="col-12 col-md-9"><input type="number" id="text-input" name="idproduit" placeholder="Nom " class="form-control"><small class="form-text text-muted"></small></div>
                                                                 <div class="col-12 col-md-9">
                                                                   
                                                                 </div>
-                                                            </div>
-
-
+                                                            </div>-->
                                                             <div class="row form-group">
-                                                                <div class="col col-md-3"><label class=" form-control-label">Produit </label></div>
-                                                                <div class="col-12 col-md-9"><input type="text" id="text-input" name="nomproduit" placeholder="Nom " class="form-control"><small class="form-text text-muted"></small></div>
-                                                                <div class="col-12 col-md-9">
-                                                                  
-                                                                </div>
+                                                                        <div class="col col-md-3"> <label> Nom du produit</label> </div>
+                                                                <select class="standardSelect" tabindex="10" id="idproduit" name="idproduit">
+                                                               <?php while ($row=$result->fetch()){?>
+                                                                <option value="<?php echo $row['id'] ;?> "> <?php echo $row['nom'] ;?></option>
+                                                            <?php } ?>
+                                                            </select>
                                                             </div>
 
                                                              <div class="row form-group">
@@ -320,7 +332,7 @@
                                                             </div>
 
                                                             <div class="col col-md-3"><label for="code postal" class=" form-control-label">Pourcentage </label></div>
-                                                                <div class="col-12 col-md-9"><input type=" number" id="cp" name="code" placeholder="ex : 60% " onblur="verifPourcentage(this)" class="form-control" ><small class=""></small>
+                                                                <div class="col-12 col-md-9"><input type=" number" id="cp" name="remise" placeholder="ex : 60% " onblur="verifPourcentage(this)" class="form-control" ><small class=""></small>
                                                                 </div>
 
                                                                

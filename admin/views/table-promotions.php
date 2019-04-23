@@ -1,7 +1,9 @@
 <?php
+
 include '../core/promotionss.php';
 $promotions=new  promotionss;
 $liste=$promotions->afficher();
+
 ?>
 <!DOCTYPE html>
 <html class="no-js" lang="en">
@@ -44,13 +46,14 @@ $liste=$promotions->afficher();
                                 <table id="bootstrap-data-table-export" class="table table-striped table-bordered">
                                     <thead>
                                         <tr>
-                                            <th>ID</th>
-                                            <th>ID Client</th>
-                                            <th>NB Produits</th>
-                                            <th>Prix Total</th>
-                                            <th>Etat</th>
-                                            <th>Date</th>
-                                            <th>Actions</th>
+                                            <th>nom</th>
+                                            <th>Id produit</th>
+                                            
+                                            <th>description</th>
+                                            <th>date debut</th>
+                                            <th>date fin</th>
+                                            <th>pourcentage</th>
+                                            <th>Action</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -59,15 +62,15 @@ $liste=$promotions->afficher();
                                         {
                                             ?>
                                             <tr>
-                                                <td><?php echo htmlspecialchars($element['numero']) ?></td>
-                                                <td><?php echo htmlspecialchars($element['idclient']) ?></td>
-                                                <td><?php echo htmlspecialchars($element['nbproduit']) ?></td>
-                                                <td><?php echo htmlspecialchars($element['prixtotal']) ?></td>
-                                                <td> <?php if ($element['etat']==1) echo 'Passée'; else echo 'En attente'; ?> </td>
-                                                <td><?php echo $element['datepromotions'] ?></td>
+                                                <td><?php echo htmlspecialchars($element['nom']) ;?></td>
+                                                <td><?php echo htmlspecialchars($element['idproduit']); ?></td>
+                                                <td><?php echo htmlspecialchars($element['description']); ?></td>
+                                                <td><?php echo htmlspecialchars($element['datedebut']); ?></td>
+                                                <td><?php echo htmlspecialchars($element['datefin']); ?></td>
+                                                <td><?php echo htmlspecialchars($element['pourcentage']); ?></td>
                                                 <td>
-                                                    <a href="modifier-promotions.php?n=<?php echo htmlspecialchars($element['numero']); ?>&e=<?php echo $element['etat']; ?>" class="btn btn-success"><i class="fa fa-magic"></i>  Modifier état</a>
-                                                    <a href="supprimer-promotions.php?n=<?php echo htmlspecialchars($element['numero']); ?>" class="btn btn-danger"><i class="fa fa-trash-o"></i>  Supprimer</a>
+                                                    <a href="ajout-promotion.php?n=<?php echo htmlspecialchars($element['nom']); ?>" class="btn btn-success"><i class="fa fa-magic"></i>  Modifier état</a>
+                                                    <a href="supprimer-promotions.php?n=<?php echo htmlspecialchars($element['nom']); ?>&e=<?php echo $element['nom']; ?>" class="btn btn-danger"><i class="fa fa-trash-o"></i>  Supprimer</a>
                                                 </td>
                                             </tr>
                                             <?php
