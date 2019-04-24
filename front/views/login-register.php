@@ -1,9 +1,8 @@
 <?php
 include 'menus.php';
 include "../entities/client.php";
-
+include "../../admin/views/PHPMailer-master/PHPMailerAutoload.php";
 include "../entities/clientste.php";
-
 //include "captcha.php";
 testConnexion();
     
@@ -102,6 +101,9 @@ if (strlen($_POST['motdepasse'])<6)
 	  
     if ($_POST['identifiant']!=""&&isset($_POST['email'])&&isset($_POST['motdepasse'])&&(strlen($_POST['motdepasse'])>5))
     {
+	
+	
+	
         if ($_POST['accounttype']=="per")
         {
             $e=new client($_POST['identifiant'],$_POST['email'],$_POST['motdepasse'],"","","",5575);
@@ -130,6 +132,27 @@ if (strlen($_POST['motdepasse'])<6)
                 $panierC->ajouterProduit($_POST['identifiant'],$idp,$qte);
             }
         }
+		
+		$mailto = $_POST['email'];
+    $mailSub = 'The Must';
+    //$mailMsg = ' confirmer votre email <a href=\"localhost/front/views/index.php\"> ';
+	$mailMsg = "Bonjour ".$_POST['identifiant']." clickez sur <a href=\"localhost/themust/front/views/verification.php\">le lien</a> pour confirmer votre compte";
+
+   $mail = new PHPMailer();
+   $mail ->IsSmtp();
+   $mail ->SMTPDebug = 0;
+   $mail ->SMTPAuth = true;
+   $mail ->SMTPSecure = 'ssl';
+   $mail ->Host = "smtp.gmail.com";
+   $mail ->Port = 465; // or 587
+   $mail ->IsHTML(true);
+   $mail ->Username = 'themust.gammarth@gmail.com';
+   $mail ->Password = "themust123";
+   $mail ->SetFrom($_POST['email']);
+   $mail ->Subject = $mailSub;
+   $mail ->Body = $mailMsg;
+   $mail ->AddAddress($mailto);
+   $mail->Send();
     }
 	}
 	

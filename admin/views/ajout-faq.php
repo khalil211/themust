@@ -2,10 +2,10 @@
 include "../entities/faq.php";
 
 
-if (isset($_POST['id'])&&isset($_POST['question'])&&isset($_POST['reponse']))
+if (isset($_POST['question'])&&isset($_POST['reponse']))
 {
 
-    	$e=new faq($_POST['id'],$_POST['question'],$_POST['reponse']);
+    	$e=new faq($_POST['question'],$_POST['reponse']);
         $e->ajouter();
 }    
 ?>
@@ -21,7 +21,7 @@ if (isset($_POST['id'])&&isset($_POST['question'])&&isset($_POST['reponse']))
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title> Ajout Client </title>
+    <title> Ajout FAQ </title>
     <meta name="description" content="Sufee Admin - HTML5 Admin Template">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -49,13 +49,7 @@ if (isset($_POST['id'])&&isset($_POST['question'])&&isset($_POST['reponse']))
     ?>
 <div class="content mt-3">
 <form action="ajout-faq.php" method="post" name="faq" class="form-horizontal">
-                                                            <div class="row form-group">
-                                                                <div class="col col-md-3"><label class=" form-control-label">Identifiant</label></div>
-                                                                <div class="col-12 col-md-9"><input type="text" id="identifiant" name="id" onblur="verifPseudo(this)" placeholder="Identifiant" class="form-control"><small class="form-text text-muted"></small></div>
-                                                                <div class="col-12 col-md-9">
-                                                                  
-                                                                </div>
-                                                            </div>
+                                                
                                                         
                                                              
                                                                                                                       <div class="row form-group">

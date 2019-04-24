@@ -1,6 +1,6 @@
 <?php
 
-include "../config.php";
+include "../../config.php";
 $db=config::getConnexion();
 
 if (isset($_GET['edit']))
@@ -31,7 +31,7 @@ if (isset($_POST['email']))
 }
         }
 		}
-
+header('location: tables-clients.php');
 ?>
 
 <!doctype html>
@@ -101,7 +101,7 @@ if (isset($_POST['email']))
 																
 																<div class="row form-group">
                                                                 <div class="col col-md-3"><label class=" form-control-label">nom</label></div>
-                                                                <div class="col-12 col-md-9"><input type="text" id="nomc" name="nomc" placeholder="nom" class="form-control"><small class="form-text text-muted"></small></div>
+                                                                <div class="col-12 col-md-9"><input type="text" id="nom" name="nom" placeholder="nom" class="form-control"><small class="form-text text-muted"></small></div>
                                                                 <div class="col-12 col-md-9">
                                                                   
                                                                 </div>

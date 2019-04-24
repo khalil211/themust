@@ -1,6 +1,6 @@
 <?php
 
-include "../config.php";
+include "../../config.php";
 $db=config::getConnexion();
 
 if (isset($_GET['edit']))
@@ -27,6 +27,7 @@ if (isset($_POST['email']))
  $abcd->bindValue(":adresse",$adresse);
  $abcd->bindValue(":telephone",$telephone);
  $abcd->execute();
+ header('location: tables-clientsste.php');
 	
 }
         }

@@ -97,6 +97,7 @@ else
                                             <th> Prénom </th>
 											<th> Adresse</th>
 											<th> téléphone</th>
+											<th> Etat</th>
 											<th> Actions</th>
 
                                         </tr>
@@ -113,6 +114,7 @@ else
                                             <td><?php echo $row['prenom']; ?></td>
                                             <td><?php echo $row['adresse']; ?></td>
                                             <td><?php echo $row['telephone']; ?></td>
+											<td><?php echo $row['etat']; ?></td>
                                             <td>  
               <a href="modifier-client.php?edit=<?php echo $row['identifiant']; ?>&edit2=<?php echo $row['email']; ?>&edit3=<?php echo $row['motdepasse']; ?>" class="btn btn-info btn-xs"><i class="fa fa-pencil"></i> Edit </a>
 

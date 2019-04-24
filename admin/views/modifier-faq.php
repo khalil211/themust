@@ -20,10 +20,13 @@ if (isset($_POST['question'])||isset($_POST['reponse'])||(isset($_POST['question
  $abcd->bindValue(":question",$question);
  $abcd->bindValue(":reponse",$reponse);
  $abcd->execute();
+ header('location: tables-faq.php');
 	
 }
         }
+		
 		}
+		
 
 ?>
 

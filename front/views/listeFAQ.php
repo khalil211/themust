@@ -23,7 +23,7 @@ $x=0;
     <link rel="apple-touch-icon" href="assets/img/icon.png">
 
     <!-- Title -->
-    <title>Mirora - Watch & Luxury Store Bootstrap 4 Template</title>
+    <title>FAQ</title>
 
     <!-- ************************* CSS Files ************************* -->
 
