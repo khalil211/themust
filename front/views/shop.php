@@ -9,6 +9,7 @@ $db=config::getConnexion();
 		$produittotalreq=$db->query('select id from produit ');
 		$produittotal= $produittotalreq->rowCount();
 		$pagestotales=ceil($produittotal/$produitparpage);
+
 if( isset($_GET['page']) AND !empty($_GET['page']) AND $_GET['page'] > 0)
 {
 	$_GET['page']=intval($_GET['page']);
@@ -18,13 +19,17 @@ else
 {
 	$pagecourante=1;
 }
+
 $var=isset(($_GET['tri']));
+
+
 $depart=($pagecourante-1)*$produitparpage;
 
 if ($var){
 $choix=$_GET['tri'];}
 if ($var==false){
-$result=$db->query('SELECT * FROM produit LIMIT '.$depart.','.$produitparpage);}
+$result=$db->query('SELECT * FROM produit LIMIT '.$depart.','.$produitparpage);
+}
 
 elseif ( $choix == "prix1")  {
 	
@@ -34,6 +39,13 @@ elseif ($choix== "prix2")
 {
 	$result=$db->query('select * from produit order by prix asc');
 }
+elseif ($choix=="nom1") {
+	$result=$db->query('SELECT * FROM produit ORDER BY nom DESC');
+}
+elseif ($choix=="nom2") {
+	$result=$db->query('SELECT * FROM produit ORDER BY nom ASC');
+}
+
 	
 $res=$db->query('select * from categorie');
 ?>
@@ -114,19 +126,7 @@ header('location: shop.php');
                             <div class="row">
                                 <div class="col-12">
                                     <!-- Refine Search Start -->
-<!--                                    <div class="refine-search mb--30">
-                                        <h3>Refine Search</h3>
-                                        <ul class="cat-list mb--20">
-                                            <li><a href="shop.php">Diamonds (3)</a></li>
-                                            <li><a href="shop.php">For Mens's (15)</a></li>
-                                            <li><a href="shop.php">For Womens's (16)</a></li>
-                                            <li><a href="shop.php">Jewlery (3)</a></li>
-                                            <li><a href="shop.php">Watches (13)</a></li>
-                                        </ul>
-                                        <ul class="cat-list">
-                                            <li><a href="shop.php">Product Compare (3)</a></li>
-                                        </ul>
-                                    </div>-->
+
                                     <!-- Refine Search End -->
 
                                     <!-- Shop Toolbar Start -->
@@ -142,32 +142,17 @@ header('location: shop.php');
                                         	<form action ="shop.php" method = "GET">
                                             <label class="select-label">Trier </label>
                                             <select class="short-select nice-select" name="tri">
-                                                <option value="1">Choix</option>                                             
+                                                <option value="1">Choix</option>    
+                                                <option value="nom1">Nom de Z à A</option>
+                                                <option value="nom2">Nom de A à Z</option>
                                                 <option value="prix1">Prix descendant</option>
                                                 <option value="prix2">Prix ascendant</option>
-                                           </select>  
-                                           <button type="submit" class="form__submit" >Ok</button>                                        
-                                        </form>
-                                        	
-                                        </div>
-                                           
-                                        <!-- PAGINATION -->
-<!--                                        <span class="product-pages">Pages </span>
-                                        <div class="product-showing">
-                                            <label class="select-label">Show:</label>
-                                            <select class="short-select nice-select">
-                                                <option value="1">9</option>
-                                                <option value="1">1</option>
-                                                <option value="1">2</option>
-                                                <option value="1">3</option>
-                                                <option value="1">4</option>
-                                                <option value="1">5</option>
-                                                <option value="1">9</option>
-                                            </select>
-                                        </div>-->
 
-                                        <!---->
-                                      
+                                           </select>  
+                                              <button type="submit" class="form__submit" >Ok</button>                                     
+                                        </form>                                        	
+                                        </div>  
+
                                     </div>
                                     <!-- Shop Toolbar End -->
                                 </div>
@@ -220,55 +205,10 @@ header('location: shop.php');
 
                                             <div class="product-action">
                                               
-                                                <a class="add_cart cart-item action-cart" href="cart.php?addpp=<?php echo $key['id']; ?>" title="wishlist"><span>Ajouter au panier</span></a>
- <!--                                               <a class="same-action" href="wish.php?addp=<?php echo $key['id']; ?>" title="wishlist">
-                                                    <i class="fa fa-heart-o"></i>
-                                                </a>-->
-                                               
-                                            </div>
+                                                <a class="add_cart cart-item action-cart" href="cart.php?addpp=<?php echo $key['id']; ?>" title="wishlist"><span>Ajouter au panier</span></a> </div>
                                         </div>
                                     </div>
-                                    <!--<div class="mirora-product-list">
-                                        <div class="product-img">
-                                            <img src="../../../../../admin/images/<?php// echo $key['img'];?>" alt="Product" class="primary-image" />
-                                            <img src="../../../../../admin/images/<?php// echo $key['img'];?>" alt="Product" class="secondary-image" />
-                                            <div class="product-img-overlay">
-                                                <span class="product-label discount">
-                                                    %
-                                                </span>
-                                                <a data-toggle="modal" data-target="#productModal" class="btn btn-transparent btn-fullwidth btn-medium btn-style-1">Quick View</a>
-                                            </div>
-                                        </div>
-                                        <div class="product-content">
-                                            <span></span>
-                                            <h4><a href="product-details.html">nom</a></h4>
-                                            <div class="product-rating">
-                                                <span>
-                                                    <i class="fa fa-star theme-star"></i>
-                                                    <i class="fa fa-star theme-star"></i>
-                                                    <i class="fa fa-star theme-star"></i>
-                                                    <i class="fa fa-star theme-star"></i>
-                                                    <i class="fa fa-star"></i>
-                                                </span>
-                                            </div>
-                                            <p class="product-desc">
-                                             Description
-                                            </p>
-                                            <div class="product-price-wrapper">
-                                                <span class="money">prix</span>
-                                                <span class="product-price-old">
-                                                    <span class="money"></span>
-                                                </span>
-                                            </div>
-                                            <div class="product-action">
-                                                <a class="add_cart cart-item action-cart" href="cart.html" title="wishlist"><span>Add to cart</span></a>
-                                                
-                                                <a class="same-action compare-mrg" data-toggle="modal" data-target="#productModal" href="compare.html">
-                                                    <i class="fa fa-sliders fa-rotate-90"></i>
-                                                </a>
-                                            </div>
-                                        </div>
-                                    </div>-->
+                                   
                                 </div>
                             <?php } ?>
                             </div>
@@ -277,15 +217,7 @@ header('location: shop.php');
 
                             <!-- Pagination Start -->
                             <div class="pagination-wrap mt--15 mt-md--10">
-<!--                                <p class="page-ammount">Showing 1 to 9 of 15 (2 Pages)</p>
-                                <ul class="pagination">
-                                    <li><a href="#" class="first">|&lt;</a></li>
-                                    <li><a href="#" class="prev">&lt;</a></li>
-                                    <li><a href="#" class="current">1</a></li>
-                                    <li><a href="#">2</a></li>
-                                    <li><a href="#" class="next">&gt;</a></li>
-                                    <li><a href="#" class="next">&gt;|</a></li>
-                                </ul>-->
+
                                 
                                 <?php 
                                 for ($i=1;$i<$pagestotales;$i++)
@@ -307,14 +239,7 @@ header('location: shop.php');
                         <div class="col-lg-3 order-lg-1">
                             <aside class="shop-sidebar">
                                 <div class="search-filter">
-<!--                                    <div class="filter-layered">
-                                        <h3 class="filter-heading">Layered Navigation</h3>
-                                        <ul class="filter-list">
-                                            <li><span>Diamonds</span><a href="#"><i class="fa fa-times-circle"></i></a></li>
-                                            <li><span>Brown</span><a href="#"><i class="fa fa-times-circle"></i></a></li>
-                                            <li><span>Christian Dior</span><a href="#"><i class="fa fa-times-circle"></i></a></li>
-                                        </ul>
-                                    </div>-->
+
                                     <div class="filter-price">
                                         <h3 class="filter-heading">Prix</h3>
                                         <ul class="filter-list">
@@ -346,7 +271,8 @@ header('location: shop.php');
                                     ?>
                                         <ul>
                                            <li> <i class="fa fa-cube"></i>  <a style="font-size: 18px; color: #959696; " class="filter-input filter-radio" 
-                                            href="afficher-categorie.php?idd=<?php echo $row['id_cat']; ?>"" ><?php echo $row['nom_cat'];?> </a></li>
+                                            href="afficher-categorie.php?idd=<?php echo $row['id_cat']; ?>"" ><?php echo $row['nom_cat'];?> </a>
+                                        </li>
         
                                 </ul>
                             <?php } ?> 
@@ -355,76 +281,9 @@ header('location: shop.php');
                                         </ul>
                                     </div>
                                
-<!--                                    <div class="filter-color">
-                                        <h3 class="filter-heading">couleur</h3>
-                                        <ul class="filter-list">
-                                            <li>
-                                                <div class="filter-input filter-checkbox">
-                                                    <input type="checkbox" name="black" id="black">
-                                                    <label for="black">noir (3)</label>
-                                                </div>
-                                            </li>
-                                            <li>
-                                                <div class="filter-input filter-checkbox">
-                                                    <input type="checkbox" name="blue" id="blue">
-                                                    <label for="blue">bleu (6)</label>
-                                                </div>
-                                            </li>
-                                            <li>
-                                                <div class="filter-input filter-checkbox">
-                                                    <input type="checkbox" name="brown" id="brown">
-                                                    <label for="brown">marron (7)</label>
-                                                </div>
-                                            </li>
-                                            <li>
-                                                <div class="filter-input filter-checkbox">
-                                                    <input type="checkbox" name="white" id="white">
-                                                    <label for="white">blanc (4)</label>
-                                                </div>
-                                            </li>
-                                            <li>
-                                                <div class="filter-input filter-checkbox">
-                                                    <input type="checkbox" name="red" id="red">
-                                                    <label for="red">rouge (1)</label>
-                                                </div>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                    <div class="filter-color">
-                                        <h3 class="filter-heading">Manufacturer</h3>
-                                        <ul class="filter-list">
-                                            <li>
-                                                <div class="filter-input filter-checkbox">
-                                                    <input type="checkbox" name="ferragamo" id="ferragamo">
-                                                    <label for="ferragamo">ferragamo (11)</label>
-                                                </div>
-                                            </li>
-                                            <li>
-                                                <div class="filter-input filter-checkbox">
-                                                    <input type="checkbox" name="hermes" id="hermes">
-                                                    <label for="hermes">hermes (9)</label>
-                                                </div>
-                                            </li>
-                                            <li>
-                                                <div class="filter-input filter-checkbox">
-                                                    <input type="checkbox" name="louis" id="louis">
-                                                    <label for="louis">louis vuitton (11)</label>
-                                                </div>
-                                            </li>
-                                            <li>
-                                                <div class="filter-input filter-checkbox">
-                                                    <input type="checkbox" name="christian" id="christian">
-                                                    <label for="christian">Christian Dior (8)</label>
-                                                </div>
-                                            </li>
-                                        </ul>
-                                    </div>-->
+
                                 </div>
-<!--                                <div class="banner-static">
-                                    <a href="#">
-                                        <img src="assets/img/banner/img-sidebar.jpg" alt="Banner">
-                                    </a>
-                                </div>-->
+
                             </aside>
                         </div>
                     </div>

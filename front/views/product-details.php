@@ -49,6 +49,7 @@ $result=$query->fetch();
     <!-- modernizr JS
     ============================================ -->
     <script src="assets/js/vendor/modernizr-2.8.3.min.js"></script>
+    <script type ="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
     <!--[if lt IE 9]>
     <script src="//oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
     <script src="//oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
@@ -129,35 +130,7 @@ $result=$query->fetch();
                                 <!-- Tab Content End -->
                                 
                                 <!-- Product Thumbnail Carousel Start -->
- <!--                               <div class="product-details-thumbnail">
-                                    <div class="thumb-menu product-details-thumb-menu nav-vertical-center" id="thumbmenu-horizontal">
-                                        <div class="thumb-menu-item">
-                                            <a href="#product-large-one" data-toggle="tab" class="nav-link active">
-                                                <img src="src=../../../../../admin/images/<?php echo $result['img'];?>" alt="product thumb">
-                                            </a>
-                                        </div>
-                                        <div class="thumb-menu-item">
-                                            <a href="#product-large-two" data-toggle="tab" class="nav-link">
-                                                <img src="../../../../../admin/images/<?php echo $result['img'];?>" alt="product thumb">
-                                            </a>
-                                        </div>
-                                        <div class="thumb-menu-item">
-                                            <a href="#product-large-three" data-toggle="tab" class="nav-link">
-                                                <img src="../../../../../admin/images/<?php echo $result['img'];?>" alt="product thumb">
-                                            </a>
-                                        </div>
-                                        <div class="thumb-menu-item">
-                                            <a href="#product-large-four" data-toggle="tab" class="nav-link">
-                                                <img src="../../../../../admin/images/<?php echo $result['img'];?>" alt="product thumb">
-                                            </a>
-                                        </div>
-                                        <div class="thumb-menu-item">
-                                            <a href="#product-large-five" data-toggle="tab" class="nav-link">
-                                                <img src="assets/img/products/10-450x450.jpg" alt="product thumb">
-                                            </a>
-                                        </div>
-                                    </div>
-                                </div>-->
+
                                 <!-- Product Thumbnail Carousel End -->
                             </div>
                              
@@ -167,17 +140,33 @@ $result=$query->fetch();
                                     <div class="product-details-top">
                                         <h2 class="product-details-name" ><?php echo $result['nom'];?></h2>
                                         <div class="ratings-wrap">
-<!--                                            <div class="ratings">
-                                                <i class="fa fa-star rated"></i>
-                                                <i class="fa fa-star rated"></i>
-                                                <i class="fa fa-star rated"></i>
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                            </div>
-                                         <span>
-                                                <a class="review-btn" href="#singleProductTab">1 Reviews</a>
-                                                <a class="review-btn" href="#singleProductTab">write a review</a>
-                                            </span>-->
+                                         <label class="form__label d-block" >Notation</label>
+                                         <br>
+<!--                                                    <div class="rating">
+                                                        <input type="radio" id="5" name="rating" value="5" />
+                                                        <label class = "full" for="5" title="Awesome - 5 stars">  
+                                                        </label>
+                                                       
+                                                        <input type="radio" id="4" name="rating" value="4" />
+                                                        <label class = "full" for="4" title="Pretty good - 4 stars"> 
+                                                        </label>
+                                                        
+                                                        <input type="radio" id="3" name="rating" value="3" />
+                                                        <label class = "full" for="3" title="Meh - 3 stars">    
+                                                        </label>
+                                                        
+                                                        <input type="radio" id="2" name="rating" value="2" />
+                                                        <label class = "full" for="2" title="Kinda bad - 2 stars">    
+                                                        </label>
+                                                       
+                                                        <input type="radio" id="1" name="rating" value="1" />
+                                                        <label class = "full" for="1" title="Sucks big time - 1 star">    
+                                                        </label>
+                                                        
+                                                    </div>-->
+
+                                                    
+                                         
                                         </div>
                                         <ul class="product-details-list list-unstyled">
                                             <li> <div class="product-price-wrapper">
@@ -212,52 +201,24 @@ $result=$query->fetch();
                                         </ul>
                                         <br>
                                             <label class="product-options mb--20">
-                                                
-                
-                                  
+          <label class="control-label"><span>NOTER PRODUIT</span></label>
+                    <form  method="POST" action="noterProduit.php" name="formName">
+                      <input type="number" name="NOTER"  required pattern='[0-5]{0,5}'>
+                      <input type="hidden" name="refe" value="<?php echo $id;?>">
+                    </div>
+                    </form>
+        <a href="noterProduit.php?refe=<?php echo $id;?>" > <button type="submit" class="form__submit"><span class=" "></span> NOTER</button></a> 
 
                      
-                    </div>
-                 
-        
-           
-       
-<!--                                        <div class="product-details-price-wrapper">
-                                            <span class="money">$550.00</span>
-                                            <span class="product-price-old">
-                                                <span class="money">$700.00</span>
-                                            </span>
-                                        </div>   -->                                   
+                    </div>                                 
                                     </div> 
                                  
 
                                     <div class="product-details-bottom">
 
-<!--                                        <p class="product-details-availability"><i class="fa fa-check-circle"></i>200 In Stock</p> -->
                                         <div class="product-details-action-wrapper mb--20">
-<!--                                            <div class="product-details-action-top d-flex align-items-center mb--20">
-                                                <div class="quantity">
-                                                    <span>Qty: </span>
-                                                    <input type="number" class="quantity-input" name="qty" id="pro_qty" value="1" min="1">
-                                                </div>
-                                                <button type="button" class="btn btn-medium btn-style-2 add-to-cart">
-                                                    Add To Cart
-                                                </button>
-                                            </div>-->
-                                          
-                                        </div>  
-                                         
-<!--                                        <div class="social-share">
-                                            <a href="facebook.com" class="facebook share-button">
-                                                <i class="fa fa-facebook"></i>
-                                                <span>Like</span>
-                                            </a>
-                                            
-                                           
-                                        </div>-->
-
-
-                                    </div>       
+                                                                                </div>  
+                                   </div>       
                                 </div>
                                 <!-- Single Product Content End -->
                             </div>
