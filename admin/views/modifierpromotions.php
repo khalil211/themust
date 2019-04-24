@@ -1,10 +1,13 @@
 <?php
 include '../core/promotionss.php';
-if (isset($_GET['n'])&&isset($_GET['e']))
-{
-	$promotions=new promotionss();
-	if ($promotions->exist($_GET['n']))
-		$promotions->modifierEtat($_GET['n'],$_GET['e']);
-}
-header('Location: ../tables-promotions.php');
+$db=config::getConnexion();
+
+$result=$db->prepare("UPDATE promotions SET description=:description , datedebut= :datedebut, datefin=:datefin,pourcentage=:pourcentage WHERE nom=:nom");
+$result->bindValue(':nom',$_POST['nom']);
+$result->bindValue(':datedebut',$_POST['dated']);
+$result->bindValue(':datefin',$_POST['datef']);
+$result->bindValue(':description',$_POST['description']);
+$result->bindValue(':pourcentage',$_POST['remise']);
+$result->execute();
+header('location : table-promotions.php');
 ?>

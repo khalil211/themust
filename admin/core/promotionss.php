@@ -1,5 +1,6 @@
 <?php
-include "$_SERVER[DOCUMENT_ROOT]/themust/config.php";
+//include "$_SERVER[DOCUMENT_ROOT]/themust/config.php";
+include "../../config.php";
 
 class promotionss
 {
@@ -7,18 +8,29 @@ class promotionss
 	public function ajouter($promotions)
 	{
 		$db=config::getConnexion();
-		$query=$db->prepare('INSERT INTO promotions(nom,nomproduit,descrption,datedebut,datefin,pourcentage) VALUES(:nom,:nomproduit,:descrption,:datedebut,:datefin,;pourcentage');
+		$query=$db->prepare('INSERT INTO promotions(nom,idproduit,description,datedebut,datefin,pourcentage) VALUES(:nom,:idproduit,:description,:datedebut,:datefin,:pourcentage)');
 		$query->bindValue(':nom',$promotions->getnom());
-		$query->bindValue(':nomproduit',$promotions->getnomproduit());
-		$query->bindValue(':descrption',$promotions->getdescription());
+		$query->bindValue(':idproduit',$promotions->getidproduit());
+		$query->bindValue(':description',$promotions->getdescription());
 		$query->bindValue(':datedebut',$promotions->getdatedebut());
 		$query->bindValue(':datefin',$promotions->getdatefin());
 		$query->bindValue(':pourcentage',$promotions->getpourcentage());
-		if(!$query->execute())
-			return false;
+		$query->execute();
 	}
 
-
+	public function afficher()
+		{
+			$sql="SELECT * FROM promotions"	;
+			$db=config::getConnexion();
+			try
+			{
+				$liste =$db->query($sql);
+				return $liste;
+			} catch (Exception $e)
+			{
+				die('erreur: '.$e->getMessage());
+			}
+		}
 
 	public function nombre()
 	{
@@ -52,10 +64,10 @@ class promotionss
 	{
 		$db=config::getConnexion();
 		$query=$db->prepare('DELETE FROM promotions WHERE nomm=:nom');
-		$query->bindValue(':nom',$num);
+		$query->bindValue(':nom',$nom);
 		$query->execute();
 		$query=$db->prepare('DELETE FROM promotions WHERE nomm=:nom');
-		$query->bindValue(':nom',$num);
+		$query->bindValue(':nom',$nom);
 		$query->execute();
 	}
 }

@@ -1,10 +1,10 @@
 <?php
 include '../core/promotionss.php';
-if (isset($_GET['n']))
+if (isset($_GET['nom']))
 {
 	$promotions=new promotionss();
-	if ($promotions->exist($_GET['n']))
-		$promotions->supprimer($_GET['n']);
-	header('Location: ../tables-promotions.php');
+	if ($promotions->exist($_GET['nom']))
+		$promotions->supprimer($_GET['nom']);
+	header('Location: ../table-promotions.php');
 }
 ?>

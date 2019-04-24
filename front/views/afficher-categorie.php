@@ -5,6 +5,7 @@ include '../../config.php';
 $db=config::getConnexion();
 $idd=$_GET['idd'];
 $query=$db->query("SELECT * from produit where categorie='$idd'");
+$res=$db->query('select * from categorie');
 /*$query->bindValue(':idd',$idd);
 $query->execute();
 $result=$query->fetch();*/
@@ -109,22 +110,9 @@ $result=$query->fetch();*/
                                         </div>
 
                                         <!-- PAGINATION -->
-                                        <span class="product-pages">Pages </span>
-                                        <div class="product-showing">
-                                            <label class="select-label">Show:</label>
-                                            <select class="short-select nice-select">
-                                                <option value="1">9</option>
-                                                <option value="1">1</option>
-                                                <option value="1">2</option>
-                                                <option value="1">3</option>
-                                                <option value="1">4</option>
-                                                <option value="1">5</option>
-                                                <option value="1">9</option>
-                                            </select>
-                                        </div>
-
+                                     
                                         <!---->
-                                        <div class="product-short">
+<!--                                        <div class="product-short">
                                             <label class="select-label">Short By:</label>
                                             <select class="short-select nice-select">
                                                 <option value="1">Relevance</option>
@@ -133,7 +121,7 @@ $result=$query->fetch();*/
                                                 <option value="4">Price, low to high</option>
                                                 <option value="5">Price, high to low</option>
                                             </select>
-                                        </div>
+                                        </div>-->w
                                     </div>
                                     <!-- Shop Toolbar End -->
                                 </div>
@@ -290,6 +278,22 @@ $result=$query->fetch();*/
                                                 </div>
                                             </li>
                                             
+                                        </ul>
+                                    </div>
+                                          <div  class="product-action-bottom">
+                                         <div class="filter-input filter-radio">
+                                        <h3 class="filter-heading">Catégories</h3>
+                                        <?php while ($row = $res->fetch()) { 
+                                    ?>
+                                        <ul>
+                                           <li> <i class="fa fa-cube"></i>  <a style="font-size: 18px; color: #959696; " class="filter-input filter-radio" 
+                                            href="afficher-categorie.php?idd=<?php echo $row['id_cat']; ?>"" ><?php echo $row['nom_cat'];?> </a>
+                                        </li>
+        
+                                </ul>
+                            <?php } ?> 
+                            </div>                                           
+                                           
                                         </ul>
                                     </div>
                               
