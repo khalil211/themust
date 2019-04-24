@@ -40,7 +40,7 @@ function frontUp()
 	                                </a>
 	                            </li>
 	                            <li class="social__item">
-	                                <a href="https://www.facebook.com/MontresTheMust" class="social__link">
+	                                <a href="facebook.com" class="social__link">
 	                                <i class="fa fa-facebook"></i>
 	                                </a>
 	                            </li>
@@ -55,7 +55,7 @@ function frontUp()
 	                                </a>
 	                            </li>
 	                        </ul>
-	                        <p class="header-text">The Must<span>“Montres & Accessoires ”</span></p>
+	                        <p class="header-text">EEEEEEEEEEEE <span>“Watches2019”</span></p>
 	                    </div>
 	                    <div class="col-lg-4">
 	                        <div class="header-top-nav d-flex justify-content-lg-end justify-content-center">
@@ -67,6 +67,7 @@ function frontUp()
 	                                    </a>
 	                                    <div class="dropdown-menu" aria-labelledby="languageID">
 	                                        <a class="dropdown-item" href="#"><img src="assets/img/header/2.jpg" alt="Français"> Français</a>
+	                                        <a class="dropdown-item" href="#"><img src="assets/img/header/1.jpg" alt="English"> English</a>
 	                                    </div>
 	                                </div>
 	                            </div>
@@ -124,11 +125,7 @@ function frontUp()
 	                    <div class="col-md-5 col-sm-6 order-lg-1 order-2">
 	                        <div class="contact-info">
 	                            <img src="assets/img/icons/icon_phone.png" alt="Phone Icon">
-<<<<<<< HEAD
 	                            <p>Contactez-nous: (+216)xx xxx xxx</p>
-=======
-	                            <p>Call us <br> téléphone: (+216) 20 208 124</p>
->>>>>>> origin/master
 	                        </div>
 	                    </div>
 	                    <div class="col-lg-2 col-12 order-lg-2 order-1 text-center">

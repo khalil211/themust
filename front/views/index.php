@@ -101,7 +101,7 @@ $resultat=$db->query('SELECT * FROM produit');
                     <div class="row">
                         <div class="col-md-4 mb-sm--30">
                             <div class="promo promo-1">
-                                <a href="shop.html" class="promo__box">
+                                <a href="shop.php" class="promo__box">
                                     <img src="assets/img/banner/img1-top-mirora1.jpg" alt="Product Category">
                                     <span class="promo__content">
                                         <span class="promo__label"></span>
@@ -113,7 +113,7 @@ $resultat=$db->query('SELECT * FROM produit');
                         </div>
                         <div class="col-md-4 mb-sm--30">
                             <div class="promo promo-1">
-                                <a href="shop.html" class="promo__box">
+                                <a href="shop.php" class="promo__box">
                                     <img src="assets/img/banner/img2-top-mirora1.jpg" alt="Product Category">
                                     <span class="promo__content">
                                         <span class="promo__label"></span>
@@ -125,7 +125,7 @@ $resultat=$db->query('SELECT * FROM produit');
                         </div>
                         <div class="col-md-4">
                             <div class="promo promo-1">
-                                <a href="shop.html" class="promo__box">
+                                <a href="shop.php" class="promo__box">
                                     <img src="assets/img/banner/img3-top-mirora1.jpg" alt="Product Category">
                                     <span class="promo__content">
                                         <span class="promo__label"></span>
@@ -643,7 +643,7 @@ $resultat=$db->query('SELECT * FROM produit');
             <!-- Promo Box area End -->
         </div>
         <!-- Main Content Wrapper Start -->
-
+</div></div></div></div>
         <?php frontDown(); ?>
 
 </body>
