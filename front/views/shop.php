@@ -140,7 +140,9 @@ header('location: shop.php');
                                         </div>
                                           <div class="product-short">
                                         	<form action ="shop.php" method = "GET">
+
                                             <label class="select-label">Trier </label>
+
                                             <select class="short-select nice-select" name="tri">
                                                 <option value="1">Choix</option>    
                                                 <option value="nom1">Nom de Z à A</option>
@@ -149,7 +151,8 @@ header('location: shop.php');
                                                 <option value="prix2">Prix ascendant</option>
 
                                            </select>  
-                                              <button type="submit" class="form__submit" >Ok</button>                                     
+                                           <button type="submit" class="form__submit" >Ok</button>
+                                                                                   
                                         </form>                                        	
                                         </div>  
 

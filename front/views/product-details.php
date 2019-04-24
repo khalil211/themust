@@ -8,6 +8,7 @@ $query=$db->prepare('select * from produit p inner join categorie c where p.cate
 $query->bindValue(':idd',$idd);
 $query->execute();
 $result=$query->fetch();
+//testConnexion();
 
 ?>
 
@@ -142,6 +143,7 @@ $result=$query->fetch();
                                         <div class="ratings-wrap">
                                          <label class="form__label d-block" >Notation</label>
                                          <br>
+
 <!--                                                    <div class="rating">
                                                         <input type="radio" id="5" name="rating" value="5" />
                                                         <label class = "full" for="5" title="Awesome - 5 stars">  
@@ -200,8 +202,9 @@ $result=$query->fetch();
                                            
                                         </ul>
                                         <br>
+                                    
                                             <label class="product-options mb--20">
-          <label class="control-label"><span>NOTER PRODUIT</span></label>
+          <label class="control-label"><span>Noter le produit</span></label>
                     <form  method="POST" action="noterProduit.php" name="formName">
                       <input type="number" name="NOTER"  required pattern='[0-5]{0,5}'>
                       <input type="hidden" name="refe" value="<?php echo $id;?>">
