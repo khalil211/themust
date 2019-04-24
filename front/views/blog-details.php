@@ -5,7 +5,8 @@ include 'menus.php';testConnexion();
 
 include '../../config.php';
 $db=config::getConnexion();
-$com=$db->query('SELECT * FROM comment');
+$com=$db->query('SELECT * FROM comment ');
+
 $idd=$_GET['idd'];
 $query=$db->prepare('select * from blog where idblog=:idd');
 
@@ -21,7 +22,7 @@ include "../entities/comment.php";
 if (isset($_POST['description'])&&isset($_SESSION['idclient']))
 {
     
-    $c=new comment($_SESSION['idclient'],$_POST['description']);
+    $c=new comment($_SESSION['idclient'],$_POST['description'],$idd);
     $c->ajouter();
 }
 
