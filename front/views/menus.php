@@ -289,10 +289,10 @@ function frontUp()
 	                                </li>
 	                               
 	                                <li class="mainmenu__item">
-	                                    <a href="about.html" class="mainmenu__link">About Us</a>
+	                                    <a href="about.php" class="mainmenu__link">About Us</a>
 	                                </li>
 	                                <li class="mainmenu__item">
-	                                    <a href="contact.html" class="mainmenu__link">contact Us</a>
+	                                    <a href="contact.php" class="mainmenu__link">contact Us</a>
 	                                </li>
 	                            </ul>
 	                        </nav>
