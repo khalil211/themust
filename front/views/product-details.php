@@ -8,7 +8,6 @@ $query=$db->prepare('select * from produit p inner join categorie c where p.cate
 $query->bindValue(':idd',$idd);
 $query->execute();
 $result=$query->fetch();
-//testConnexion();
 
 ?>
 
@@ -202,7 +201,8 @@ $result=$query->fetch();
                                            
                                         </ul>
                                         <br>
-                                    
+   
+<?php if (isset($_SESSION['idclient'])){?>
                                             <label class="product-options mb--20">
           <label class="control-label"><span>Noter le produit</span></label>
                     <form  method="POST" action="noterProduit.php" name="formName">
@@ -213,7 +213,8 @@ $result=$query->fetch();
         <a href="noterProduit.php?refe=<?php echo $id;?>" > <button type="submit" class="form__submit"><span class=" "></span> NOTER</button></a> 
 
                      
-                    </div>                                 
+                    </div> 
+                 <?php }  ?>                                 
                                     </div> 
                                  
 
