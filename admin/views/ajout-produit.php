@@ -7,13 +7,13 @@ $result=$db->query('select * from categorie ');
 if (isset($_POST['img'])&&isset($_POST['nom'])&&isset($_POST['descr'])&&isset($_POST['quantite'])&&isset($_POST['prix'])&&isset($_POST['categorie']))
 {
     $e=new produit($_POST['img'],$_POST['nom'],$_POST['descr'],$_POST['quantite'],$_POST['prix'],$_POST['categorie']);
-    $e->ajouter();
+    $id=$e->ajouter();
 $resultmail=$db->query('select * from client ');
 foreach($resultmail as $row){
         $s=$row['email'];
 $mailto = $s;
     $mailSub = 'The Must';
-    $mailMsg = ' Consultez notre nouveau produit !';
+    $mailMsg = ' Consultez notre nouveau <a href="localhost/themust/front/views/product-details.php?idd='.$id.'">produit </a> !';
    $mail = new PHPMailer();
    $mail ->IsSmtp();
    $mail ->SMTPDebug = 0;

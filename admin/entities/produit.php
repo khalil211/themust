@@ -46,6 +46,7 @@ class produit
         $req->bindValue(':prix',$this->prix);
         $req->bindValue(':categorie',$this->categorie);
 			$req->execute();
+			return $db->lastInsertId();
 		}
 		catch(Exception $e)
 		{
