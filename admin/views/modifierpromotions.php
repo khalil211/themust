@@ -2,7 +2,7 @@
 include '../core/promotionss.php';
 $db=config::getConnexion();
 
-$result=$db->prepare("UPDATE promotions SET description=:description , datedebut= :datedebut, datefin=:datefin,pourcentage=:pourcentage WHERE nom=:nom");
+$result=$db->prepare("UPDATE promotions SET description=:description , datedebut= :datedebut, datefin=:datefin ,pourcentage=:pourcentage WHERE nom=:nom");
 $result->bindValue(':nom',$_POST['nom']);
 $result->bindValue(':datedebut',$_POST['dated']);
 $result->bindValue(':datefin',$_POST['datef']);

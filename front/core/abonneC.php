@@ -85,9 +85,5 @@ function long()
             die('Erreur: '.$e->getMessage());
         }
 	}
-
-
-
 }
-
 ?>
