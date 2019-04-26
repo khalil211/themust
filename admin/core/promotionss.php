@@ -8,11 +8,7 @@ class promotionss
 	public function ajouter($promotions)
 	{
 		$db=config::getConnexion();
-<<<<<<< Updated upstream
 		$query=$db->prepare('INSERT INTO promotions(nom,idproduit,description,datedebut,datefin,pourcentage) VALUES(:nom,:idproduit,:description,:datedebut,:datefin,:pourcentage)');
-=======
-		$query=$db->prepare('INSERT INTO promotions event(nom,idproduit,descrption,datedebut,datefin,pourcentage) VALUES(:nom,:idproduit,:descrption,:datedebut,:datefin,;pourcentage');
->>>>>>> Stashed changes
 		$query->bindValue(':nom',$promotions->getnom());
 		$query->bindValue(':idproduit',$promotions->getidproduit());
 		$query->bindValue(':description',$promotions->getdescription());
@@ -67,19 +63,11 @@ class promotionss
 	public function supprimer($nomm)
 	{
 		$db=config::getConnexion();
-<<<<<<< Updated upstream
 		$query=$db->prepare('DELETE FROM promotions WHERE nomm=:nom');
 		$query->bindValue(':nom',$nom);
 		$query->execute();
 		$query=$db->prepare('DELETE FROM promotions WHERE nomm=:nom');
 		$query->bindValue(':nom',$nom);
-=======
-		$query=$db->prepare('DELETE FROM promotions event WHERE nomm=:nom');
-		$query->bindValue(':nom',$num);
-		$query->execute();
-		$query=$db->prepare('DELETE FROM promotions event WHERE nomm=:nom');
-		$query->bindValue(':nom',$num);
->>>>>>> Stashed changes
 		$query->execute();
 	}
 }

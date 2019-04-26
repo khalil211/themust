@@ -9,11 +9,7 @@ function trierPromotionSelonNom($a,$b)
 class promotions
 {
 	private $nom;
-<<<<<<< Updated upstream
 	private $idproduit;
-=======
-	private $idProduit;
->>>>>>> Stashed changes
 	private $description;
 	private $datedebut;
 	private $datefin;
@@ -30,11 +26,7 @@ class promotions
 	}
 
 	public function getnom(){return $this->nom;}
-<<<<<<< Updated upstream
 	public function getidproduit(){return $this->idproduit;}
-=======
-	public function getidProduit(){return $this->idProduit;}
->>>>>>> Stashed changes
 	public function getdescription(){return $this->description;}
 	public function getdatedebut(){return $this->datedebut;}
 	public function getdatefin(){return $this->datefin;}
@@ -51,15 +43,9 @@ class promotions
 	public function ajouter($idc)
 	{
 		$db=config::getConnexion();
-<<<<<<< Updated upstream
 		$query=$db->prepare('INSERT INTO promotions(nom,idproduit,descrption,datedebut,datefin,pourcentage) VALUES(:nom,:idproduit:nomproduit,:descrption,:datedebut,:datefin,;pourcentage)');
 		$query->bindValue(':nom',$nom);
 		$query->bindValue(':idproduit',$this->idproduit);
-=======
-		$query=$db->prepare('INSERT INTO promotions event(nom,idProduit,descrption,datedebut,datefin,pourcentage) VALUES(:nom,:idProduit,:descrption,:datedebut,:datefin,;pourcentage)');
-		$query->bindValue(':nom',$nom);
-		$query->bindValue(':idProduit',$this->idProduit);
->>>>>>> Stashed changes
 		$query->bindValue(':descrption',$this->descrption);
 		$query->bindValue(':datedebut',$this->datedebut);
 		$query->bindValue(':datefin',$this->datefin);
