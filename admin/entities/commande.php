@@ -71,10 +71,10 @@ class commande
 	public function __construct($idclient,$etat)
 	{
 		$this->idclient=$idclient;
-		if ($etat)
+		if ($etat==1)
 			$this->etat=1;
 		else
-			$this->etat=0;
+			$this->etat=2;
 		$this->nbproduit=0;
 		$this->prixtotal=0;
 		$this->produits=array();

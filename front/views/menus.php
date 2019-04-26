@@ -125,7 +125,7 @@ function frontUp()
 	                    <div class="col-md-5 col-sm-6 order-lg-1 order-2">
 	                        <div class="contact-info">
 	                            <img src="assets/img/icons/icon_phone.png" alt="Phone Icon">
-	                            <p>Contactez-nous: (+216)xx xxx xxx</p>
+	                            <p>Appelez nous <br> téléphone: (+216) 20 208 124</p>
 	                        </div>
 	                    </div>
 	                    <div class="col-lg-2 col-12 order-lg-2 order-1 text-center">

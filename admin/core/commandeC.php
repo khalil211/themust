@@ -62,9 +62,10 @@ class commandeC
 	public function modifierEtat($num,$etatActuel)
 	{
 		$db=config::getConnexion();
+
 		if ($etatActuel==1)
-			$query=$db->prepare('UPDATE commande SET etat=0 WHERE numero=:id');
-		else
+			$query=$db->prepare('UPDATE commande SET etat=2 WHERE numero=:id');
+		else if ($etatActuel==2)
 			$query=$db->prepare('UPDATE commande SET etat=1 WHERE numero=:id');
 		$query->bindValue(':id',$_GET['n']);
 		$query->execute();
@@ -84,13 +85,33 @@ class commandeC
 	public function getProduits($numero)
 	{
 		$db=config::getConnexion();
-		return $db->query('SELECT p.nom nomprod,p.prix prixprod,pc.quantite quantiteprod,p.img imgprod FROM produitcommande pc INNER JOIN produit p ON p.id=pc.idproduit WHERE pc.idcommande='.$numero);
+		return $db->query('SELECT p.id idprod,p.nom nomprod,p.prix prixprod,pc.quantite quantiteprod,p.img imgprod FROM produitcommande pc INNER JOIN produit p ON p.id=pc.idproduit WHERE pc.idcommande='.$numero);
 	}
 
 	public function statsVentes()
 	{
 		$db=config::getConnexion();
-		return $db->query('SELECT COUNT(*) nb,SUM(prixtotal) prixtot,SUM(nbproduit) nbprod,MONTH(datecommande) mois,YEAR(datecommande) annee FROM commande WHERE YEAR(datecommande)=YEAR(NOW()) GROUP BY mois');
+		return $db->query('SELECT COUNT(*) nb,SUM(prixtotal) prixtot,SUM(nbproduit) nbprod,MONTH(datecommande) mois,YEAR(datecommande) annee FROM commande WHERE YEAR(datecommande)=YEAR(NOW()) AND etat=1 GROUP BY mois');
+	}
+
+	public function annuler($numero)
+	{
+		$db=config::getConnexion();
+		$query=$db->prepare('UPDATE commande set etat=0 WHERE numero=:num');
+		$query->bindValue(':num',$numero);
+		$query->execute();
+	}
+
+	public function commandeEtat()
+	{
+		$db=config::getConnexion();
+		$q=$db->query('SELECT * FROM commande WHERE etat=1');
+		$tab['passee']=$q->rowCount();
+		$q=$db->query('SELECT * FROM commande WHERE etat=2');
+		$tab['attente']=$q->rowCount();
+		$q=$db->query('SELECT * FROM commande WHERE etat=0');
+		$tab['annulee']=$q->rowCount();
+		return $tab;
 	}
 }
 

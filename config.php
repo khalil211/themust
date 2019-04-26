@@ -35,7 +35,6 @@ function backUp()
                 <a class="navbar-brand" href="index.php"><img src="images/logo.png" alt="Logo"></a>
                 <a class="navbar-brand hidden" href="./"><img src="images/logo2.png" alt="Logo"></a>
             </div>
-
             <div id="main-menu" class="main-menu collapse navbar-collapse">
                 <ul class="nav navbar-nav">
                     <li class="active">
@@ -51,7 +50,7 @@ function backUp()
 							<li><i class="fa fa-table"></i><a href="clientstats.php">Statistiques</a></li>
                         </ul>
                     </li>
-					     <li class="menu-item-has-children dropdown">
+					    <li class="menu-item-has-children dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-table"></i>FAQ</a>
                         <ul class="sub-menu children dropdown-menu">
 						<li><i class="fa fa-table"></i><a href="ajout-faq.php">Ajouter une FAQ</a></li>
@@ -77,7 +76,6 @@ function backUp()
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-th"></i>Commandes</a>
                         <ul class="sub-menu children dropdown-menu">
                             <li><i class="menu-icon fa fa-th"></i><a href="tables-commande.php">Listes des commandes</a></li>
-                            <li><i class="menu-icon fa fa-th"></i><a href="ajout-commande.php">Ajouter une commande</a></li>
                             <li><i class="menu-icon fa fa-th"></i><a href="stats-commande.php">Statistiques</a></li>
                         </ul>
                     </li>
@@ -146,26 +144,28 @@ function backUp()
                                 <button class="search-close" type="submit"><i class="fa fa-close"></i></button>
                             </form>
                         </div>
-
+                        <?php
+                        $db=config::getConnexion();
+                        $attente=$db->query('SELECT * FROM commande WHERE etat=2');
+                        ?>
                         <div class="dropdown for-notification">
                             <button class="btn btn-secondary dropdown-toggle" type="button" id="notification" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <i class="fa fa-bell"></i>
-                                <span class="count bg-danger"></span>
+                                <span class="count bg-danger"><?php echo $attente->rowCount(); ?></span>
                             </button>
-                            <div class="dropdown-menu" aria-labelledby="notification">
-                                <a class="dropdown-item media bg-flat-color-1" href="#">
-                                <i class="fa fa-check"></i>
-                                <p></p>
-                            </a>
-                                <a class="dropdown-item media bg-flat-color-4" href="#">
-                                <i class="fa fa-info"></i>
-                                <p></p>
-                            </a>
-                                <a class="dropdown-item media bg-flat-color-5" href="#">
-                                <i class="fa fa-warning"></i>
-                                <p></p>
-                            </a>
-                            </div>
+                            <?php
+                            if ($attente->rowCount()!=0)
+                            {
+                            ?>
+                                <div class="dropdown-menu" aria-labelledby="notification">
+                                    <a class="dropdown-item media bg-flat-color-4" href="tables-commande.php">
+                                        <i class="fa fa-info"></i>
+                                        <p><?php echo $attente->rowCount(); ?> commande(s) en attente.</p>
+                                    </a>
+                                </div>
+                            <?php
+                            }
+                            ?>
                         </div>
 
                         <div class="dropdown for-message">
@@ -228,26 +228,6 @@ function backUp()
                             <a class="nav-link" href="#"><i class="fa fa-cog"></i> Settings</a>
 
                             <a class="nav-link" href="../front/template/demo.devitems.com/mirora-v2/mirora/index.php"><i class="fa fa-power-off"></i> Logout</a>
-                        </div>
-                    </div>
-
-                    <div class="language-select dropdown" id="language-select">
-                        <a class="dropdown-toggle" href="#" data-toggle="dropdown"  id="language" aria-haspopup="true" aria-expanded="true">
-                            <i class="flag-icon flag-icon-us"></i>
-                        </a>
-                        <div class="dropdown-menu" aria-labelledby="language">
-                            <div class="dropdown-item">
-                                <span class="flag-icon flag-icon-fr"></span>
-                            </div>
-                            <div class="dropdown-item">
-                                <i class="flag-icon flag-icon-es"></i>
-                            </div>
-                            <div class="dropdown-item">
-                                <i class="flag-icon flag-icon-us"></i>
-                            </div>
-                            <div class="dropdown-item">
-                                <i class="flag-icon flag-icon-it"></i>
-                            </div>
                         </div>
                     </div>
 

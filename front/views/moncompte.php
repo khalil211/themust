@@ -189,7 +189,7 @@ $result=$db->query('SELECT * FROM client WHERE identifiant=\''.$_SESSION['idclie
                                                 <h4>Numero: <?php echo $c['numero']; ?></h4>
                                                 <p>Nombre de produits: <?php echo $c['nbproduit']; ?></p>
                                                 <p>Total: <?php echo $c['prixtotal']; ?></p>
-                                                <p>Etat: <?php if ($c['etat']==1)echo 'Passée'; else echo 'En attente'; ?></p>
+                                                <p>Etat: <?php if ($c['etat']==1)echo 'Passée'; else if($c['etat']==2) echo 'En attente'; else if($c['etat']==0) echo 'Annulée'; ?></p>
                                                 <p>Date: <?php echo $c['datecommande']; ?></p>
                                                 <a href="moncompte.php#<?php echo $c['numero']; ?>a" data-attr="#<?php echo $c['numero']; ?>" class="btn btn-medium btn-style-1 expand_action">Afficher produits</a>
                                                 <div class="address-form bg--2 mt--20 hide-in-default" id="<?php echo $c['numero']; ?>">
