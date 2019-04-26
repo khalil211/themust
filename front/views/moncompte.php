@@ -173,6 +173,24 @@ $result=$db->query('SELECT * FROM client WHERE identifiant=\''.$_SESSION['idclie
 
                                         <p>bonjour <strong><?php echo $_SESSION['idclient'];?></strong> (vous n'est pas <strong><?php echo $_SESSION['idclient'];?></strong>? <a href="deconnexion.php">Log out</a>)</p>
                                         
+                                        <?php
+                                        if (isset($_GET['addabo']))
+                                        {
+                                            include '../core/abonneC.php';
+                                            include '../entities/abonne.php';
+                                            $abonneC=new abonneC;
+                                            $abonne=new abonne($row['email']);
+                                            if ($_GET['addabo']==1)
+                                                $abonneC->ajouter($abonne);
+                                            else
+                                                $abonneC->supprimer($abonne);
+                                        }
+                                        $abo=$db->query("SELECT * FROM abonne WHERE adresse_mail='".$row['email']."'");
+                                        ?>
+
+                                        <h2>Newsletter</h2>
+                                        <a href="moncompte.php?addabo=<?php if ($abo->rowCount()==0) echo '1'; else echo '0'; ?>" class="btn newsletter-btn btn-style-1"><?php if ($abo->rowCount()==0) echo 'Abonnez-vous'; else echo 'Desabonnez-vous'; ?></a>
+
                                         <p>From your account dashboard. you can easily check & view your <a href="#">recent orders</a>, manage your <a href="#">shipping and billing addresses</a> and <a href="#">edit your password and account details</a>.</p>
                                     </div>
                                     

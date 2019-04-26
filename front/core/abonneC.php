@@ -1,51 +1,23 @@
 <?php
-include '../../config.php';
+include_once '../../config.php';
 class abonneC{ 
 
-	function ajouter_abonne($abonne){
-		$sql="INSERT INTO abonne (adresse_mail,date_a) VALUES ( :adresse_mail, NOW() ) ";
-
-
-
-		$db = config::getConnexion();
-		try{
-        $req=$db->prepare($sql);
-		
-        $adresse_mail=$abonne->get_adresse();
-        
-		//$req->bindValue(':date_a',$date);
-		$req->bindValue(':adresse_mail',$adresse_mail);
-		
-            $req->execute();
-           
-        }
-        catch (Exception $e){
-            echo 'Erreur: '.$e->getMessage();
-        }
-		
-	}
-	function ajouter_abonne2($abonne)
+	public function ajouter($abonne)
 	{
-		$sql="insert into abonne (adresse_mail,date_a) values (:adresse_mail,:date_a)";
-
-
-		$db = config::getConnexion();
-		try{
-        $req=$db->prepare($sql);
-		$date_a=$abonne->get_date();
-        $adresse_mail=$abonne->get_adresse();
-        
-		$req->bindValue(':date_a',$date_a);
-		$req->bindValue(':adresse_mail',$adresse_mail);
-		
-            $req->execute();
-           
-        }
-        catch (Exception $e){
-            echo 'Erreur: '.$e->getMessage();
-        }
-		
+		$db=config::getConnexion();
+		$query=$db->prepare('INSERT INTO abonne(adresse_mail,date_a) VALUES(:mail,NOW())');
+		$query->bindValue(':mail',$abonne->get_adresse());
+		$query->execute();
 	}
+
+	public function supprimer($abonne)
+	{
+		$db=config::getConnexion();
+		$query=$db->prepare('DELETE FROM abonne WHERE adresse_mail=:mail');
+		$query->bindValue(':mail',$abonne->get_adresse());
+		$query->execute();
+	}
+		
 	function afficherabonne(){
 		//$sql="SElECT * From employe e inner join formationphp.employe a on e.cin= a.cin";
 		$sql="SElECT * From abonne";
