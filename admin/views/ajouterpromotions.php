@@ -9,4 +9,5 @@ if (isset($_POST['nom']) and isset($_POST['idproduit']) and isset($_POST['descri
 	$cpromotionss->ajouter($promotions);
 }
 header('Location: ajout-promotion.php');
+
 ?>

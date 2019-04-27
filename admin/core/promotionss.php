@@ -8,7 +8,10 @@ class promotionss
 	public function ajouter($promotions)
 	{
 		$db=config::getConnexion();
+
 		$query=$db->prepare('INSERT INTO promotions(nom,idproduit,description,datedebut,datefin,pourcentage) VALUES(:nom,:idproduit,:description,:datedebut,:datefin,:pourcentage)');
+
+
 		$query->bindValue(':nom',$promotions->getnom());
 		$query->bindValue(':idproduit',$promotions->getidproduit());
 		$query->bindValue(':description',$promotions->getdescription());

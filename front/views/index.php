@@ -152,13 +152,7 @@ $resultat=$db->query('SELECT * FROM produit');
                         <div class="col-12 text-center">
                             <ul class="nav nav-tabs product-tab__head" id="product-tab" role="tablist">
                                 <li class="product-tab__item nav-item active">
-                                    <a class="product-tab__link nav-link active" id="nav-featured-tab" data-toggle="tab" href="popular-product.php" role="tab" aria-selected="true">En vedette</a>
-                                </li>
-                                <li class="product-tab__item nav-item">
-                                    <a class="product-tab__link nav-link" id="nav-new-tab" data-toggle="tab" href="#nav-new" role="tab" aria-selected="false">Nouveaux produits</a>
-                                </li>
-                                <li class="product-tab__item nav-item">
-                                    <a class="product-tab__link nav-link" id="nav-bestseller-tab" data-toggle="tab" href="#nav-bestseller" role="tab" aria-selected="false">Meilleures ventes</a>
+                                    <a class="product-tab__link nav-link active" id="nav-featured-tab" data-toggle="tab" href="#nav-featured" role="tab" aria-selected="true">En vedette</a>
                                 </li>
                                 <li class="product-tab__item nav-item">
                                     <a class="product-tab__link nav-link" id="nav-onsale-tab" data-toggle="tab" href="#nav-onsale" role="tab" aria-selected="false">Promotions</a>
@@ -200,7 +194,7 @@ $resultat=$db->query('SELECT * FROM produit');
                                                         </span>
                                                     </div>
                                                     <h5>
-                                                        <?php echo "note"."  ".$note;?></h5>
+                                                        <?php echo "note"."  ".$note/$nb_note;?></h5>
                                                 </div>
                                                 <div class="mirora_product_action text-center position-absolute">
                                                 
@@ -229,8 +223,56 @@ $resultat=$db->query('SELECT * FROM produit');
                            </div>
   
                 </div>
-
+                <?php 
+                $promo=$db->query('SELECT p.id id,p.img img,p.nom nom,p.descr descr,p.prix prix,pr.pourcentage pourcentage  FROM produit p INNER JOIN promotions pr on p.id=pr.idproduit');
+                ?>
+                                <div class="tab-pane fade" id="nav-onsale" role="tabpanel">
+                                    <div class="product-carousel js-product-carousel">
+                                        <?php
+                                        foreach($promo as $prom)
+                                        {
+                                            ?>
+                                            <div class="product-carousel-group">
+                                                <div class="mirora-product">
+                                                    <div class="product-img">
+                                                        <img src="../../admin/views/images/<?php echo $prom['img'];?>" alt="Product" class="primary-image" />
+                                                        <img src="../../admin/views/images/<?php echo $prom['img'];?>" alt="Product" class="secondary-image" />
+                                                        <div class="product-img-overlay">
+                                                            <span class="product-label discount">
+                                                                <?php echo $prom['pourcentage']; ?>%
+                                                            </span>
+                                                            <a href="product-details.php?idd=<?php echo $key['id']; ?>" class="btn btn-transparent btn-fullwidth btn-medium btn-style-1">Détails</a>
+                                                        </div>
+                                                    </div>
+                                                    <div class="product-content text-center">
+                                                        <span></span>
+                                                        <h4><a href="product-details.html"><?php echo $prom['nom']; ?></a></h4>
+                                                        <div class="product-price-wrapper">
+                                                            <span class="money"><?php echo $prom['prix']*($prom['pourcentage']/100); ?></span>
+                                                            <span class="product-price-old">
+                                                                <span class="money"><?php echo $prom['prix']; ?></span>
+                                                            </span>
+                                                        </div>
+                                                    </div>
+                                                    <div class="mirora_product_action text-center position-absolute">
+                                                        <p>
+                                                          <?php echo $prom['descr']; ?>
+                                                        </p>
+                                                        <div class="product-action">
+                                                            <a class="add_cart cart-item action-cart" href="cart.php?addpp=<?php echo $key['id']; ?>" title="wishlist"><span>Ajouter au panier</span></a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                </div>
+                                            </div>
+                                            <?php
+                                        }
+                                    ?>
+                                    </div>
+                                </div>
+</div>
             </div>
+        </div>
 
             <!-- Products Tab area End -->
 
