@@ -66,11 +66,13 @@ class promotionss
 	public function supprimer($nomm)
 	{
 		$db=config::getConnexion();
+
 		$query=$db->prepare('DELETE FROM promotions WHERE nomm=:nom');
 		$query->bindValue(':nom',$nom);
 		$query->execute();
 		$query=$db->prepare('DELETE FROM promotions WHERE nomm=:nom');
 		$query->bindValue(':nom',$nom);
+
 		$query->execute();
 	}
 }
