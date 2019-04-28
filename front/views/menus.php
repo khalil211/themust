@@ -130,7 +130,7 @@ function frontUp()
 	                    </div>
 	                    <div class="col-lg-2 col-12 order-lg-2 order-1 text-center">
 	                        <a href="index.php" class="logo-box mb-md--30">
-	                            <p>place of our logo</p>
+	                            <img src="../../admin/views/images/logo.png" alt="logo">
 	                        </a>
 	                    </div>
 	                    <div class="col-lg-5 col-md-7 col-sm-6 order-lg-3 order-3">

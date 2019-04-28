@@ -51,10 +51,6 @@ class produitCommande
 		$query->bindValue(':idproduit',$this->idproduit);
 		$query->bindValue(':quantite',$this->qte);
 		$query->execute();
-		$query=$db->prepare('UPDATE produit SET quantite=quantite-:qte WHERE id=:id');
-		$query->bindValue(':id',$this->idproduit);
-		$query->bindValue(':qte',$this->qte);
-		$query->execute();
 	}
 }
 

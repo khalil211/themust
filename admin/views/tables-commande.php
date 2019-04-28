@@ -69,10 +69,16 @@ $liste=$commande->afficher();
                                                      <i class="fa fa-book"></i> Afficher
                                                     </button>
                                                     <?php
+                                                    if ($element['etat']==1)
+                                                    {
+                                                        ?>
+                                                        <a target="_blank" href="facturepdf.php?num=<?php echo $element['numero'];?>" class="btn btn-success"><i class="fa fa-dollar"></i>  Facture</a>
+                                                        <?php
+                                                    }
                                                     if ($element['etat']==2)
                                                     {
                                                         ?>
-                                                        <a href="modifier-commande.php?n=<?php echo htmlspecialchars($element['numero']); ?>&e=<?php echo $element['etat']; ?>" class="btn btn-success"><i class="fa fa-check"></i>  Passer</a>
+                                                        <a <?php if ($commande->passable($element['numero'])) echo 'href="modifier-commande.php?n='.$element['numero'].'&e='.$element['etat'].'"'; ?> class="btn btn-success"><i class="fa fa-check"></i>  Passer</a>
                                                         <a href="modifier-commande.php?n=<?php echo htmlspecialchars($element['numero']); ?>&e=<?php echo $element['etat']; ?>&annuler=true" class="btn btn-secondary"><i class="fa fa-ban"></i>Annuler</a>
                                                         <?php
                                                     }

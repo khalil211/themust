@@ -30,7 +30,14 @@ $client=$client->fetch();
 if (isset($_GET['annuler']))
     $mailMsg = 'Votre commande a été annulée.';
 else
-	$mailMsg='Votre commande a été validée.';
+{
+	if ($c['etat']==1)
+	{
+		$mailMsg='Votre commande a été validée.<br>Consultez la <a target="_blank" href="localhost/themust/admin/views/facturepdf.php?num='.$c['numero'].'">facture</a>.';
+	}
+	else
+		$mailMsg='Votre commande a été validée.';
+}
 $mailSub = 'The Must';
 $mail = new PHPMailer();
 $mail ->IsSmtp();

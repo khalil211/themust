@@ -493,15 +493,13 @@ td[class="spechide"]
   </body>
   </html>
 ';
-
-
+    $mail ->IsHTML(true);
     $mail ->IsSmtp();
     $mail ->SMTPDebug = 0;
     $mail ->SMTPAuth = true;
     $mail ->SMTPSecure = 'ssl';
     $mail ->Host = "smtp.gmail.com";
     $mail ->Port = 465; // or 587
-    $mail ->IsHTML(true);
     $mail ->Username = 'themust.gammarth@gmail.com';
     $mail ->Password = "themust123";
     $mail ->SetFrom("yourmail@gmail.com");
