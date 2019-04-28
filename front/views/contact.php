@@ -593,6 +593,40 @@ include 'menus.php';testConnexion();
 
     <!-- Main JS -->
     <script src="assets/js/main.js"></script>
+    <script type="text/javascript">
+        document.getElementById("reclamationn").addEventListener("submit",function (e){
+    let teste=true;
+    let sujet, email,description;
+    email=reclamationn.email.value;
+    sujet=reclamationn.sujet.value;
+    description=reclamationn.description.value;
+    
+    if(document.forms["reclamationn"]["email"].value=="" && document.forms["reclamationn"]["description"].value=="" && document.forms["reclamationn"]["sujet"].value=="" )
+{
+    alert("Veuillez remplir tout les champs! ");
+    teste=false;
+   
+}
+    
+    if (description.length < 20 || description.length > 200 ) 
+    {
+        teste=false;
+        alert("Veuillez ecrire plus que 20 carachter dans le champ description.");
+    }
+     else if (teste===false)
+     {
+    alert("Verifiez vos informations.");
+
+     }
+     else
+     {
+        alert("Ajout avec succès.")
+     }
+    if(!teste)
+        e.preventDefault();
+});
+    </script>
+   
 
 </body>
 

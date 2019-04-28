@@ -309,7 +309,7 @@ $result=$query->fetch();
                                                         </div>
                                                         <div class="comment-content">
                                                             <?php
-                                                            $badwords = [ "/(pussy)/", "/(fuck)/", "/(hell)/" ];
+                                                            $badwords = [ "/(hello)/", "/(fuck)/", "/(hell)/" ];
 //"#\((\d+)\)#"
                                            $phrase = $pcom['description'];
 

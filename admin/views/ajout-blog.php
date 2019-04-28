@@ -1,9 +1,9 @@
 <?php
 include "../../config.php";
 include "../entities/blog.php";
-if (isset($_POST['idblog'])&&isset($_POST['description'])&&isset($_POST['type'])&&isset($_POST['date'])&&isset($_POST['image']))
+if (isset($_POST['titre'])&&isset($_POST['description'])&&isset($_POST['type'])&&isset($_POST['image']))
 {
-    $b=new blog($_POST['idblog'],$_POST['description'],$_POST['type'],$_POST['date'],$_POST['image']);
+    $b=new blog($_POST['titre'],$_POST['description'],$_POST['type'],$_POST['image']);
     $b->ajouter();
 }
 
@@ -43,20 +43,18 @@ if (isset($_POST['idblog'])&&isset($_POST['description'])&&isset($_POST['type'])
         </div>
         <div class="card-body card-block">
            
-                <div class="row form-group">
-                    <div class="col col-md-3"><label class=" form-control-label">ID Blog</label></div>
-                    <div class="col-12 col-md-9"><input type="number" id="idblog" name="idblog" placeholder="ID Blog" class="form-control"><small class="form-text text-muted"></small></div>
+              
+                 <div class="row form-group">
+                    <div class="col col-md-3"><label class=" form-control-label">Titre</label></div>
+                    <div class="col-12 col-md-9"><input type="text" id="titre" name="titre" placeholder="Titre.." class="form-control"><small class="form-text text-muted"></small></div>
                 </div>
                
                 <div class="row form-group">
-                <div class="col col-md-3"><label for="textarea-input" class=" form-control-label">Textarea</label></div>
+                <div class="col col-md-3"><label for="textarea-input" class=" form-control-label">Description</label></div>
                 <div class="col-12 col-md-9"><textarea name="description" id="description" rows="9" placeholder="Content..." class="form-control"></textarea></div>
             </div>
 
-                <div class="row form-group">
-                    <div class="col col-md-3"><label class=" form-control-label">Date</label></div>
-                    <div class="col-12 col-md-9"><input type="date" id="date" name="date" class="form-control"><small class="form-text text-muted"></small></div>
-                </div>
+                
                
                 <div class="row form-group">
                     <div class="col col-md-3"><label class=" form-control-label">Etat</label></div>
@@ -87,22 +85,22 @@ if (isset($_POST['idblog'])&&isset($_POST['description'])&&isset($_POST['type'])
 	<?php
 	backDown();
 	?>
-    <script type="text/javascript">
+     <script type="text/javascript">
         document.getElementById("blogg").addEventListener("submit",function (e){
     let teste=true;
-    let idb, type,description,date;
-    idb=blogg.idblog.value;
-    type=blogg.idblog.value;
+    let titre, type,description;
+    titre=blogg.titre.value;
+    type=blogg.type.value;
     description=blogg.description.value;
-    date=blogg.date.value;
-    if(document.forms["blogg"]["type"].value=="" && document.forms["blogg"]["description"].value=="" && document.forms["blogg"]["date"].value=="" && document.forms["blogg"]["idblog"].value=="" )
+    
+    if(document.forms["blogg"]["type"].value=="" && document.forms["blogg"]["description"].value==""  && document.forms["blogg"]["titre"].value=="" )
 {
     alert("Veuillez remplir tout les champs! ");
 }
-    if (idb.length < 1 || idb.length >4 )
+    if ( titre.length >20 )
     {
         teste=false;
-        alert("ID ne doit pas deppaser 4 carachter");
+        alert("titre ne doit pas deppaser 20 carachter");
     }
     else if (description.length < 10 || description.length > 200 ) 
     {
