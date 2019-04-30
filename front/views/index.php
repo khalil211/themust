@@ -174,7 +174,7 @@ $resultat=$db->query('SELECT * FROM produit');
                                             foreach ($resultat as $key ) {
                                                      $note=$key['note'];
                                                            $nb_note=$key['nb_note'];
-                                                                if(($note>3.5)&&($note<6)){
+                                                                if(($note/$nb_note>3)&&($note/$nb_note<6)){
                                                                     ?>
                                         <div class="product-carousel-group">
                                             
@@ -203,15 +203,7 @@ $resultat=$db->query('SELECT * FROM produit');
                                                         <?php echo "note"."  ".$note;?></h5>
                                                 </div>
                                                 <div class="mirora_product_action text-center position-absolute">
-                                                <div class="product-rating">
-                                                        <span>
-                                                            <i class="fa fa-star theme-star"></i>
-                                                            <i class="fa fa-star theme-star"></i>
-                                                            <i class="fa fa-star theme-star"></i>
-                                                            <i class="fa fa-star theme-star"></i>
-                                                            <i class="fa fa-star"></i>
-                                                        </span>
-                                                    </div>
+                                                
 
                                                     <p>
                                                        <?php echo $key['descr'];?>

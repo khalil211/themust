@@ -142,30 +142,6 @@ $result=$query->fetch();
                                         <div class="ratings-wrap">
                                          <label class="form__label d-block" >Notation</label>
                                          <br>
-
-<!--                                                    <div class="rating">
-                                                        <input type="radio" id="5" name="rating" value="5" />
-                                                        <label class = "full" for="5" title="Awesome - 5 stars">  
-                                                        </label>
-                                                       
-                                                        <input type="radio" id="4" name="rating" value="4" />
-                                                        <label class = "full" for="4" title="Pretty good - 4 stars"> 
-                                                        </label>
-                                                        
-                                                        <input type="radio" id="3" name="rating" value="3" />
-                                                        <label class = "full" for="3" title="Meh - 3 stars">    
-                                                        </label>
-                                                        
-                                                        <input type="radio" id="2" name="rating" value="2" />
-                                                        <label class = "full" for="2" title="Kinda bad - 2 stars">    
-                                                        </label>
-                                                       
-                                                        <input type="radio" id="1" name="rating" value="1" />
-                                                        <label class = "full" for="1" title="Sucks big time - 1 star">    
-                                                        </label>
-                                                        
-                                                    </div>-->
-
                                                     
                                          
                                         </div>
@@ -205,16 +181,36 @@ $result=$query->fetch();
 <?php if (isset($_SESSION['idclient'])){?>
                                             <label class="product-options mb--20">
           <label class="control-label"><span>Noter le produit</span></label>
-                    <form  method="POST" action="noterProduit.php" name="formName">
-                      <input type="number" name="NOTER"  required pattern='[0-5]{0,5}'>
-                      <input type="hidden" name="refe" value="<?php echo $id;?>">
-                    </div>
-                    </form>
-        <a href="noterProduit.php?refe=<?php echo $id;?>" > <button type="submit" class="form__submit"><span class=" "></span> NOTER</button></a> 
+                     <form  method="POST" action="noterProduit.php" name="formName">
 
+                                                    <div class="rating">
+                                                        <input type="radio" id="star5" name="NOTER" value="5" />
+                                                        <label class = "full" for="star5" title="Awesome - 5 stars">  
+                                                        </label>
+                                                        
+                                                        <input type="radio" id="star4" name="NOTER" value="4" />
+                                                        <label class = "full" for="star4" title="Pretty good - 4 stars"> 
+                                                        </label>
+                                                       
+                                                        <input type="radio" id="star3" name="NOTER" value="3" />
+                                                        <label class = "full" for="star3" title="Meh - 3 stars">    
+                                                        </label>
+                                                       
+                                                        <input type="radio" id="star2" name="NOTER" value="2" />
+                                                        <label class = "full" for="star2" title="Kinda bad - 2 stars">    
+                                                        </label>
+                                                       
+                                                        <input type="radio" id="star1" name="NOTER" value="1" />
+                                                        <label class = "full" for="star1" title="Sucks big time - 1 star">    
+                                                        </label>
+                                                        
+                                                  
+ <input type="hidden" name="refe" value="<?php echo $id;?>">   
+<a href="noterProduit.php?refe=<?php echo $id;?>" >  <button type="submit" class="form__submit"><span class=" "></span> NOTER</button></a>
                      
-                    </div> 
-                 <?php }  ?>                                 
+                                                  </div> 
+                </form>
+               <?php }  ?>                             
                                     </div> 
                                  
 
