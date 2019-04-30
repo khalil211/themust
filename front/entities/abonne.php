@@ -4,7 +4,6 @@ class abonne
 private $adresse_mail;
 private $date_a;
 
-
 function __construct($adresse_mail)
 {
 	$this->adresse_mail=$adresse_mail;
