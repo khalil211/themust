@@ -120,12 +120,12 @@ function frontUp()
 	                    <div class="col-md-5 col-sm-6 order-lg-1 order-2">
 	                        <div class="contact-info">
 	                            <img src="assets/img/icons/icon_phone.png" alt="Phone Icon">
-	                            <p>Contactez-nous: (+216)xx xxx xxx</p>
+	                            <p>Appelez nous <br> téléphone: (+216) 20 208 124</p>
 	                        </div>
 	                    </div>
 	                    <div class="col-lg-2 col-12 order-lg-2 order-1 text-center">
 	                        <a href="index.php" class="logo-box mb-md--30">
-	                            <p>place of our logo</p>
+	                            <img src="../../admin/views/images/logo.png" alt="logo">
 	                        </a>
 	                    </div>
 	                    <div class="col-lg-5 col-md-7 col-sm-6 order-lg-3 order-3">
@@ -284,10 +284,10 @@ function frontUp()
 	                                </li>
 	                               
 	                                <li class="mainmenu__item">
-	                                    <a href="about.html" class="mainmenu__link">About Us</a>
+	                                    <a href="about.php" class="mainmenu__link">About Us</a>
 	                                </li>
 	                                <li class="mainmenu__item">
-	                                    <a href="contact.html" class="mainmenu__link">contact Us</a>
+	                                    <a href="contact.php" class="mainmenu__link">contact Us</a>
 	                                </li>
 	                            </ul>
 	                        </nav>

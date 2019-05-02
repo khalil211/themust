@@ -35,7 +35,7 @@ class promotions
 	public function exist()
 	{
 		$db=config::getConnexion();
-		$query=$db->prepare('SELECT * FROM promotion WHERE nom=:nomid');
+		$query=$db->prepare('SELECT * FROM promotions event WHERE nom=:nomid');
 		$query->bindValue(':nom',$this->nom);
 		$query->execute();
 	}

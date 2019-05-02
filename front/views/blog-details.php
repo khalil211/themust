@@ -4,10 +4,22 @@
 include 'menus.php';testConnexion(); 
 
 include '../../config.php';
-$db=config::getConnexion();
-$com=$db->query('SELECT * FROM comment ');
-
+include "../entities/comment.php";
 $idd=$_GET['idd'];
+if (isset($_POST['description'])&&isset($_SESSION['idclient']))
+{
+    
+    $c=new comment($_SESSION['idclient'],$_POST['description'],$idd);
+    $c->ajouter();
+}
+
+$db=config::getConnexion();
+
+$com=$db->prepare('select * from comment where idblog=:idd');
+$com->bindValue(':idd',$idd);
+$com->execute();
+
+
 $query=$db->prepare('select * from blog where idblog=:idd');
 
 $query->bindValue(':idd',$idd);
@@ -18,13 +30,6 @@ $result=$query->fetch();
 
 <?php
 
-include "../entities/comment.php";
-if (isset($_POST['description'])&&isset($_SESSION['idclient']))
-{
-    
-    $c=new comment($_SESSION['idclient'],$_POST['description'],$idd);
-    $c->ajouter();
-}
 
 ?>
 
@@ -102,6 +107,7 @@ if (isset($_POST['description'])&&isset($_SESSION['idclient']))
         }
     }
     ?>
+   
         <!-- Header Area Start -->
      
         <!-- Header Area End -->
@@ -283,16 +289,44 @@ if (isset($_POST['description'])&&isset($_SESSION['idclient']))
                                                         <img src="assets/img/others/comment-1.jpg" alt="comment">
                                                     </div>
                                                     <div class="comment-info">
-                                                        <div class="comment-meta">
-                                                            <h5 class="comment-author"><a href="#"> <?php echo $pcom['idclient']; ?></a></h5>
-                                                            <span class="comment-date"><?php echo $pcom['date']; ?></span>
-                                                            
+                                                        <div style="display: flex; justify-content: space-between;" class="comment-meta">
+                                                            <div>
+                                                                <h5 class="comment-author"><a href="#"> <?php echo $pcom['idclient']; ?></a></h5>
+                                                                <span class="comment-date"><?php echo $pcom['date']; ?></span>
+                                                            </div>
+                                                            <?php
+                                                           if (isset($_SESSION['idclient']))
+                                                           {
+                                                            if($_SESSION['idclient']==$pcom['idclient'])
+                                                            {
+                                                                ?>
+                                                                <a style="color: gray;" class="delete" href="supprimer-comment.php?del=<?php echo $pcom['ID']; ?>&amp;t=<?php echo $pcom['idblog']; ?>"><i class="fa fa-times"></i></a>
+                                                                <?php
+                                                            }
+
+                                                           }
+                                                            ?>
                                                         </div>
                                                         <div class="comment-content">
-                                                            <p><?php echo $pcom['description']; ?></p>
+                                                            <?php
+                                                            $badwords = [ "/(hello)/", "/(fuck)/", "/(hell)/" ];
+//"#\((\d+)\)#"
+                                           $phrase = $pcom['description'];
+
+                                                       echo preg_replace_callback(
+                                                          $badwords,
+                                                        function ($matches) {
+                                                    return str_repeat('*', strlen($matches[0]));
+                                              },
+                                                   $phrase
+                                                           );
+                                                            ?>          
+                                                               
                                                         </div>
                                                     </div>
                                                 </div>
+
+                                                
                                                 
 
                                       <?php
