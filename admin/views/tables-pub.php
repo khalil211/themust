@@ -3,6 +3,7 @@ include "../../config.php";
 $db=config::getConnexion();
 
 $emps=$db->query("DELETE FROM publicite WHERE fin<=CURDATE()");
+$ems=$db->query("DELETE FROM publicite WHERE debut < CURDATE()");
 ?>
 <?php  
 
@@ -86,7 +87,7 @@ if (!empty($_GET['searchh'])) {
                                     <?php while ($row = $result->fetch()) { ?>
                                         <tr>
 
-                                            <td> <img src="images/<?php echo $row['image']; ?>" height=100px></td>
+                                            <td> <img src="images/<?php echo $row['image']; ?>" height=100px width=300px></td>
                                             <td> <?php echo $row['cat']; ?></td>
                                             <td><?php echo $row['nom']; ?></td>
 
@@ -97,9 +98,9 @@ if (!empty($_GET['searchh'])) {
                                              <td>
                             
                             <!--a href="#" class="btn btn-primary btn-xs" onclick="verifForm()" type="submit" Value="Ajouter"><i class="fa fa-folder"></i> ajotuer</a> -->
-                            <a href="ediit.php?edit=<?php echo $row['ID']; ?>" class="btn btn-info btn-xs"><i class="fa fa-pencil"></i> Edit </a>
+                            <a href="ediit.php?edit=<?php echo $row['ID']; ?>" class="btn btn-success"><i class="fa fa-magic"></i>  Modifier </a>
                            <!--<a href="delete.php?del=<?php echo $row['ID']; ?>" class="btn btn-info btn-xs"><i class="fa fa-trash-o">Delete</a>-->
-                                <a href="delete.php?del=<?php echo $row['ID'];?>" class="btn btn-danger btn-xs"><i class="fa fa-trash-o"></i> Delete </a>
+                                <a href="delete.php?del=<?php echo $row['ID'];?>" class="btn btn-danger"><i class="fa fa-trash-o"></i>  Supprimer</a>
                           </td>
                                         </tr>
                                     <?php } ?>

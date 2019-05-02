@@ -1,6 +1,6 @@
 <?php
-include "../../config.php";
-include 'menus.php';
+include "../config.php";
+include 'views/menus.php';
 testConnexion();
 $db=config::getConnexion();
 

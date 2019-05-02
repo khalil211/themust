@@ -66,7 +66,7 @@ $emps=$db->query("SELECT * FROM  publicite WHERE ID=$ID");
                                                              
                                                             <div class="row form-group">
                                                                 <div class="col col-md-3"><label class=" form-control-label">Image de la publicité  </label></div>
-                                                                <div class="col-12 col-md-9"><input type="file" id="img" name="img" value="<?php echo $image;?>" class="form-control"><small class="form-text text-muted"></small></div>
+                                                                <div class="col-12 col-md-9"><input type="file"  id="img" name="img" value="<?php echo $image;?>" class="form-control" disabled ><small class="form-text text-muted"></small></div>
                                                                 <div class="col-12 col-md-9">
                                                                   
                                                                 </div>
@@ -74,8 +74,8 @@ $emps=$db->query("SELECT * FROM  publicite WHERE ID=$ID");
 
                                                             <div class="row form-group">
                                                                 <div class="col col-md-3"><label class=" form-control-label">Numéro de la publicité </label></div>
-                                                                <div class="col-12 col-md-9"> <td><select id="liste" value="" name="liste" class="form-control">
-                                                 <option  class="non" selected disabled>Sélectionner</option>
+                                                                <div class="col-12 col-md-9"> <td><select id="liste" value="<?php echo $cat;?>" name="liste" class="form-control">
+                                                 <option  selected disabled><?php echo $cat;?></option>
                                                 <option >catégories 1</option>
                                                 <option >catégories 2</option>
                                                 <option >catégories 3</option>
@@ -123,6 +123,7 @@ $emps=$db->query("SELECT * FROM  publicite WHERE ID=$ID");
 
                                                 <div class="card-footer">
                                                      <input type="submit" value="Ajouter"class="btn btn-primary btn-sm">
+                                                      <a href="tables-pub.php" class="btn btn-danger"> Annuler</a>
                                                  <i class="fa fa-dot-circle-o"></i> 
                                                         </button>
                                                         

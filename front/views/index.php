@@ -5,9 +5,10 @@ testConnexion();
 $db=config::getConnexion();
 
 $emps=$db->query("DELETE FROM publicite WHERE fin<=CURDATE()");
+
 ?>
 <?php  
-$result=$db->query('select * from publicite');
+$result=$db->query('select * from publicite ');
 $resultat=$db->query('SELECT * FROM produit');
 ?>
 
@@ -16,7 +17,7 @@ $resultat=$db->query('SELECT * FROM produit');
 <html class="no-js" lang="zxx">
 
 
-<!-- Mirrored from demo.devitems.com/mirora-v2/mirora/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 10 Feb 2019 18:51:16 GMT -->
+
 <head>
     <meta charset="utf-8">
     <!-- <meta http-equiv="X-UA-Compatible" content="IE=edge">  -->
@@ -67,7 +68,9 @@ $resultat=$db->query('SELECT * FROM produit');
             <div class="slider-area">
                 <div class="homepage-slider">
                     <!-- Single Slide Start -->
-                    <?php while ($row = $result->fetch()) { ?>
+
+ <?php 
+                    while ($row = $result->fetch()) { ?>
                        
                     <div class="single-slider content-v-center" style="background-image: url(../../admin/views/images/<?php echo $row['image']; ?>" >
                         
@@ -78,7 +81,6 @@ $resultat=$db->query('SELECT * FROM produit');
                                         <h5 data-animation="rollIn" data-duration=".8s" data-delay=".5s">promotion</h5>
                                         <h1 data-animation="fadeInDown" data-duration=".8s" data-delay=".2s"><?php echo $row['cat']; ?></h1>
                                         <p class="mb--30 mb-sm--20" data-animation="fadeInDown" data-duration=".8s" data-delay=".2s"><?php echo $row['description']; ?> </p>
-                                        <p class="mb--50 mb-sm--20" data-animation="fadeInDown" data-duration=".8s" data-delay=".2s">Starting At <strong>prix</strong></p>
                                         <div class="slide-btn-group" data-animation="fadeInUp" data-duration="1s" data-delay=".3s">
                                              <a href="shop.php?del=<?php echo $row['ID'];?>" class="btn btn-bordered btn-style-1">Achetez maintenant </a>
                                         </div>

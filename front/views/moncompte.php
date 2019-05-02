@@ -57,7 +57,13 @@ $result=$db->query('SELECT * FROM clientste WHERE identifiant=\''.$_SESSION['idc
 $result=$db->query('SELECT * FROM client WHERE identifiant=\''.$_SESSION['idclient'].'\'');   
             }
 ?>
+<?php 
+$fid=$db->prepare('SELECT * FROM fidelite WHERE ID_client=:idc');
+                                        $fid->bindValue(':idc',$_SESSION['idclient']);
+                                        $fid->execute();
 
+
+ ?>
 <!doctype html>
 <html class="no-js" lang="zxx">
 
@@ -142,7 +148,8 @@ $result=$db->query('SELECT * FROM client WHERE identifiant=\''.$_SESSION['idclie
                                 <div class="user-dashboard-tab__content tab-content">
                                     <div class="tab-pane fade show active" id="dashboard">
                                         
-                                        <?php $row = $result->fetch();  
+                                        <?php $row = $result->fetch(); 
+                                        $ro = $fid->fetch(); 
             if (preg_match('/[a-zA-Z0-9]{4,25}(STE)$/',$_SESSION['idclient']))
             {
 ?> 
@@ -152,6 +159,7 @@ $result=$db->query('SELECT * FROM client WHERE identifiant=\''.$_SESSION['idclie
                                        <h2> Matricule Fiscale : <?php echo $row['matfis']; ?> </h2>
                                        <h2> Adresse : <?php echo $row['adresse']; ?> </h2>
                                        <h2> telephone : <?php echo $row['telephone']; ?> </h2>
+
                                         <?php 
                                         }
                                         else
@@ -165,6 +173,7 @@ $result=$db->query('SELECT * FROM client WHERE identifiant=\''.$_SESSION['idclie
                                        <h2> Prénom : <?php echo $row['prenom']; ?> </h2>
                                        <h2> Adresse : <?php echo $row['adresse']; ?> </h2>
                                        <h2> telephone : <?php echo $row['telephone']; ?> </h2>
+                                        <h2> point fidélité  : <?php echo $ro['point']; ?> </h2>
                                         <?php
                                         
                                     }
