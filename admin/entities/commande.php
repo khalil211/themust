@@ -51,10 +51,6 @@ class produitCommande
 		$query->bindValue(':idproduit',$this->idproduit);
 		$query->bindValue(':quantite',$this->qte);
 		$query->execute();
-		$query=$db->prepare('UPDATE produit SET quantite=quantite-:qte WHERE id=:id');
-		$query->bindValue(':id',$this->idproduit);
-		$query->bindValue(':qte',$this->qte);
-		$query->execute();
 	}
 }
 
@@ -71,10 +67,10 @@ class commande
 	public function __construct($idclient,$etat)
 	{
 		$this->idclient=$idclient;
-		if ($etat)
+		if ($etat==1)
 			$this->etat=1;
 		else
-			$this->etat=0;
+			$this->etat=2;
 		$this->nbproduit=0;
 		$this->prixtotal=0;
 		$this->produits=array();

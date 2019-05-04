@@ -57,7 +57,13 @@ $result=$db->query('SELECT * FROM clientste WHERE identifiant=\''.$_SESSION['idc
 $result=$db->query('SELECT * FROM client WHERE identifiant=\''.$_SESSION['idclient'].'\'');   
             }
 ?>
+<?php 
+$fid=$db->prepare('SELECT * FROM fidelite WHERE ID_client=:idc');
+                                        $fid->bindValue(':idc',$_SESSION['idclient']);
+                                        $fid->execute();
 
+
+ ?>
 <!doctype html>
 <html class="no-js" lang="zxx">
 
@@ -142,7 +148,8 @@ $result=$db->query('SELECT * FROM client WHERE identifiant=\''.$_SESSION['idclie
                                 <div class="user-dashboard-tab__content tab-content">
                                     <div class="tab-pane fade show active" id="dashboard">
                                         
-                                        <?php $row = $result->fetch();  
+                                        <?php $row = $result->fetch(); 
+                                        $ro = $fid->fetch(); 
             if (preg_match('/[a-zA-Z0-9]{4,25}(STE)$/',$_SESSION['idclient']))
             {
 ?> 
@@ -152,6 +159,7 @@ $result=$db->query('SELECT * FROM client WHERE identifiant=\''.$_SESSION['idclie
                                        <h2> Matricule Fiscale : <?php echo $row['matfis']; ?> </h2>
                                        <h2> Adresse : <?php echo $row['adresse']; ?> </h2>
                                        <h2> telephone : <?php echo $row['telephone']; ?> </h2>
+
                                         <?php 
                                         }
                                         else
@@ -165,6 +173,7 @@ $result=$db->query('SELECT * FROM client WHERE identifiant=\''.$_SESSION['idclie
                                        <h2> Prénom : <?php echo $row['prenom']; ?> </h2>
                                        <h2> Adresse : <?php echo $row['adresse']; ?> </h2>
                                        <h2> telephone : <?php echo $row['telephone']; ?> </h2>
+                                        <h2> point fidélité  : <?php echo $ro['point']; ?> </h2>
                                         <?php
                                         
                                     }
@@ -173,6 +182,24 @@ $result=$db->query('SELECT * FROM client WHERE identifiant=\''.$_SESSION['idclie
 
                                         <p>bonjour <strong><?php echo $_SESSION['idclient'];?></strong> (vous n'est pas <strong><?php echo $_SESSION['idclient'];?></strong>? <a href="deconnexion.php">Log out</a>)</p>
                                         
+                                        <?php
+                                        if (isset($_GET['addabo']))
+                                        {
+                                            include '../core/abonneC.php';
+                                            include '../entities/abonne.php';
+                                            $abonneC=new abonneC;
+                                            $abonne=new abonne($row['email']);
+                                            if ($_GET['addabo']==1)
+                                                $abonneC->ajouter($abonne);
+                                            else
+                                                $abonneC->supprimer($abonne);
+                                        }
+                                        $abo=$db->query("SELECT * FROM abonne WHERE adresse_mail='".$row['email']."'");
+                                        ?>
+
+                                        <h2>Newsletter</h2>
+                                        <a href="moncompte.php?addabo=<?php if ($abo->rowCount()==0) echo '1'; else echo '0'; ?>" class="btn newsletter-btn btn-style-1"><?php if ($abo->rowCount()==0) echo 'Abonnez-vous'; else echo 'Desabonnez-vous'; ?></a>
+
                                         <p>From your account dashboard. you can easily check & view your <a href="#">recent orders</a>, manage your <a href="#">shipping and billing addresses</a> and <a href="#">edit your password and account details</a>.</p>
                                     </div>
                                     
@@ -189,8 +216,16 @@ $result=$db->query('SELECT * FROM client WHERE identifiant=\''.$_SESSION['idclie
                                                 <h4>Numero: <?php echo $c['numero']; ?></h4>
                                                 <p>Nombre de produits: <?php echo $c['nbproduit']; ?></p>
                                                 <p>Total: <?php echo $c['prixtotal']; ?></p>
-                                                <p>Etat: <?php if ($c['etat']==1)echo 'Passée'; else echo 'En attente'; ?></p>
+                                                <p>Etat: <?php if ($c['etat']==1)echo 'Passée'; else if($c['etat']==2) echo 'En attente'; else if($c['etat']==0) echo 'Annulée'; ?></p>
                                                 <p>Date: <?php echo $c['datecommande']; ?></p>
+                                                <?php
+                                                if ($c['etat']==1)
+                                                {
+                                                    ?>
+                                                    <p><a target="_blank" href="../../admin/views/facturepdf.php?num=<?php echo $c['numero']; ?>">Facture</a></li></p>
+                                                    <?php
+                                                }
+                                                ?>
                                                 <a href="moncompte.php#<?php echo $c['numero']; ?>a" data-attr="#<?php echo $c['numero']; ?>" class="btn btn-medium btn-style-1 expand_action">Afficher produits</a>
                                                 <div class="address-form bg--2 mt--20 hide-in-default" id="<?php echo $c['numero']; ?>">
                                                     <!-- affichage produits -->

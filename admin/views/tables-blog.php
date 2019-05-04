@@ -174,6 +174,7 @@ else
                                         
 
                                         <th> ID Blog </th>
+                                        <th> Titre </th>
 
                                         <th> Description </th>
 
@@ -204,6 +205,7 @@ else
                                        
 
                                             <td><?php echo $row['idblog']; ?></td>
+                                             <td><?php echo $row['titre']; ?></td>
 
                                             <td><?php echo $row['description']; ?></td>
 

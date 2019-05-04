@@ -1,5 +1,5 @@
 <?php
-include '../../config.php';
+include "../../config.php";
 
                         
 $sql = "UPDATE `produit` SET `note`=`note`+:choix ,`nb_note`=1+`nb_note`  WHERE id=:id";
@@ -12,5 +12,5 @@ $sql = "UPDATE `produit` SET `note`=`note`+:choix ,`nb_note`=1+`nb_note`  WHERE 
  $req->bindValue(':id',$id);
         $req->bindValue(':choix',$choix);
         $s=$req->execute();
-header('location:index.php');
+header('location:shop.php');
 ?>

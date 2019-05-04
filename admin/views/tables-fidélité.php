@@ -91,9 +91,9 @@ if (!empty($_GET['searchh'])) {
                                              <td>
                             
                             <!--a href="#" class="btn btn-primary btn-xs" onclick="verifForm()" type="submit" Value="Ajouter"><i class="fa fa-folder"></i> ajotuer</a> -->
-                            <a href="ediitf.php?edit=<?php echo $row['ID']; ?>" class="btn btn-info btn-xs"><i class="fa fa-pencil"></i> Edit </a>
+                            <a href="ediitf.php?edit=<?php echo $row['ID']; ?>" class="btn btn-success"><i class="fa fa-magic"></i>  Modifier </a>
                            <!--<a href="delete.php?del=<?php echo $row['ID']; ?>" class="btn btn-info btn-xs"><i class="fa fa-trash-o">Delete</a>-->
-                                <a href="deletef.php?del=<?php echo $row['ID'];?>" class="btn btn-danger btn-xs"><i class="fa fa-trash-o"></i> Delete </a>
+                                <a href="deletef.php?del=<?php echo $row['ID'];?>" class="btn btn-danger"><i class="fa fa-trash-o"></i>  Supprimer</a>
                           </td>
                                         </tr>
                                     <?php } ?>

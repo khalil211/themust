@@ -62,7 +62,7 @@ $resultat=$db->query('SELECT * FROM produit');
     <?php frontUP(); ?>
         <!-- Main Content Wrapper Start -->
         <div class="main-content-wrapper">
-            <!-- Slider area Start -->
+            <!-- Slider area Start --> 
 
             <div class="slider-area">
                 <div class="homepage-slider">
@@ -152,13 +152,7 @@ $resultat=$db->query('SELECT * FROM produit');
                         <div class="col-12 text-center">
                             <ul class="nav nav-tabs product-tab__head" id="product-tab" role="tablist">
                                 <li class="product-tab__item nav-item active">
-                                    <a class="product-tab__link nav-link active" id="nav-featured-tab" data-toggle="tab" href="popular-product.php" role="tab" aria-selected="true">En vedette</a>
-                                </li>
-                                <li class="product-tab__item nav-item">
-                                    <a class="product-tab__link nav-link" id="nav-new-tab" data-toggle="tab" href="#nav-new" role="tab" aria-selected="false">Nouveaux produits</a>
-                                </li>
-                                <li class="product-tab__item nav-item">
-                                    <a class="product-tab__link nav-link" id="nav-bestseller-tab" data-toggle="tab" href="#nav-bestseller" role="tab" aria-selected="false">Meilleures ventes</a>
+                                    <a class="product-tab__link nav-link active" id="nav-featured-tab" data-toggle="tab" href="#nav-featured" role="tab" aria-selected="true">En vedette</a>
                                 </li>
                                 <li class="product-tab__item nav-item">
                                     <a class="product-tab__link nav-link" id="nav-onsale-tab" data-toggle="tab" href="#nav-onsale" role="tab" aria-selected="false">Promotions</a>
@@ -174,7 +168,7 @@ $resultat=$db->query('SELECT * FROM produit');
                                             foreach ($resultat as $key ) {
                                                      $note=$key['note'];
                                                            $nb_note=$key['nb_note'];
-                                                                if(($note>3.5)&&($note<6)){
+                                                                if(($note/$nb_note>3)&&($note/$nb_note<6)&&($nb_note!=0)){
                                                                     ?>
                                         <div class="product-carousel-group">
                                             
@@ -200,18 +194,10 @@ $resultat=$db->query('SELECT * FROM produit');
                                                         </span>
                                                     </div>
                                                     <h5>
-                                                        <?php echo "note"."  ".$note;?></h5>
+                                                        <?php echo "note"."  ".$note/$nb_note;?></h5>
                                                 </div>
                                                 <div class="mirora_product_action text-center position-absolute">
-                                                <div class="product-rating">
-                                                        <span>
-                                                            <i class="fa fa-star theme-star"></i>
-                                                            <i class="fa fa-star theme-star"></i>
-                                                            <i class="fa fa-star theme-star"></i>
-                                                            <i class="fa fa-star theme-star"></i>
-                                                            <i class="fa fa-star"></i>
-                                                        </span>
-                                                    </div>
+                                                
 
                                                     <p>
                                                        <?php echo $key['descr'];?>
@@ -237,8 +223,62 @@ $resultat=$db->query('SELECT * FROM produit');
                            </div>
   
                 </div>
+                                <div class="tab-pane fade" id="nav-onsale" role="tabpanel">
+                <?php 
+                $promo=$db->query('SELECT p.id id,p.img img,p.nom nom,p.descr descr,p.prix prix,pr.pourcentage pourcentage  FROM produit p INNER JOIN promotions pr on p.id=pr.idproduit');
+                ?>
+                                    <div class="product-carousel js-product-carousel">
+                                        <?php
+                                        foreach($promo as $prom)
+                                        {
+                                            ?>
+                                            <div class="product-carousel-group">
+                                                <div class="mirora-product">
+                                                    <div class="product-img">
+                                                        <img src="../../admin/views/images/<?php echo $prom['img'];?>" alt="Product" class="primary-image" />
+                                                        <img src="../../admin/views/images/<?php echo $prom['img'];?>" alt="Product" class="secondary-image" />
+                                                        <div class="product-img-overlay">
+                                                            <span class="product-label discount">
+                                                                <?php echo $prom['pourcentage']; ?>%
+                                                            </span>
+                                                            <a href="product-details.php?idd=<?php echo $key['id']; ?>" class="btn btn-transparent btn-fullwidth btn-medium btn-style-1">Détails</a>
+                                                        </div>
+                                                    </div>
+                                                    <div class="product-content text-center">
+                                                        <span></span>
+                                                        <h4><a href="product-details.html"><?php echo $prom['nom']; ?></a></h4>
+                                                        <a href="nombredevues.php? nom=<?PHP echo $row['nom']; ?>"><i class="ti-plus"></i></a>
+                                                        <div class="product-price-wrapper">
+                                                            <span class="money"><?php echo $prom['prix']*(1-($prom['pourcentage']/100)); ?></span>
+                                                            <span class="product-price-old">
+                                                                <span class="money"><?php echo $prom['prix']; ?></span>
+                                                            </span>
+                                                        </div>
+                                                    </div>
+                                                    <div class="mirora_product_action text-center position-absolute">
+                                                        <p>
+                                                          <?php echo $prom['descr']; ?>
+                                                        </p>
+                                                        <img src="eye-512" height="20" width="20"> <?php  echo $row['nbr_vue']; ?>
+                                                        <div class="product-action">
+                                                            <a class="add_cart cart-item action-cart" href="cart.php?addpp=<?php echo $key['id']; ?>" title="wishlist"><span>Ajouter au panier</span></a>
+                                                        </div>
+                                                    </div>
 
+                                                </div>
+                                                </div>
+                                                                        <?php
+                                        }
+                                    ?>
+                                       </div>
+                                         
+                                
+                                    </div>
+                                </div>
+
+</div>
             </div>
+        </div>
 
             <!-- Products Tab area End -->
 
@@ -253,356 +293,7 @@ $resultat=$db->query('SELECT * FROM produit');
                 </div>
             </section>      
 
-            <!-- Banner area End -->
-
-            <!-- Most Viewed Product area Start -->
-
-<!--            <section class="mostviewed-product-area border-bottom pt--80 pb--60 pt-md--60 pb-md--50">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-12">
-                            <div class="section-title mb--15">
-                                <h2 class="color--white">Mostviewed Products</h2>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row no-gutters">
-                        <div class="col-12">
-                            <div class="product-carousel nav-top js-product-carousel-2">
-                                <div class="mirora-product">
-                                    <div class="product-img">
-                                        <img src="assets/img/products/2-450x450.jpg" alt="Product" class="primary-image" />
-                                        <img src="assets/img/products/2-2-450x450.jpg" alt="Product" class="secondary-image" />
-                                        <div class="product-img-overlay">
-                                            <span class="product-label discount">
-                                                
-                                            </span>
-                                            <a data-toggle="modal" data-target="#productModal" class="btn btn-transparent btn-fullwidth btn-medium btn-style-1">Quick View</a>
-                                        </div>
-                                    </div>
-                                    <div class="product-content text-center">
-                                        <span></span>
-                                        <h4><a href="product-details.html">nom</a></h4>
-                                        <div class="product-price-wrapper">
-                                            <span class="money">prix</span>
-                                            <span class="product-price-old">
-                                                <span class="money"></span>
-                                            </span>
-                                        </div>
-                                    </div>
-                                    <div class="mirora_product_action text-center position-absolute">
-                                        <div class="product-rating">
-                                            <span>
-                                                <i class="fa fa-star theme-star"></i>
-                                                <i class="fa fa-star theme-star"></i>
-                                                <i class="fa fa-star theme-star"></i>
-                                                <i class="fa fa-star theme-star"></i>
-                                                <i class="fa fa-star"></i>
-                                            </span>
-                                        </div>
-                                        <p>
-                                          description
-                                        </p>
-                                        <div class="product-action">
-                                            <a class="same-action" href="wishlist.html" title="wishlist">
-                                                <i class="fa fa-heart-o"></i>
-                                            </a>
-                                            <a class="add_cart cart-item action-cart" href="cart.html" title="wishlist"><span>ajouter au panier</span></a>
-                                            <a class="same-action compare-mrg" data-toggle="modal" data-target="#productModal" href="compare.html">
-                                                <i class="fa fa-sliders fa-rotate-90"></i>
-                                            </a>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="mirora-product">
-                                    <div class="product-img">
-                                        <img src="assets/img/products/4-450x450.jpg" alt="Product" class="primary-image" />
-                                        <img src="assets/img/products/4-4-450x450.jpg" alt="Product" class="secondary-image" />
-                                        <div class="product-img-overlay">
-                                            <span class="product-label discount">
-                                                
-                                            </span>
-                                            <a data-toggle="modal" data-target="#productModal" class="btn btn-transparent btn-fullwidth btn-medium btn-style-1">Quick View</a>
-                                        </div>
-                                    </div>
-                                    <div class="product-content text-center">
-                                        <span></span>
-                                        <h4><a href="product-details.html">Nom</a></h4>
-                                        <div class="product-price-wrapper">
-                                            <span class="money">prix</span>
-                                            <span class="product-price-old">
-                                                <span class="money"></span>
-                                            </span>
-                                        </div>
-                                    </div>
-                                    <div class="mirora_product_action text-center position-absolute">
-                                        <div class="product-rating">
-                                            <span>
-                                                <i class="fa fa-star theme-star"></i>
-                                                <i class="fa fa-star theme-star"></i>
-                                                <i class="fa fa-star theme-star"></i>
-                                                <i class="fa fa-star theme-star"></i>
-                                                <i class="fa fa-star"></i>
-                                            </span>
-                                        </div>
-                                        <p>
-                                          description
-                                        </p>
-                                        <div class="product-action">
-                                            <a class="same-action" href="wishlist.html" title="wishlist">
-                                                <i class="fa fa-heart-o"></i>
-                                            </a>
-                                            <a class="add_cart cart-item action-cart" href="cart.html" title="wishlist"><span>ajouter au panier</span></a>
-                                            <a class="same-action compare-mrg" data-toggle="modal" data-target="#productModal" href="compare.html">
-                                                <i class="fa fa-sliders fa-rotate-90"></i>
-                                            </a>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="mirora-product">
-                                    <div class="product-img">
-                                        <img src="assets/img/products/6-450x450.jpg" alt="Product" class="primary-image" />
-                                        <img src="assets/img/products/6-6-450x450.jpg" alt="Product" class="secondary-image" />
-                                        <div class="product-img-overlay">
-                                            <span class="product-label discount">
-                                                
-                                            </span>
-                                            <a data-toggle="modal" data-target="#productModal" class="btn btn-transparent btn-fullwidth btn-medium btn-style-1">Quick View</a>
-                                        </div>
-                                    </div>
-                                    <div class="product-content text-center">
-                                        <span></span>
-                                        <h4><a href="product-details.html">nom</a></h4>
-                                        <div class="product-price-wrapper">
-                                            <span class="money">prix</span>
-                                            <span class="product-price-old">
-                                                <span class="money"></span>
-                                            </span>
-                                        </div>
-                                    </div>
-                                    <div class="mirora_product_action text-center position-absolute">
-                                        <div class="product-rating">
-                                            <span>
-                                                <i class="fa fa-star theme-star"></i>
-                                                <i class="fa fa-star theme-star"></i>
-                                                <i class="fa fa-star theme-star"></i>
-                                                <i class="fa fa-star theme-star"></i>
-                                                <i class="fa fa-star"></i>
-                                            </span>
-                                        </div>
-                                        <p>
-                                          description
-                                        </p>
-                                        <div class="product-action">
-                                            <a class="same-action" href="wishlist.html" title="wishlist">
-                                                <i class="fa fa-heart-o"></i>
-                                            </a>
-                                            <a class="add_cart cart-item action-cart" href="cart.html" title="wishlist"><span>ajouter au panier</span></a>
-                                            <a class="same-action compare-mrg" data-toggle="modal" data-target="#productModal" href="compare.html">
-                                                <i class="fa fa-sliders fa-rotate-90"></i>
-                                            </a>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="mirora-product">
-                                    <div class="product-img">
-                                        <img src="assets/img/products/8-450x450.jpg" alt="Product" class="primary-image" />
-                                        <img src="assets/img/products/8-8-450x450.jpg" alt="Product" class="secondary-image" />
-                                        <div class="product-img-overlay">
-                                            <span class="product-label discount">
-                                                
-                                            </span>
-                                            <a data-toggle="modal" data-target="#productModal" class="btn btn-transparent btn-fullwidth btn-medium btn-style-1">Quick View</a>
-                                        </div>
-                                    </div>
-                                    <div class="product-content text-center">
-                                        <span></span>
-                                        <h4><a href="product-details.html">nom</a></h4>
-                                        <div class="product-price-wrapper">
-                                            <span class="money">prix</span>
-                                            <span class="product-price-old">
-                                                <span class="money"></span>
-                                            </span>
-                                        </div>
-                                    </div>
-                                    <div class="mirora_product_action text-center position-absolute">
-                                        <div class="product-rating">
-                                            <span>
-                                                <i class="fa fa-star theme-star"></i>
-                                                <i class="fa fa-star theme-star"></i>
-                                                <i class="fa fa-star theme-star"></i>
-                                                <i class="fa fa-star theme-star"></i>
-                                                <i class="fa fa-star"></i>
-                                            </span>
-                                        </div>
-                                        <p>
-                                         description
-                                        </p>
-                                        <div class="product-action">
-                                            <a class="same-action" href="wishlist.html" title="wishlist">
-                                                <i class="fa fa-heart-o"></i>
-                                            </a>
-                                            <a class="add_cart cart-item action-cart" href="cart.html" title="wishlist"><span>ajouter au panier</span></a>
-                                            <a class="same-action compare-mrg" data-toggle="modal" data-target="#productModal" href="compare.html">
-                                                <i class="fa fa-sliders fa-rotate-90"></i>
-                                            </a>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="mirora-product">
-                                    <div class="product-img">
-                                        <img src="assets/img/products/10-450x450.jpg" alt="Product" class="primary-image" />
-                                        <img src="assets/img/products/10-10-450x450.jpg" alt="Product" class="secondary-image" />
-                                        <div class="product-img-overlay">
-                                            <span class="product-label discount">
-                                                
-                                            </span>
-                                            <a data-toggle="modal" data-target="#productModal" class="btn btn-transparent btn-fullwidth btn-medium btn-style-1">Quick View</a>
-                                        </div>
-                                    </div>
-                                    <div class="product-content text-center">
-                                        <span></span>
-                                        <h4><a href="product-details.html">nom5</a></h4>
-                                        <div class="product-price-wrapper">
-                                            <span class="money">prix</span>
-                                            <span class="product-price-old">
-                                                <span class="money"></span>
-                                            </span>
-                                        </div>
-                                    </div>
-                                    <div class="mirora_product_action text-center position-absolute">
-                                        <div class="product-rating">
-                                            <span>
-                                                <i class="fa fa-star theme-star"></i>
-                                                <i class="fa fa-star theme-star"></i>
-                                                <i class="fa fa-star theme-star"></i>
-                                                <i class="fa fa-star theme-star"></i>
-                                                <i class="fa fa-star"></i>
-                                            </span>
-                                        </div>
-                                        <p>
-                                          description
-                                        </p>
-                                        <div class="product-action">
-                                            <a class="same-action" href="wishlist.html" title="wishlist">
-                                                <i class="fa fa-heart-o"></i>
-                                            </a>
-                                            <a class="add_cart cart-item action-cart" href="cart.html" title="wishlist"><span>ajouter au panier</span></a>
-                                            <a class="same-action compare-mrg" data-toggle="modal" data-target="#productModal" href="compare.html">
-                                                <i class="fa fa-sliders fa-rotate-90"></i>
-                                            </a>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="mirora-product">
-                                    <div class="product-img">
-                                        <img src="assets/img/products/12-450x450.jpg" alt="Product" class="primary-image" />
-                                        <img src="assets/img/products/12-12-450x450.jpg" alt="Product" class="secondary-image" />
-                                        <div class="product-img-overlay">
-                                            <span class="product-label discount">
-                                                
-                                            </span>
-                                            <a data-toggle="modal" data-target="#productModal" class="btn btn-transparent btn-fullwidth btn-medium btn-style-1">Quick View</a>
-                                        </div>
-                                    </div>
-                                    <div class="product-content text-center">
-                                        <span></span>
-                                        <h4><a href="product-details.html">nom</a></h4>
-                                        <div class="product-price-wrapper">
-                                            <span class="money">prix</span>
-                                            <span class="product-price-old">
-                                                <span class="money"></span>
-                                            </span>
-                                        </div>
-                                    </div>
-                                    <div class="mirora_product_action text-center position-absolute">
-                                        <div class="product-rating">
-                                            <span>
-                                                <i class="fa fa-star theme-star"></i>
-                                                <i class="fa fa-star theme-star"></i>
-                                                <i class="fa fa-star theme-star"></i>
-                                                <i class="fa fa-star theme-star"></i>
-                                                <i class="fa fa-star"></i>
-                                            </span>
-                                        </div>
-                                        <p>
-                                          description
-                                        </p>
-                                        <div class="product-action">
-                                            <a class="same-action" href="wishlist.html" title="wishlist">
-                                                <i class="fa fa-heart-o"></i>
-                                            </a>
-                                            <a class="add_cart cart-item action-cart" href="cart.html" title="wishlist"><span>ajouter au panier</span></a>
-                                            <a class="same-action compare-mrg" data-toggle="modal" data-target="#productModal" href="compare.html">
-                                                <i class="fa fa-sliders fa-rotate-90"></i>
-                                            </a>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="mirora-product">
-                                    <div class="product-img">
-                                        <img src="assets/img/products/14-450x450.jpg" alt="Product" class="primary-image" />
-                                        <img src="assets/img/products/14-14-450x450.jpg" alt="Product" class="secondary-image" />
-                                        <div class="product-img-overlay">
-                                            <span class="product-label discount">
-                                                
-                                            </span>
-                                            <a data-toggle="modal" data-target="#productModal" class="btn btn-transparent btn-fullwidth btn-medium btn-style-1">Quick View</a>
-                                        </div>
-                                    </div>
-                                    <div class="product-content text-center">
-                                        <span></span>
-                                        <h4><a href="product-details.html">nom</a></h4>
-                                        <div class="product-price-wrapper">
-                                            <span class="money">prix</span>
-                                            <span class="product-price-old">
-                                                <span class="money"></span>
-                                            </span>
-                                        </div>
-                                    </div>
-                                    <div class="mirora_product_action text-center position-absolute">
-                                        <div class="product-rating">
-                                            <span>
-                                                <i class="fa fa-star theme-star"></i>
-                                                <i class="fa fa-star theme-star"></i>
-                                                <i class="fa fa-star theme-star"></i>
-                                                <i class="fa fa-star theme-star"></i>
-                                                <i class="fa fa-star"></i>
-                                            </span>
-                                        </div>
-                                        <p>
-                                          description
-                                        </p>
-                                        <div class="product-action">
-                                            <a class="same-action" href="wishlist.html" title="wishlist">
-                                                <i class="fa fa-heart-o"></i>
-                                            </a>
-                                            <a class="add_cart cart-item action-cart" href="cart.html" title="wishlist"><span>ajouter au panier</span></a>
-                                            <a class="same-action compare-mrg" data-toggle="modal" data-target="#productModal" href="compare.html">
-                                                <i class="fa fa-sliders fa-rotate-90"></i>
-                                            </a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section> -->
-
-            <!-- Most Viewed Product area End -->
-
-            <!-- Blog area Start -->
-
-           
-
-            <!-- Blog area End -->
-
-            <!-- Newsletter area End -->
-            
-            
-            
-            <!-- Newsletter area End -->
+          
 
             <!-- Promo Box area Start -->
 

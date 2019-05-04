@@ -47,8 +47,7 @@ $liste=$promotions->afficher();
                                     <thead>
                                         <tr>
                                             <th>nom</th>
-                                            <th>Id produit</th>
-                                            
+                                            <th>Id produit</th>  
                                             <th>description</th>
                                             <th>date debut</th>
                                             <th>date fin</th>
@@ -69,8 +68,8 @@ $liste=$promotions->afficher();
                                                 <td><?php echo htmlspecialchars($element['datefin']); ?></td>
                                                 <td><?php echo htmlspecialchars($element['pourcentage']); ?></td>
                                                 <td>
-                                                    <a href="ajout-promotion.php?n=<?php echo htmlspecialchars($element['nom']); ?>" class="btn btn-success"><i class="fa fa-magic"></i>  Modifier état</a>
-                                                    <a href="supprimer-promotions.php?n=<?php echo htmlspecialchars($element['nom']); ?>&e=<?php echo $element['nom']; ?>" class="btn btn-danger"><i class="fa fa-trash-o"></i>  Supprimer</a>
+                                                    <a href="modifier-promotions.php?edit=<?php echo $element['nom']; ?>"  class="btn btn-success"><i class="fa fa-magic"></i>  Modifier état</a>
+                                                    <a href="supprimer-promotion.php?del=<?php echo $element['nom']; ?>" class="btn btn-danger"><i class="fa fa-trash-o"></i>  Supprimer</a>
                                                 </td>
                                             </tr>
                                             <?php

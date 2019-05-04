@@ -6,12 +6,7 @@ function testConnexion()
 	$end=false;
 	if (isset($_SESSION['idclient'])&&isset($_SESSION['mdpclient']))
 		$end=true;
-	if (isset($_COOKIE['idclient'])&&isset($_COOKIE['mdpclient']))
-	{
-		$_SESSION['idclient']=$_COOKIE['idclient'];
-		$_SESSION['mdpclient']=$_COOKIE['mdpclient'];
-		$end=true;
-	}
+	
 	if (!isset($_SESSION['produitpanier']))
 		$_SESSION['produitpanier']=array();
 	return $end;
@@ -125,12 +120,12 @@ function frontUp()
 	                    <div class="col-md-5 col-sm-6 order-lg-1 order-2">
 	                        <div class="contact-info">
 	                            <img src="assets/img/icons/icon_phone.png" alt="Phone Icon">
-	                            <p>Contactez-nous: (+216)xx xxx xxx</p>
+	                            <p>Appelez nous <br> téléphone: (+216) 20 208 124</p>
 	                        </div>
 	                    </div>
 	                    <div class="col-lg-2 col-12 order-lg-2 order-1 text-center">
 	                        <a href="index.php" class="logo-box mb-md--30">
-	                            <p>place of our logo</p>
+	                            <img src="../../admin/views/images/logo.png" alt="logo">
 	                        </a>
 	                    </div>
 	                    <div class="col-lg-5 col-md-7 col-sm-6 order-lg-3 order-3">
@@ -185,7 +180,7 @@ function frontUp()
 									{
 										$panier->setId($_SESSION['idclient']);
 										$panier=$panierC->afficher($panier);
-										$produits=$panier->getProduits();
+										
 									}
 									else
 									{
@@ -199,7 +194,7 @@ function frontUp()
 	                                <li class="mini-cart-icon">
 	                                    <div class="mini-cart mini-cart--1">
 	                                        <a class="mini-cart__dropdown-toggle bordered-icon" id="cartDropdown">
-	                                            <span class="mini-cart__count"><?php if(isset($_SESSION['idclient'])) echo $panier->getNbProduit(); else echo $nbtot; ?></span>
+	                                           
 	                                            <i class="icon_cart_alt mini-cart__icon"></i>
 	                                            <i class="fa fa-angle-down"></i>
 	                                        </a>
@@ -292,7 +287,7 @@ function frontUp()
 	                                    <a href="about.php" class="mainmenu__link">About Us</a>
 	                                </li>
 	                                <li class="mainmenu__item">
-	                                    <a href="contact.html" class="mainmenu__link">contact Us</a>
+	                                    <a href="contact.php" class="mainmenu__link">contact Us</a>
 	                                </li>
 	                            </ul>
 	                        </nav>

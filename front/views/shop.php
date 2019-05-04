@@ -5,8 +5,8 @@ include '../../config.php';
 
 $db=config::getConnexion();
 
-		$produitparpage=5;
-		$produittotalreq=$db->query('select id from produit ');
+		$produitparpage=6;
+		$produittotalreq=$db->query('select id from produit');
 		$produittotal= $produittotalreq->rowCount();
 		$pagestotales=ceil($produittotal/$produitparpage);
 
@@ -21,7 +21,6 @@ else
 }
 
 $var=isset(($_GET['tri']));
-
 
 $depart=($pagecourante-1)*$produitparpage;
 
@@ -174,10 +173,16 @@ header('location: shop.php');
                                             <img src="../../admin/views/images/<?php echo ''.$key['img'];?>" alt="Product" class="primary-image" />
                                             <img src="../../admin/views/images/<?php echo $key['img'];?>" alt="Product" class="secondary-image" />
                                             <div class="product-img-overlay">
-                                                <span class="product-label discount">
-                                                    %
-                                                </span>
-
+                                                    <span class="product-label discount">
+                                                <?php
+                                                if (isset($key['pourcentage']))
+                                                {
+                                                    ?>
+                                                        <?php echo $key['pourcentage']; ?>%
+                                                    <?php
+                                                }
+                                                ?>
+                                                    </span>
                                                 <a href="product-details.php?idd=<?php echo $key['id']; ?>" class="btn btn-transparent btn-fullwidth btn-medium btn-style-1">Détails</a>
 
                                             </div>
@@ -193,15 +198,7 @@ header('location: shop.php');
                                             </div>
                                         </div>
                                         <div class="mirora_product_action text-center position-absolute">
-                                            <div class="product-rating">
-                                                <span>
-                                                    <i class="fa fa-star theme-star"></i>
-                                                    <i class="fa fa-star theme-star"></i>
-                                                    <i class="fa fa-star theme-star"></i>
-                                                    <i class="fa fa-star theme-star"></i>
-                                                    <i class="fa fa-star"></i>
-                                                </span>
-                                            </div>
+                                            
                                             <p>
                                              <?php echo $key['descr'];?>
                                             </p>
@@ -223,13 +220,14 @@ header('location: shop.php');
 
                                 
                                 <?php 
-                                for ($i=1;$i<$pagestotales;$i++)
+                                for ($i=0;$i<$pagestotales;$i++)
                                 {?>
   									<ul class="pagination">
                                  <!-- echo ' <a href="shop.php?page='.$i.'">'.$i.'</a>' ; -->
                                   <li> 
                                   	<?php 
-                                  	echo ' <a href="shop.php?page='.$i.'">'.$i.'</a>' ;
+                                   $d=$i+1;
+                                  	echo ' <a href="shop.php?page='.$i.'">'.$d.'</a>' ;
                                   	?>
                                   </li>
                                  <?php
@@ -243,30 +241,7 @@ header('location: shop.php');
                             <aside class="shop-sidebar">
                                 <div class="search-filter">
 
-                                    <div class="filter-price">
-                                        <h3 class="filter-heading">Prix</h3>
-                                        <ul class="filter-list">
-                                            <li>
-                                                <div class="filter-input filter-radio">
-                                                    <input type="radio" name="pricerange" id="pricerange-1" checked>
-                                                    <label for="pricerange-1">entre (200) prix (300)</label>
-                                                </div>
-                                            </li>
-                                            <li>
-                                                <div class="filter-input filter-radio">
-                                                    <input type="radio" name="pricerange" id="pricerange-2">
-                                                    <label for="pricerange-2">entre (300) prix (600)</label>
-                                                </div>
-                                            </li>
-                                            <li>
-                                                <div class="filter-input filter-radio">
-                                                    <input type="radio" name="pricerange" id="pricerange-3">
-                                                    <label for="pricerange-3">Plus de (600)</label>
-                                                </div>
-                                            </li>
-                                            
-                                        </ul>
-                                    </div>
+                                  
                                     <div  class="product-action-bottom">
                                          <div class="filter-input filter-radio">
                                         <h3 class="filter-heading">Catégories</h3>

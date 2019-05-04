@@ -74,8 +74,8 @@ $emps=$db->query("SELECT * FROM  fidelite WHERE ID=$ID");
 
                                                             <div class="row form-group">
                                                                 <div class="col col-md-3"><label class=" form-control-label">sexe </label></div>
-                                                                <div class="col-12 col-md-9"> <td><select id="liste"  name="liste"  data-value="<?php echo $sexe;?>" class="form-control">
-                                                 <option value ="-1" class="non" selected disabled>Sélectionner</option>
+                                                                <div class="col-12 col-md-9"> <td><select id="liste"  name="liste"  value="<?php echo $sexe;?>" class="form-control">
+                                                 <option  selected disabled><?php echo $sexe;?></option>
                                                 <option >Homme</option>
                                                 <option >Femme</option>
                                             </select>

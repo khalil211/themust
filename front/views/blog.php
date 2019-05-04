@@ -20,9 +20,20 @@ include "../../config.php";
 
 $db=config::getConnexion();
 
+if (isset($_GET['r']))
+
+    $result=$db->query('SELECT * FROM blog where type LIKE \'%'.$_GET['r'].'%\'');
+
+else
+$result=$db->query('SELECT * FROM blog order by idblog desc');
+$archiv=$db->query('SELECT * FROM blog order by date  limit 5');
+
+$I=0;
+    
 
 
-    $result=$db->query('SELECT * FROM blog');
+
+ 
 
 
 include 'menus.php';testConnexion(); 
@@ -304,7 +315,7 @@ include 'menus.php';testConnexion();
 
                                                         </div>
 
-                                                        <h2 class="post-title"><a href="blog-details-image.html">Blog Image Post</a></h2>
+                                                        <h2 class="post-title"><?php echo $pblog['titre']; ?></a></h2>
 
                                                     </header>
 
@@ -332,36 +343,7 @@ include 'menus.php';testConnexion();
 
                             </div>
 
-                            <div class="row">
-
-                                <div class="col-12">
-
-                                    <div class="pagination-wrap">
-
-                                        <p class="page-ammount">Showing 1 to 8 of 15 (2 Pages)</p>
-
-                                        <ul class="pagination">
-
-                                            <li><a href="#" class="first">|&lt;</a></li>
-
-                                            <li><a href="#" class="prev">&lt;</a></li>
-
-                                            <li><a href="#" class="current">1</a></li>
-
-                                            <li><a href="#">2</a></li>
-
-                                            <li><a href="#" class="next">&gt;</a></li>
-
-                                            <li><a href="#" class="next">&gt;|</a></li>
-
-                                        </ul>
-
-                                    </div>
-
-                                </div>
-
-                            </div>
-
+                           
                         </div>
 
                         <div class="col-lg-3 order-lg-1 order-2">
@@ -376,13 +358,12 @@ include 'menus.php';testConnexion();
 
                                     <div class="widget_conent">
 
-                                        <form action="#" class="searchform">
+                                        
 
-                                            <input type="text" class="searchform__input" name="search" id="blog_search" placeholder="Search...">
+                                            <input <?php if (isset($_GET['r']))echo 'value="'.$_GET['r'].'"'; ?> type="search" class="searchform__input"   id="recherche" placeholder="Search...">
 
-                                            <button class="searchform__submit"><i class="fa fa-search"></i></button>
-
-                                        </form>
+                                         
+                                        
 
                                     </div>
 
@@ -401,20 +382,25 @@ include 'menus.php';testConnexion();
                                     <div class="widget_conent">
 
                                         <ul>
+                                             <?php
 
-                                            <li><a href="single-blog.html">March 2015</a> <span>(1)</span></li>
+                                  foreach ($archiv as $ar) {
 
-                                            <li><a href="single-blog.html">April 2015</a> <span>(5)</span></li>
+                                
 
-                                            <li><a href="single-blog.html">May 2015</a> <span>(7)</span></li>
+                                        ?>
 
-                                            <li><a href="single-blog.html">June 2015</a> <span>(10)</span></li>
+                                       <li><a href="blog-details.php?idd=<?php echo $ar['idblog']; ?>"><?php echo $ar['titre'] ?></a> <span>(<?php echo $I+1 ?>)</span></li>
 
-                                            <li><a href="single-blog.html">July 2015</a> <span>(15)</span></li>
+                                        
 
-                                            <li><a href="single-blog.html">August 2015</a> <span>(10)</span></li>
+                                        <?php
+                                    }
+                                        ?>
 
-                                            <li><a href="single-blog.html">September 2015</a> <span>(8)</span></li>
+                                            
+
+                                            
 
                                         </ul>
 
@@ -428,121 +414,13 @@ include 'menus.php';testConnexion();
 
                                 <!-- Recent Post Widget Start -->
 
-                                <div class="sidebar-widget recent-post-widget">
-
-                                    <h3 class="widget-title">Recent Posts</h3>
-
-                                    <div class="widget_conent">
-
-                                        <div class="recent-post-single">
-
-                                            <div class="recent-post-media">
-
-                                                <div class="image">
-
-                                                    <img src="assets/img/blog/post4-370x230.jpg" alt="Blog">
-
-                                                </div>
-
-                                            </div>
-
-                                            <div class="recent-post-content">
-
-                                                <h4><a href="single-blog.html">Gravida luctus lorem accumsan est massa mauris.</a></h4>
-
-                                                <p><a href="single-blog.html">26-10-18</a></p>
-
-                                            </div>
-
-                                        </div>
-
-                                        <div class="recent-post-single">
-
-                                            <div class="recent-post-media">
-
-                                                <div class="image">
-
-                                                    <img src="assets/img/blog/post3-370x230.jpg" alt="Blog">
-
-                                                </div>
-
-                                            </div>
-
-                                            <div class="recent-post-content">
-
-                                                <h4><a href="single-blog.html">Gravida luctus lorem accumsan est massa mauris.</a></h4>
-
-                                                <p><a href="single-blog.html">27-10-18</a></p>
-
-                                            </div>
-
-                                        </div>
-
-                                        <div class="recent-post-single">
-
-                                            <div class="recent-post-media">
-
-                                                <div class="image">
-
-                                                    <img src="assets/img/blog/post2-370x230.jpg" alt="Blog">
-
-                                                </div>
-
-                                            </div>
-
-                                            <div class="recent-post-content">
-
-                                                <h4><a href="single-blog.html">Gravida luctus lorem accumsan est massa mauris.</a></h4>
-
-                                                <p><a href="single-blog.html">28-10-18</a></p>
-
-                                            </div>
-
-                                        </div>
-
-                                        <div class="recent-post-single">
-
-                                            <div class="recent-post-media">
-
-                                                <div class="image">
-
-                                                    <img src="assets/img/blog/post1-370x230.jpg" alt="Blog">
-
-                                                </div>
-
-                                            </div>
-
-                                            <div class="recent-post-content">
-
-                                                <h4><a href="single-blog.html">Gravida luctus lorem accumsan est massa mauris.</a></h4>
-
-                                                <p><a href="single-blog.html">26-10-18</a></p>
-
-                                            </div>
-
-                                        </div>
-
-                                    </div>
-
-                                </div>
-
                                 <!-- Recent Post Widget End -->
 
 
 
                                 <!-- Facebook Like Box Widget Start -->
 
-                                <div class="sidebar-widget widget_fb_like_box">
-
-                                    <h3 class="widget-title">Facebook Like Box</h3>
-
-                                    <div class="fb-page">
-
-                                        <iframe src="https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2Fhastech.company%2F&amp;tabs=timeline&amp;width=340&amp;height=500&amp;small_header=false&amp;adapt_container_width=false&amp;hide_cover=false&amp;show_facepile=true&amp;appId" height="280" style="border:none;overflow:hidden"></iframe>
-
-                                    </div>
-
-                                </div>
+                                
 
                                 <!-- Facebook Like Box Widget End -->
 
@@ -550,182 +428,14 @@ include 'menus.php';testConnexion();
 
                                 <!-- Twitter Feed Widget Start -->
 
-                                <div class="sidebar-widget twitter-feed-widget">
-
-                                    <h3 class="widget-title">Latest Twitter Feeds</h3>
-
-                                    <ul class="twitter-feed">
-
-                                        <li>
-
-                                            <div class="twitter-feed__avatar">
-
-                                                <img src="assets/img/others/comment-icon.png" alt="avatar">
-
-                                            </div>
-
-                                            <div class="twitter-feed__info">
-
-                                                <div class="twitter-feed__header">
-
-                                                    <a href="#"><strong>Keving Sobo</strong></a>
-
-                                                    <a href="#">@hastech</a>
-
-                                                </div>
-
-                                                <div class="twitter-feed__content">
-
-                                                    <p>Our best WordPress theme for your online store is here https://t.co/BYA8Bn8A6f https://t.co/qtVhWOH5PU </p>
-
-                                                </div>
-
-                                                <div class="twitter-feed__footer">
-
-                                                    <a href="#">Sep 23</a>
-
-                                                    <a href="#">reply</a>
-
-                                                    <a href="#">retweet</a>
-
-                                                    <a href="#">favorite</a>
-
-                                                    <a href="#">2 years ago</a>
-
-                                                </div>
-
-                                            </div>
-
-                                        </li>
-
-                                        <li>
-
-                                            <div class="twitter-feed__avatar">
-
-                                                <img src="assets/img/others/comment-icon.png" alt="avatar">
-
-                                            </div>
-
-                                            <div class="twitter-feed__info">
-
-                                                <div class="twitter-feed__header">
-
-                                                    <a href="#"><strong>Keving Sobo</strong></a>
-
-                                                    <a href="#">@hastech</a>
-
-                                                </div>
-
-                                                <div class="twitter-feed__content">
-
-                                                    <p>Our best WordPress theme for your online store is here https://t.co/BYA8Bn8A6f https://t.co/qtVhWOH5PU </p>
-
-                                                </div>
-
-                                                <div class="twitter-feed__footer">
-
-                                                    <a href="#">Sep 23</a>
-
-                                                    <a href="#">reply</a>
-
-                                                    <a href="#">retweet</a>
-
-                                                    <a href="#">favorite</a>
-
-                                                    <a href="#">2 years ago</a>
-
-                                                </div>
-
-                                            </div>
-
-                                        </li>
-
-                                        <li>
-
-                                            <div class="twitter-feed__avatar">
-
-                                                <img src="assets/img/others/comment-icon.png" alt="avatar">
-
-                                            </div>
-
-                                            <div class="twitter-feed__info">
-
-                                                <div class="twitter-feed__header">
-
-                                                    <a href="#"><strong>Keving Sobo</strong></a>
-
-                                                    <a href="#">@hastech</a>
-
-                                                </div>
-
-                                                <div class="twitter-feed__content">
-
-                                                    <p>Our best WordPress theme for your online store is here https://t.co/BYA8Bn8A6f https://t.co/qtVhWOH5PU </p>
-
-                                                </div>
-
-                                                <div class="twitter-feed__footer">
-
-                                                    <a href="#">Sep 23</a>
-
-                                                    <a href="#">reply</a>
-
-                                                    <a href="#">retweet</a>
-
-                                                    <a href="#">favorite</a>
-
-                                                    <a href="#">2 years ago</a>
-
-                                                </div>
-
-                                            </div>
-
-                                        </li>
-
-                                    </ul>
-
-                                </div>
-
+                               
                                 <!-- Twitter Feed Widget End -->
 
 
 
                                 <!-- Tags Widget Start -->
 
-                                <div class="sidebar-widget tags-widget">
-
-                                    <h3 class="widget-title">Tags</h3>
-
-                                    <div class="widget_conent">
-
-                                        <div class="tagcloud">
-
-                                            <a href="blog.html">chilled</a>
-
-                                            <a href="blog.html">dark</a>
-
-                                            <a href="blog.html">euro</a>
-
-                                            <a href="blog.html">fashion</a>
-
-                                            <a href="blog.html">food</a>
-
-                                            <a href="blog.html">hardware</a>
-
-                                            <a href="blog.html">hat</a>
-
-                                            <a href="blog.html">hipster</a>
-
-                                            <a href="blog.html">holidays</a>
-
-                                            <a href="blog.html">light</a>
-
-                                        </div>
-
-                                    </div>
-
-                                </div>
-
+                                
                                 <!-- Tags Widget End -->
 
                             </aside>
@@ -743,6 +453,24 @@ include 'menus.php';testConnexion();
         <!-- Main Wrapper End -->
 
         <?php frontDown(); ?>
+
+         <script type="text/javascript">
+
+    let recherche=document.getElementById("recherche");
+
+        recherche.addEventListener("keydown",function (e)
+
+        {
+
+            if (e.keyCode==13)
+
+                document.location="blog.php?r="+recherche.value;
+
+            e.stopPropagation(); 
+
+        });
+
+    </script>
 
 
 

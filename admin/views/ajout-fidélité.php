@@ -28,9 +28,17 @@ if (isset($_POST['n'])&&isset($_POST['liste'])&&isset($_POST['d1'])&&isset($_POS
 {
     if (!empty($_POST['n'])&&!empty($_POST['liste'])&&!empty($_POST['d1'])&&!empty($_POST['d2']))
     {
+        $a=$db->query('select count(*) from  fidelite  WHERE ID_client  LIKE "%'.$ID.'%" ');
+        $s=$a->fetchColumn();
+        
+        if($s == 0)
+        {
     $e=new employe($_POST['n'],$_POST['liste'],$_POST['d1'],$_POST['d2'],$b);
     $e->ajouter();
     header('location: tables-fidélité.php');
+
+}
+header('location: tables-fidélité.php');
 }
 }
 
