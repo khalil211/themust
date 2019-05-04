@@ -180,7 +180,7 @@ function frontUp()
 									{
 										$panier->setId($_SESSION['idclient']);
 										$panier=$panierC->afficher($panier);
-										
+										$produits=$panier->getProduits();
 									}
 									else
 									{
@@ -194,7 +194,7 @@ function frontUp()
 	                                <li class="mini-cart-icon">
 	                                    <div class="mini-cart mini-cart--1">
 	                                        <a class="mini-cart__dropdown-toggle bordered-icon" id="cartDropdown">
-	                                           
+	                                            <span class="mini-cart__count"><?php if(isset($_SESSION['idclient'])) echo $panier->getNbProduit(); else echo $nbtot; ?></span>
 	                                            <i class="icon_cart_alt mini-cart__icon"></i>
 	                                            <i class="fa fa-angle-down"></i>
 	                                        </a>
