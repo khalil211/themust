@@ -64,7 +64,7 @@ $liste=$commande->afficher();
                                                 <td><?php echo htmlspecialchars($element['prixtotal']) ?></td>
                                                 <td> <?php if ($element['etat']==1) echo '<span class="badge badge-success">Passée</span>'; else if($element['etat']==2) echo '<span class="badge badge-primary">En attente</span>'; else echo '<span class="badge badge-dark">Annulée</span>'; ?> </td>
                                                 <td><?php echo $element['datecommande'] ?></td>
-                                                <td style="display: flex; justify-content: space-around;">
+                                                <td style="display: flex;">
                                                     <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#mod<?php echo htmlspecialchars($element['numero']) ?>">
                                                      <i class="fa fa-book"></i> Afficher
                                                     </button>
@@ -72,18 +72,18 @@ $liste=$commande->afficher();
                                                     if ($element['etat']==1)
                                                     {
                                                         ?>
-                                                        <a target="_blank" href="facturepdf.php?num=<?php echo $element['numero'];?>" class="btn btn-success"><i class="fa fa-dollar"></i>  Facture</a>
+                                                        <a style="margin-left: 5px;" target="_blank" href="facturepdf.php?num=<?php echo $element['numero'];?>" class="btn btn-success"><i class="fa fa-dollar"></i>  Facture</a>
                                                         <?php
                                                     }
                                                     if ($element['etat']==2)
                                                     {
                                                         ?>
-                                                        <a <?php if ($commande->passable($element['numero'])) echo 'href="modifier-commande.php?n='.$element['numero'].'&e='.$element['etat'].'"'; ?> class="btn btn-success"><i class="fa fa-check"></i>  Passer</a>
-                                                        <a href="modifier-commande.php?n=<?php echo htmlspecialchars($element['numero']); ?>&e=<?php echo $element['etat']; ?>&annuler=true" class="btn btn-secondary"><i class="fa fa-ban"></i>Annuler</a>
+                                                        <a style="margin-left: 5px;" <?php if ($commande->passable($element['numero'])) echo 'href="modifier-commande.php?n='.$element['numero'].'&e='.$element['etat'].'"'; ?> class="btn btn-success"><i class="fa fa-check"></i>  Passer</a>
+                                                        <a style="margin-left: 5px;" href="modifier-commande.php?n=<?php echo htmlspecialchars($element['numero']); ?>&e=<?php echo $element['etat']; ?>&annuler=true" class="btn btn-secondary"><i class="fa fa-ban"></i>Annuler</a>
                                                         <?php
                                                     }
                                                     ?>
-                                                    <a href="supprimer-commande.php?n=<?php echo htmlspecialchars($element['numero']); ?>" class="btn btn-danger"><i class="fa fa-trash-o"></i>  Supprimer</a>
+                                                    <a style="margin-left: 5px;" href="supprimer-commande.php?n=<?php echo htmlspecialchars($element['numero']); ?>" class="btn btn-danger"><i class="fa fa-trash-o"></i>  Supprimer</a>
                                                 </td>
                                             </tr>
                                             <?php

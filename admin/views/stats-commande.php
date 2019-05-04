@@ -63,10 +63,14 @@ $commande=new commandeC;
       function drawChart() {
         let data = google.visualization.arrayToDataTable([
           ['Mois', 'Ventes'],
-          ['0',0],
-
           <?php
           $liste=$commande->statsVentes();
+          if ($liste->rowCount()==0)
+          {
+            ?>
+            ['0',0],
+            <?php
+          }
           foreach($liste as $el)
           {
             ?>
@@ -94,10 +98,15 @@ $commande=new commandeC;
     function drawChart() {
       let data = google.visualization.arrayToDataTable([
         ["Mois", "Nombre de produits", { role: "style" } ],
-        ['0',0,"#82b1ff"],
         <?php
         $liste->closeCursor();
         $liste=$commande->statsVentes();
+        if ($liste->rowCount()==0)
+        {
+          ?>
+          ['0',0,"#82b1ff"],
+          <?php
+        }
         foreach ($liste as $el)
         {
             ?>
