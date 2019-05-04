@@ -76,6 +76,9 @@ if (isset($_GET['search'])&&!empty($_GET['search'])) {
                             <div class="card-header">
                                 <strong class="card-title"> Listes des produits </strong>
                             </div>
+                            <div style="margin-left: 1001px;">
+                              <a href ="historiquepdf.php" class="btn btn-outline-success"><i class="ti-printer"></i> PDF </a>  
+                            </div>
                             <div class="card-body">
                             
 

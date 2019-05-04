@@ -4,7 +4,7 @@ include 'menus.php';
 testConnexion();
 $db=config::getConnexion();
 $idd=$_GET['idd'];
-$query=$db->prepare('select * from produit p inner join categorie c where p.categorie = c.id_cat and id=:idd');
+$query=$db->prepare('SELECT * from produit p inner join categorie c where p.categorie = c.id_cat and p.id=:idd');
 $query->bindValue(':idd',$idd);
 $query->execute();
 $result=$query->fetch();
@@ -156,8 +156,9 @@ $result=$query->fetch();
                                                 <span class="money" style="font-size: 18px;">Quantité <?php echo $result['quantite'];?></span> <br>
                                             </span>
                                             <br>
-                                               <?php 
-                                               
+                                            <?php if (isset($_SESSION['idclient'])){
+
+                                           
                                         $id=$result['id'];
                                         $likes=$db->prepare('SELECT id FROM likes WHERE id_produit=?');
                                         $likes->execute(array($id));
@@ -167,9 +168,9 @@ $result=$query->fetch();
                                         $dislikes->execute(array($id));
                                         $dislikes=$dislikes->rowCount();
                                     ?> 
-                                                <span  style="font-size: 18px;"> <i class="fa fa-thumbs-up" style="width: 30px; height: 30px;"></i><a href="action.php?t=1&id=<?= $result['id'] ?>">Like </a> <?php echo $likes ;?></span> 
+   <span  style="font-size: 18px;"> <i class="fa fa-thumbs-up" style="width: 30px; height: 30px;"></i><a href="action.php?t=1&id=<?= $result['id']?>&idclient=<?= $_SESSION['idclient'] ?>">Likes </a> <?php echo $likes ;?></span> 
                                                 <br>
-                                                  <span style="font-size: 18px;"> <i class="fa fa-thumbs-down" style="width: 30px; height: 30px;"></i><a href="action.php?t=2&id=<?= $result['id'] ?>">Dislikes </a> <?php echo $dislikes; ?></span>
+     <span style="font-size: 18px;"> <i class="fa fa-thumbs-down" style="width: 30px; height: 30px;"></i><a href="action.php?t=2&id=<?= $result['id']?>&idclient=<?= $_SESSION['idclient'] ?>">Dislikes </a> <?php echo $dislikes; ?></span>
                                                 </div></li>
                                                 <span class="product-price-old">
 
@@ -178,37 +179,41 @@ $result=$query->fetch();
                                         </ul>
                                         <br>
    
-<?php if (isset($_SESSION['idclient'])){?>
                                             <label class="product-options mb--20">
-          <label class="control-label"><span>Noter le produit</span></label>
+          <label class="control-label"><span>Noter le produit</span></label><br>
+
                      <form  method="POST" action="noterProduit.php" name="formName">
 
-                                                    <div class="rating">
-                                                        <input type="radio" id="star5" name="NOTER" value="5" />
-                                                        <label class = "full" for="star5" title="Awesome - 5 stars">  
-                                                        </label>
+                         <div class="rating">
+
+                             <input type="radio" id="star5" name="NOTER" value="5" />
+                                <label class = "full" for="star5" title="Awesome - 5 stars">  
+                                </label>
                                                         
-                                                        <input type="radio" id="star4" name="NOTER" value="4" />
-                                                        <label class = "full" for="star4" title="Pretty good - 4 stars"> 
-                                                        </label>
+                                <input type="radio" id="star4" name="NOTER" value="4" />
+                                 <label class = "full" for="star4" title="Pretty good - 4 stars"> 
+                                </label>
                                                        
-                                                        <input type="radio" id="star3" name="NOTER" value="3" />
-                                                        <label class = "full" for="star3" title="Meh - 3 stars">    
-                                                        </label>
+                                <input type="radio" id="star3" name="NOTER" value="3" />
+                                <label class = "full" for="star3" title="Meh - 3 stars">    
+                                </label>
                                                        
-                                                        <input type="radio" id="star2" name="NOTER" value="2" />
-                                                        <label class = "full" for="star2" title="Kinda bad - 2 stars">    
-                                                        </label>
+                                <input type="radio" id="star2" name="NOTER" value="2" />
+                                <label class = "full" for="star2" title="Kinda bad - 2 stars">    
+                                </label>
                                                        
-                                                        <input type="radio" id="star1" name="NOTER" value="1" />
-                                                        <label class = "full" for="star1" title="Sucks big time - 1 star">    
-                                                        </label>
-                                                        
+                                <input type="radio" id="star1" name="NOTER" value="1" />
+                                <label class = "full" for="star1" title="Sucks big time - 1 star">    
+                                </label>
+                         </div>
+                                                    <div>
+                                              <input type="hidden" name="refe" value="<?php echo $id;?>"> <br>  
+                                        <a href="noterProduit.php?refe=<?php echo $id;?>" >  
+                                            <button type="submit" class="form__submit" style="width: 80px; height: 40px;">
+                                            <span class=" "></span> NOTER</button></a>
+                                                    </div>
                                                   
- <input type="hidden" name="refe" value="<?php echo $id;?>">   
-<a href="noterProduit.php?refe=<?php echo $id;?>" >  <button type="submit" class="form__submit"><span class=" "></span> NOTER</button></a>
-                     
-                                                  </div> 
+                                           
                 </form>
                <?php }  ?>                             
                                     </div> 

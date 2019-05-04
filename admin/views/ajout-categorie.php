@@ -23,7 +23,7 @@ if (isset($_POST['nom_cat'])&&isset($_POST['descr_cat']))
     <title> Ajout Catégorie </title>
     <meta name="description" content="Sufee Admin - HTML5 Admin Template">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <script type="text/javascript" scr ="form-prod.js"></script>
+   <!-- <script type="text/javascript" scr ="form-cat.js"></script>-->
     <link rel="apple-touch-icon" href="apple-icon.png">
     <link rel="shortcut icon" href="favicon.ico">
    
@@ -63,8 +63,10 @@ if (isset($_POST['nom_cat'])&&isset($_POST['descr_cat']))
                                                                 <div class="col-12 col-md-9"><input type="text" id="nom_cat" name="nom_cat" class="form-control" required><small class="form-text text-muted" ></small> <span id="nom_manquant"></span> </div>
                                                             </div>
                                                         <div class="row form-group">
-                                                                <div class="col col-md-3"><label class=" form-control-label">Descrption de la catégorie </label></div>
-                                                                <div class="col-12 col-md-9"><input type="text" id="descr_cat" name="descr_cat"  class="form-control"><small class="form-text text-muted"></small></div>
+                                                                <div class="col col-md-3"><label class=" form-control-label">Description de la catégorie </label></div>
+                                                                <div class="col-12 col-md-9"><input type="text" id="descr_cat" name="descr_cat"  class="form-control" required><small class="form-text text-muted"></small>
+                                                                    <span id="description_manquante"></span>
+                                                                </div>
                                                                 <div class="col-12 col-md-9" >
                                                                   
                                                                 </div>
@@ -75,7 +77,7 @@ if (isset($_POST['nom_cat'])&&isset($_POST['descr_cat']))
 
                                                    
                            
-                          <td>  <button type="submit" class="btn btn-primary btn-sm" >
+                          <td>  <button type="submit" class="btn btn-primary btn-sm" onclick="myFunction()" >
                                                  <i class="fa fa-dot-circle-o"></i> Envoyer
                             </button> </td>
                            <td> <button type="reset" class="btn btn-danger btn-sm">
@@ -89,6 +91,42 @@ if (isset($_POST['nom_cat'])&&isset($_POST['descr_cat']))
                                 backDown();
                                 ?>
 
-                                                
+ <script type="text/javascript">
+     function myFunction(e)
+{ 
+var i=0;
+var nom=document.getElementById('nom_cat').value;
+var nom_m=document.getElementById("nom_manquant");
+nom_m.textContent="";
+
+if (!nom) {
+
+//e.preventDefault();
+//alert("false");
+
+nom_m.textContent="Nom manquant";
+nom_m.style.color='red';}
+else
+i++;
+
+var description=document.getElementById('descr_cat').value;
+var description_m=document.getElementById("description_manquante");
+description_m.textContent="";
+
+if (!description) {
+
+//e.preventDefault();
+//alert("false");
+
+description_m.textContent="Description manquante";
+description_m.style.color='red';}
+else
+i++;
+
+if(i==2)
+    alert("ajoutée avec succès");
+
+    }
+ </script>                                               
 </body>
 </html>
