@@ -119,7 +119,9 @@ else
               <a href="modifier-client.php?edit=<?php echo $row['identifiant']; ?>&edit2=<?php echo $row['email']; ?>&edit3=<?php echo $row['motdepasse']; ?>" class="btn btn-info btn-xs"><i class="fa fa-pencil"></i> Edit </a>
 
                <a href="supprimer-client.php?del=<?php echo $row['identifiant']; ?>" class="btn btn-danger btn-xs"><i class ="fa fa-trash-o"> </i> Delete</a>
-                                             </td>
+               <a href="ban-client.php?edit=<?php echo $row['identifiant']; ?>&etat=<?php echo $row['etat']; ?>" class="btn btn-danger btn-xs"><i class ="fa fa-trash-o"> </i><?php if ($row['etat']=="banned"){echo"unban";}else{echo"ban";}?></a>                              
+											                             
+											 </td>
                                         </tr>
                                         
 										<?php

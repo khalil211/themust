@@ -109,6 +109,7 @@ if (strlen($_POST['motdepasse'])<6)
             $e=new client($_POST['identifiant'],$_POST['email'],$_POST['motdepasse'],"","","",5575);
             if ($e->ajouter())
             {
+			$id=$_POST['identifiant'];
                 $panier=new panier($_POST['identifiant']);
                 $panierC=new panierC();
                 $panierC->ajouter($panier);
@@ -136,7 +137,8 @@ if (strlen($_POST['motdepasse'])<6)
 		$mailto = $_POST['email'];
     $mailSub = 'The Must';
     //$mailMsg = ' confirmer votre email <a href=\"localhost/front/views/index.php\"> ';
-	$mailMsg = "Bonjour ".$_POST['identifiant']." clickez sur <a href=\"localhost/themust/front/views/verification.php\">le lien</a> pour confirmer votre compte";
+	$idm=$_POST['identifiant'];
+	$mailMsg = "Bonjour ".$id." clickez sur <a href=\"localhost/themust/front/views/verification.php?var=".$id."\">le lien</a> pour confirmer votre compte";
 
    $mail = new PHPMailer();
    $mail ->IsSmtp();
@@ -193,31 +195,31 @@ if (strlen($_POST['motdepasse'])<6)
 											
                                     </div>
 									
-                                    <a href="#" class="forgot-pass">vous avez oublié votre mot de passe?</a>
+                                    <a href="forgot.php" class="forgot-pass">vous avez oublié votre mot de passe?</a>
                                 </form>
                             </div>
                         </div>
                         <div class="col-lg-6">
                             <h2 class="heading-secondary mb--30">Inscription</h2>
                             <div class="login-reg-box p-4 bg--2">
-                                <form class="form" method="POST" action="login-register.php" name="formf" id="testform">
+                                <form class="form" method="POST" id="forminscription" action="login-register.php" name="formf" id="testform">
 								<div class="form__group mb--20">
                                         <label class="form__label" for="identifiant">
                                             Identifiant <span>*</span>
                                         </label>
-                                        <input type="text" name="identifiant" id="identifiant" class="form__input form__input--2" onblur="verifPseudo(this)">
+                                        <input type="text" name="identifiant" id="identifiant" class="form__input form__input--2"">
                                     </div>
                                     <div class="form__group mb--20">
-                                        <label class="form__label" for="register_email">
+                                        <label class="form__label" for="email">
                                             Email <span>*</span>
                                         </label>
-                                        <input type="text" name="email" id="email" class="form__input form__input--2" onblur="verifMail(this)">
+                                        <input type="text" name="email" id="email" class="form__input form__input--2">
                                     </div>
                                     <div class="form__group mb--20">
-                                        <label class="form__label" for="register_password">
+                                        <label class="form__label" for="motdepasse">
                                             Mot de passe <span>*</span>
                                         </label>
-                                        <input type="password" name="motdepasse" id="motdepasse" class="form__input form__input--2" onblur="verifPassword(this)">
+                                        <input type="password" name="motdepasse" id="motdepasse" class="form__input form__input--2">
                                     </div>
 									
 									<div class="form__group mb--20">
@@ -238,7 +240,7 @@ if (strlen($_POST['motdepasse'])<6)
 									</div>
 									
                                     <div class="form__group">
-                                        <button type="submit" form="testform" class="btn btn-5 btn-style-2">Inscription</button>
+                                        <button type="submit" class="btn btn-5 btn-style-2">Inscription</button>
                              
                                         <button type="reset" class="btn btn-5 btn-style-2">reset</button>
                                     </div>
@@ -251,13 +253,47 @@ if (strlen($_POST['motdepasse'])<6)
             </div>
         </div>
         <?php frontDown();?>
-		<script src="assets/js/vendor/inscription.js"></script>
-		<script>
-		var refreshButton = document.querySelector(".refresh-captcha");
-refreshButton.onclick = function() {
-  document.querySelector(".captcha-image").src = 'captcha.php?' + Date.now();
-}
-		</script>
+		<!-- <script src="assets/js/vendor/inscription.js"></script> -->
+        <script type="text/javascript">
+            let id=document.getElementById("identifiant");
+            let email=document.getElementById("email");
+            let mdp=document.getElementById("motdepasse");
+            let forminscription=document.getElementById("forminscription");
+
+            id.addEventListener("input",function(){
+               if (id.value.length>2&&id.value.length<25)
+                  id.style.border="";
+               else
+                  id.style.border="solid 2px red";
+            });
+
+            email.addEventListener("input",function(){
+                let regex = /^[a-zA-Z0-9._-]+@[a-z0-9._-]{2,}\.[a-z]{2,4}$/;
+                if (regex.test(email.value))
+                   email.style.border="";
+                else
+                   email.style.border="solid 2px red";
+            });
+
+            mdp.addEventListener("input",function(){
+               if (mdp.value.length>=6&&mdp.value.length<25)
+                  mdp.style.border="";
+               else
+                  mdp.style.border="solid 2px red";
+            });
+
+            forminscription.addEventListener("submit",function(e){
+               let test=true;
+               if (!(id.value.length>2&&id.value.length<25))
+                  test=false;
+              if (!(mdp.value.length>=6&&mdp.value.length<25))
+                  test=false;
+              if (!(id.value.length>2&&id.value.length<25))
+                  test=false;
+              if (!test)
+                e.preventDefault();
+            });
+        </script>
 </body>
 
 

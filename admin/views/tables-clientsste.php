@@ -82,6 +82,7 @@ $result=$db->query('SELECT * FROM clientste');
 											<th> Adresse</th>
 											<th> téléphone</th>
 											<th> Actions</th>
+											<th> Actions</th>
 
                                         </tr>
                                     </thead>
@@ -97,11 +98,14 @@ $result=$db->query('SELECT * FROM clientste');
                                             <td><?php echo $row['matfis']; ?></td>
                                             <td><?php echo $row['adresse']; ?></td>
                                             <td><?php echo $row['telephone']; ?></td>
+											<td><?php echo $row['etat']; ?></td>
                                             <td>  
               <a href="modifier-clientste.php?edit=<?php echo $row['identifiant']; ?>&edit2=<?php echo $row['email']; ?>&edit3=<?php echo $row['motdepasse']; ?>" class="btn btn-info btn-xs"><i class="fa fa-pencil"></i> Edit </a>
 
                <a href="supprimer-clientste.php?del=<?php echo $row['identifiant']; ?>" class="btn btn-danger btn-xs"><i class ="fa fa-trash-o"> </i> Delete</a>
-                                             </td>
+               <a href="ban-clientste.php?edit=<?php echo $row['identifiant']; ?>&etat=<?php echo $row['etat']; ?>" class="btn btn-danger btn-xs"><i class ="fa fa-trash-o"> </i><?php if ($row['etat']=="banned"){echo"unban";}else{echo"ban";}?></a>                              
+											 </td>
+											 
                                         </tr>
                                         
 										<?php

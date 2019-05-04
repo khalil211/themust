@@ -1,3 +1,10 @@
+let id=document.getElementById("identifiant");
+let email=document.getElementById("email");
+let mdp=document.getElementById("motdepasse");
+
+
+
+
 function surligne(champ, erreur)
 {
    if(erreur)
@@ -35,16 +42,14 @@ function verifPassword(champ)
    }
 }
 
-function verifPseudo(champ)
+function verifPseudo()
 {
-   if(champ.value.length < 2 || champ.value.length > 25)
+   if (id.value.length < 2 || id.value.length > 25)
    {
-      surligne(champ, true);
       return false;
    }
    else
    {
-      surligne(champ, false);
       return true;
    }
 }

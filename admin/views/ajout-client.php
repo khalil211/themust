@@ -60,7 +60,7 @@ if (isset($_POST['identifiant'])&&isset($_POST['email'])&&isset($_POST['motdepas
     backUp();
     ?>
 <div class="content mt-3">
-<form action="ajout-client.php" method="post" name="clientf" class="form-horizontal">
+<form action="ajout-client.php" method="post" name="forminscription" class="form-horizontal">
                                                             <div class="row form-group">
                                                                 <div class="col col-md-3"><label class=" form-control-label">Identifiant</label></div>
                                                                 <div class="col-12 col-md-9"><input type="text" id="identifiant" name="identifiant" onblur="verifPseudo(this)" placeholder="Identifiant" class="form-control"><small class="form-text text-muted"></small></div>
@@ -137,6 +137,80 @@ if (isset($_POST['identifiant'])&&isset($_POST['email'])&&isset($_POST['motdepas
                                                     </div>
 <?php
     backDown();
-    ?>     				                                                                                      
+    ?>
+	
+	 <script type="text/javascript">
+            let id=document.getElementById("identifiant");
+            let email=document.getElementById("email");
+            let mdp=document.getElementById("motdepasse")
+			let nom=document.getElementById("nomc");
+			let prenom=document.getElementById("prenom");
+			let adresse=document.getElementById("adresse");
+			let telephone=document.getElementById("telephone");
+            let forminscription=document.getElementById("forminscription");
+
+            id.addEventListener("input",function(){
+               if (id.value.length>2&&id.value.length<25)
+                  id.style.border="";
+               else
+                  id.style.border="solid 2px red";
+            });
+
+            email.addEventListener("input",function(){
+                let regex = /^[a-zA-Z0-9._-]+@[a-z0-9._-]{2,}\.[a-z]{2,4}$/;
+                if (regex.test(email.value))
+                   email.style.border="";
+                else
+                   email.style.border="solid 2px red";
+            });
+
+            mdp.addEventListener("input",function(){
+               if (mdp.value.length>=6&&mdp.value.length<25)
+                  mdp.style.border="";
+               else
+                  mdp.style.border="solid 2px red";
+            });
+			
+			prenom.addEventListener("input",function(){
+               if (prenom.value.length>2&&prenom.value.length<25)
+                  prenom.style.border="";
+               else
+                  prenom.style.border="solid 2px red";
+            });
+			
+			nom.addEventListener("input",function(){
+               if (nom.value.length>2&&nom.value.length<25)
+                  nom.style.border="";
+               else
+                  nom.style.border="solid 2px red";
+            });
+			
+			adresse.addEventListener("input",function(){
+               if (adresse.value.length>2&&adresse.value.length<25)
+                  adresse.style.border="";
+               else
+                  adresse.style.border="solid 2px red";
+            });
+			
+			telephone.addEventListener("input",function(){
+               if (telephone.value.length>7&&telephone.value.length<20)
+                  telephone.style.border="";
+               else
+                  telephone.style.border="solid 2px red";
+            });
+			
+            forminscription.addEventListener("submit",function(e){
+               let test=true;
+               if (!(id.value.length>2&&id.value.length<25))
+                  test=false;
+              if (!(mdp.value.length>=6&&mdp.value.length<25))
+                  test=false;
+              if (!(id.value.length>2&&id.value.length<25))
+                  test=false;
+              if (!test)
+                e.preventDefault();
+            });
+        </script>
+		     				                                                                                      
 </body>
 </html>

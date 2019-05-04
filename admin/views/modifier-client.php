@@ -27,11 +27,13 @@ if (isset($_POST['email']))
  $abcd->bindValue(":adresse",$adresse);
  $abcd->bindValue(":telephone",$telephone);
  $abcd->execute();
-	
+	header('location: tables-clients.php');
 }
-        }
+        
+		
 		}
-header('location: tables-clients.php');
+		}
+
 ?>
 
 <!doctype html>

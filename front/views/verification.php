@@ -3,10 +3,43 @@ include "../entities/client.php";
 include 'menus.php';
 
 testConnexion();
+
 $db=config::getConnexion();
 
+if (isset($_GET['var']))
+{
+$identifiant = $_GET['var'];
+echo $_GET['var'];
+	
+	 if (!preg_match("/[a-zA-Z0-9]{4,22}(STE)$/",$_GET['var']))
+	{
+	echo"per";
+	$emps=$db->query("SELECT * FROM  client WHERE identifiant='$identifiant'");
+           while ($row = $emps->fetch())
+		    {
+            $etat ="verifie";
+ $abcd=$db->prepare("UPDATE  client SET etat=:etat WHERE identifiant='$identifiant' ");
+ $abcd->bindValue(":etat",$etat);
+ $abcd->execute();	
+	}
+	}
+	else
+	{
+	echo"ste";
+	$emps=$db->query("SELECT * FROM  clientste WHERE identifiant='$identifiant'");
+           while ($row = $emps->fetch())
+		    {
+            $etat ="verifie";
+ $abcd=$db->prepare("UPDATE  clientste SET etat=:etat WHERE identifiant='$identifiant' ");
+ $abcd->bindValue(":etat",$etat);
+ $abcd->execute();	
+	}
+        
+		}
+		}
 
 ?>
+
 <!doctype html>
 <html class="no-js" lang="zxx">
 
@@ -87,7 +120,7 @@ $db=config::getConnexion();
                         <h1 class="page-title">Shop</h1>
                         <ul class="breadcrumb justify-content-center">
                             <li><a href="index.php">Home</a></li>
-                            <li class="current"><a href="shop.html">Shop</a></li>
+                            <li class="current"><a href="shop.php">Shop</a></li>
                         </ul>
                     </div>
                 </div>
@@ -235,7 +268,9 @@ $db=config::getConnexion();
           </div>
         </div>
 		
-		<h1 class="page-title" align="center">votre compte a été verifié</h1>
+		<h1 class="page-title" align="center"><?php echo $_GET['var']?> votre compte a été verifié</h1>
+		<h2 class="current" align="center">Se <a href="login-register.php">connecter</a></h2>
+		
         <!-- Modal End -->
 
     </div>
