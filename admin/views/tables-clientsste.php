@@ -15,7 +15,7 @@ $result=$db->query('SELECT * FROM clientste');
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Sufee Admin - HTML5 Admin Template</title>
+    <title>Liste des clients STE</title>
     <meta name="description" content="Sufee Admin - HTML5 Admin Template">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -41,27 +41,6 @@ $result=$db->query('SELECT * FROM clientste');
 	backup();
 	?>
 
-        <div class="breadcrumbs">
-            <div class="col-sm-4">
-                <div class="page-header float-left">
-                    <div class="page-title">
-                        <h1>Dashboard</h1>
-                    </div>
-                </div>
-            </div>
-            <div class="col-sm-8">
-                <div class="page-header float-right">
-                    <div class="page-title">
-                        <ol class="breadcrumb text-right">
-                            <li><a href="#">Dashboard</a></li>
-                            <li><a href="#">Table</a></li>
-                            <li class="active">Data table</li>
-                        </ol>
-                    </div>
-                </div>
-            </div>
-        </div>
-
         <div class="content mt-3">
             <div class="animated fadeIn">
                 <div class="row">
@@ -81,7 +60,7 @@ $result=$db->query('SELECT * FROM clientste');
                                             <th> Matricule Fiscale </th>
 											<th> Adresse</th>
 											<th> téléphone</th>
-											<th> Actions</th>
+											<th> état</th>
 											<th> Actions</th>
 
                                         </tr>
@@ -98,7 +77,19 @@ $result=$db->query('SELECT * FROM clientste');
                                             <td><?php echo $row['matfis']; ?></td>
                                             <td><?php echo $row['adresse']; ?></td>
                                             <td><?php echo $row['telephone']; ?></td>
-											<td><?php echo $row['etat']; ?></td>
+											<td><span class="<?php
+                                            if ($row['etat']=="verifie")
+                                            {echo"badge badge-success";}
+                                            elseif ($row['etat']=="banned")
+                                            {
+                                            echo"badge badge-danger";   
+                                            }
+                                            else
+                                            {
+                                            echo"badge badge-dark";     
+                                            }
+                                             ?>
+                                             "><?php echo $row['etat']; ?></span></td>
                                             <td>  
               <a href="modifier-clientste.php?edit=<?php echo $row['identifiant']; ?>&edit2=<?php echo $row['email']; ?>&edit3=<?php echo $row['motdepasse']; ?>" class="btn btn-info btn-xs"><i class="fa fa-pencil"></i> Edit </a>
 

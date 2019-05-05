@@ -47,26 +47,7 @@ if (isset($_GET['search'])&&!empty($_GET['search'])) {
     <!-- Left Panel -->
 
 <?php backUp(); ?>
-        <div class="breadcrumbs">
-            <div class="col-sm-4">
-                <div class="page-header float-left">
-                    
-                </div>
-            </div>
-            <div class="col-sm-8">
-                <div class="page-header float-right">
-                    <div class="page-title">
-                        <ol class="breadcrumb text-right">
-                            <li><a href="#">Dashboard</a></li>
-                            <li><a href="#">Table</a></li>
-                            <li class="active">Data table</li>
-                        </ol>
-                    </div>
-                </div>
-            </div>
-        </div>
-        
-       
+
         <div class="content mt-3">
             <div class="animated fadeIn">
                 <div class="row">
@@ -77,12 +58,9 @@ if (isset($_GET['search'])&&!empty($_GET['search'])) {
                                 <strong class="card-title"> Listes des produits </strong>
                             </div>
                             <div style="margin-left: 1001px;">
-                              <a href ="historiquepdf.php" class="btn btn-outline-success"><i class="ti-printer"></i> PDF </a>  
+                              <a target="_blank" href ="historiquepdf.php" class="btn btn-outline-success"><i class="ti-printer"></i> PDF </a>  
                             </div>
                             <div class="card-body">
-                            
-
-
                             </form>
                                 <table id="bootstrap-data-table-export" class="table table-striped table-bordered">
                                     <thead>
@@ -95,7 +73,6 @@ if (isset($_GET['search'])&&!empty($_GET['search'])) {
                                             <th> Prix </th>
                                             <th> Catégorie </th>
                                             <th> Action </th>
-
                                         </tr>
                                     </thead>
                                    <tbody>

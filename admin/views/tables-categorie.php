@@ -16,7 +16,7 @@ $result=$db->query('select * from categorie');
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Sufee Admin - HTML5 Admin Template</title>
+    <title>Liste des catégories</title>
     <meta name="description" content="Sufee Admin - HTML5 Admin Template">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -43,28 +43,6 @@ $result=$db->query('select * from categorie');
 
    
        <?php backUp(); ?>
-        <div class="breadcrumbs">
-            <div class="col-sm-4">
-                <div class="page-header float-left">
-                    <div class="page-title">
-                        <h1>Dashboard</h1>
-                    </div>
-                </div>
-            </div>
-            <div class="col-sm-8">
-                <div class="page-header float-right">
-                    <div class="page-title">
-                        <ol class="breadcrumb text-right">
-                            <li><a href="#">Dashboard</a></li>
-                            <li><a href="#">Table</a></li>
-                            <li class="active">Data table</li>
-                        </ol>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-       
         <div class="content mt-3">
             <div class="animated fadeIn">
                 <div class="row">

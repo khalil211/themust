@@ -63,7 +63,7 @@ if (isset($_POST['question'])&&isset($_POST['reponse']))
 
                                                                 
                                                         <button type="submit" class="btn btn-primary btn-sm">
-                                                            <i class="fa fa-dot-circle-o"></i> Submit
+                                                            <i class="fa fa-dot-circle-o"></i> Ajouter
                                                         </button>
                                                         <button type="reset" class="btn btn-danger btn-sm">
                                                             <i class="fa fa-ban"></i> Reset

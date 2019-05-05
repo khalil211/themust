@@ -24,61 +24,18 @@ function frontUp()
 	                <div class="row no-gutters align-items-center">
 	                    <div class="col-lg-8 d-flex align-items-center flex-column flex-lg-row">
 	                        <ul class="social social-round mr--20">
+
 	                            <li class="social__item">
-	                                <a href="twitter.com" class="social__link">
-	                                <i class="fa fa-twitter"></i>
-	                                </a>
-	                            </li>
-	                            <li class="social__item">
-	                                <a href="plus.google.com" class="social__link">
-	                                <i class="fa fa-google-plus"></i>
-	                                </a>
-	                            </li>
-	                            <li class="social__item">
-	                                <a href="facebook.com" class="social__link">
+	                                <a href="https://www.facebook.com/pg/MontresTheMust" class="social__link">
 	                                <i class="fa fa-facebook"></i>
 	                                </a>
 	                            </li>
-	                            <li class="social__item">
-	                                <a href="youtube.com" class="social__link">
-	                                <i class="fa fa-youtube"></i>
-	                                </a>
-	                            </li>
-	                            <li class="social__item">
-	                                <a href="instagram.com" class="social__link">
-	                                <i class="fa fa-instagram"></i>
-	                                </a>
-	                            </li>
+	                           
 	                        </ul>
-	                        <p class="header-text">EEEEEEEEEEEE <span>“Watches2019”</span></p>
+	                        <p class="header-text">The Must <span>“Watches2019”</span></p>
 	                    </div>
 	                    <div class="col-lg-4">
 	                        <div class="header-top-nav d-flex justify-content-lg-end justify-content-center">
-	                            <div class="language-selector header-top-nav__item">
-	                                <div class="dropdown header-top__dropdown">
-	                                    <a class="dropdown-toggle" id="languageID" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-	                                        FR
-	                                        <i class="fa fa-angle-down"></i>
-	                                    </a>
-	                                    <div class="dropdown-menu" aria-labelledby="languageID">
-	                                        <a class="dropdown-item" href="#"><img src="assets/img/header/2.jpg" alt="Français"> Français</a>
-	                                        <a class="dropdown-item" href="#"><img src="assets/img/header/1.jpg" alt="English"> English</a>
-	                                    </div>
-	                                </div>
-	                            </div>
-	                            <div class="currency-selector header-top-nav__item">
-	                                <div class="dropdown header-top__dropdown">
-	                                    
-	                                    <a class="dropdown-toggle" id="currencyID" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-	                                        TND
-	                                        <i class="fa fa-angle-down"></i>
-	                                    </a>
-	                                    <div class="dropdown-menu" aria-labelledby="currencyID">
-	                                        <a class="dropdown-item" href="#">TND</a>
-	                                       
-	                                    </div>
-	                                </div>
-	                            </div>
 	                            <div class="user-info header-top-nav__item">
 	                                <div class="dropdown header-top__dropdown">
 	                                    <a class="dropdown-toggle" id="userID" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><?php if (isset($_SESSION['idclient']))echo $_SESSION['idclient'];else echo 'Mon Compte'; ?>
@@ -130,21 +87,7 @@ function frontUp()
 	                    </div>
 	                    <div class="col-lg-5 col-md-7 col-sm-6 order-lg-3 order-3">
 	                        <div class="header-toolbar">
-	                            <div class="search-form-wrapper search-hide">
-	                                <form action="#" class="search-form">
-	                                    <input type="text" name="search" id="search" class="search-form__input" placeholder="Search entire store here..">
-	                                    <button type="submit" class="search-form__submit">
-	                                        <i class="icon_search"></i>
-	                                    </button>
-	                                </form>
-	                            </div>
 	                            <ul class="header-toolbar-icons">
-	                                <li class="search-box">
-	                                    <a href="#" class="bordered-icon search-btn" aria-expanded="false"><i class="icon_search"></i></a>
-	                                </li>
-	                                <li class="wishlist-icon">
-	                                    <a href="wishlist.html" class="bordered-icon"><i class="fa fa-heart"></i></a>
-	                                </li>
 	                                <?php
 	                                include '../entities/produitpanier.php';
 									include '../entities/panier.php';
@@ -283,11 +226,11 @@ function frontUp()
 	                                    <a href="listefaq.php" class="mainmenu__link">FAQ</a>
 	                                </li>
 	                               
-	                                <li class="mainmenu__item">
-	                                    <a href="about.php" class="mainmenu__link">About Us</a>
+	                                <li class="mainmenu__item <?php if (basename($_SERVER['PHP_SELF'])=='about.php')echo 'active'; ?>">
+	                                    <a href="about.php" class="mainmenu__link">A propos</a>
 	                                </li>
-	                                <li class="mainmenu__item">
-	                                    <a href="contact.php" class="mainmenu__link">contact Us</a>
+	                                <li class="mainmenu__item <?php if (basename($_SERVER['PHP_SELF'])=='contact.php')echo 'active'; ?>">
+	                                    <a href="contact.php" class="mainmenu__link">Contactez-nous</a>
 	                                </li>
 	                            </ul>
 	                        </nav>
@@ -352,9 +295,9 @@ function frontDown()
                     </div>
                     <div class="col-lg-2 col-md-6 mb-md--30">
                         <div class="footer-widget">
-                            <h3 class="widget-title">Information</h3>
+                            <h3 class="widget-title">Informations</h3>
                             <ul class="widget-menu">
-                                <li><a href="#">à propos de nous</a></li>
+                                <li><a href="#">A propos de nous</a></li>
                                 <li><a href="#">Contactez nous</a></li>
                             </ul>
                         </div>
@@ -375,7 +318,7 @@ function frontDown()
                     
                 <div class="row">
                     <div class="col-12 text-center">
-                        <p class="copyright-text">Copyright &copy; 2018 <a href="#">HasTech</a> .All Right Reserved.</p>
+                        <p class="copyright-text">Copyright &copy; 2019 <a href="#">The Must</a> .All Right Reserved.</p>
                         <img src="assets/img/others/payment.png" alt="payment">
                     </div>
                 </div>

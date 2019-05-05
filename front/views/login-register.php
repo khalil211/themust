@@ -10,7 +10,7 @@ testConnexion();
 if (isset($_POST['logidentifiant'])&&isset($_POST['logmotdepasse']))
 {
     if (($_POST['logidentifiant']=='admin')&&($_POST['logmotdepasse']='admin'))
-        header('Location: ../../admin/index.php');
+        header('Location: ../../admin/views/index.php');
     $client=new client($_POST['logidentifiant'],"",$_POST['logmotdepasse'],"","","","");
     $clientste=new clientste($_POST['logidentifiant'],"",$_POST['logmotdepasse'],"","","","");
     if ($client->exist()||$clientste->exist())

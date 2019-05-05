@@ -96,8 +96,8 @@ $nbs=0;
     <td><?php  echo $nbt;?></td>
   </tr>
   <tr>
-    <td> <?php  echo $nbcp?> %</td>
-    <td> <?php echo $nbsp?> %</td> 
+    <td> <?php  echo floor($nbcp)?> %</td>
+    <td> <?php echo floor($nbsp)?> %</td> 
     <td>100 %</td>
   </tr>
 </table>

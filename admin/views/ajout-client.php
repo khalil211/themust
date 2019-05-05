@@ -128,7 +128,7 @@ if (isset($_POST['identifiant'])&&isset($_POST['email'])&&isset($_POST['motdepas
                                                             </div>
                                                                 
                                                         <button type="submit" class="btn btn-primary btn-sm">
-                                                            <i class="fa fa-dot-circle-o"></i> Submit
+                                                            <i class="fa fa-dot-circle-o"></i> Ajouter
                                                         </button>
                                                         <button type="reset" class="btn btn-danger btn-sm">
                                                             <i class="fa fa-ban"></i> Reset

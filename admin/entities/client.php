@@ -42,7 +42,7 @@ class client
 	public function setTelephone($telephone){$this->telephone=$telephone;}
 	//public function setEtat($etat){$this->etat=$etat;}
 	
-		function ajouter()
+	function ajouter()
 	{
 		try
 		{

@@ -12,7 +12,7 @@ $resultat=$db->query('SELECT * FROM produit');
 ?>
 
 
-<!doctype html>
+<!DOCTYPE html>
 <html class="no-js" lang="zxx">
 
 
@@ -334,7 +334,7 @@ $resultat=$db->query('SELECT * FROM produit');
             <!-- Promo Box area End -->
         </div>
         <!-- Main Content Wrapper Start -->
-</div></div></div></div>
+
         <?php frontDown(); ?>
 
 </body>
