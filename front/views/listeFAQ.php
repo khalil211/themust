@@ -85,10 +85,10 @@ $x=0;
             <div class="container">
                 <div class="row">
                     <div class="col-12 text-center">
-                        <h1 class="page-title">Shop</h1>
+                        <h1 class="page-title">FAQ</h1>
                         <ul class="breadcrumb justify-content-center">
-                            <li><a href="index.php">Home</a></li>
-                            <li class="current"><a href="shop.html">Shop</a></li>
+                            <li><a href="index.php">Accueil</a></li>
+                            <li class="current"><a href="listeFAQ.php">FAQ</a></li>
                         </ul>
                     </div>
                 </div>
@@ -297,6 +297,7 @@ $x=0;
 
     <!-- Main JS -->
     <script src="assets/js/main.js"></script>
+    <?php frontDown(); ?>
 
 </body>
 

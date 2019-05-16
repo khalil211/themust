@@ -273,7 +273,7 @@ $result=$query->fetch();
                                 </article>
                                 <div class="comment">
                                     <div class="comment-respond">
-                                        <h3 class="comment-reply-title">LEAVE A REPLY</h3>
+                                        <h3 class="comment-reply-title">LAISSER UN COMMENTAIRE</h3>
                                 <?php
                                
                                foreach ($com as $pcom) {

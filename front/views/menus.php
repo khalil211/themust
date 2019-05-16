@@ -82,7 +82,7 @@ function frontUp()
 	                    </div>
 	                    <div class="col-lg-2 col-12 order-lg-2 order-1 text-center">
 	                        <a href="index.php" class="logo-box mb-md--30">
-	                            <img src="../../admin/views/images/logo.png" alt="logo">
+	                            <img src="../../admin/views/images/logo1.png" alt="logo">
 	                        </a>
 	                    </div>
 	                    <div class="col-lg-5 col-md-7 col-sm-6 order-lg-3 order-3">
@@ -259,9 +259,8 @@ function frontDown()
                         <div class="footer-widget">
                             <h3 class="widget-title">à propos THE MUST</h3>
                             <div class="widget-content mb--20">
-                                <p>Address: gammarth <br> tunisie</p>
-                                <p>Phone: (0216) xxxxxxxxx</p>
-                                <p>Fax: (0716) xxxxxxxx</p>
+                                <p>Adresse: Gammarth, Tunis</p>
+                                <p>Téléphone: (+216) 20 208 124</p>
                                 <p>Email: themust.gammarth@gmail.com</p>
                             </div>
                             <ul class="social social-round">
@@ -297,21 +296,8 @@ function frontDown()
                         <div class="footer-widget">
                             <h3 class="widget-title">Informations</h3>
                             <ul class="widget-menu">
-                                <li><a href="#">A propos de nous</a></li>
-                                <li><a href="#">Contactez nous</a></li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="col-lg-2 col-md-6 mb-sm--30">
-                        <div class="footer-widget">
-                            <h3 class="widget-title">Extras</h3>
-                            <ul class="widget-menu">
-                                <li><a href="#">Brands</a></li>
-                                
-                                <li><a href="#">Affiliate</a></li>
-                                <li><a href="#">Specials</a></li>
-                                <li><a href="#">My Account</a></li>
-                                <li><a href="#">Returns</a></li>
+                                <li><a href="about.php">A propos de nous</a></li>
+                                <li><a href="contact.php">Contactez nous</a></li>
                             </ul>
                         </div>
                     </div>
@@ -319,7 +305,6 @@ function frontDown()
                 <div class="row">
                     <div class="col-12 text-center">
                         <p class="copyright-text">Copyright &copy; 2019 <a href="#">The Must</a> .All Right Reserved.</p>
-                        <img src="assets/img/others/payment.png" alt="payment">
                     </div>
                 </div>
             </div>

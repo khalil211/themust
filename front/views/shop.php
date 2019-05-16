@@ -60,7 +60,7 @@ header('location: shop.php');
 <html class="no-js" lang="zxx">
 <!-- Mirrored from demo.devitems.com/mirora-v2/mirora/shop.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 10 Feb 2019 18:53:51 GMT -->
 <head>
-    <meta charset="utf-8">
+     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="meta description">
@@ -174,14 +174,7 @@ header('location: shop.php');
                                             <img src="../../admin/views/images/<?php echo $key['img'];?>" alt="Product" class="secondary-image" />
                                             <div class="product-img-overlay">
                                                     <span class="product-label discount">
-                                                <?php
-                                                if (isset($key['pourcentage']))
-                                                {
-                                                    ?>
-                                                        <?php echo $key['pourcentage']; ?>%
-                                                    <?php
-                                                }
-                                                ?>
+                                                
                                                     </span>
                                                 <a href="product-details.php?idd=<?php echo $key['id']; ?>" class="btn btn-transparent btn-fullwidth btn-medium btn-style-1">Détails</a>
 
@@ -189,7 +182,7 @@ header('location: shop.php');
                                         </div>
                                         <div class="product-content text-center">
                                             <span></span>
-                                            <h4><a href="product-details.html">Nom</a> <?php echo $key['nom'];?></h4>
+                                            <h4><a href="product-details.html"></a> <?php echo $key['nom'];?></h4>
                                             <div class="product-price-wrapper">
                                                 <span class="money">prix</span> <?php echo $key['prix'];?>
                                                 <span class="product-price-old">
@@ -199,10 +192,7 @@ header('location: shop.php');
                                         </div>
                                         <div class="mirora_product_action text-center position-absolute">
                                             
-                                            <p>
-                                             <?php echo $key['descr'];?>
-                                            </p>
-
+                                            
                                             <div class="product-action">
                                               
                                                 <a class="add_cart cart-item action-cart" href="cart.php?addpp=<?php echo $key['id']; ?>" title="wishlist"><span>Ajouter au panier</span></a> </div>
@@ -220,14 +210,14 @@ header('location: shop.php');
 
                                 
                                 <?php 
-                                for ($i=0;$i<$pagestotales;$i++)
+                                for ($i=1;$i<=$pagestotales;$i++)
                                 {?>
   									<ul class="pagination">
                                  <!-- echo ' <a href="shop.php?page='.$i.'">'.$i.'</a>' ; -->
                                   <li> 
                                   	<?php 
-                                   $d=$i+1;
-                                  	echo ' <a href="shop.php?page='.$i.'">'.$d.'</a>' ;
+                                  
+                                  	echo ' <a href="shop.php?page='.$i.'">'.$i.'</a>' ;
                                   	?>
                                   </li>
                                  <?php

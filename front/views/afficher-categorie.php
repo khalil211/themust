@@ -121,7 +121,7 @@ $result=$query->fetch();*/
                                                 <option value="4">Price, low to high</option>
                                                 <option value="5">Price, high to low</option>
                                             </select>
-                                        </div>-->w
+                                        </div>-->
                                     </div>
                                     <!-- Shop Toolbar End -->
                                 </div>
@@ -140,17 +140,16 @@ $result=$query->fetch();*/
                                             <img src="../../admin/views/images/<?php echo ''.$key['img'];?>" alt="Product" class="primary-image" />
                                             <img src="../../admin/views/images/<?php echo $key['img'];?>" alt="Product" class="secondary-image" />
                                             <div class="product-img-overlay">
-                                                <span class="product-label discount">
-                                                    %
-                                                </span>
-
+                                                    <span class="product-label discount">
+                                                
+                                                    </span>
                                                 <a href="product-details.php?idd=<?php echo $key['id']; ?>" class="btn btn-transparent btn-fullwidth btn-medium btn-style-1">Détails</a>
 
                                             </div>
                                         </div>
                                         <div class="product-content text-center">
                                             <span></span>
-                                            <h4><a href="product-details.html">Nom</a> <?php echo $key['nom'];?></h4>
+                                            <h4><a href="product-details.php"></a> <?php echo $key['nom'];?></h4>
                                             <div class="product-price-wrapper">
                                                 <span class="money">prix</span> <?php echo $key['prix'];?>
                                                 <span class="product-price-old">
@@ -159,25 +158,13 @@ $result=$query->fetch();*/
                                             </div>
                                         </div>
                                         <div class="mirora_product_action text-center position-absolute">
-                                            <div class="product-rating">
-                                                <span>
-                                                    <i class="fa fa-star theme-star"></i>
-                                                    <i class="fa fa-star theme-star"></i>
-                                                    <i class="fa fa-star theme-star"></i>
-                                                    <i class="fa fa-star theme-star"></i>
-                                                    <i class="fa fa-star"></i>
-                                                </span>
-                                            </div>
-                                            <p>
-                                             <?php echo $key['descr'];?>
-                                            </p>
+                                            
+                                            
 
                                             <div class="product-action">
                                               
                                                 <a class="add_cart cart-item action-cart" href="cart.php?addpp=<?php echo $key['id']; ?>" title="wishlist"><span>Ajouter au panier</span></a>
- <!--                                               <a class="same-action" href="wish.php?addp=<?php echo $key['id']; ?>" title="wishlist">
-                                                    <i class="fa fa-heart-o"></i>
-                                                </a>-->
+
                                                
                                             </div>
                                         </div>
@@ -256,30 +243,7 @@ $result=$query->fetch();*/
                                             <li><span>Christian Dior</span><a href="#"><i class="fa fa-times-circle"></i></a></li>
                                         </ul>
                                     </div>-->
-                                    <div class="filter-price">
-                                        <h3 class="filter-heading">Prix</h3>
-                                        <ul class="filter-list">
-                                            <li>
-                                                <div class="filter-input filter-radio">
-                                                    <input type="radio" name="pricerange" id="pricerange-1" checked>
-                                                    <label for="pricerange-1">entre (200) prix (300)</label>
-                                                </div>
-                                            </li>
-                                            <li>
-                                                <div class="filter-input filter-radio">
-                                                    <input type="radio" name="pricerange" id="pricerange-2">
-                                                    <label for="pricerange-2">entre (300) prix (600)</label>
-                                                </div>
-                                            </li>
-                                            <li>
-                                                <div class="filter-input filter-radio">
-                                                    <input type="radio" name="pricerange" id="pricerange-3">
-                                                    <label for="pricerange-3">Plus de (600)</label>
-                                                </div>
-                                            </li>
-                                            
-                                        </ul>
-                                    </div>
+                                    
                                           <div  class="product-action-bottom">
                                          <div class="filter-input filter-radio">
                                         <h3 class="filter-heading">Catégories</h3>

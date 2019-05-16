@@ -302,7 +302,7 @@ include 'menus.php';testConnexion();
 
                                                     </div>
 
-                                                    <a href="blog-details.php?idd=<?php echo $pblog['idblog']; ?>" class="btn btn-read-more btn-style-2">Continue Reading</a>
+                                                    <a href="blog-details.php?idd=<?php echo $pblog['idblog']; ?>" class="btn btn-read-more btn-style-2">Continuer a lire</a>
 
                                                 </div>
 
@@ -331,13 +331,13 @@ include 'menus.php';testConnexion();
 
                                 <div class="sidebar-widget search-widget">
 
-                                    <h3 class="widget-title">Search</h3>
+                                    <h3 class="widget-title">Chercher</h3>
 
                                     <div class="widget_conent">
 
                                         
 
-                                            <input <?php if (isset($_GET['r']))echo 'value="'.$_GET['r'].'"'; ?> type="search" class="searchform__input"   id="recherche" placeholder="Search...">
+                                            <input <?php if (isset($_GET['r']))echo 'value="'.$_GET['r'].'"'; ?> type="search" class="searchform__input"   id="recherche" placeholder="Chercher...">
 
                                          
                                         

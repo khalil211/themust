@@ -94,56 +94,6 @@ $resultat=$db->query('SELECT * FROM produit');
 
             <!-- Slider area End -->
 
-            <!-- Promo Box area Start -->
-
-            <div class="promo-box-area border-bottom ptb--80 ptb-md--60">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-md-4 mb-sm--30">
-                            <div class="promo promo-1">
-                                <a href="shop.php" class="promo__box">
-                                    <img src="assets/img/banner/img1-top-mirora1.jpg" alt="Product Category">
-                                    <span class="promo__content">
-                                        <span class="promo__label"></span>
-                                        <span class="promo__name"></span>
-                                        <span class="promo__price"></span>
-                                    </span>
-                                </a>
-                            </div>
-                        </div>
-                        <div class="col-md-4 mb-sm--30">
-                            <div class="promo promo-1">
-                                <a href="shop.php" class="promo__box">
-                                    <img src="assets/img/banner/img2-top-mirora1.jpg" alt="Product Category">
-                                    <span class="promo__content">
-                                        <span class="promo__label"></span>
-                                        <span class="promo__name"></span>
-                                        <span class="promo__price"></span>
-                                    </span>
-                                </a>
-                            </div>
-                        </div>
-                        <div class="col-md-4">
-                            <div class="promo promo-1">
-                                <a href="shop.php" class="promo__box">
-                                    <img src="assets/img/banner/img3-top-mirora1.jpg" alt="Product Category">
-                                    <span class="promo__content">
-                                        <span class="promo__label"></span>
-                                        <span class="promo__name"></span>
-                                        <span class="promo__price"></span>
-                                    </span>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row mt--40 mt-md--30">
-                        
-                    </div>
-                </div>
-            </div>
-
-            <!-- Promo Box area End -->
-
             <!-- Products Tab area Start -->
 
             <div class="product-tab pt--80 pb--60 pt-md--60 pb-md--45">
@@ -279,7 +229,7 @@ $resultat=$db->query('SELECT * FROM produit');
 </div>
             </div>
         </div>
-
+        <br>
             <!-- Products Tab area End -->
 
             <!-- Banner area Start -->
@@ -289,49 +239,9 @@ $resultat=$db->query('SELECT * FROM produit');
                     <h5 class="banner__label"></h5>
                     <h2 class="banner__name"></h2>
                     <p class="banner__text mb--50 mb-md--20"></p>
-                    <a href="shop.html" class="btn btn-bordered btn-style-1">Achetez maintenant</a>
+                    <a href="shop.php" class="btn btn-bordered btn-style-1">Achetez maintenant</a>
                 </div>
             </section>      
-
-          
-
-            <!-- Promo Box area Start -->
-
-            <div class="promo-box-area">
-                <div class="container-fluid p-0">
-                    <div class="row no-gutters">
-                        <div class="col-md-6 mb-sm--20">
-                            <div class="promo">
-                                <a href="shop.html" class="promo__box promo__box-2">
-                                    <img src="assets/img/banner/img1-bottom-mirora1.jpg" alt="Product Category">
-                                    <span class="promo__content promo__content-2">
-                                        <span class="promo__label">produit 2019</span>
-                                        <span class="promo__name">produit de luxe 2019</span>
-                                        <span class="promo__price"></span>
-                                        <span class="promo__link"></span>
-                                    </span>
-                                </a>
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="promo">
-                                <a href="shop.html" class="promo__box promo__box-2">
-                                    <img src="assets/img/banner/img2-bottom-mirora1.jpg" alt="Product Category">
-                                    <span class="promo__content promo__content-2">
-                                        <span class="promo__label"></span>
-                                        <span class="promo__name"></span>
-                                        <span class="promo__price"></span>
-                                        <span class="promo__link"></span>
-                                    </span>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-
-            <!-- Promo Box area End -->
         </div>
         <!-- Main Content Wrapper Start -->
 

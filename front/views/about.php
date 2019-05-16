@@ -233,6 +233,7 @@ Un service après vente est assuré pour tous les modèles munies d'une garantie
 				</div>
 				</div>
 				</div>
+                <br>
 				<?php frontDown();?>
          
         <!-- Modal End -->
